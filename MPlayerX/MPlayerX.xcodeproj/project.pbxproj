@@ -149,6 +149,27 @@
 			remoteGlobalIDString = 8D1107260486CEB800E47090;
 			remoteInfo = MplayerX;
 		};
+		88752AAB12CE1920005208C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 88752AA212CE1920005208C0 /* UniversalDetector.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216 /* UniversalDetector.framework */;
+			remoteInfo = UniversalDetector;
+		};
+		88752AAD12CE1920005208C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 88752AA212CE1920005208C0 /* UniversalDetector.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1B0DDCAB0A2D0AD10009B697 /* DetectorTest */;
+			remoteInfo = DetectorTest;
+		};
+		88752AB512CE1940005208C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 88752AA212CE1920005208C0 /* UniversalDetector.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* UniversalDetector */;
+			remoteInfo = UniversalDetector;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -324,6 +345,7 @@
 		86FB6F731131A2EB005E95B5 /* coredef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = coredef.m; sourceTree = "<group>"; };
 		86FB6F7F1131A4BF005E95B5 /* coredef_private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = coredef_private.m; sourceTree = "<group>"; };
 		86FB6FC41131B42D005E95B5 /* KeyCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = KeyCode.m; sourceTree = "<group>"; };
+		88752AA212CE1920005208C0 /* UniversalDetector.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UniversalDetector.xcodeproj; path = ../UniversalDetector/UniversalDetector.xcodeproj; sourceTree = SOURCE_ROOT; };
 		8D1107320486CEB800E47090 /* SPlayerX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPlayerX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -394,6 +416,7 @@
 		29B97314FDCFA39411CA2CEA /* MplayerX */ = {
 			isa = PBXGroup;
 			children = (
+				88752AA212CE1920005208C0 /* UniversalDetector.xcodeproj */,
 				863B9F5A10EF57B9003D5F42 /* AutoUpdate */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -676,6 +699,15 @@
 			name = ControlUI;
 			sourceTree = "<group>";
 		};
+		88752AA312CE1920005208C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				88752AAC12CE1920005208C0 /* UniversalDetector.framework */,
+				88752AAE12CE1920005208C0 /* DetectorTest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -696,6 +728,7 @@
 			);
 			dependencies = (
 				864F8622116CD10200785586 /* PBXTargetDependency */,
+				88752AB612CE1940005208C0 /* PBXTargetDependency */,
 			);
 			name = SPlayerX;
 			productInstallPath = "$(HOME)/Applications";
@@ -713,6 +746,7 @@
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MPlayerX" */;
 			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -723,6 +757,12 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* MplayerX */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 88752AA312CE1920005208C0 /* Products */;
+					ProjectRef = 88752AA212CE1920005208C0 /* UniversalDetector.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				864F8616116CD07000785586 /* updateInfoPlist */,
@@ -731,6 +771,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		88752AAC12CE1920005208C0 /* UniversalDetector.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = UniversalDetector.framework;
+			remoteRef = 88752AAB12CE1920005208C0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		88752AAE12CE1920005208C0 /* DetectorTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = DetectorTest;
+			remoteRef = 88752AAD12CE1920005208C0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8D1107290486CEB800E47090 /* Resources */ = {
@@ -921,6 +978,11 @@
 			isa = PBXTargetDependency;
 			target = 8D1107260486CEB800E47090 /* SPlayerX */;
 			targetProxy = 86A6E10510EFD2A8001F4890 /* PBXContainerItemProxy */;
+		};
+		88752AB612CE1940005208C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = UniversalDetector;
+			targetProxy = 88752AB512CE1940005208C0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
