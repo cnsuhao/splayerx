@@ -324,7 +324,7 @@
 		86FB6F731131A2EB005E95B5 /* coredef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = coredef.m; sourceTree = "<group>"; };
 		86FB6F7F1131A4BF005E95B5 /* coredef_private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = coredef_private.m; sourceTree = "<group>"; };
 		86FB6FC41131B42D005E95B5 /* KeyCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = KeyCode.m; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* MPlayerX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MPlayerX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* SPlayerX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPlayerX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -386,7 +386,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* MPlayerX.app */,
+				8D1107320486CEB800E47090 /* SPlayerX.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -679,9 +679,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* MPlayerX */ = {
+		8D1107260486CEB800E47090 /* SPlayerX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "MPlayerX" */;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "SPlayerX" */;
 			buildPhases = (
 				86030A8311F1DD6D00F8D1E8 /* build Localizable.strings */,
 				8D1107290486CEB800E47090 /* Resources */,
@@ -697,10 +697,10 @@
 			dependencies = (
 				864F8622116CD10200785586 /* PBXTargetDependency */,
 			);
-			name = MPlayerX;
+			name = SPlayerX;
 			productInstallPath = "$(HOME)/Applications";
 			productName = MplayerX;
-			productReference = 8D1107320486CEB800E47090 /* MPlayerX.app */;
+			productReference = 8D1107320486CEB800E47090 /* SPlayerX.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -709,7 +709,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				ORGANIZATIONNAME = MPlayerX;
+				ORGANIZATIONNAME = SPlayerX;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MPlayerX" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -726,7 +726,7 @@
 			projectRoot = "";
 			targets = (
 				864F8616116CD07000785586 /* updateInfoPlist */,
-				8D1107260486CEB800E47090 /* MPlayerX */,
+				8D1107260486CEB800E47090 /* SPlayerX */,
 				86A6E0FC10EFD250001F4890 /* GetAutoUpdateInfo */,
 			);
 		};
@@ -919,7 +919,7 @@
 		};
 		86A6E10610EFD2A8001F4890 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8D1107260486CEB800E47090 /* MPlayerX */;
+			target = 8D1107260486CEB800E47090 /* SPlayerX */;
 			targetProxy = 86A6E10510EFD2A8001F4890 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1038,7 +1038,7 @@
 				GCC_PREFIX_HEADER = MPlayerX_Prefix.pch;
 				INFOPLIST_FILE = "MPlayerX-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = MPlayerX;
+				PRODUCT_NAME = SPlayerX;
 			};
 			name = Debug;
 		};
@@ -1059,7 +1059,7 @@
 				GCC_PREFIX_HEADER = MPlayerX_Prefix.pch;
 				INFOPLIST_FILE = "MPlayerX-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = MPlayerX;
+				PRODUCT_NAME = SPlayerX;
 			};
 			name = Release;
 		};
@@ -1146,7 +1146,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "MPlayerX" */ = {
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "SPlayerX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4B08A954540054247B /* Debug */,
