@@ -20,10 +20,10 @@
 
 #define kMPXStringError					(NSLocalizedString(@"Error", nil))
 #define kMPXStringOK					(NSLocalizedString(@"OK", nil))
-#define kMPXStringFileNotSupported		(NSLocalizedString(@"The file is not supported by MPlayerX.", nil))
+#define kMPXStringFileNotSupported		(NSLocalizedString(@"The file is not supported by SPlayerX.", nil))
 #define kMPXStringOpenMediaFiles		(NSLocalizedString(@"Open Media Files", nil))
 #define kMPXStringFileNotExist			(NSLocalizedString(@"The file does not exist", nil))
-#define kMPXStringURLNotSupported		(NSLocalizedString(@"The URL is not supported by MPlayerX.", nil))
+#define kMPXStringURLNotSupported		(NSLocalizedString(@"The URL is not supported by SPlayerX.", nil))
 #define kMPXStringCantFindMediaFile		(NSLocalizedString(@"Can't find a proper file to play", nil))
 #define kMPXStringTBILabelGeneral		(NSLocalizedString(@"General", @"PrefToolBarLabel"))
 #define kMPXStringTBILabelVideo			(NSLocalizedString(@"Video", @"PrefToolBarLabel"))

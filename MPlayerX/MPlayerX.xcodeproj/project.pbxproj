@@ -147,7 +147,7 @@
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 8D1107260486CEB800E47090;
-			remoteInfo = MplayerX;
+			remoteInfo = SPlayerX;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -699,7 +699,7 @@
 			);
 			name = SPlayerX;
 			productInstallPath = "$(HOME)/Applications";
-			productName = MplayerX;
+			productName = SPlayerX;
 			productReference = 8D1107320486CEB800E47090 /* SPlayerX.app */;
 			productType = "com.apple.product-type.application";
 		};

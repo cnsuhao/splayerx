@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
    <channel>
-      <title>MplayerX's Changelog</title>
-      <link>http://mplayerx.googlecode.com/svn/trunk/update/MplayerX_Update_Appcast.xml</link>
-      <description>MplayerX</description>
+      <title>SPlayerX's Changelog</title>
+      <link>http://hg.splayer.org/splayerx/update/MplayerX_Update_Appcast.xml</link>
+      <description>SPlayerX</description>
       <language>en</language>      
          <item>
             <title>Version 1.0.0</title>
