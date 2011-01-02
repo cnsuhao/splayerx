@@ -24,7 +24,8 @@ typedef enum
 {
 	kOSDOwnerTime = 1,
 	kOSDOwnerOther = 2,
-	kOSDOwnerMediaInfo = 3
+	kOSDOwnerMediaInfo = 3,
+	kOSDOwnerNotifier = 4
 } OSDOWNER;
 
 @interface OsdText : NSTextField
@@ -52,6 +53,7 @@ typedef enum
 @property (retain, readwrite) NSColor *frontColor;
 
 -(void) setAutoHideTimeInterval:(NSTimeInterval)ti;
+-(void) setStringValueDelayed:(NSString *)aString;
 -(void) setStringValue:(NSString *)aString owner:(OSDOWNER)ow updateTimer:(BOOL)ut;
 
 @end

@@ -150,4 +150,5 @@ extern NSString * const kFillScreenButtonImageUBKey;
 
 -(IBAction) showMediaInfo:(id)sender;
 
+-(void) setOSDMessage:(NSString*) msg;
 @end

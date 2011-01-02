@@ -127,3 +127,10 @@
 #define kMPXStringEnc8859_15		(NSLocalizedString(@"Western Europe (ISO 8859-15)", @"Text Enc"))
 #define kMPXStringEncWin1252		(NSLocalizedString(@"Western Europe (Windows-1252)", @"Text Enc"))
 #define kMPXStringEncMacWestEuro	(NSLocalizedString(@"Western Europe (Mac)", @"Text Enc"))
+
+#define kMPXStringSSCLFetching	(NSLocalizedString(@"Trying SPlayerX smart subtitle system", @"Smart Subtitle"))
+#define kMPXStringSSCLZeroMatched	(NSLocalizedString(@"None subtitle match yet", @"Smart Subtitle"))
+#define kMPXStringSSCLGotResults	(NSLocalizedString(@"found %d subtitles", @"Smart Subtitle"))
+#define kMPXStringSSCLReqAuth	(NSLocalizedString(@"Unauthorize requests", @"Smart Subtitle"))
+
+

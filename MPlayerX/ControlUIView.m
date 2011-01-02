@@ -599,7 +599,13 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 				  owner:kOSDOwnerOther
 			updateTimer:YES];
 }
-
+-(void) setOSDMessage:(NSString*) msg
+{
+	// update OSD
+	[osd setStringValue:msg
+					owner:kOSDOwnerNotifier
+					updateTimer:YES];
+}
 -(IBAction) setVolume:(id)sender
 {
 	if ([volumeSlider isEnabled]) {

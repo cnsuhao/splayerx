@@ -123,15 +123,27 @@
 {
 	if (shouldHide) {
 		[self.animator setAlphaValue:0];
+		self.stringValue = @"";
 	} else {
 		shouldHide = YES;
 	}
 }
-
+-(void) setStringValueDelayed:(NSString *)aString
+{
+	[self setStringValue:aString
+								 owner:kOSDOwnerNotifier
+					 updateTimer:YES];
+	
+}
 -(void) setStringValue:(NSString *)aString owner:(OSDOWNER)ow updateTimer:(BOOL)ut
 {
 	if (active) {
 		if (ut || ([self alphaValue] > 0 && (ow == owner))) {
+			if ([[self stringValue] length] > 0 && ow == kOSDOwnerNotifier)
+			{
+				[self performSelector:@selector(setStringValueDelayed:) withObject:aString afterDelay:1.0];
+				return;
+			}
 			// 如果是更新timer，那么意味着onwer要更换
 			// 如果不更新，那么在self没有隐藏，并且owner一直的情况下更新
 			if (!aString) {
@@ -142,10 +154,11 @@
 			NSSize sz = [[self superview] bounds].size;
 			
 			float fontSize = MIN(fontSizeMax, MAX(fontSizeMin, (sz.height*fontSizeRatio) + fontSizeOffset));
-			if (ow == kOSDOwnerMediaInfo) {
+			if (ow == kOSDOwnerMediaInfo) 
 				fontSize *= 0.7;
-			}
-
+			else if (ow == kOSDOwnerNotifier)
+				fontSize *= 0.4;
+			
 			NSFont *font = [NSFont systemFontOfSize:fontSize];
 			
 			NSDictionary *attrDict = [[NSDictionary alloc] initWithObjectsAndKeys:
