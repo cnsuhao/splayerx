@@ -28,6 +28,7 @@
 #import "OpenURLController.h"
 #import "CharsetQueryController.h"
 #import "AppController.h"
+#import "ssclThread.h"
 
 NSString * const kMPCPlayOpenedNotification			= @"kMPCPlayOpenedNotification";
 NSString * const kMPCPlayOpenedURLKey				= @"kMPCPlayOpenedURLKey";
@@ -677,6 +678,26 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 	[mplayer loadSubFile:subPath];
 }
 
+-(void) pullSubtitle
+{
+	if ([mplayer.movieInfo.subInfo count] > 0)
+		return;
+	
+	// TODO : only pull for mkv, avi, mp4
+	
+	[NSThread detachNewThreadSelector:@selector(pullSubtitle:) toTarget:[ssclThread class] withObject:self];
+}
+
+-(void) pushSubtitle
+{
+	[NSThread detachNewThreadSelector:@selector(pushSubtitle:) toTarget:[ssclThread class] withObject:self];
+}
+
+-(void) setOSDMessage:(NSString*) msg
+{
+	[controlUI setOSDMessage:msg];
+}
+
 -(void) setLetterBox:(BOOL) renderSubInLB top:(float) topRatio bottom:(float)bottomRatio
 {
 	if (PlayerCouldAcceptCommand) {
@@ -744,6 +765,8 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 									   nil]];
 
 	MPLog(@"vc:%lu, ac:%lu", [mplayer.movieInfo.videoInfo count], [mplayer.movieInfo.audioInfo count]);
+	
+	[self pullSubtitle];
 }
 
 -(void) playebackWillStop

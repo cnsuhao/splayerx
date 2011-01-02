@@ -98,5 +98,8 @@ extern NSString * const kMPCPlayInfoUpdatedChangeDictKey;
 -(void) setEqualizer:(NSArray*) amps;
 
 -(void) loadSubFile:(NSString*)subPath;
+-(void) pullSubtitle;
+-(void) pushSubtitle;
 
+-(void) setOSDMessage:(NSString*) msg;
 @end
