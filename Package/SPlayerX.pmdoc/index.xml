@@ -44,4 +44,4 @@ A
 
 \f0\fs26 \cf0 This is an experiential Mac OSX project of SPlayer.\
 \
-Only x86_64 version for now}]]></resource></locale></resources><flags/><item type="file">01splayerx.xml</item><mod>properties.title</mod><mod>properties.customizeOption</mod><mod>description</mod><mod>properties.userDomain</mod><mod>properties.systemDomain</mod></pkmkdoc>
+Only x86_64 version for now}]]></resource></locale></resources><flags/><postinstall><action id="com.apple.packagemaker.actions.openurl"><value>http://splayer.org/mac/installed.html</value></action></postinstall><item type="file">01splayerx.xml</item><mod>postinstallActions.actions</mod><mod>properties.title</mod><mod>properties.customizeOption</mod><mod>description</mod><mod>properties.userDomain</mod><mod>properties.systemDomain</mod></pkmkdoc>
