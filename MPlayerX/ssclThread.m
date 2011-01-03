@@ -27,15 +27,16 @@
 	task = [[NSTask alloc] init];
 	[task setLaunchPath: [resPath stringByAppendingPathComponent:@"binaries/x86_64/sscl"] ];
 	
-	NSString* argPath = [NSString stringWithFormat:@"\"%@\"",[playerController.lastPlayedPath path]];
+	NSString* argPath = [NSString stringWithFormat:@"%@",[playerController.lastPlayedPath path]];
 
+	// printf("%s \n", [argPath UTF8String]);
 	NSArray *arguments;
 	arguments = [NSArray arrayWithObjects: @"--pull", argPath, nil];
 	[task setArguments: arguments];
 	
-	NSPipe *pipe;
-	pipe = [NSPipe pipe];
+	NSPipe *pipe = [NSPipe pipe];
 	[task setStandardOutput: pipe];
+	//[task setStandardError: pipe];
 	
 	NSFileHandle *file;
 	file = [pipe fileHandleForReading];
@@ -43,6 +44,9 @@
 	[task launch];
 	[task waitUntilExit];
 	
+	NSData *data;
+	data = [file readDataToEndOfFile];
+		
 	int status = [task terminationStatus];
 	switch (status) {
 		case 3:
@@ -55,12 +59,12 @@
 			
 			break;
 	}
+	[task release];
 	
-	NSData *data;
-	data = [file readDataToEndOfFile];
-	
+		
 	NSString *retString;
 	retString = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+  // NSLog(@"%s %lu %lu\n", [retString UTF8String], (unsigned long)[data length], (unsigned long)[retString length]);
 	int resultCount = 0;
 	NSArray *retLines = nil;
 	if ([retString length] > 0)
@@ -72,16 +76,29 @@
 	switch (resultCount) {
 		case 0:
 			[playerController setOSDMessage:kMPXStringSSCLZeroMatched];
-			return [POOL release];
 			break;
 		default:
-			[playerController setOSDMessage:[NSString stringWithFormat:
-																			 kMPXStringSSCLGotResults, resultCount]];
-			if (retLines)
-  			for (NSString* subPath in retLines)
-	  			if (subPath && [subPath length] > 0)
-  	  			[playerController loadSubFile:subPath];
-
+		  {
+				int acctureCount = 0;
+				if (retLines)
+				{
+					NSArray* reversedLines = [[retLines reverseObjectEnumerator] allObjects];
+					for (NSString* subPath in reversedLines)
+					{
+						// printf("%s \n", [subPath UTF8String]);
+						if (subPath && [subPath length] > 0)
+						{
+							[playerController loadSubFile:subPath];
+							acctureCount++;
+						}
+					}
+				}
+				if (acctureCount == 0)
+					[playerController setOSDMessage:kMPXStringSSCLZeroMatched];
+				else
+					[playerController setOSDMessage:[NSString stringWithFormat:
+																					 kMPXStringSSCLGotResults, acctureCount]];
+		  }	
 			break;
 	}
 	[POOL release];
