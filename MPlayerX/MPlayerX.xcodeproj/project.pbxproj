@@ -30,6 +30,18 @@
 			name = GetAutoUpdateInfo;
 			productName = GetAutoUpdateInfo;
 		};
+		8899109512D194D000D4D863 /* BuildFullPackage */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 889910A512D1950E00D4D863 /* Build configuration list for PBXAggregateTarget "BuildFullPackage" */;
+			buildPhases = (
+				8899109412D194D000D4D863 /* ShellScript */,
+			);
+			dependencies = (
+				8899109912D194D600D4D863 /* PBXTargetDependency */,
+			);
+			name = BuildFullPackage;
+			productName = BuildPackage;
+		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -170,6 +182,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = UniversalDetector;
+		};
+		8899109812D194D600D4D863 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D1107260486CEB800E47090 /* SPlayerX */;
+			remoteInfo = SPlayerX;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -781,6 +800,7 @@
 				864F8616116CD07000785586 /* updateInfoPlist */,
 				8D1107260486CEB800E47090 /* SPlayerX */,
 				86A6E0FC10EFD250001F4890 /* GetAutoUpdateInfo */,
+				8899109512D194D000D4D863 /* BuildFullPackage */,
 			);
 		};
 /* End PBXProject section */
@@ -929,6 +949,19 @@
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/sh\n\n##cd ../update\n##export MPXVER=$(ruby getVerNum.rb ${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME})\n\n##cd ../../localization/trunk/localization/${MPXVER}\n\n##echo ${MPXVER}\n\n##make clean\n\n##make\n\n## cp -R ./results/* ${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/";
 		};
+		8899109412D194D000D4D863 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/Developer/usr/bin/packagemaker --verbose --doc $SRCROOT/../Package/SPlayerX.pmdoc --out $SRCROOT/../Package/build/SPlayerX.pkg\nrm -rf $SRCROOT/../Package/*.dmg\nhdiutil create -srcfolder $SRCROOT/../Package/build/SPlayerX.pkg -volname 'SPlayerX' -fs HFS+ -fsargs '-c c=64,a=16,e=16' -format UDRW $SRCROOT/../Package/SPlayerX-tmp.dmg\nhdiutil convert $SRCROOT/../Package/SPlayerX-tmp.dmg -format UDZO -imagekey zlib-level=9 -o $SRCROOT/../Package/SPlayerX.dmg\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -997,6 +1030,11 @@
 			isa = PBXTargetDependency;
 			name = UniversalDetector;
 			targetProxy = 88752AB512CE1940005208C0 /* PBXContainerItemProxy */;
+		};
+		8899109912D194D600D4D863 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D1107260486CEB800E47090 /* SPlayerX */;
+			targetProxy = 8899109812D194D600D4D863 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1094,6 +1132,27 @@
 			};
 			name = Release;
 		};
+		8899109612D194D000D4D863 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = BuildPackage;
+			};
+			name = Debug;
+		};
+		8899109712D194D000D4D863 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = BuildPackage;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1114,6 +1173,10 @@
 				GCC_PREFIX_HEADER = MPlayerX_Prefix.pch;
 				INFOPLIST_FILE = "MPlayerX-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../binaries/x86_64/lib\"",
+				);
 				PRODUCT_NAME = SPlayerX;
 			};
 			name = Debug;
@@ -1135,6 +1198,10 @@
 				GCC_PREFIX_HEADER = MPlayerX_Prefix.pch;
 				INFOPLIST_FILE = "MPlayerX-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../binaries/x86_64/lib\"",
+				);
 				PRODUCT_NAME = SPlayerX;
 			};
 			name = Release;
@@ -1218,6 +1285,15 @@
 			buildConfigurations = (
 				86A6E0FD10EFD250001F4890 /* Debug */,
 				86A6E0FE10EFD250001F4890 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		889910A512D1950E00D4D863 /* Build configuration list for PBXAggregateTarget "BuildFullPackage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8899109612D194D000D4D863 /* Debug */,
+				8899109712D194D000D4D863 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
