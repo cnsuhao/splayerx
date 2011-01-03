@@ -14,5 +14,4 @@
 }
 +(void)pullSubtitle:(PlayerController*)playerController;
 +(void)pushSubtitle:(PlayerController*)playerController;
-
 @end
