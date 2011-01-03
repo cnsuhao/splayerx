@@ -127,7 +127,7 @@ static BOOL init_ed = NO;
 	NSBundle *mainBundle = [NSBundle mainBundle];
 
 	// setup version info
-	[aboutText setStringValue:[NSString stringWithFormat: @"MPlayerX %@ (r%@) by Zongyao QU@2009,2010", 
+	[aboutText setStringValue:[NSString stringWithFormat: @"SPlayerX %@ (r%@) based on MPlayerX", 
 							   [mainBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"],
 							   [mainBundle objectForInfoDictionaryKey:@"CFBundleVersion"]]];
 
