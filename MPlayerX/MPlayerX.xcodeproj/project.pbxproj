@@ -960,7 +960,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/Developer/usr/bin/packagemaker --verbose --doc $SRCROOT/../Package/SPlayerX.pmdoc --out $SRCROOT/../Package/build/SPlayerX.pkg\nrm -rf $SRCROOT/../Package/*.dmg\nhdiutil create -srcfolder $SRCROOT/../Package/build/SPlayerX.pkg -volname 'SPlayerX' -fs HFS+ -fsargs '-c c=64,a=16,e=16' -format UDRW $SRCROOT/../Package/SPlayerX-tmp.dmg\nhdiutil convert $SRCROOT/../Package/SPlayerX-tmp.dmg -format UDZO -imagekey zlib-level=9 -o $SRCROOT/../Package/SPlayerX.dmg\n";
+			shellScript = "rm -f $SRCROOT/../Package/build/SPlayerX.pkg\n/Developer/usr/bin/packagemaker --verbose --doc $SRCROOT/../Package/SPlayerX.pmdoc --no-relocate --out $SRCROOT/../Package/build/SPlayerX.pkg\nrm -rf $SRCROOT/../Package/*.dmg\nhdiutil create -srcfolder $SRCROOT/../Package/build/SPlayerX.pkg -volname 'SPlayerX' -fs HFS+ -fsargs '-c c=64,a=16,e=16' -format UDRW $SRCROOT/../Package/SPlayerX-tmp.dmg\nhdiutil convert $SRCROOT/../Package/SPlayerX-tmp.dmg -format UDZO -imagekey zlib-level=9 -o $SRCROOT/../Package/SPlayerX.dmg\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
