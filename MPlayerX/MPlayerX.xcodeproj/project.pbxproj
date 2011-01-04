@@ -778,6 +778,7 @@
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MPlayerX" */;
 			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -905,7 +906,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# shell script goes here\nhg id -n > ver.log\n./updateVersion ver.log MPlayerX-Info.plist\ntouch -amfc MPlayerX-Info.plist\nrm -Rf ver.log\n\nexit 0";
+			shellScript = "PATH=${PATH}:/opt/local/bin\nhg id -n > ver.log\n./updateVersion ver.log MPlayerX-Info.plist\ntouch -amfc MPlayerX-Info.plist\nrm -Rf ver.log\n\nexit 0";
 		};
 		869DA5341223C93100D0D57A /* delete redundent files in Framework */ = {
 			isa = PBXShellScriptBuildPhase;
