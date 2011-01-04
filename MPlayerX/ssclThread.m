@@ -7,6 +7,7 @@
 //
 
 #import "ssclThread.h"
+#import "CocoaAppendix.h"
 #import "LocalizedStrings.h"
 
 @implementation ssclThread
@@ -64,7 +65,8 @@
 		
 	NSString *retString;
 	retString = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-  // NSLog(@"%s %lu %lu\n", [retString UTF8String], (unsigned long)[data length], (unsigned long)[retString length]);
+  MPLog(@"%s %lu %lu\n", [retString UTF8String], (unsigned long)[data length], (unsigned long)[retString length]);
+  
 	int resultCount = 0;
 	NSArray *retLines = nil;
 	if ([retString length] > 0)
