@@ -46,7 +46,8 @@ static BOOL init_ed = NO;
 					   @"http://splayer.org/", kUDKeyHelpURL,
 					   nil]];
 
-	MPSetLogEnable([[NSUserDefaults standardUserDefaults] boolForKey:kUDKeyLogMode]);
+  // force enabled
+	MPSetLogEnable(true); // [[NSUserDefaults standardUserDefaults] boolForKey:kUDKeyLogMode])
 }
 					   
 +(AppController*) sharedAppController
