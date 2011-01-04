@@ -906,7 +906,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH=${PATH}:/opt/local/bin\nhg id -n > ver.log\n./updateVersion ver.log MPlayerX-Info.plist\ntouch -amfc MPlayerX-Info.plist\nrm -Rf ver.log\n\nexit 0";
+			shellScript = "PATH=${PATH}:/opt/local/bin\nhg id -n  | sed 's/^ *\\(.*\\)+ *$/\\1/' > ver.log\n./updateVersion ver.log MPlayerX-Info.plist\ntouch -amfc MPlayerX-Info.plist\nrm -Rf ver.log\n\nexit 0";
 		};
 		869DA5341223C93100D0D57A /* delete redundent files in Framework */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -960,7 +960,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rm -f $SRCROOT/../Package/build/SPlayerX.pkg\n/Developer/usr/bin/packagemaker --verbose --doc $SRCROOT/../Package/SPlayerX.pmdoc --no-relocate --out $SRCROOT/../Package/build/SPlayerX.pkg\nrm -rf $SRCROOT/../Package/*.dmg\nhdiutil create -srcfolder $SRCROOT/../Package/build/SPlayerX.pkg -volname 'SPlayerX' -fs HFS+ -fsargs '-c c=64,a=16,e=16' -format UDRW $SRCROOT/../Package/SPlayerX-tmp.dmg\nhdiutil convert $SRCROOT/../Package/SPlayerX-tmp.dmg -format UDZO -imagekey zlib-level=9 -o $SRCROOT/../Package/SPlayerX.dmg\n";
+			shellScript = "PATH=${PATH}:/opt/local/bin\nREV=`hg id -n|sed 's/^ *\\(.*\\)+ *$/\\1/'`\nrm -f $SRCROOT/../Package/build/SPlayerX.pkg\n/Developer/usr/bin/packagemaker --verbose --doc $SRCROOT/../Package/SPlayerX.pmdoc --no-relocate --out $SRCROOT/../Package/build/SPlayerX.pkg\nrm -rf $SRCROOT/../Package/SPlayerX-tmp.dmg \nrm -rf $SRCROOT/../Package/SPlayerX-pre-r$REV.dmg \nhdiutil create -srcfolder $SRCROOT/../Package/build/SPlayerX.pkg -volname 'SPlayerX' -fs HFS+ -fsargs '-c c=64,a=16,e=16' -format UDRW $SRCROOT/../Package/SPlayerX-tmp.dmg\nhdiutil convert $SRCROOT/../Package/SPlayerX-tmp.dmg -format UDZO -imagekey zlib-level=9 -o $SRCROOT/../Package/SPlayerX-pre-r$REV.dmg\nrm -rf $SRCROOT/../Package/SPlayerX-tmp.dmg ";
 		};
 /* End PBXShellScriptBuildPhase section */
 
