@@ -29,6 +29,7 @@
 #import "OsdText.h"
 #import "VideoTunerController.h"
 #import "TitleView.h"
+#import "AppController.h"
 
 #define kOnTopModeNormal		(0)
 #define kOnTopModeAlways		(1)
@@ -345,7 +346,13 @@
 			default:
 				break;
 		}
+		// proper way to do so is add a button and hide the button when playing
+		if ([playerController playerState] == kMPCStoppedState) 
+			[[AppController sharedAppController] openFile:self];
+		
 	}
+	
+
 	// do not use the playerWindow, since when fullscreen the window holds self is not playerWindow
 	[[self window] makeFirstResponder:self];
 	// MPLog(@"mouseUp");
