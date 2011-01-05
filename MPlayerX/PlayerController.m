@@ -536,6 +536,9 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 			// 有可以播放的文件
 			[self playMedia:lastPlayedPath];
 		}
+		else
+			[[AppController sharedAppController] openFile:self];
+			
 	} else {
 		// mplayer正在播放
 		[mplayer togglePause];

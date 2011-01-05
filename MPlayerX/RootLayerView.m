@@ -202,6 +202,12 @@
 						name:NSApplicationDidBecomeActiveNotification object:NSApp];
 	[notifCenter addObserver:self selector:@selector(applicationDidResignActive:)
 						name:NSApplicationDidResignActiveNotification object:NSApp];
+	
+	// show player window when start up
+	[self setPlayerWindowLevel];
+	
+	[playerWindow setContentSize:[playerWindow contentMinSize]];
+	[playerWindow makeKeyAndOrderFront:nil];
 }
 
 -(void) closePlayerWindow
@@ -654,6 +660,11 @@
 	} else {
 		[[self window] setLevel: NSNormalWindowLevel];
 	}
+}
+
+-(void) setDefaultPlayerWindowSize
+{
+	[playerWindow setContentSize:[playerWindow contentMinSize]];
 }
 ///////////////////////////////////for dragging/////////////////////////////////////////
 - (NSDragOperation) draggingEntered:(id <NSDraggingInfo>)sender
