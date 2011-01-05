@@ -47,5 +47,8 @@
 
 -(IBAction) openFile:(id) sender;
 -(IBAction) showHelp:(id) sender;
+-(IBAction) goToDonate:(id)sender;
+-(IBAction) goToFeedback:(id)sender;
+-(IBAction) goToHomepage:(id)sender;
 
 @end

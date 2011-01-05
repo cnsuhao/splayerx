@@ -168,6 +168,19 @@ static BOOL init_ed = NO;
 {
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[ud stringForKey:kUDKeyHelpURL]]];
 }
+-(IBAction) goToDonate:(id)sender
+{
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://shooter.cn/donate"]];
+}
+-(IBAction) goToFeedback:(id)sender
+{
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://hg.splayer.org/splayerx/issues"]];
+}
+-(IBAction) goToHomepage:(id)sender
+{
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://hg.splayer.org/splayerx"]];
+}
+
 /////////////////////////////////////Application Delegate//////////////////////////////////////
 -(BOOL) application:(NSApplication *)theApplication openFile:(NSString *)filename
 {

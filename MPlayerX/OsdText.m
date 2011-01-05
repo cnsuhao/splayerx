@@ -157,7 +157,9 @@
 			if (ow == kOSDOwnerMediaInfo) 
 				fontSize *= 0.7;
 			else if (ow == kOSDOwnerNotifier)
-				fontSize *= 0.4;
+				fontSize *= 0.5;
+			else
+				fontSize *= 0.8;
 			
 			NSFont *font = [NSFont systemFontOfSize:fontSize];
 			
