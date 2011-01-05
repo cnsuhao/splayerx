@@ -93,7 +93,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 					   [NSNumber numberWithFloat:BACKGROUNDALPHA], kUDKeyCtrlUIBackGroundAlpha,
 					   boolYes, kUDKeyShowOSD,
 					   [NSNumber numberWithFloat:0.1], kUDKeyResizeStep,
-					   boolYes, kUDKeyCloseWindowWhenStopped,
+					   boolNo, kUDKeyCloseWindowWhenStopped,
 					   boolYes, kUDKeyAlwaysShowLBInFullScr,
 					   boolYes, kUDKeyAutoLBHeightInFullScr,
 					   boolNo, kUDKeyHideTitlebar,
@@ -555,8 +555,11 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 ////////////////////////////////////////////////Actions//////////////////////////////////////////////////
 -(IBAction) togglePlayPause:(id)sender
 {
+	if (playerController.playerState == kMPCStoppedState)
+		[playPauseButton setState:PlayState];
+	
 	[playerController togglePlayPause];
-
+	
 	NSString *osdStr;
 
 	switch (playerController.playerState) {
@@ -1121,9 +1124,11 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	// 并且重置 fillScreen状态
 	[self toggleFillScreen:nil];
 	
-	if ([ud boolForKey:kUDKeyCloseWindowWhenStopped]) {
+	if ([ud boolForKey:kUDKeyCloseWindowWhenStopped]) 
 		[dispView closePlayerWindow];
-	}
+//	else 
+//		[dispView setDefaultPlayerWindowSize];
+
 }
 
 -(void) playInfoUpdated:(NSNotification*)notif

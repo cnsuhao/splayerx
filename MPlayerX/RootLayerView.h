@@ -65,6 +65,7 @@
 -(BOOL) toggleFillScreen;
 
 -(void) changeWindowSizeBy:(NSSize)delta animate:(BOOL)animate;
+-(void) setDefaultPlayerWindowSize;
 
 -(IBAction) writeSnapshotToFile:(id)sender;
 
