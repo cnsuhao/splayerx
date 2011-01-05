@@ -131,6 +131,6 @@
 #define kMPXStringSSCLFetching	(NSLocalizedString(@"Trying SPlayerX smart subtitle system", @"Smart Subtitle"))
 #define kMPXStringSSCLZeroMatched	(NSLocalizedString(@"None subtitle match yet", @"Smart Subtitle"))
 #define kMPXStringSSCLGotResults	(NSLocalizedString(@"found %d subtitles", @"Smart Subtitle"))
-#define kMPXStringSSCLReqAuth	(NSLocalizedString(@"Unauthorize requests", @"Smart Subtitle"))
+#define kMPXStringSSCLReqAuth	(NSLocalizedString(@"Unauthorized requests", @"Smart Subtitle"))
 
 
