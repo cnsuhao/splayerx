@@ -1022,7 +1022,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="791099456">
 							<int key="NSCellFlags">67239424</int>
 							<int key="NSCellFlags2">272760832</int>
-							<string key="NSContents">开启此选项，MPlayerX 将重新计算索引来让视频可以浏览。但是生成索引需要时间，将会导致播放前有一段等待的时间</string>
+							<string key="NSContents">开启此选项，SPlayerX 将重新计算索引来让视频可以浏览。但是生成索引需要时间，将会导致播放前有一段等待的时间</string>
 							<reference key="NSSupport" ref="26"/>
 							<reference key="NSControlView" ref="25904246"/>
 							<reference key="NSBackgroundColor" ref="592303529"/>
