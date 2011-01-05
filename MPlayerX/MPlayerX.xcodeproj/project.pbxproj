@@ -142,6 +142,12 @@
 		86FB6F741131A2EB005E95B5 /* coredef.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FB6F731131A2EB005E95B5 /* coredef.m */; };
 		86FB6F801131A4BF005E95B5 /* coredef_private.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FB6F7F1131A4BF005E95B5 /* coredef_private.m */; };
 		86FB6FC51131B42D005E95B5 /* KeyCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FB6FC41131B42D005E95B5 /* KeyCode.m */; };
+		8866A90F12D4C644009EFC33 /* Equalizer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8866A90312D4C644009EFC33 /* Equalizer.xib */; };
+		8866A91012D4C644009EFC33 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8866A90512D4C644009EFC33 /* Localizable.strings */; };
+		8866A91112D4C644009EFC33 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8866A90712D4C644009EFC33 /* MainMenu.xib */; };
+		8866A91212D4C644009EFC33 /* Pref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8866A90912D4C644009EFC33 /* Pref.xib */; };
+		8866A91312D4C644009EFC33 /* SubEncoding.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8866A90B12D4C644009EFC33 /* SubEncoding.xib */; };
+		8866A91412D4C644009EFC33 /* VideoTuner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8866A90D12D4C644009EFC33 /* VideoTuner.xib */; };
 		88D65B3912D023290044B3DD /* ssclThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D65B3812D023290044B3DD /* ssclThread.m */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -365,6 +371,12 @@
 		86FB6F731131A2EB005E95B5 /* coredef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = coredef.m; sourceTree = "<group>"; };
 		86FB6F7F1131A4BF005E95B5 /* coredef_private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = coredef_private.m; sourceTree = "<group>"; };
 		86FB6FC41131B42D005E95B5 /* KeyCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = KeyCode.m; sourceTree = "<group>"; };
+		8866A90412D4C644009EFC33 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_CN; path = Equalizer.xib; sourceTree = "<group>"; };
+		8866A90612D4C644009EFC33 /* zh_CN */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = zh_CN; path = Localizable.strings; sourceTree = "<group>"; };
+		8866A90812D4C644009EFC33 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_CN; path = MainMenu.xib; sourceTree = "<group>"; };
+		8866A90A12D4C644009EFC33 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_CN; path = Pref.xib; sourceTree = "<group>"; };
+		8866A90C12D4C644009EFC33 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_CN; path = SubEncoding.xib; sourceTree = "<group>"; };
+		8866A90E12D4C644009EFC33 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_CN; path = VideoTuner.xib; sourceTree = "<group>"; };
 		88752AA212CE1920005208C0 /* UniversalDetector.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UniversalDetector.xcodeproj; path = ../UniversalDetector/UniversalDetector.xcodeproj; sourceTree = SOURCE_ROOT; };
 		88D65B3712D023290044B3DD /* ssclThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssclThread.h; sourceTree = "<group>"; };
 		88D65B3812D023290044B3DD /* ssclThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ssclThread.m; sourceTree = "<group>"; };
@@ -462,6 +474,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8866A90212D4C644009EFC33 /* zh_CN.lproj */,
 				866CD15111DF138300032F96 /* other */,
 				866CD15011DF137200032F96 /* UI */,
 				866CD14F11DF135400032F96 /* icons */,
@@ -722,6 +735,19 @@
 			name = ControlUI;
 			sourceTree = "<group>";
 		};
+		8866A90212D4C644009EFC33 /* zh_CN.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				8866A90312D4C644009EFC33 /* Equalizer.xib */,
+				8866A90512D4C644009EFC33 /* Localizable.strings */,
+				8866A90712D4C644009EFC33 /* MainMenu.xib */,
+				8866A90912D4C644009EFC33 /* Pref.xib */,
+				8866A90B12D4C644009EFC33 /* SubEncoding.xib */,
+				8866A90D12D4C644009EFC33 /* VideoTuner.xib */,
+			);
+			path = zh_CN.lproj;
+			sourceTree = "<group>";
+		};
 		88752AA312CE1920005208C0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -875,6 +901,12 @@
 				8617DB3A116A0CA40085DFBC /* hue-plus.png in Resources */,
 				866CCFAC11DE3EAB00032F96 /* Equalizer.xib in Resources */,
 				86030A9311F1E00600F8D1E8 /* Localizable.strings in Resources */,
+				8866A90F12D4C644009EFC33 /* Equalizer.xib in Resources */,
+				8866A91012D4C644009EFC33 /* Localizable.strings in Resources */,
+				8866A91112D4C644009EFC33 /* MainMenu.xib in Resources */,
+				8866A91212D4C644009EFC33 /* Pref.xib in Resources */,
+				8866A91312D4C644009EFC33 /* SubEncoding.xib in Resources */,
+				8866A91412D4C644009EFC33 /* VideoTuner.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1085,6 +1117,54 @@
 				86E7A8FC1155EBC60014155D /* English */,
 			);
 			name = SubEncoding.xib;
+			sourceTree = "<group>";
+		};
+		8866A90312D4C644009EFC33 /* Equalizer.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8866A90412D4C644009EFC33 /* zh_CN */,
+			);
+			name = Equalizer.xib;
+			sourceTree = "<group>";
+		};
+		8866A90512D4C644009EFC33 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8866A90612D4C644009EFC33 /* zh_CN */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		8866A90712D4C644009EFC33 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8866A90812D4C644009EFC33 /* zh_CN */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		8866A90912D4C644009EFC33 /* Pref.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8866A90A12D4C644009EFC33 /* zh_CN */,
+			);
+			name = Pref.xib;
+			sourceTree = "<group>";
+		};
+		8866A90B12D4C644009EFC33 /* SubEncoding.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8866A90C12D4C644009EFC33 /* zh_CN */,
+			);
+			name = SubEncoding.xib;
+			sourceTree = "<group>";
+		};
+		8866A90D12D4C644009EFC33 /* VideoTuner.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8866A90E12D4C644009EFC33 /* zh_CN */,
+			);
+			name = VideoTuner.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
