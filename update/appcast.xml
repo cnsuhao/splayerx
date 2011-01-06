@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
    <channel>
       <title>SPlayerX's Changelog</title>
-      <link>http://hg.splayer.org/splayerx/update/appcast.xml</link>
+      <link>http://hg.splayer.org/splayerx/raw/tip/update/appcast.xml</link>
       <description>SPlayerX</description>
       <language>en</language>      
          <item>
