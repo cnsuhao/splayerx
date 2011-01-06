@@ -180,6 +180,14 @@ static BOOL init_ed = NO;
 {
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://hg.splayer.org/splayerx"]];
 }
+-(IBAction) smartMatchingSubtitle:(id)sender
+{
+  [playerController pullSubtitle];
+}
+-(IBAction) searchSubtitleFromWeb:(id)sender
+{
+  //[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString initWithFormat:@"https://wwws.shooter.cn/search/%@/",  [playerController lastPlayedPath]]];
+}
 
 /////////////////////////////////////Application Delegate//////////////////////////////////////
 -(BOOL) application:(NSApplication *)theApplication openFile:(NSString *)filename
