@@ -209,7 +209,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>948</string>
+	<string>955</string>
 	<key>LSHasLocalizedDisplayName</key>
 	<true/>
 	<key>LSMinimumSystemVersion</key>
@@ -218,9 +218,15 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SUAllowsAutomaticUpdates</key>
+	<true/>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
 	<key>SUEnableSystemProfiling</key>
 	<true/>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
+	<key>SUShowReleaseNotes</key>
+	<false/>
 </dict>
 </plist>
