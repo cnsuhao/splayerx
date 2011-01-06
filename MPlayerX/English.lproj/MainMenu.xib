@@ -2,19 +2,20 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1060</int>
-		<string key="IBDocument.SystemVersion">10F569</string>
-		<string key="IBDocument.InterfaceBuilderVersion">788</string>
-		<string key="IBDocument.AppKitVersion">1038.29</string>
+		<string key="IBDocument.SystemVersion">10H574</string>
+		<string key="IBDocument.InterfaceBuilderVersion">823</string>
+		<string key="IBDocument.AppKitVersion">1038.35</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">788</string>
+			<string key="NS.object.0">823</string>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="627"/>
 			<integer value="81"/>
 			<integer value="595"/>
-			<integer value="627"/>
+			<integer value="372"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -824,7 +825,7 @@ LmNvbQ</string>
 				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
 				<string key="NSWindowContentMinSize">{480, 360}</string>
 				<object class="NSView" key="NSWindowView" id="439893737">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">274</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -836,7 +837,7 @@ LmNvbQ</string>
 								<object class="NSTextField" id="663614641">
 									<reference key="NSNextResponder" ref="85098728"/>
 									<int key="NSvFlags">301</int>
-									<string key="NSFrame">{{119, 31}, {60, 14}}</string>
+									<string key="NSFrame">{{118, 31}, {60, 14}}</string>
 									<reference key="NSSuperview" ref="85098728"/>
 									<int key="NSViewLayerContentsRedrawPolicy">2</int>
 									<bool key="NSEnabled">YES</bool>
@@ -860,7 +861,7 @@ LmNvbQ</string>
 								<object class="NSButton" id="730515757">
 									<reference key="NSNextResponder" ref="85098728"/>
 									<int key="NSvFlags">265</int>
-									<string key="NSFrame">{{402, 28}, {22, 22}}</string>
+									<string key="NSFrame">{{400, 28}, {22, 22}}</string>
 									<reference key="NSSuperview" ref="85098728"/>
 									<int key="NSViewLayerContentsRedrawPolicy">2</int>
 									<bool key="NSEnabled">YES</bool>
@@ -1031,7 +1032,7 @@ LmNvbQ</string>
 											</object>
 										</object>
 									</object>
-									<string key="NSFrame">{{56, 0}, {320, 25}}</string>
+									<string key="NSFrame">{{55, 0}, {320, 25}}</string>
 									<reference key="NSSuperview" ref="85098728"/>
 									<int key="NSViewLayerContentsRedrawPolicy">2</int>
 									<string key="NSClassName">NSView</string>
@@ -1039,7 +1040,7 @@ LmNvbQ</string>
 								<object class="NSSlider" id="427466563">
 									<reference key="NSNextResponder" ref="85098728"/>
 									<int key="NSvFlags">266</int>
-									<string key="NSFrame">{{62, 5}, {306, 15}}</string>
+									<string key="NSFrame">{{62, 5}, {304, 15}}</string>
 									<reference key="NSSuperview" ref="85098728"/>
 									<int key="NSViewLayerContentsRedrawPolicy">2</int>
 									<bool key="NSEnabled">YES</bool>
@@ -1061,7 +1062,7 @@ LmNvbQ</string>
 								<object class="NSTextField" id="694480288">
 									<reference key="NSNextResponder" ref="85098728"/>
 									<int key="NSvFlags">265</int>
-									<string key="NSFrame">{{369, 6}, {58, 14}}</string>
+									<string key="NSFrame">{{367, 6}, {58, 14}}</string>
 									<reference key="NSSuperview" ref="85098728"/>
 									<int key="NSViewLayerContentsRedrawPolicy">2</int>
 									<bool key="NSEnabled">YES</bool>
@@ -1158,7 +1159,7 @@ LmNvbQ</string>
 								<object class="NSButton" id="75692459">
 									<reference key="NSNextResponder" ref="85098728"/>
 									<int key="NSvFlags">265</int>
-									<string key="NSFrame">{{334, 27}, {24, 24}}</string>
+									<string key="NSFrame">{{332, 27}, {24, 24}}</string>
 									<reference key="NSSuperview" ref="85098728"/>
 									<int key="NSViewLayerContentsRedrawPolicy">2</int>
 									<bool key="NSEnabled">YES</bool>
@@ -1187,7 +1188,7 @@ LmNvbQ</string>
 								<object class="NSButton" id="930446879">
 									<reference key="NSNextResponder" ref="85098728"/>
 									<int key="NSvFlags">269</int>
-									<string key="NSFrame">{{206, 29}, {20, 20}}</string>
+									<string key="NSFrame">{{205, 29}, {20, 20}}</string>
 									<reference key="NSSuperview" ref="85098728"/>
 									<int key="NSViewLayerContentsRedrawPolicy">2</int>
 									<bool key="NSEnabled">YES</bool>
@@ -1216,7 +1217,7 @@ LmNvbQ</string>
 								<object class="NSButton" id="148756898">
 									<reference key="NSNextResponder" ref="85098728"/>
 									<int key="NSvFlags">265</int>
-									<string key="NSFrame">{{370, 28}, {22, 22}}</string>
+									<string key="NSFrame">{{368, 28}, {22, 22}}</string>
 									<reference key="NSSuperview" ref="85098728"/>
 									<int key="NSViewLayerContentsRedrawPolicy">2</int>
 									<bool key="NSEnabled">YES</bool>
@@ -1243,7 +1244,7 @@ LmNvbQ</string>
 									</object>
 								</object>
 							</object>
-							<string key="NSFrame">{{24, 14}, {432, 58}}</string>
+							<string key="NSFrame">{{25, 25}, {430, 58}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<bool key="NSViewIsLayerTreeHost">YES</bool>
 							<double key="NSViewAlphaValue">0.25323943661971821</double>
@@ -1301,6 +1302,7 @@ LmNvbQ</string>
 						</object>
 					</object>
 					<string key="NSFrameSize">{480, 360}</string>
+					<reference key="NSSuperview"/>
 					<bool key="NSViewIsLayerTreeHost">YES</bool>
 					<int key="NSViewLayerContentsRedrawPolicy">2</int>
 				</object>
@@ -3840,14 +3842,14 @@ LmNvbQ</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{525, 802}, {197, 73}}</string>
-					<string>{{609, 423}, {387, 20}}</string>
+					<string>{{581, 423}, {387, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{74, 862}</string>
 					<string>{{6, 978}, {478, 20}}</string>
-					<string>{{757, 633}, {480, 360}}</string>
+					<string>{{382, 314}, {480, 360}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{757, 633}, {480, 360}}</string>
+					<string>{{382, 314}, {480, 360}}</string>
 					<boolean value="NO"/>
 					<string>{{33, 99}, {480, 360}}</string>
 					<boolean value="YES"/>
@@ -4035,7 +4037,7 @@ LmNvbQ</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{701, 280}, {191, 143}}</string>
+					<string>{{673, 280}, {191, 143}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{145, 474}, {199, 203}}</string>
