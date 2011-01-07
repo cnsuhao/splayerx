@@ -685,9 +685,7 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 {
 	if ([mplayer.movieInfo.subInfo count] > 0)
 		return;
-	
-	// TODO : only pull for mkv, avi, mp4
-	
+		
 	[NSThread detachNewThreadSelector:@selector(pullSubtitle:) toTarget:[ssclThread class] withObject:self];
 }
 
@@ -769,6 +767,19 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 
 	MPLog(@"vc:%lu, ac:%lu", [mplayer.movieInfo.videoInfo count], [mplayer.movieInfo.audioInfo count]);
 	
+  
+  NSString* fileNameWithExtension = self.lastPlayedPath.lastPathComponent;
+  // NSString* fileName = [fileNameWithExtension stringByDeletingPathExtension];
+  NSString* extension = fileNameWithExtension.pathExtension;
+  
+  if ([extension caseInsensitiveCompare:@"mkv"] != NSOrderedSame
+      && [extension caseInsensitiveCompare:@"ts"] != NSOrderedSame
+      && [extension caseInsensitiveCompare:@"mp4"] != NSOrderedSame
+      && [extension caseInsensitiveCompare:@"tp"] != NSOrderedSame
+      && [extension caseInsensitiveCompare:@"avi"] != NSOrderedSame ) 
+    return;
+  
+  // TODO : check perf
 	[self pullSubtitle];
 }
 
