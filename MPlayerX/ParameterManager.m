@@ -135,6 +135,7 @@ NSString * const kPMSlash				= @"/";
 @synthesize letterBoxHeight;
 @synthesize pauseAtStart;
 @synthesize overlapSub;
+@synthesize smartSubMatching;
 @synthesize rtspOverHttp;
 @synthesize mixToStereo;
 @synthesize demuxer;
@@ -185,6 +186,7 @@ NSString * const kPMSlash				= @"/";
 		letterBoxHeight = 0.1;
 		pauseAtStart = NO;
 		overlapSub = NO;
+    smartSubMatching = YES;
 		rtspOverHttp = NO;
 		mixToStereo = kPMMixDTS5_1ToStereo;
 		demuxer = nil;
@@ -350,7 +352,7 @@ NSString * const kPMSlash				= @"/";
 	if (overlapSub) {
 		[paramArray addObject:kPMParOverlapSub];
 	}
-	
+  	
 	if (threads > 1) {
 		[paramArray addObject:kPMParLavdopts];
 		[paramArray addObject:[NSString stringWithFormat: kPMFMTThreads, threads]];		
