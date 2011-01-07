@@ -68,6 +68,7 @@ extern NSString * const kUDKeyTextSubtitleCharsetConfidenceThresh;
 extern NSString * const kUDKeyTextSubtitleCharsetManual;
 extern NSString * const kUDKeyTextSubtitleCharsetFallback;
 extern NSString * const kUDKeyOverlapSub;
+extern NSString * const kUDKeySmartSubMatching;
 extern NSString * const kUDKeyRtspOverHttp;
 extern NSString * const kUDKeyFFMpegHandleStream;
 extern NSString * const kUDKeyMixToStereoMode;

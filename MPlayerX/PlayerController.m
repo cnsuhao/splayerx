@@ -113,6 +113,7 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 					   [NSNumber numberWithFloat:0.1], kUDKeyLetterBoxHeight,
 					   boolYes, kUDKeyPlayWhenOpened,
 					   boolYes, kUDKeyOverlapSub,
+             boolYes, kUDKeySmartSubMatching,
 					   boolYes, kUDKeyRtspOverHttp,
 					   [NSNumber numberWithUnsignedInt:kPMMixDTS5_1ToStereo], kUDKeyMixToStereoMode,
 					   boolNo, kUDKeyAutoResume,
@@ -380,6 +381,7 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 	[mplayer.pm setLetterBoxHeight:[ud floatForKey:kUDKeyLetterBoxHeight]];
 	[mplayer.pm setPauseAtStart:![ud boolForKey:kUDKeyPlayWhenOpened]];
 	[mplayer.pm setOverlapSub:[ud boolForKey:kUDKeyOverlapSub]];
+  [mplayer.pm setSmartSubMatching:[ud boolForKey:kUDKeySmartSubMatching]];
 	[mplayer.pm setMixToStereo:[ud integerForKey:kUDKeyMixToStereoMode]];
 	 
 	// 这里必须要retain，否则如果用lastPlayedPath作为参数传入的话会有问题
@@ -779,8 +781,8 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
       && [extension caseInsensitiveCompare:@"avi"] != NSOrderedSame ) 
     return;
   
-  // TODO : check perf
-	[self pullSubtitle];
+  if ([[NSUserDefaults standardUserDefaults] boolForKey:kUDKeySmartSubMatching])
+  	[self pullSubtitle];
 }
 
 -(void) playebackWillStop
