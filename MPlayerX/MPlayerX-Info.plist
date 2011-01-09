@@ -209,7 +209,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>957</string>
+	<string>958</string>
 	<key>LSHasLocalizedDisplayName</key>
 	<true/>
 	<key>LSMinimumSystemVersion</key>
@@ -224,9 +224,11 @@
 	<true/>
 	<key>SUEnableSystemProfiling</key>
 	<true/>
+	<key>SUFeedURL</key>
+	<string>http://splayer.org/osx/appcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>SUShowReleaseNotes</key>
-	<false/>
+	<true/>
 </dict>
 </plist>

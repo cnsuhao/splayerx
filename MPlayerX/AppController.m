@@ -42,7 +42,7 @@ static BOOL init_ed = NO;
 {
 	[[NSUserDefaults standardUserDefaults] 
 	 registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
-					   @"http://splayer.org/osx/appcast.xml", @"SUFeedURL", // http://hg.splayer.org/splayerx/raw/tip/update/appcast.xml
+	 //			   @"http://splayer.org/osx/appcast.xml", @"SUFeedURL", // http://hg.splayer.org/splayerx/raw/tip/update/appcast.xml
 					   @"http://splayer.org/", kUDKeyHelpURL,
 					   nil]];
 
