@@ -20,6 +20,9 @@
 
 #import "SubConverter.h"
 #import <UniversalDetector/UniversalDetector.h>
+#import <sys/types.h>
+#import <pwd.h>
+
 
 NSString * const kWorkDirSubDir = @"Subs";
 
@@ -188,67 +191,73 @@ NSString * const kWorkDirSubDir = @"Subs";
 
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	// 文件夹路径
-	NSString *directoryPath = [moviePath stringByDeletingLastPathComponent];
 	// 播放文件名称
 	NSString *movieName = [[[moviePath lastPathComponent] stringByDeletingPathExtension] lowercaseString];
 	
-	NSDirectoryEnumerator *directoryEnumerator = [[NSFileManager defaultManager] enumeratorAtPath:directoryPath];
-	
-	// 遍历播放文件所在的目录
-	for (NSString *path in directoryEnumerator)
+	// 文件夹路径
+	NSArray *directoriesTobeChecked = [NSArray arrayWithObjects:[moviePath stringByDeletingLastPathComponent],
+																		[NSHomeDirectory() stringByAppendingPathComponent:@"Library/Application Support/SPlayerX/SVPSub/"], 
+																		 nil];
+
+	for (NSString *directoryPath in directoriesTobeChecked)
 	{
-		// the lower case of the sub path
-		NSString *caseName = [[path stringByDeletingPathExtension] lowercaseString];
-
-		NSDictionary *fileAttr = [directoryEnumerator fileAttributes];
+		NSDirectoryEnumerator *directoryEnumerator = [[NSFileManager defaultManager] enumeratorAtPath:directoryPath];
 		
-		if ([[fileAttr objectForKey:NSFileType] isEqualToString:NSFileTypeDirectory]) {
-			//不遍历子目录
-			[directoryEnumerator skipDescendants];
+		// 遍历播放文件所在的目录
+		for (NSString *path in directoryEnumerator)
+		{
+			// the lower case of the sub path
+			NSString *caseName = [[path stringByDeletingPathExtension] lowercaseString];
 			
-		} else if ([[fileAttr objectForKey:NSFileType] isEqualToString: NSFileTypeRegular]) {
-			// 如果是普通文件
-			switch (nameRule) {
-				case kSubFileNameRuleExactMatch:
-					if (![movieName isEqualToString:caseName]) continue; // exact match
-					break;
-				case kSubFileNameRuleAny:
-					break; // any sub file is OK
-				case kSubFileNameRuleContain:
-					if ([caseName rangeOfString: movieName].location == NSNotFound) continue; // contain the movieName
-					break;
-				default:
-					continue;
-					break;
-			}
+			NSDictionary *fileAttr = [directoryEnumerator fileAttributes];
 			
-			subPath = [directoryPath stringByAppendingPathComponent:path];
-
-			NSString *ext = [[path pathExtension] lowercaseString];
-			
-			if ([textSubFileExts containsObject: ext]) {
-				// 如果是文本字幕文件
-				[detector analyzeContentsOfFile: subPath];
+			if ([[fileAttr objectForKey:NSFileType] isEqualToString:NSFileTypeDirectory]) {
+				//不遍历子目录
+				[directoryEnumerator skipDescendants];
 				
-				cpStr = [detector MIMECharset];
-
-				if (delegate) {
-					NSString *cpPrefer = [delegate subConverter:self detectedFile:subPath ofCharsetName:cpStr confidence:[detector confidence]];
-					if (cpPrefer && (cpPrefer != cpStr)) {
-						cpStr = cpPrefer;
+			} else if ([[fileAttr objectForKey:NSFileType] isEqualToString: NSFileTypeRegular]) {
+				// 如果是普通文件
+				switch (nameRule) {
+					case kSubFileNameRuleExactMatch:
+						if (![movieName isEqualToString:caseName]) continue; // exact match
+						break;
+					case kSubFileNameRuleAny:
+						break; // any sub file is OK
+					case kSubFileNameRuleContain:
+						if ([caseName rangeOfString: movieName].location == NSNotFound) continue; // contain the movieName
+						break;
+					default:
+						continue;
+						break;
+				}
+				
+				subPath = [directoryPath stringByAppendingPathComponent:path];
+				
+				NSString *ext = [[path pathExtension] lowercaseString];
+				
+				if ([textSubFileExts containsObject: ext]) {
+					// 如果是文本字幕文件
+					[detector analyzeContentsOfFile: subPath];
+					
+					cpStr = [detector MIMECharset];
+					
+					if (delegate) {
+						NSString *cpPrefer = [delegate subConverter:self detectedFile:subPath ofCharsetName:cpStr confidence:[detector confidence]];
+						if (cpPrefer && (cpPrefer != cpStr)) {
+							cpStr = cpPrefer;
+						}
 					}
+					
+					if (cpStr) {
+						[subEncDict setObject:cpStr forKey:subPath];
+					}
+					
+					[detector reset];				
+				} else if (vobPath && [ext isEqualToString:@"sub"]) {
+					// 如果是vobsub并且设定要寻找vobsub
+					[*vobPath release];
+					*vobPath = [subPath retain];
 				}
-				
-				if (cpStr) {
-					[subEncDict setObject:cpStr forKey:subPath];
-				}
-				
-				[detector reset];				
-			} else if (vobPath && [ext isEqualToString:@"sub"]) {
-				// 如果是vobsub并且设定要寻找vobsub
-				[*vobPath release];
-				*vobPath = [subPath retain];
 			}
 		}
 	}
