@@ -21,7 +21,6 @@
 #import "AppController.h"
 #import "UserDefaults.h"
 #import "CocoaAppendix.h"
-#import <Sparkle/Sparkle.h>
 #import "PlayerController.h"
 #import "OpenURLController.h"
 #import "LocalizedStrings.h"
@@ -65,11 +64,7 @@ static BOOL init_ed = NO;
 
 		ud = [NSUserDefaults standardUserDefaults];
 		notifCenter = [NSNotificationCenter defaultCenter];
-		
-		/////////////////////////setup auto update////////////////////
-		// 设定手动更新
-		[[SUUpdater sharedUpdater] setAutomaticallyChecksForUpdates:NO];
-		
+				
 		NSBundle *mainBundle = [NSBundle mainBundle];
 		// 建立支持格式的Set
 		for( NSDictionary *dict in [mainBundle objectForInfoDictionaryKey:@"CFBundleDocumentTypes"]) {
@@ -220,8 +215,6 @@ static BOOL init_ed = NO;
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
-	[[SUUpdater sharedUpdater] setAutomaticallyDownloadsUpdates:true];
-	[[SUUpdater sharedUpdater] checkForUpdatesInBackground];
 }
 
 @end

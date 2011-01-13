@@ -135,7 +135,7 @@
 	<key>CFBundleIconFile</key>
 	<string>MPlayerX.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.niltsh.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>org.splayer.splayerx</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleLocalizations</key>
@@ -218,17 +218,5 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>SUAllowsAutomaticUpdates</key>
-	<true/>
-	<key>SUEnableAutomaticChecks</key>
-	<true/>
-	<key>SUEnableSystemProfiling</key>
-	<true/>
-	<key>SUFeedURL</key>
-	<string>http://splayer.org/osx/appcast.xml</string>
-	<key>SUPublicDSAKeyFile</key>
-	<string>dsa_pub.pem</string>
-	<key>SUShowReleaseNotes</key>
-	<true/>
 </dict>
 </plist>
