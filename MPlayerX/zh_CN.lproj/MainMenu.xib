@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1060</int>
 		<string key="IBDocument.SystemVersion">10J567</string>
-		<string key="IBDocument.InterfaceBuilderVersion">788</string>
+		<string key="IBDocument.InterfaceBuilderVersion">823</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
 		<string key="IBDocument.HIToolboxVersion">462.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">788</string>
+			<string key="NS.object.0">823</string>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1531,9 +1531,6 @@ IC0gQW5ha2lufk1hY0BtYWNpZGVhLmNvbQ</string>
 			</object>
 			<object class="NSCustomObject" id="638018897">
 				<string key="NSClassName">EqualizerController</string>
-			</object>
-			<object class="NSCustomObject" id="508866029">
-				<string key="NSClassName">SUUpdater</string>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -3549,11 +3546,6 @@ IC0gQW5ha2lufk1hY0BtYWNpZGVhLmNvbQ</string>
 						<reference key="object" ref="70713696"/>
 						<reference key="parent" ref="992780483"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">1001</int>
-						<reference key="object" ref="508866029"/>
-						<reference key="parent" ref="0"/>
-					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -3561,7 +3553,6 @@ IC0gQW5ha2lufk1hY0BtYWNpZGVhLmNvbQ</string>
 				<object class="NSArray" key="dict.sortedKeys">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>-3.IBPluginDependency</string>
-					<string>1001.IBPluginDependency</string>
 					<string>124.IBPluginDependency</string>
 					<string>124.ImportedFromIB2</string>
 					<string>125.IBEditorWindowLastContentRect</string>
@@ -3799,7 +3790,6 @@ IC0gQW5ha2lufk1hY0BtYWNpZGVhLmNvbQ</string>
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{836, 530}, {122, 23}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3839,7 +3829,7 @@ IC0gQW5ha2lufk1hY0BtYWNpZGVhLmNvbQ</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{525, 802}, {197, 73}}</string>
-					<string>{{657, 537}, {334, 20}}</string>
+					<string>{{553, 527}, {334, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{74, 862}</string>
@@ -3909,7 +3899,7 @@ IC0gQW5ha2lufk1hY0BtYWNpZGVhLmNvbQ</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{669, 334}, {179, 203}}</string>
+					<string>{{565, 324}, {179, 203}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{23, 794}, {245, 183}}</string>

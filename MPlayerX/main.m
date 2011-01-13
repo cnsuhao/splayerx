@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 {
   id pool = [NSAutoreleasePool new];
   
-	NSString *logPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Logs/SPlayerX.log"];
+	NSString *logPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Application Support/SPlayerX/SPlayerX.log"];
 	freopen([logPath fileSystemRepresentation], "a", stderr);
   
 	[pool release];
