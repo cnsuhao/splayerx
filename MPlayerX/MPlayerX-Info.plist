@@ -209,7 +209,9 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>963</string>
+	<string>1.0.0</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.video</string>
 	<key>LSHasLocalizedDisplayName</key>
 	<true/>
 	<key>LSMinimumSystemVersion</key>
