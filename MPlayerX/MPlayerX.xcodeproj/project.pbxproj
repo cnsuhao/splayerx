@@ -152,13 +152,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		864F8621116CD10200785586 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 864F8616116CD07000785586;
-			remoteInfo = updateInfoPlist;
-		};
 		86A6E10510EFD2A8001F4890 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -779,7 +772,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				864F8622116CD10200785586 /* PBXTargetDependency */,
 				88752AB612CE1940005208C0 /* PBXTargetDependency */,
 			);
 			name = SPlayerX;
@@ -1042,11 +1034,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		864F8622116CD10200785586 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 864F8616116CD07000785586 /* updateInfoPlist */;
-			targetProxy = 864F8621116CD10200785586 /* PBXContainerItemProxy */;
-		};
 		86A6E10610EFD2A8001F4890 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8D1107260486CEB800E47090 /* SPlayerX */;
@@ -1295,6 +1282,8 @@
 					i386,
 					x86_64,
 				);
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Shen Sheng";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_REUSE_STRINGS = YES;
@@ -1327,6 +1316,8 @@
 					x86_64,
 					i386,
 				);
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Shen Sheng";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_REUSE_STRINGS = YES;
 				GCC_SHORT_ENUMS = NO;
