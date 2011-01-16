@@ -187,6 +187,13 @@
 			remoteGlobalIDString = 8D1107260486CEB800E47090;
 			remoteInfo = SPlayerX;
 		};
+		9D7E70FA12E2BAA5008CD621 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 864F8616116CD07000785586;
+			remoteInfo = updateInfoPlist;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -773,6 +780,7 @@
 			);
 			dependencies = (
 				88752AB612CE1940005208C0 /* PBXTargetDependency */,
+				9D7E70FB12E2BAA5008CD621 /* PBXTargetDependency */,
 			);
 			name = SPlayerX;
 			productInstallPath = "$(HOME)/Applications";
@@ -924,7 +932,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH=${PATH}:/opt/local/bin\nhg id -n  | sed 's/^ *\\(.*\\)+ *$/\\1/' > ver.log\n./updateVersion ver.log MPlayerX-Info.plist\ntouch -amfc MPlayerX-Info.plist\nrm -Rf ver.log\n\nexit 0";
+			shellScript = "PATH=${PATH}:/opt/local/bin\necho -n \"1.0.\" > ver.log\nhg id -n  | sed 's/^ *\\(.*\\)+ *$/\\1/' >> ver.log\n./updateVersion ver.log MPlayerX-Info.plist\ntouch -amfc MPlayerX-Info.plist\nrm -Rf ver.log\n\nexit 0";
 		};
 		869DA5341223C93100D0D57A /* delete redundent files in Framework */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1048,6 +1056,11 @@
 			isa = PBXTargetDependency;
 			target = 8D1107260486CEB800E47090 /* SPlayerX */;
 			targetProxy = 8899109812D194D600D4D863 /* PBXContainerItemProxy */;
+		};
+		9D7E70FB12E2BAA5008CD621 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 864F8616116CD07000785586 /* updateInfoPlist */;
+			targetProxy = 9D7E70FA12E2BAA5008CD621 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
