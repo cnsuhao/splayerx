@@ -932,7 +932,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH=${PATH}:/opt/local/bin\necho -n \"1.0.\" > ver.log\nhg id -n  | sed 's/^ *\\(.*\\)+ *$/\\1/' >> ver.log\n./updateVersion ver.log MPlayerX-Info.plist\ntouch -amfc MPlayerX-Info.plist\nrm -Rf ver.log\n\nexit 0";
+			shellScript = "PATH=${PATH}:/opt/local/bin\nnewVersion=`hg id -n  | sed 's/^ *\\(.*\\)+ *$/\\1/'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 1.0.$newVersion\" MPlayerX-Info.plist\ntouch -amfc MPlayerX-Info.plist\n\nexit 0";
 		};
 		869DA5341223C93100D0D57A /* delete redundent files in Framework */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1243,7 +1243,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../UniversalDetector/build/Release\"",
-					"\"$(SRCROOT)/../Sparkle.framework\"",
 					"\"$(SRCROOT)/..\"",
 					"\"$(SRCROOT)/../BGHUDAppKit\"",
 				);
@@ -1271,7 +1270,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../UniversalDetector/build/Release\"",
-					"\"$(SRCROOT)/../Sparkle.framework\"",
 					"\"$(SRCROOT)/..\"",
 					"\"$(SRCROOT)/../BGHUDAppKit\"",
 				);
@@ -1295,7 +1293,6 @@
 					i386,
 					x86_64,
 				);
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Shen Sheng";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1329,7 +1326,6 @@
 					x86_64,
 					i386,
 				);
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Shen Sheng";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_REUSE_STRINGS = YES;
