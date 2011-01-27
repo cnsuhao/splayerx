@@ -109,8 +109,6 @@
 		866CCFAC11DE3EAB00032F96 /* Equalizer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 866CCFAB11DE3EAB00032F96 /* Equalizer.xib */; };
 		8671FAF51120456B00F7E5E5 /* doc_sub.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8671FAF41120456B00F7E5E5 /* doc_sub.icns */; };
 		867FDF351169FD2E000C71A6 /* HueSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 867FDF341169FD2E000C71A6 /* HueSliderCell.m */; };
-		869DA29C1223A2FE00D0D57A /* BGHUDAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 869DA29B1223A2FE00D0D57A /* BGHUDAppKit.framework */; };
-		869DA2E21223A32900D0D57A /* BGHUDAppKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 869DA29B1223A2FE00D0D57A /* BGHUDAppKit.framework */; };
 		86A34A0910F60F7E00AECBB2 /* UniversalDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A34A0810F60F7E00AECBB2 /* UniversalDetector.framework */; };
 		86A34A2510F60FA000AECBB2 /* UniversalDetector.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 86A34A0810F60F7E00AECBB2 /* UniversalDetector.framework */; };
 		86A5E40C10C7D24D00D061C7 /* wqy-microhei.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 86A5E40B10C7D24D00D061C7 /* wqy-microhei.ttc */; };
@@ -149,6 +147,8 @@
 		88D65B3912D023290044B3DD /* ssclThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D65B3812D023290044B3DD /* ssclThread.m */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		9DA4A25B12F1602400416180 /* BGHUDAppKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9DA49EE012F15D2D00416180 /* BGHUDAppKit.framework */; };
+		9DA4A34512F160B200416180 /* BGHUDAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DA4A34412F160B200416180 /* BGHUDAppKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -194,6 +194,27 @@
 			remoteGlobalIDString = 864F8616116CD07000785586;
 			remoteInfo = updateInfoPlist;
 		};
+		9DA49EDD12F15D2D00416180 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9DA49ED412F15D2C00416180 /* BGHUDAppKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8D1AC9740486D14A00FE50C9 /* BGHUDAppKitPlugin.ibplugin */;
+			remoteInfo = BGHUDAppKitPlugin;
+		};
+		9DA49EDF12F15D2D00416180 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9DA49ED412F15D2C00416180 /* BGHUDAppKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 53DF68FD067E5B5A0090B5B0 /* BGHUDAppKit.framework */;
+			remoteInfo = BGHUDAppKit;
+		};
+		9DA49EE112F15D3700416180 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9DA49ED412F15D2C00416180 /* BGHUDAppKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 53DF68FC067E5B5A0090B5B0 /* BGHUDAppKit */;
+			remoteInfo = BGHUDAppKit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -214,7 +235,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				869DA2E21223A32900D0D57A /* BGHUDAppKit.framework in Copy Frameworks */,
+				9DA4A25B12F1602400416180 /* BGHUDAppKit.framework in Copy Frameworks */,
 				86A34A2510F60FA000AECBB2 /* UniversalDetector.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
@@ -315,7 +336,6 @@
 		867FDF331169FD2E000C71A6 /* HueSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = HueSliderCell.h; sourceTree = "<group>"; };
 		867FDF341169FD2E000C71A6 /* HueSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = HueSliderCell.m; sourceTree = "<group>"; };
 		868BB6B810EF598500A942B3 /* MplayerX_Update_Appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = MplayerX_Update_Appcast.xml; path = ../update/MplayerX_Update_Appcast.xml; sourceTree = SOURCE_ROOT; };
-		869DA29B1223A2FE00D0D57A /* BGHUDAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BGHUDAppKit.framework; path = ../BGHUDAppKit/BGHUDAppKit.framework; sourceTree = SOURCE_ROOT; };
 		86A34A0810F60F7E00AECBB2 /* UniversalDetector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniversalDetector.framework; path = ../UniversalDetector/build/Release/UniversalDetector.framework; sourceTree = SOURCE_ROOT; };
 		86A5E40B10C7D24D00D061C7 /* wqy-microhei.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "wqy-microhei.ttc"; sourceTree = "<group>"; };
 		86B99D0010C9418600AB28FB /* OpenURLController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = OpenURLController.h; sourceTree = "<group>"; };
@@ -377,6 +397,8 @@
 		88D65B3712D023290044B3DD /* ssclThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssclThread.h; sourceTree = "<group>"; };
 		88D65B3812D023290044B3DD /* ssclThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ssclThread.m; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* SPlayerX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPlayerX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DA49ED412F15D2C00416180 /* BGHUDAppKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BGHUDAppKit.xcodeproj; path = ../BGHUDAppKit/BGHUDAppKit.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9DA4A34412F160B200416180 /* BGHUDAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BGHUDAppKit.framework; path = ../BGHUDAppKit/build/Release/BGHUDAppKit.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -389,7 +411,7 @@
 				8608654010BA56C100459392 /* QuartzCore.framework in Frameworks */,
 				8609C28110C6944A00B102CE /* IOKit.framework in Frameworks */,
 				86A34A0910F60F7E00AECBB2 /* UniversalDetector.framework in Frameworks */,
-				869DA29C1223A2FE00D0D57A /* BGHUDAppKit.framework in Frameworks */,
+				9DA4A34512F160B200416180 /* BGHUDAppKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +468,7 @@
 		29B97314FDCFA39411CA2CEA /* MplayerX */ = {
 			isa = PBXGroup;
 			children = (
+				9DA49ED412F15D2C00416180 /* BGHUDAppKit.xcodeproj */,
 				88752AA212CE1920005208C0 /* UniversalDetector.xcodeproj */,
 				863B9F5A10EF57B9003D5F42 /* AutoUpdate */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -481,13 +504,13 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9DA4A34412F160B200416180 /* BGHUDAppKit.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 				8608653810BA56A700459392 /* OpenGL.framework */,
 				8608653F10BA56C100459392 /* QuartzCore.framework */,
 				8609C28010C6944A00B102CE /* IOKit.framework */,
 				86A34A0810F60F7E00AECBB2 /* UniversalDetector.framework */,
-				869DA29B1223A2FE00D0D57A /* BGHUDAppKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -760,6 +783,15 @@
 			name = Library;
 			sourceTree = "<group>";
 		};
+		9DA49ED512F15D2C00416180 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9DA49EDE12F15D2D00416180 /* BGHUDAppKitPlugin.ibplugin */,
+				9DA49EE012F15D2D00416180 /* BGHUDAppKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -780,6 +812,7 @@
 			);
 			dependencies = (
 				88752AB612CE1940005208C0 /* PBXTargetDependency */,
+				9DA49EE212F15D3700416180 /* PBXTargetDependency */,
 				9D7E70FB12E2BAA5008CD621 /* PBXTargetDependency */,
 			);
 			name = SPlayerX;
@@ -811,6 +844,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 9DA49ED512F15D2C00416180 /* Products */;
+					ProjectRef = 9DA49ED412F15D2C00416180 /* BGHUDAppKit.xcodeproj */;
+				},
+				{
 					ProductGroup = 88752AA312CE1920005208C0 /* Products */;
 					ProjectRef = 88752AA212CE1920005208C0 /* UniversalDetector.xcodeproj */;
 				},
@@ -838,6 +875,20 @@
 			fileType = "compiled.mach-o.executable";
 			path = DetectorTest;
 			remoteRef = 88752AAD12CE1920005208C0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9DA49EDE12F15D2D00416180 /* BGHUDAppKitPlugin.ibplugin */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BGHUDAppKitPlugin.ibplugin;
+			remoteRef = 9DA49EDD12F15D2D00416180 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9DA49EE012F15D2D00416180 /* BGHUDAppKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BGHUDAppKit.framework;
+			remoteRef = 9DA49EDF12F15D2D00416180 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1061,6 +1112,11 @@
 			isa = PBXTargetDependency;
 			target = 864F8616116CD07000785586 /* updateInfoPlist */;
 			targetProxy = 9D7E70FA12E2BAA5008CD621 /* PBXContainerItemProxy */;
+		};
+		9DA49EE212F15D3700416180 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BGHUDAppKit;
+			targetProxy = 9DA49EE112F15D3700416180 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1288,6 +1344,7 @@
 					"\"$(SRCROOT)/../UniversalDetector/build/Release\"",
 					"\"$(SRCROOT)/..\"",
 					"\"$(SRCROOT)/../BGHUDAppKit\"",
+					"\"$(SRCROOT)/../BGHUDAppKit/build/Release\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1334,6 +1391,7 @@
 					"\"$(SRCROOT)/../UniversalDetector/build/Release\"",
 					"\"$(SRCROOT)/..\"",
 					"\"$(SRCROOT)/../BGHUDAppKit\"",
+					"\"$(SRCROOT)/../BGHUDAppKit/build/Release\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -1361,6 +1419,7 @@
 					"\"$(SRCROOT)/../UniversalDetector/build/Release\"",
 					"\"$(SRCROOT)/..\"",
 					"\"$(SRCROOT)/../BGHUDAppKit\"",
+					"\"$(SRCROOT)/../BGHUDAppKit/build/Release\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
