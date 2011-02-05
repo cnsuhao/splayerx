@@ -168,7 +168,7 @@ static BOOL init_ed = NO;
 }
 -(IBAction) goToFeedback:(id)sender
 {
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://hg.splayer.org/splayerx/issues"]];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://feedback.splayer.org/forums/100639-mac-splayerx"]];
 }
 -(IBAction) goToHomepage:(id)sender
 {

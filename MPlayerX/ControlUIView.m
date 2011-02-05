@@ -33,7 +33,7 @@
 #import "TimeFormatter.h"
 
 #define CONTROLALPHA		(1)
-#define BACKGROUNDALPHA		(0.9)
+#define BACKGROUNDALPHA		(0.2)
 
 #define CONTROL_CORNER_RADIUS	(6)
 
@@ -88,7 +88,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 					   [NSNumber numberWithFloat:100], kUDKeyVolume,
 					   [NSNumber numberWithDouble:AUTOHIDETIMEINTERNAL], kUDKeyCtrlUIAutoHideTime,
 					   boolNo, kUDKeySwitchTimeHintPressOnAbusolute,
-					   boolNo, kUDKeyTimeTextAltTotal,
+					   boolYes, kUDKeyTimeTextAltTotal,
 					   [NSNumber numberWithFloat:10], kUDKeyVolumeStep,
 					   [NSNumber numberWithFloat:BACKGROUNDALPHA], kUDKeyCtrlUIBackGroundAlpha,
 					   boolYes, kUDKeyShowOSD,
@@ -201,9 +201,11 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 	// 初始化时间显示slider和text
 	[[timeText cell] setFormatter:timeFormatter];
-	[timeText setStringValue:@""];
+	[timeText setStringValue:@" "];
+	[timeText setHidden:YES];
 	[[timeTextAlt cell] setFormatter:timeFormatter];
-	[timeTextAlt setStringValue:@""];
+	[timeTextAlt setStringValue:@" "];
+	[timeTextAlt setHidden:YES];
 	
 	[timeSlider setEnabled:NO];
 	[timeSlider setMaxValue:0];
@@ -216,10 +218,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[[hintTime cell] setFormatter:timeFormatter];
 	[hintTime setStringValue:@""];
 
-	// 初始状态是hide
-	[fullScreenButton setHidden: YES];
-
 	// set fillscreen button status and image
+	// 初始状态是hide
 	[fillScreenButton setHidden: YES];	
 	NSArray *fillScrnBtnModeImages = [fillScreenButtonAllImages objectForKey:kFillScreenButtonImageUBKey];
 	[fillScreenButton setImage: [fillScrnBtnModeImages objectAtIndex:0]];
@@ -1031,6 +1031,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 -(void) displayStarted
 {
 	[fullScreenButton setHidden: NO];
+	[timeText setHidden: NO];
+	[timeTextAlt setHidden: NO];
 	
 	[menuSnapshot setEnabled:YES];
 	
@@ -1043,7 +1045,9 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 -(void) displayStopped
 {
 	[fullScreenButton setHidden: YES];
-
+	[timeText setHidden: YES];
+	[timeTextAlt setHidden: YES];
+	
 	[menuSnapshot setEnabled:NO];
 	
 	[menuToggleLockAspectRatio setEnabled:NO];
