@@ -73,7 +73,7 @@
 					   kSnapshotSaveDefaultPath, kUDKeySnapshotSavePath,
 					   boolNo, kUDKeyStartByFullScreen,
 					   boolYes, kUDKeyFullScreenKeepOther,
-					   boolNo, kUDKeyQuitOnClose,
+					   boolYes, kUDKeyQuitOnClose,
 					   boolNo, kUDKeyPinPMode,
 					   boolNo, kUDKeyAlwaysHideDockInFullScrn,
 					   nil]];
