@@ -36,7 +36,7 @@ NSString *kStringDots = @"...";
 		closeButton = [[NSWindow standardWindowButton:NSWindowCloseButton forStyleMask:styleMask] retain];
 		miniButton  = [[NSWindow standardWindowButton:NSWindowMiniaturizeButton forStyleMask:styleMask] retain];
 		zoomButton  = [[NSWindow standardWindowButton:NSWindowZoomButton forStyleMask:styleMask] retain];
-		
+			
 		title = nil;
 		titleAttr = [[NSDictionary alloc]
 					 initWithObjectsAndKeys:
@@ -79,14 +79,17 @@ NSString *kStringDots = @"...";
 	[self addSubview:closeButton];
 	[closeButton setFrameOrigin:NSMakePoint(9.0, 2.0)];
 	[closeButton setAutoresizingMask:NSViewMaxXMargin|NSViewMaxYMargin];
+	[closeButton setAlphaValue:0.5];
 	
 	[self addSubview:miniButton];
 	[miniButton setFrameOrigin:NSMakePoint(30.0, 2.0)];
 	[miniButton setAutoresizingMask:NSViewMaxXMargin|NSViewMaxYMargin];
+	[miniButton setAlphaValue:0.5];
 	
 	[self addSubview:zoomButton];
 	[zoomButton setFrameOrigin:NSMakePoint(51.0, 2.0)];
 	[zoomButton setAutoresizingMask:NSViewMaxXMargin|NSViewMaxYMargin];
+	[zoomButton setAlphaValue:0.5];
 	
 	tbCornerLeft = [[NSImage imageNamed:@"titlebar-corner-left.png"] retain];
 	tbCornerRight= [[NSImage imageNamed:@"titlebar-corner-right.png"] retain];
