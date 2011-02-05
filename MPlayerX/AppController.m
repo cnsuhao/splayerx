@@ -123,8 +123,9 @@ static BOOL init_ed = NO;
 	NSBundle *mainBundle = [NSBundle mainBundle];
 
 	// setup version info
-	[aboutText setStringValue:[NSString stringWithFormat: @"SPlayerX %@ based on MPlayerX", 
-							   [mainBundle objectForInfoDictionaryKey:@"CFBundleVersion"]]];
+	[aboutText setStringValue:[NSString stringWithFormat: @"SPlayerX %@ (Build %@)", 
+							   [mainBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"],
+								 [mainBundle objectForInfoDictionaryKey:@"CFBundleVersion"]]];
 
 	// setup url list for OpenURL Panel
 	[openUrlController initURLList:bookmarks];
