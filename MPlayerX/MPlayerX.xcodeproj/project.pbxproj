@@ -983,7 +983,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH=${PATH}:/opt/local/bin\nnewVersion=`hg id -n  | sed 's/^ *\\(.*\\)+ *$/\\1/'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 1.0.1.$newVersion\" MPlayerX-Info.plist\ntouch -amfc MPlayerX-Info.plist\n\nexit 0";
+			shellScript = "PATH=${PATH}:/opt/local/bin\nnewVersion=`hg id -n  | sed 's/^ *\\(.*\\)+ *$/\\1/'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $newVersion\" MPlayerX-Info.plist\ntouch -amfc MPlayerX-Info.plist\n\nexit 0";
 		};
 		869DA5341223C93100D0D57A /* delete redundent files in Framework */ = {
 			isa = PBXShellScriptBuildPhase;
