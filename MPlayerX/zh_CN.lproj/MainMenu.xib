@@ -12,8 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="371"/>
 			<integer value="57"/>
+			<integer value="595"/>
+			<integer value="540"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -664,7 +665,7 @@
 				<string key="NSWindowContentMaxSize">{280, 347}</string>
 				<string key="NSWindowContentMinSize">{280, 347}</string>
 				<object class="NSView" key="NSWindowView" id="255223115">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">274</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -793,8 +794,8 @@
 bXBsYXllciAtIGh0dHA6Ly93d3cubXBsYXllcmhxLmh1CiAgVUNEIC0gaHR0cDovL3dha2FiYS5jMy5j
 eC9zL2FwcHMvdW5hcmNoaXZlci5odG1sCiAgQkdIVURBcHBLaXQgLSBodHRwOi8vd3d3LmJpbmFyeW1l
 dGhvZC5jb20vCiAgV2VuUXVhbiBNaWNyb0hlaSDlrZfkvZMgLSBodHRwOi8vd3d3LndlbnEub3JnCgpB
-cHBsaWNhdG9uIOWbvuaghzoKICBNaWxvxaEgS3JzbWFub3ZpxIcK57+76K+RCiAg566A5L2T5Lit5paH
-IC0gQW5ha2lufk1hY0BtYWNpZGVhLmNvbQ</string>
+cHBsaWNhdG9uIOWbvuaghzoKICBNaWxvxaEgS3JzbWFub3ZpxIcsIHZpbmNpYXJ0Cue/u+ivkQogIOeu
+gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 								<object class="NSFont" key="NSSupport">
 									<string key="NSName">STHeitiSC-Light</string>
 									<double key="NSSize">9</double>
@@ -815,6 +816,7 @@ IC0gQW5ha2lufk1hY0BtYWNpZGVhLmNvbQ</string>
 						</object>
 					</object>
 					<string key="NSFrameSize">{280, 347}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMinSize">{280, 366}</string>
@@ -1074,7 +1076,7 @@ IC0gQW5ha2lufk1hY0BtYWNpZGVhLmNvbQ</string>
 									<object class="NSTextFieldCell" key="NSCell" id="703727324">
 										<int key="NSCellFlags">67239488</int>
 										<int key="NSCellFlags2">4331520</int>
-										<string key="NSContents"/>
+										<string type="base64-UTF8" key="NSContents">IA</string>
 										<reference key="NSSupport" ref="26"/>
 										<string key="NSPlaceholderString">未知</string>
 										<reference key="NSControlView" ref="694480288"/>
@@ -3834,9 +3836,9 @@ IC0gQW5ha2lufk1hY0BtYWNpZGVhLmNvbQ</string>
 					<integer value="1"/>
 					<string>{74, 862}</string>
 					<string>{{6, 978}, {478, 20}}</string>
-					<string>{{366, 159}, {480, 300}}</string>
+					<string>{{502, 159}, {480, 300}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{366, 159}, {480, 300}}</string>
+					<string>{{502, 159}, {480, 300}}</string>
 					<boolean value="NO"/>
 					<string>{{33, 99}, {480, 360}}</string>
 					<boolean value="YES"/>

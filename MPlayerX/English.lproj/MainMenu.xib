@@ -12,10 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="595"/>
-			<integer value="57"/>
+			<integer value="540"/>
 			<integer value="627"/>
-			<integer value="372"/>
+			<integer value="595"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -737,10 +736,9 @@
 eWVyeC/igKggIG1wbGF5ZXIgLSBodHRwOi8vd3d3Lm1wbGF5ZXJocS5odQogIFVDRCAtIGh0dHA6Ly93
 d3cubW96aWxsYS5vcmcvcHJvamVjdHMvaW50bC9kZXRlY3RvcnNyYy5odG1sCiAgQkdIVURBcHBLaXQg
 LSBodHRwOi8vd3d3LmJpbmFyeW1ldGhvZC5jb20KICBXZW5RdWFuIE1pY3JvSGVpIEZvbnQgLSBodHRw
-Oi8vd3d3LndlbnEub3JnCiAgU3BhcmtsZSAtIGh0dHA6Ly9zcGFya2xlLmFuZHltYXR1c2NoYWsub3Jn
-CgpJY29ucyAmIFVJOgogIE1pbG/FoSBLcnNtYW5vdmnEhywgTG9yZW56byBGYW5jaGksIE9pQ2tpbEws
-IFJ5b2gKClRyYW5zbGF0aW9uCiAgU2ltcGxpZmllZCBDaGluZXNlIC0gQW5ha2lufk1hY0BtYWNpZGVh
-LmNvbQ</string>
+Oi8vd3d3LndlbnEub3JnCgpJY29ucyAmIFVJOgogIE1pbG/FoSBLcnNtYW5vdmnEhywgTG9yZW56byBG
+YW5jaGksIE9pQ2tpbEwsIFJ5b2gsIHZpbmNpYXJ0CgpUcmFuc2xhdGlvbgogIFNpbXBsaWZpZWQgQ2hp
+bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 								<reference key="NSSupport" ref="22"/>
 								<reference key="NSControlView" ref="207460897"/>
 								<object class="NSColor" key="NSBackgroundColor" id="212435590">
@@ -1050,7 +1048,7 @@ LmNvbQ</string>
 									<object class="NSTextFieldCell" key="NSCell" id="703727324">
 										<int key="NSCellFlags">67239488</int>
 										<int key="NSCellFlags2">4331520</int>
-										<string key="NSContents"/>
+										<string type="base64-UTF8" key="NSContents">IA</string>
 										<reference key="NSSupport" ref="26"/>
 										<string key="NSPlaceholderString">unknown</string>
 										<reference key="NSControlView" ref="694480288"/>
@@ -3768,7 +3766,7 @@ LmNvbQ</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{605, 332}, {64, 6}}</string>
+					<string>{{785, 363}, {64, 6}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{436, 809}, {64, 6}}</string>
@@ -3794,11 +3792,11 @@ LmNvbQ</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{836, 346}, {194, 143}}</string>
+					<string>{{798, 268}, {194, 143}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{525, 802}, {197, 73}}</string>
-					<string>{{581, 449}, {387, 20}}</string>
+					<string>{{543, 411}, {387, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{74, 862}</string>
@@ -3814,7 +3812,7 @@ LmNvbQ</string>
 					<string>RootLayerView</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{935, 380}, {163, 43}}</string>
+					<string>{{869, 368}, {163, 43}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3865,7 +3863,7 @@ LmNvbQ</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{593, 246}, {192, 203}}</string>
+					<string>{{555, 208}, {192, 203}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{23, 794}, {245, 183}}</string>
@@ -3918,7 +3916,7 @@ LmNvbQ</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{715, 356}, {138, 133}}</string>
+					<string>{{677, 278}, {138, 133}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3984,7 +3982,7 @@ LmNvbQ</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{759, 130}, {244, 293}}</string>
+					<string>{{721, 118}, {244, 293}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3993,7 +3991,7 @@ LmNvbQ</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{673, 280}, {191, 143}}</string>
+					<string>{{635, 268}, {191, 143}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{145, 474}, {199, 203}}</string>
