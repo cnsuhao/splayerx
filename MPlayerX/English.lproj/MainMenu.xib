@@ -12,8 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="540"/>
 			<integer value="627"/>
+			<integer value="372"/>
 			<integer value="595"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -1223,7 +1223,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 									</object>
 								</object>
 							</object>
-							<string key="NSFrame">{{25, 25}, {430, 58}}</string>
+							<string key="NSFrame">{{25, 14}, {430, 58}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<bool key="NSViewIsLayerTreeHost">YES</bool>
 							<double key="NSViewAlphaValue">0.25323943661971821</double>
