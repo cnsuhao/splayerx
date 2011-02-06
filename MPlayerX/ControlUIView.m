@@ -1344,9 +1344,14 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 			[win makeKeyAndOrderFront:self];
 		}
 		
-		[osd setStringValue:[NSString stringWithFormat:kMPXStringOSDCachingPercent, percent*100]
-					  owner:kOSDOwnerOther
-				updateTimer:YES];
+		NSTimeInterval timePlayed = [[NSDate date] timeIntervalSinceDate:
+																 [[[playerController mediaInfo] playingInfo] 
+																	continuousPlaytimeStart]];
+			
+		if (timePlayed > 5.0)
+  		[osd setStringValue:[NSString stringWithFormat:kMPXStringOSDCachingPercent, percent*100]
+					  owner:kOSDOwnerNotifier updateTimer:YES];
+		
 	}
 }
 

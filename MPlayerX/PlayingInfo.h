@@ -42,6 +42,8 @@
 	NSNumber *subScale;
 	NSNumber *speed;
 	NSNumber *cachingPercent;
+	
+	NSDate *continuousPlaytimeStart;
 }
 
 @property(assign, readwrite) unsigned char	currentChapter;
@@ -59,6 +61,7 @@
 @property(retain, readwrite) NSNumber *subScale;
 @property(retain, readwrite) NSNumber *speed;
 @property(retain, readwrite) NSNumber *cachingPercent;
+@property(retain, readwrite) NSDate *continuousPlaytimeStart;
 
 -(void) resetWithParameterManager:(ParameterManager*)pm;
 

@@ -423,6 +423,7 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 			break;
 		case kMPCPausedState:
 			[playerCore sendStringCommand: kMPCTogglePauseCmd];
+			[movieInfo.playingInfo setContinuousPlaytimeStart:[NSDate date]];
 			state = kMPCPlayingState;
 			break;
 
@@ -447,6 +448,7 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 	speed = MAX(speed, 0.1);
 	if ([playerCore sendStringCommand:[NSString stringWithFormat:kCmdStringFMTFloat, kMPCSetPropertyPreFixPauseKeep, kMPCSpeed, speed]]) {
 		[movieInfo.playingInfo setSpeed:[NSNumber numberWithFloat: speed]];
+		[movieInfo.playingInfo setContinuousPlaytimeStart:[NSDate date]];
 	}
 }
 
@@ -454,6 +456,7 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 {
 	if ([playerCore sendStringCommand:[NSString stringWithFormat:kCmdStringFMTInteger, kMPCSetPropertyPreFix, kMPCChapter, chapter]]) {
 		[movieInfo.playingInfo setCurrentChapter: chapter];
+		[movieInfo.playingInfo setContinuousPlaytimeStart:[NSDate date]];
 	}
 }
 
@@ -474,6 +477,7 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 	if ([playerCore sendStringCommand:[NSString stringWithFormat:kCmdStringFMTTimeSeek, kMPCPausingKeepForce, kMPCSeekCmd, time, seekMode]]) {
 		time += base;
 		[movieInfo.playingInfo setCurrentTime:[NSNumber numberWithFloat:time]];
+		[movieInfo.playingInfo setContinuousPlaytimeStart:[NSDate date]];
 		return time;
 	}
 	return -1;
