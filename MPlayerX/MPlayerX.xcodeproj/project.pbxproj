@@ -310,7 +310,6 @@
 		862923C510C0FE130077B63E /* TimeFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = TimeFormatter.m; sourceTree = "<group>"; };
 		862926FE10C1507E0077B63E /* TimeSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = TimeSliderCell.m; sourceTree = "<group>"; };
 		862926FF10C1507E0077B63E /* TimeSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = TimeSliderCell.h; sourceTree = "<group>"; };
-		86294E0F10F1D72800268749 /* appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = appcast.xml; path = ../update/appcast.xml; sourceTree = SOURCE_ROOT; };
 		862F149410C29B0A00F5E970 /* ShortCutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = ShortCutManager.h; sourceTree = "<group>"; };
 		862F149510C29B0A00F5E970 /* ShortCutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = ShortCutManager.m; sourceTree = "<group>"; };
 		863B5A7910F2175C001111F6 /* enterfullscreen.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = enterfullscreen.pdf; sourceTree = "<group>"; };
@@ -335,7 +334,6 @@
 		8671FAF41120456B00F7E5E5 /* doc_sub.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = doc_sub.icns; sourceTree = "<group>"; };
 		867FDF331169FD2E000C71A6 /* HueSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = HueSliderCell.h; sourceTree = "<group>"; };
 		867FDF341169FD2E000C71A6 /* HueSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = HueSliderCell.m; sourceTree = "<group>"; };
-		868BB6B810EF598500A942B3 /* MplayerX_Update_Appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = MplayerX_Update_Appcast.xml; path = ../update/MplayerX_Update_Appcast.xml; sourceTree = SOURCE_ROOT; };
 		86A34A0810F60F7E00AECBB2 /* UniversalDetector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniversalDetector.framework; path = ../UniversalDetector/build/Release/UniversalDetector.framework; sourceTree = SOURCE_ROOT; };
 		86A5E40B10C7D24D00D061C7 /* wqy-microhei.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "wqy-microhei.ttc"; sourceTree = "<group>"; };
 		86B99D0010C9418600AB28FB /* OpenURLController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = OpenURLController.h; sourceTree = "<group>"; };
@@ -470,7 +468,6 @@
 			children = (
 				9DA49ED412F15D2C00416180 /* BGHUDAppKit.xcodeproj */,
 				88752AA212CE1920005208C0 /* UniversalDetector.xcodeproj */,
-				863B9F5A10EF57B9003D5F42 /* AutoUpdate */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -605,15 +602,6 @@
 				861EE3F61167263300D16C87 /* titlebar-middle.png */,
 			);
 			name = buttons;
-			sourceTree = "<group>";
-		};
-		863B9F5A10EF57B9003D5F42 /* AutoUpdate */ = {
-			isa = PBXGroup;
-			children = (
-				86294E0F10F1D72800268749 /* appcast.xml */,
-				868BB6B810EF598500A942B3 /* MplayerX_Update_Appcast.xml */,
-			);
-			name = AutoUpdate;
 			sourceTree = "<group>";
 		};
 		866CD14F11DF135400032F96 /* icons */ = {
