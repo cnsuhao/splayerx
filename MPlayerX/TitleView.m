@@ -103,6 +103,7 @@ NSString *kStringDots = @"...";
 											 selector:@selector(windowDidResignKey:)
 												 name:NSWindowDidResignKeyNotification
 											   object:[self window]];
+	[self display];
 }
 
 -(void) mouseUp:(NSEvent *)theEvent
