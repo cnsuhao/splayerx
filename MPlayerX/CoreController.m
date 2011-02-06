@@ -359,7 +359,7 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 	[movieInfo.playingInfo resetWithParameterManager:pm];
 
 	if ( [playerCore playMedia:moviePath 
-					  withExec:[mpPathPair objectForKey:(pm.prefer64bMPlayer)?kX86_64Key:kI386Key] 
+					  withExec:[mpPathPair objectForKey:kX86_64Key] 
 					withParams:[pm arrayOfParametersWithName:(dispDelegate)?(sharedBufferName):(nil)]]
 	   ) {
 		state = kMPCOpenedState;
