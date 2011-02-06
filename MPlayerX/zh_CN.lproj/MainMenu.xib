@@ -12,9 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="372"/>
 			<integer value="595"/>
 			<integer value="57"/>
-			<integer value="540"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1251,7 +1251,7 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 									</object>
 								</object>
 							</object>
-							<string key="NSFrame">{{23, 25}, {432, 64}}</string>
+							<string key="NSFrame">{{23, 14}, {432, 64}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<object class="NSShadow" key="NSViewShadow">
 								<double key="NSShadowBlurRadius">6</double>
@@ -3823,14 +3823,14 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{525, 802}, {197, 73}}</string>
-					<string>{{728, 449}, {334, 20}}</string>
+					<string>{{634, 449}, {334, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{74, 862}</string>
 					<string>{{6, 978}, {478, 20}}</string>
-					<string>{{534, 129}, {480, 300}}</string>
+					<string>{{435, 201}, {480, 300}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{534, 129}, {480, 300}}</string>
+					<string>{{435, 201}, {480, 300}}</string>
 					<boolean value="NO"/>
 					<string>{{33, 99}, {480, 360}}</string>
 					<boolean value="YES"/>
@@ -3893,7 +3893,7 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{740, 246}, {179, 203}}</string>
+					<string>{{646, 246}, {179, 203}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{23, 794}, {245, 183}}</string>
