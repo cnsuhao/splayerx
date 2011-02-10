@@ -161,7 +161,7 @@ static BOOL init_ed = NO;
 
 -(IBAction) showHelp:(id) sender
 {
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[ud stringForKey:kUDKeyHelpURL]]];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://splayer.org/splayerx/help"]];
 }
 -(IBAction) goToDonate:(id)sender
 {
