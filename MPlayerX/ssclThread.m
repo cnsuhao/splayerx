@@ -21,7 +21,12 @@
 	
 	[playerController setOSDMessage:kMPXStringSSCLFetching];
 	
-	// call sscl [playerController.lastPlayedPath path]
+	NSString* argLang = [NSString stringWithString:@"chn"];
+	NSString* langCurrent = [[[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"] objectAtIndex:0];
+	if ([langCurrent hasPrefix:@"zh"] == NO)
+		argLang = [NSString stringWithString:@"eng"];
+		
+		// call sscl [playerController.lastPlayedPath path]
 	NSString *resPath = [[NSBundle mainBundle] resourcePath];
 	
 	NSTask *task;
@@ -32,7 +37,7 @@
 
 	// printf("%s \n", [argPath UTF8String]);
 	NSArray *arguments;
-	arguments = [NSArray arrayWithObjects: @"--pull", argPath, nil];
+	arguments = [NSArray arrayWithObjects: @"--pull", argPath, @"--lang", argLang, nil];
 	[task setArguments: arguments];
 	
 	NSPipe *pipe = [NSPipe pipe];
