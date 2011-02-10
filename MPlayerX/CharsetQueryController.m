@@ -29,9 +29,9 @@
 {
 	[[NSUserDefaults standardUserDefaults] registerDefaults:
 	 [NSDictionary dictionaryWithObjectsAndKeys:
-	  [NSNumber numberWithFloat:0.8], kUDKeyTextSubtitleCharsetConfidenceThresh,
-	  [NSNumber numberWithBool:YES], kUDKeyTextSubtitleCharsetManual,
-	  [NSNumber numberWithInteger:kCFStringEncodingInvalidId], kUDKeyTextSubtitleCharsetFallback,
+	  [NSNumber numberWithFloat:0.75], kUDKeyTextSubtitleCharsetConfidenceThresh,
+	  [NSNumber numberWithBool:NO], kUDKeyTextSubtitleCharsetManual,
+	  [NSNumber numberWithInteger:kCFStringEncodingUTF8], kUDKeyTextSubtitleCharsetFallback,
 	  nil]];
 }
 
