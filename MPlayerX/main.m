@@ -27,6 +27,14 @@ int main(int argc, char *argv[])
 	NSString *logPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Application Support/SPlayerX/SPlayerX.log"];
 	freopen([logPath fileSystemRepresentation], "a", stderr);
   
+	// set language to zh-Hans if it's zh-Hant
+	NSUserDefaults* defs = [NSUserDefaults standardUserDefaults];
+	[defs removeObjectForKey:@"AppleLanguages"];
+ 	NSString* langCurrent = [[defs objectForKey:@"AppleLanguages"] objectAtIndex:0];
+	if ([langCurrent compare:@"zh-Hant"] == NSOrderedSame)
+	  [defs setObject:[NSArray arrayWithObjects:@"zh_Hans", @"en", nil] forKey:@"AppleLanguages"];
+	// otherwise it's english UI
+	
 	[pool release];
 
 	return NSApplicationMain(argc,  (const char **) argv);
