@@ -10,8 +10,9 @@
 #import <Foundation/Foundation.h>
 #import "PlayerController.h"
 
-@interface ssclThread : NSObject {
-}
+@interface ssclThread : NSObject 
 +(void)pullSubtitle:(PlayerController*)playerController;
 +(void)pushSubtitle:(PlayerController*)playerController;
++(void)authAppstore;
++(CFDataRef)genAppstoreGuid;
 @end
