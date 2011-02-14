@@ -91,3 +91,4 @@ extern NSString * const kUDKeyAlwaysShowLBInFullScr;		// TODO
 extern NSString * const kUDKeyAutoLBHeightInFullScr;		// TODO
 
 extern NSString * const kUDKeyNextSVPauthTime;
+extern NSString * const kUDKeySVPLanguage;

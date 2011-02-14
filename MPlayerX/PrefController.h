@@ -54,5 +54,6 @@
 -(IBAction) checkCacheFormat:(id)sender;
 -(IBAction) letterBoxModeChanged:(id)sender;
 -(IBAction) subEncodingSchemeChanged:(id)sender;
+-(IBAction) onSVPLanguageChanged:(id)sender;
 
 @end

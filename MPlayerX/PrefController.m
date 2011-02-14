@@ -152,6 +152,12 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
 	[dispView setPlayerWindowLevel];
 }
 
+- (IBAction)onSVPLanguageChanged:(id)sender
+{
+	// TODO: change ud
+  
+}
+
 -(IBAction) controlUIAppearanceChanged:(id)sender
 {
 	[controlUI refreshAutoHideTimer];
