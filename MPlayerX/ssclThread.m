@@ -14,6 +14,8 @@
 +(void)pullSubtitle:(PlayerController*)playerController 
 {
 
+  //[self authAppstore];
+  
 	NSAutoreleasePool* POOL = [[NSAutoreleasePool alloc] init];	
 	// send osd
 	if (![playerController.lastPlayedPath isFileURL])
@@ -163,8 +165,9 @@
   
   NSAutoreleasePool* POOL = [[NSAutoreleasePool alloc] init];	
 	
-  NSString *resPath = [[NSBundle mainBundle] resourcePath];
-	NSString *receiptPath = [resPath stringByAppendingPathComponent:@"_MASReceipt/receipt"];
+  NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
+	NSString *receiptPath = [bundlePath stringByAppendingPathComponent:@"Contents/_MASReceipt/receipt"];
+  
   NSFileManager *fileManager = [NSFileManager defaultManager];
   if ([fileManager fileExistsAtPath:receiptPath] == NO)
     return [POOL release];
@@ -172,6 +175,7 @@
   
 	NSTask *task;
 	task = [[NSTask alloc] init];
+  NSString* resPath = [[NSBundle mainBundle] resourcePath];
 	[task setLaunchPath: [resPath stringByAppendingPathComponent:@"binaries/x86_64/sscl"] ];
   NSArray *arguments;
 	arguments = [NSArray arrayWithObjects: @"--uuid", nil];
@@ -196,7 +200,7 @@
   [req setHTTPMethod:@"POST"];
   [req setValue:@"SPlayer 19780218 Mac OSX App" forHTTPHeaderField:@"User-Agent"];
     
-  NSString *contentType = [NSString stringWithFormat:@"multipart/form- data, boundary=%@", boundary];
+  NSString *contentType = [NSString stringWithFormat:@"multipart/form-data, boundary=%@", boundary];
   [req setValue:contentType forHTTPHeaderField:@"Content-type"];
   
   NSData *receiptData = [NSData dataWithContentsOfFile:receiptPath options:0 error:nil];
@@ -209,13 +213,13 @@
   [postBody appendData:[@"Content-Disposition: form-data; name= \"splayer_uuid\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
   [postBody appendData:[splayer_uuid dataUsingEncoding:NSUTF8StringEncoding]];
   [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-  [postBody appendData:[[NSString stringWithFormat:@"Content- Disposition: form-data; name=\"receipt_file\"; filename=\"%@\"\r\n", filename] dataUsingEncoding:NSUTF8StringEncoding]];
+  [postBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"receipt_file\"; filename=\"%@\"\r\n", filename] dataUsingEncoding:NSUTF8StringEncoding]];
   [postBody appendData:[@"Content-Type: binary/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
   [postBody appendData:receiptData];
   [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
   [postBody appendData:[@"Content-Disposition: form-data; name= \"appstore_guid\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
   [postBody appendData:appstoreGuid];
-  [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r \n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+  [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
   [req setHTTPBody:postBody];
   
   [[NSURLConnection alloc] initWithRequest:req delegate:self];
@@ -226,12 +230,15 @@
   NSData *responseData = [NSURLConnection sendSynchronousRequest:req returningResponse:&urlResponse error:&error];  
   NSString *resultString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
   
-  MPLog(@"Auth response: %d %S", [urlResponse statusCode], resultString);
+  MPLog(@"Auth response: %d %s %d %d %d", [urlResponse statusCode], [resultString UTF8String], 
+        [responseData length], [resultString length], [error code]);
   if ([urlResponse statusCode] == 200)
   {
     // not trying anymore
     if(resultString == @"OK")
+    {
       //authed
+    }
   }
   else {
     // try this next time
