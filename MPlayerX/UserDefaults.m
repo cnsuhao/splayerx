@@ -93,3 +93,4 @@ NSString * const kUDKeyAlwaysShowLBInFullScr	= @"AlwaysShowLBInFullScr";
 NSString * const kUDKeyAutoLBHeightInFullScr	= @"AutoLBHeightInFullScr";
 
 NSString * const kUDKeyNextSVPauthTime = @"SVPAuthNextTry";
+NSString * const kUDKeySVPLanguage = @"SVPLanguage";

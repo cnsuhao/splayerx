@@ -19,6 +19,7 @@
 	[[NSUserDefaults standardUserDefaults] 
 	 registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
                      [NSNumber numberWithUnsignedInt:0], kUDKeyNextSVPauthTime,
+                     [NSNumber numberWithInt:0], kUDKeySVPLanguage,
                      nil]];  
 }
                      
@@ -34,11 +35,20 @@
 	
 	[playerController setOSDMessage:kMPXStringSSCLFetching];
 	
+  NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
 	NSString* argLang = [NSString stringWithString:@"chn"];
-	NSString* langCurrent = [[[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"] objectAtIndex:0];
+	NSString* langCurrent = [[ud objectForKey:@"AppleLanguages"] objectAtIndex:0];
 	if ([langCurrent hasPrefix:@"zh"] == NO)
 		argLang = [NSString stringWithString:@"eng"];
 		
+  if ([ud integerForKey:kUDKeySVPLanguage] != 0)
+  {
+    if ([argLang compare:@"eng"] == NSOrderedSame)
+      argLang = [NSString stringWithString:@"chn"];
+    else
+      argLang = [NSString stringWithString:@"eng"];
+  }
+  
   // call sscl [playerController.lastPlayedPath path]
 	NSString *resPath = [[NSBundle mainBundle] resourcePath];
 	
