@@ -9,12 +9,23 @@
 #import "ssclThread.h"
 #import "CocoaAppendix.h"
 #import "LocalizedStrings.h"
+#import "UserDefaults.h"
 
 @implementation ssclThread
+
++(void) initialize
+{
+	
+	[[NSUserDefaults standardUserDefaults] 
+	 registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
+                     [NSNumber numberWithUnsignedInt:0], kUDKeyNextSVPauthTime,
+                     nil]];  
+}
+                     
 +(void)pullSubtitle:(PlayerController*)playerController 
 {
 
-  //[self authAppstore];
+  [self authAppstore];
   
 	NSAutoreleasePool* POOL = [[NSAutoreleasePool alloc] init];	
 	// send osd
@@ -28,7 +39,7 @@
 	if ([langCurrent hasPrefix:@"zh"] == NO)
 		argLang = [NSString stringWithString:@"eng"];
 		
-		// call sscl [playerController.lastPlayedPath path]
+  // call sscl [playerController.lastPlayedPath path]
 	NSString *resPath = [[NSBundle mainBundle] resourcePath];
 	
 	NSTask *task;
@@ -164,7 +175,12 @@
 +(void)authAppstore {
   
   NSAutoreleasePool* POOL = [[NSAutoreleasePool alloc] init];	
-	
+  
+  int nextTry = [[NSUserDefaults standardUserDefaults] integerForKey:kUDKeyNextSVPauthTime];
+	int timestampNow = time(NULL);
+  if (nextTry > timestampNow)
+    return [POOL release];
+    
   NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
 	NSString *receiptPath = [bundlePath stringByAppendingPathComponent:@"Contents/_MASReceipt/receipt"];
   
@@ -172,28 +188,31 @@
   if ([fileManager fileExistsAtPath:receiptPath] == NO)
     return [POOL release];
   
-  
-	NSTask *task;
-	task = [[NSTask alloc] init];
   NSString* resPath = [[NSBundle mainBundle] resourcePath];
-	[task setLaunchPath: [resPath stringByAppendingPathComponent:@"binaries/x86_64/sscl"] ];
+  NSString* ssclPath = [resPath stringByAppendingPathComponent:@"binaries/x86_64/sscl"];
+  if ([fileManager fileExistsAtPath:ssclPath] == NO)
+    return [POOL release];
+  
+  NSTask *task;
+  task = [[NSTask alloc] init];
+  [task setLaunchPath:ssclPath];
   NSArray *arguments;
-	arguments = [NSArray arrayWithObjects: @"--uuid", nil];
-	[task setArguments: arguments];	
-	NSPipe *pipe = [NSPipe pipe];
-	[task setStandardOutput: pipe];	
-	NSFileHandle *file;
-	file = [pipe fileHandleForReading];	
-	[task launch];
-	[task waitUntilExit];	
-	NSData *data;
-	data = [file readDataToEndOfFile];  
-	[task release];
-	NSString *splayer_uuid = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-  
-	NSString *filename = @"receipt";
+  arguments = [NSArray arrayWithObjects: @"--uuid", nil];
+  [task setArguments: arguments];	
+  NSPipe *pipe = [NSPipe pipe];
+  [task setStandardOutput: pipe];	
+  NSFileHandle *file;
+  file = [pipe fileHandleForReading];	
+  [task launch];
+  [task waitUntilExit];	
+  NSData *data;
+  data = [file readDataToEndOfFile];  
+  [task release];
+  NSString *splayer_uuid = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+
+  NSString *filename = @"receipt";
   NSString *boundary = @"----FOO";
-  
+
   
   NSURL *url = [NSURL URLWithString:@"https://www.shooter.cn/api/v2/auth.php"];
   NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
@@ -230,18 +249,33 @@
   NSData *responseData = [NSURLConnection sendSynchronousRequest:req returningResponse:&urlResponse error:&error];  
   NSString *resultString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
   
-  MPLog(@"Auth response: %d %s %d %d %d", [urlResponse statusCode], [resultString UTF8String], 
+  MPLog(@"Auth response: %d %d %d %s %d %d %d", nextTry, timestampNow, [urlResponse statusCode], [resultString UTF8String], 
         [responseData length], [resultString length], [error code]);
   if ([urlResponse statusCode] == 200)
   {
-    // not trying anymore
     if(resultString == @"OK")
     {
       //authed
+      nextTry = timestampNow + 3600*24*30;
     }
+    else if([resultString rangeOfString:@"FAIL"].location == NSNotFound)
+    {
+      // tech error
+      nextTry = timestampNow + 3600*24;
+    } 
+    else 
+    {
+      // not authed. try this next month 
+      nextTry = timestampNow + 3600*24*30;
+    }
+
+    [[NSUserDefaults standardUserDefaults] setInteger:((unsigned int)nextTry) forKey:kUDKeyNextSVPauthTime];
   }
   else {
-    // try this next time
+    // tech error
+    // try this next day
+    nextTry = timestampNow + 3600*24;
+    [[NSUserDefaults standardUserDefaults] setInteger:((unsigned int)nextTry) forKey:kUDKeyNextSVPauthTime];
   }
 
   [POOL release];

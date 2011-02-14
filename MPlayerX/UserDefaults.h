@@ -89,3 +89,5 @@ extern NSString * const kUDKeyAutoSaveEQSettings;			// TODO
 extern NSString * const kUDKeyPinPMode;						// TODO
 extern NSString * const kUDKeyAlwaysShowLBInFullScr;		// TODO
 extern NSString * const kUDKeyAutoLBHeightInFullScr;		// TODO
+
+extern NSString * const kUDKeyNextSVPauthTime;
