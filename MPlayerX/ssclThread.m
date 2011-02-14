@@ -218,6 +218,25 @@
   [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r \n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
   [req setHTTPBody:postBody];
   
+  [[NSURLConnection alloc] initWithRequest:req delegate:self];
+
+  //get response
+  NSHTTPURLResponse* urlResponse = nil;  
+  NSError *error = [[NSError alloc] init];  
+  NSData *responseData = [NSURLConnection sendSynchronousRequest:req returningResponse:&urlResponse error:&error];  
+  NSString *resultString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+  
+  MPLog(@"Auth response: %d %S", [urlResponse statusCode], resultString);
+  if ([urlResponse statusCode] == 200)
+  {
+    // not trying anymore
+    if(resultString == @"OK")
+      //authed
+  }
+  else {
+    // try this next time
+  }
+
   [POOL release];
 }
 @end
