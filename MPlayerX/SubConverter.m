@@ -181,7 +181,7 @@ NSString * const kWorkDirSubDir = @"Subs";
 
 -(NSDictionary*) getCPFromMoviePath:(NSString*)moviePath nameRule:(SUBFILE_NAMERULE)nameRule alsoFindVobSub:(NSString**)vobPath
 {
-	NSString *cpStr = nil;
+  NSString *cpStr = nil;
 	NSString *subPath = nil;
 	NSMutableDictionary *subEncDict = [[NSMutableDictionary alloc] initWithCapacity:2];
 

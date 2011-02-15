@@ -31,7 +31,7 @@
 	NSNumber		*currentTime;
 	int				currentAudioID;
 	int				currentVideoID;
-	unsigned char	currentSub;
+	int       currentSub;
 	
 	float volume;
 	float audioBalance;
@@ -44,13 +44,14 @@
 	NSNumber *cachingPercent;
 	
 	NSDate *continuousPlaytimeStart;
+  NSMutableArray  *loadedSubtitle;
 }
 
 @property(assign, readwrite) unsigned char	currentChapter;
 @property(retain, readwrite) NSNumber		*currentTime;
 @property(assign, readwrite) int			currentAudioID;
 @property(assign, readwrite) int			currentVideoID;
-@property(assign, readwrite) unsigned char	currentSub;
+@property(assign, readwrite) int      currentSub;
 
 @property(assign, readwrite) float volume;
 @property(assign, readwrite) float audioBalance;
@@ -62,6 +63,7 @@
 @property(retain, readwrite) NSNumber *speed;
 @property(retain, readwrite) NSNumber *cachingPercent;
 @property(retain, readwrite) NSDate *continuousPlaytimeStart;
+@property(retain, readwrite) NSMutableArray *loadedSubtitle;
 
 -(void) resetWithParameterManager:(ParameterManager*)pm;
 

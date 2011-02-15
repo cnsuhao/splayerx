@@ -175,6 +175,10 @@ static BOOL init_ed = NO;
 {
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://hg.splayer.org/splayerx"]];
 }
+-(IBAction) pushSubtitle:(id)sender
+{
+  [playerController pushSubtitle];
+}
 -(IBAction) smartMatchingSubtitle:(id)sender
 {
   [playerController pullSubtitle];

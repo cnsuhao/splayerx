@@ -135,7 +135,51 @@
 }
 
 +(void)pushSubtitle:(PlayerController*)playerController {
-
+  
+  NSAutoreleasePool* POOL = [[NSAutoreleasePool alloc] init];	
+	
+  if (![playerController.lastPlayedPath isFileURL])
+		return [POOL release];
+	
+  NSString *subPath = [playerController getCurrentSubtitlePath];
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  if (!subPath || [fileManager fileExistsAtPath:subPath] == NO)
+		return [POOL release];
+  
+	// call sscl [playerController.lastPlayedPath path]
+	NSString *resPath = [[NSBundle mainBundle] resourcePath];
+	NSTask *task;
+	task = [[NSTask alloc] init];
+	[task setLaunchPath: [resPath stringByAppendingPathComponent:@"binaries/x86_64/sscl"] ];
+	
+	NSString* argPath = [NSString stringWithFormat:@"%@",[playerController.lastPlayedPath path]];
+  
+	MPLog(@"%s %s\n", [argPath UTF8String], [subPath UTF8String]);
+	NSArray *arguments;
+	arguments = [NSArray arrayWithObjects: @"--subtitle-file", subPath, @"--push", argPath, nil];
+	[task setArguments: arguments];
+	
+	NSPipe *pipe = [NSPipe pipe];
+	[task setStandardOutput: pipe];
+	//[task setStandardError: pipe];
+	
+	NSFileHandle *file;
+	file = [pipe fileHandleForReading];
+	
+	[task launch];
+	[task waitUntilExit];
+	
+	NSData *data;
+	data = [file readDataToEndOfFile];
+  
+	int status = [task terminationStatus];
+	[task release];
+	
+	NSString *retString;
+	retString = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+  MPLog(@"push Sub %d %s %lu %lu\n", status, [retString UTF8String], (unsigned long)[data length], (unsigned long)[retString length]);
+  
+	[POOL release];
 }
 
 +(CFDataRef) genAppstoreGuid

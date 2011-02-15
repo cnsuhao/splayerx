@@ -50,6 +50,7 @@
 -(IBAction) goToDonate:(id)sender;
 -(IBAction) goToFeedback:(id)sender;
 -(IBAction) goToHomepage:(id)sender;
+-(IBAction) pushSubtitle:(id)sender;
 -(IBAction) smartMatchingSubtitle:(id)sender;
 -(IBAction) searchSubtitleFromWeb:(id)sender;
 @end
