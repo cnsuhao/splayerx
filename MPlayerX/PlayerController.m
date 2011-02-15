@@ -680,9 +680,24 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 
 -(void) loadSubFile:(NSString*)subPath
 {
-	[mplayer loadSubFile:subPath];
+  [mplayer loadSubFile:subPath];
 }
-
+-(NSString*) getCurrentSubtitlePath
+{
+  // this is silly, can't we get current subtitle path directly from mplayer
+  int currentSubID = [mplayer.movieInfo.playingInfo currentSub];
+  if ( currentSubID >= 0 && [mplayer.movieInfo.subInfo count] > currentSubID)
+  {
+    NSString* currentSubName = [mplayer.movieInfo.subInfo objectAtIndex:currentSubID];
+    
+    if (mplayer.movieInfo.playingInfo.loadedSubtitle && [mplayer.movieInfo.playingInfo.loadedSubtitle count] > 0)
+      for (NSString* path in mplayer.movieInfo.playingInfo.loadedSubtitle)
+        if([path hasSuffix:currentSubName])
+          return [path autorelease];
+  }
+     
+  return nil;
+}
 -(void) pullSubtitle
 {
 	if ([mplayer.movieInfo.subInfo count] > 0)

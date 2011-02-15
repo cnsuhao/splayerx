@@ -38,7 +38,9 @@
 @synthesize	subScale;
 @synthesize speed;
 @synthesize cachingPercent;
+
 @synthesize continuousPlaytimeStart;
+@synthesize loadedSubtitle;
 
 -(id) init
 {
@@ -62,6 +64,7 @@
 		speed = [[NSNumber alloc] initWithFloat:1.0];
 		cachingPercent = [floatZero retain];
 		continuousPlaytimeStart = [[NSDate alloc] init];
+    loadedSubtitle = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
@@ -75,6 +78,7 @@
 	[subScale release];
 	[cachingPercent release];
 	[continuousPlaytimeStart release];
+  [loadedSubtitle release];
 	
 	[super dealloc];
 }
@@ -100,6 +104,8 @@
 	[self setSubDelay:floatZero];
 	[self setSpeed:[NSNumber numberWithFloat:1]];
 	[self setCachingPercent:floatZero];
+  
 	[self setContinuousPlaytimeStart:[NSDate date]];
+  [loadedSubtitle removeAllObjects];
 }
 @end

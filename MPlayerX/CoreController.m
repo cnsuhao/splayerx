@@ -334,15 +334,21 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 		NSString *subStr;
 		NSArray *subsArray;
 		
+    // 只重置与播放有关的
+    [movieInfo.playingInfo resetWithParameterManager:pm];
+    
 		if ([pm vobSub] == nil) {
 			// 如果用户没有自己设置vobsub的话，这个变量会在每次播放完之后设为nil
 			// 如果用户有自己的vobsub，那么就不设置他而用用户的vobsub
 			[pm setVobSub:vobStr];
 		}
 		if ([subEncDict count]) {
+      for (NSString* path in subEncDict)
+        [movieInfo.playingInfo.loadedSubtitle addObject:path];
+      
 			// 如果有字幕文件
 			subsArray = [subConv convertTextSubsAndEncodings:subEncDict];
-			
+            
 			if (subsArray && ([subsArray count] > 0)) {
 				[pm setTextSubs:subsArray];
 			} else {
@@ -355,8 +361,6 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 		}
 	}
 
-	// 只重置与播放有关的
-	[movieInfo.playingInfo resetWithParameterManager:pm];
 
 	if ( [playerCore playMedia:moviePath 
 					  withExec:[mpPathPair objectForKey:kX86_64Key] 
@@ -532,6 +536,7 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 
 -(void) setSub: (int) subID
 {
+  [movieInfo.playingInfo setCurrentSub:subID];
 	[playerCore sendStringCommand:[NSString stringWithFormat:kCmdStringFMTInteger, kMPCSetPropertyPreFixPauseKeep, kMPCSub, subID]];
 }
 
@@ -568,7 +573,8 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 		// 找到了编码方式
 		NSArray *newPaths = [subConv convertTextSubsAndEncodings:[NSDictionary dictionaryWithObjectsAndKeys:cpStr, path, nil]];
 		if (newPaths && [newPaths count]) {
-			// MPLog(@"%@", [NSString stringWithFormat:@"%@ \"%@\"", kMPCSubLoad, [newPaths objectAtIndex:0]]);
+      MPLog(@"%@", [NSString stringWithFormat:@"%@ \"%@\"", kMPCSubLoad, [newPaths objectAtIndex:0]]);
+      [movieInfo.playingInfo.loadedSubtitle addObject:path];
 			[playerCore sendStringCommand:[NSString stringWithFormat:@"%@ \"%@\"\n", kMPCSubLoad, [newPaths objectAtIndex:0]]];
 		}
 	}

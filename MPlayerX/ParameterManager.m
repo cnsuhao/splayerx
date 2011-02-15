@@ -399,6 +399,7 @@ NSString * const kPMSlash				= @"/";
 
 	if (textSubs && [textSubs count]) {
 		[paramArray addObject:kPMParSub];	
+    MPLog(@"%s", [[textSubs componentsJoinedByString:kPMComma] UTF8String]);
 		[paramArray addObject:[textSubs componentsJoinedByString:kPMComma]];
 	}
 	
