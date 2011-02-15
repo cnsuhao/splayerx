@@ -38,6 +38,7 @@
 -(void) playebackStarted;
 -(void) playebackStopped:(NSDictionary*)dict;
 -(void) playebackWillStop;
+-(void) pushSubtitle;
 @end
 
 extern NSString * const kMPCPlayStoppedByForceKey;
@@ -49,6 +50,8 @@ extern NSString * const kMPCPlayStoppedTimeKey;
 #define kMPCPausedState		(0x0101)		/**< 有文件正在播放但是暂停中 */
 
 #define kMPCStateMask		(0x0100)
+
+@class PlayerController;
 
 @interface CoreController : NSObject <PlayerCoreDelegate, LogAnalyzerDelegate>
 {
@@ -77,6 +80,7 @@ extern NSString * const kMPCPlayStoppedTimeKey;
 	
 	NSDictionary *keyPathDict;
 	NSDictionary *typeDict;
+  
 }
 
 @property (readonly)			int state;
@@ -135,6 +139,8 @@ extern NSString * const kMPCPlayStoppedTimeKey;
 -(void) setSubScale: (float) scale;
 
 -(void) loadSubFile: (NSString*) path;
+
+-(NSString*) getCurrentSubtitlePath;
 
 -(void) setLetterBox:(BOOL) renderSubInLB top:(float) topRatio bottom:(float)bottomRatio;
 

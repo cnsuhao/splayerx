@@ -41,6 +41,7 @@
 
 @synthesize continuousPlaytimeStart;
 @synthesize loadedSubtitle;
+@synthesize subtitleUploaded;
 
 -(id) init
 {
@@ -65,6 +66,7 @@
 		cachingPercent = [floatZero retain];
 		continuousPlaytimeStart = [[NSDate alloc] init];
     loadedSubtitle = [[NSMutableArray alloc] init];
+    subtitleUploaded = 0;
 	}
 	return self;
 }
@@ -106,6 +108,7 @@
 	[self setCachingPercent:floatZero];
   
 	[self setContinuousPlaytimeStart:[NSDate date]];
-  [loadedSubtitle removeAllObjects];
+  [[self loadedSubtitle] removeAllObjects];
+  subtitleUploaded = 0;
 }
 @end

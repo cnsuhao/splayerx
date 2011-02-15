@@ -45,6 +45,7 @@
 	
 	NSDate *continuousPlaytimeStart;
   NSMutableArray  *loadedSubtitle;
+  int   subtitleUploaded;
 }
 
 @property(assign, readwrite) unsigned char	currentChapter;
@@ -62,8 +63,10 @@
 @property(retain, readwrite) NSNumber *subScale;
 @property(retain, readwrite) NSNumber *speed;
 @property(retain, readwrite) NSNumber *cachingPercent;
+
 @property(retain, readwrite) NSDate *continuousPlaytimeStart;
 @property(retain, readwrite) NSMutableArray *loadedSubtitle;
+@property(assign, readwrite) int   subtitleUploaded;
 
 -(void) resetWithParameterManager:(ParameterManager*)pm;
 
