@@ -400,9 +400,30 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 
 -(void) getCurrentTime:(NSTimer*)theTimer
 {
+  
 	if (state == kMPCPlayingState) {
 		// 发这个命令会自动让mplayer退出pause状态，而用keep_pause的perfix会得不到任何返回,因此只有在没有pause的时候会polling播放时间
 		[playerCore sendStringCommand: [NSString stringWithFormat:@"%@ %@\n", kMPCGetPropertyPreFix, kMPCTimePos]];
+    
+    // if havn't upload subtitle and 
+    if (movieInfo.playingInfo.subtitleUploaded)
+      return;
+        
+    // if there is subtitle;
+    int currentSubID = [movieInfo.playingInfo currentSub];
+    if ( currentSubID < 0 || [movieInfo.subInfo count] <= currentSubID)
+      return;
+   
+    // test if we continues played more than 2/3 of total length 
+    NSTimeInterval continuePlayedTimeInSec = [[NSDate date] timeIntervalSinceDate:movieInfo.playingInfo.continuousPlaytimeStart];
+    double totalLength = [[movieInfo length] floatValue];
+    if (totalLength > 120.0 && totalLength * 0.66 < continuePlayedTimeInSec)
+    {
+      MPLog(@"getCurrentTime %d %f %f", state, continuePlayedTimeInSec, [[movieInfo length] floatValue] );
+      movieInfo.playingInfo.subtitleUploaded = 1;
+      [delegate pushSubtitle];
+    }
+    
 	} else if (state == kMPCPausedState) {
 		// 即使是暂停的时候这样更新时间，会引发KVO事件，这样是为了保持界面更新
 		[movieInfo.playingInfo willChangeValueForKey:@"currentTime"];
@@ -427,7 +448,6 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 			break;
 		case kMPCPausedState:
 			[playerCore sendStringCommand: kMPCTogglePauseCmd];
-			[movieInfo.playingInfo setContinuousPlaytimeStart:[NSDate date]];
 			state = kMPCPlayingState;
 			break;
 
@@ -537,6 +557,7 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 -(void) setSub: (int) subID
 {
   [movieInfo.playingInfo setCurrentSub:subID];
+  [movieInfo.playingInfo setContinuousPlaytimeStart:[NSDate date]];
 	[playerCore sendStringCommand:[NSString stringWithFormat:kCmdStringFMTInteger, kMPCSetPropertyPreFixPauseKeep, kMPCSub, subID]];
 }
 
@@ -578,6 +599,22 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 			[playerCore sendStringCommand:[NSString stringWithFormat:@"%@ \"%@\"\n", kMPCSubLoad, [newPaths objectAtIndex:0]]];
 		}
 	}
+}
+-(NSString*) getCurrentSubtitlePath
+{
+  // this is silly, can't we get current subtitle path directly from mplayer
+  int currentSubID = [movieInfo.playingInfo currentSub];
+  if ( currentSubID >= 0 && [movieInfo.subInfo count] > currentSubID)
+  {
+    NSString* currentSubName = [movieInfo.subInfo objectAtIndex:currentSubID];
+    
+    if (movieInfo.playingInfo.loadedSubtitle && [movieInfo.playingInfo.loadedSubtitle count] > 0)
+      for (NSString* path in movieInfo.playingInfo.loadedSubtitle)
+        if([path hasSuffix:currentSubName])
+          return [path autorelease];
+  }
+  
+  return nil;
 }
 
 -(void) setLetterBox:(BOOL) renderSubInLB top:(float) topRatio bottom:(float)bottomRatio
