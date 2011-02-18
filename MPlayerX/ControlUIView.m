@@ -180,6 +180,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 								  [NSArray arrayWithObjects:[NSImage imageNamed:@"fillscreen_ub"], [NSImage imageNamed:@"exitfillscreen_ub"], nil], kFillScreenButtonImageUBKey, 
 								  nil];
 
+  [fullScreenButton setHidden:YES];
+  
 	// 自动隐藏设定
 	[self refreshAutoHideTimer];
 	
@@ -1030,7 +1032,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 ////////////////////////////////////////////////displayThings//////////////////////////////////////////////////
 -(void) displayStarted
 {
-	[fullScreenButton setHidden: NO];
+	[fullScreenButton setHidden: (playerController.playerState == kMPCStoppedState)?YES:NO];
 	[timeText setHidden: NO];
 	[timeTextAlt setHidden: NO];
 	
@@ -1062,6 +1064,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	if (stopTime) {
 		[menuPlayFromLastStoppedPlace setTag: ([stopTime integerValue] * LASTSTOPPEDTIMERATIO)];
 		[menuPlayFromLastStoppedPlace setEnabled:YES];
+    
 	} else {
 		[menuPlayFromLastStoppedPlace setEnabled:NO];		
 	}
