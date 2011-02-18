@@ -182,6 +182,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
   [fullScreenButton setHidden:YES];
   
+  [toggleAcceButton setHidden:YES];
+
 	// 自动隐藏设定
 	[self refreshAutoHideTimer];
 	
@@ -1032,7 +1034,10 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 ////////////////////////////////////////////////displayThings//////////////////////////////////////////////////
 -(void) displayStarted
 {
-	[fullScreenButton setHidden: (playerController.playerState == kMPCStoppedState)?YES:NO];
+  BOOL not_playing = (playerController.playerState == kMPCStoppedState)?YES:NO;
+	[fullScreenButton setHidden: not_playing];
+  [toggleAcceButton setHidden: not_playing];
+
 	[timeText setHidden: NO];
 	[timeTextAlt setHidden: NO];
 	
@@ -1047,6 +1052,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 -(void) displayStopped
 {
 	[fullScreenButton setHidden: YES];
+  [toggleAcceButton setHidden: YES];
 	[timeText setHidden: YES];
 	[timeTextAlt setHidden: YES];
 	

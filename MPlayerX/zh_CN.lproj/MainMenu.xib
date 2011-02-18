@@ -14,7 +14,7 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="1012"/>
 			<integer value="595"/>
-			<integer value="372"/>
+			<integer value="540"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -854,7 +854,7 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 								</object>
 								<object class="NSButton" id="730515757">
 									<reference key="NSNextResponder" ref="85098728"/>
-									<int key="NSvFlags">265</int>
+									<int key="NSvFlags">-2147483383</int>
 									<string key="NSFrame">{{402, 34}, {22, 22}}</string>
 									<reference key="NSSuperview" ref="85098728"/>
 									<int key="NSViewLayerContentsRedrawPolicy">2</int>
@@ -1151,7 +1151,7 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 								</object>
 								<object class="NSButton" id="75692459">
 									<reference key="NSNextResponder" ref="85098728"/>
-									<int key="NSvFlags">265</int>
+									<int key="NSvFlags">-2147483383</int>
 									<string key="NSFrame">{{334, 33}, {24, 24}}</string>
 									<reference key="NSSuperview" ref="85098728"/>
 									<int key="NSViewLayerContentsRedrawPolicy">2</int>
@@ -1209,7 +1209,7 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 								</object>
 								<object class="NSButton" id="148756898">
 									<reference key="NSNextResponder" ref="85098728"/>
-									<int key="NSvFlags">265</int>
+									<int key="NSvFlags">-2147483383</int>
 									<string key="NSFrame">{{370, 34}, {22, 22}}</string>
 									<reference key="NSSuperview" ref="85098728"/>
 									<int key="NSViewLayerContentsRedrawPolicy">2</int>
