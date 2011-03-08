@@ -67,6 +67,7 @@
 	
 	IBOutlet NSView *accessaryContainer;
 	IBOutlet NSButton *toggleAcceButton;
+  IBOutlet NSButton *toggleShareButton;
 
 	IBOutlet ArrowTextField *speedText;
 	IBOutlet ArrowTextField *subDelayText;
@@ -121,6 +122,8 @@ extern NSString * const kFillScreenButtonImageUBKey;
 
 -(IBAction) toggleFullScreen:(id)sender;
 -(IBAction) toggleFillScreen:(id)sender;
+
+-(IBAction) toggleShareControls:(id)sender;
 
 -(IBAction) toggleAccessaryControls:(id)sender;
 -(IBAction) changeSpeed:(id) sender;
