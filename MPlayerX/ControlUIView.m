@@ -754,6 +754,11 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	}
 }
 
+-(IBAction) toggleShareControls:(id)sender
+{
+  // open share controler
+}
+
 -(IBAction) toggleAccessaryControls:(id)sender
 {
 	NSRect rcSelf = [self frame];

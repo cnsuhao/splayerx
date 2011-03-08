@@ -149,6 +149,7 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		9DA4A25B12F1602400416180 /* BGHUDAppKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9DA49EE012F15D2D00416180 /* BGHUDAppKit.framework */; };
 		9DA4A34512F160B200416180 /* BGHUDAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DA4A34412F160B200416180 /* BGHUDAppKit.framework */; };
+		9DD929E4132632610003E85B /* share.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9DD929E3132632610003E85B /* share.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -397,6 +398,7 @@
 		8D1107320486CEB800E47090 /* SPlayerX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPlayerX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DA49ED412F15D2C00416180 /* BGHUDAppKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BGHUDAppKit.xcodeproj; path = ../BGHUDAppKit/BGHUDAppKit.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9DA4A34412F160B200416180 /* BGHUDAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BGHUDAppKit.framework; path = ../BGHUDAppKit/build/Release/BGHUDAppKit.framework; sourceTree = SOURCE_ROOT; };
+		9DD929E3132632610003E85B /* share.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = share.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -597,6 +599,7 @@
 				86F4DD7F10BD6ECA007AE56A /* pause.pdf */,
 				86F4DD8010BD6ECA007AE56A /* play.pdf */,
 				86D10C1B10F4A40D000B573F /* resizeindicator.png */,
+				9DD929E3132632610003E85B /* share.pdf */,
 				861EE3F51167263300D16C87 /* titlebar-corner-left.png */,
 				861EE3FD1167290A00D16C87 /* titlebar-corner-right.png */,
 				861EE3F61167263300D16C87 /* titlebar-middle.png */,
@@ -940,6 +943,7 @@
 				8866A9D012D4E4F9009EFC33 /* SubEncoding.xib in Resources */,
 				8866A9D112D4E4F9009EFC33 /* VideoTuner.xib in Resources */,
 				8866A9E212D4E771009EFC33 /* InfoPlist.strings in Resources */,
+				9DD929E4132632610003E85B /* share.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
