@@ -31,6 +31,7 @@
 #import "TitleView.h"
 #import "CocoaAppendix.h"
 #import "TimeFormatter.h"
+#import "ssclThread.h"
 
 #define CONTROLALPHA		(1)
 #define BACKGROUNDALPHA		(0.2)
@@ -98,6 +99,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 					   boolYes, kUDKeyAutoLBHeightInFullScr,
 					   boolNo, kUDKeyHideTitlebar,
 					   nil]];
+  
 }
 
 -(id) initWithFrame:(NSRect)frameRect
@@ -180,9 +182,9 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 								  [NSArray arrayWithObjects:[NSImage imageNamed:@"fillscreen_ub"], [NSImage imageNamed:@"exitfillscreen_ub"], nil], kFillScreenButtonImageUBKey, 
 								  nil];
 
-  [fullScreenButton setHidden:YES];
-  
-  [toggleAcceButton setHidden:YES];
+  [fullScreenButton  setHidden:YES];
+  [toggleShareButton setHidden:YES];
+  [toggleAcceButton  setHidden:YES];
 
 	// 自动隐藏设定
 	[self refreshAutoHideTimer];
@@ -268,6 +270,10 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 																										 (kMPXStringMenuHideLetterBox)];
 
 	[menuShowMediaInfo setEnabled:NO];
+  
+  [webView setFrameLoadDelegate:self];
+  [webView setHidden:YES];
+  [[[webView mainFrame] frameView] setAllowsScrolling:NO];
 	
 	// set OSD active status
 	[osd setActive:NO];
@@ -757,6 +763,26 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 -(IBAction) toggleShareControls:(id)sender
 {
   // open share controler
+
+  if ([webView isHidden]) 
+  {
+    // can't we share url?
+    // if (![playerController.lastPlayedPath isFileURL])
+    //   return;
+    if ([shareUriCurrent length] == 0)
+    {
+      NSString* mediaPath = ([playerController.lastPlayedPath isFileURL])?([playerController.lastPlayedPath path]):([playerController.lastPlayedPath absoluteString]);
+      shareUriCurrent = [ssclThread shareMovie:mediaPath];
+      if ([shareUriCurrent length] == 0) 
+        return;
+    
+      [[webView mainFrame] loadRequest:[NSURLRequest requestWithURL:
+                                        [NSURL URLWithString:shareUriCurrent]]]; 
+    }
+    [webView setHidden:NO];
+  }
+  else 
+    [webView setHidden:YES];
 }
 
 -(IBAction) toggleAccessaryControls:(id)sender
@@ -1042,6 +1068,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   BOOL not_playing = (playerController.playerState == kMPCStoppedState)?YES:NO;
 	[fullScreenButton setHidden: not_playing];
   [toggleAcceButton setHidden: not_playing];
+  [toggleShareButton setHidden: not_playing];
 
 	[timeText setHidden: NO];
 	[timeTextAlt setHidden: NO];
@@ -1058,6 +1085,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 {
 	[fullScreenButton setHidden: YES];
   [toggleAcceButton setHidden: YES];
+  [toggleShareButton setHidden: YES];
 	[timeText setHidden: YES];
 	[timeTextAlt setHidden: YES];
 	
@@ -1141,7 +1169,10 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[self toggleFullScreen:nil];
 	// 并且重置 fillScreen状态
 	[self toggleFillScreen:nil];
-	
+  
+  shareUriCurrent = nil;
+	[webView setHidden:YES];
+  
 	if ([ud boolForKey:kUDKeyCloseWindowWhenStopped]) 
 		[dispView closePlayerWindow];
 //	else 
@@ -1362,7 +1393,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 																 [[[playerController mediaInfo] playingInfo] 
 																	continuousPlaytimeStart]];
 			
-		if (timePlayed > 5.0)
+		if (timePlayed > 3.0)
   		[osd setStringValue:[NSString stringWithFormat:kMPXStringOSDCachingPercent, percent*100]
 					  owner:kOSDOwnerNotifier updateTimer:YES];
 		

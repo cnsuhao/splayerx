@@ -19,6 +19,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import <WebKit/WebKit.h>
 
 @class RootLayerView, PlayerController, FloatWrapFormatter, ArrowTextField, ResizeIndicator, OsdText, TitleView, TimeFormatter;
 
@@ -49,6 +50,8 @@
 	NSMenu *audioListMenu;
 	NSMenu *videoListMenu;
 		
+  NSString* shareUriCurrent;
+  
 	float volStep;
 	float orgHeight;
 
@@ -77,6 +80,8 @@
 	IBOutlet OsdText *osd;
 	IBOutlet TitleView *title;
 	
+  IBOutlet id webView;
+  
 	IBOutlet NSMenuItem *menuSnapshot;
 	IBOutlet NSMenuItem *menuSwitchSub;
 	IBOutlet NSMenuItem *menuSubScaleInc;

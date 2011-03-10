@@ -134,6 +134,47 @@
 	[POOL release];
 }
 
++(NSString*)shareMovie:(NSString*)moviePath {
+  
+  
+	NSAutoreleasePool* POOL = [[NSAutoreleasePool alloc] init];	
+	
+	NSString *resPath = [[NSBundle mainBundle] resourcePath];
+	
+	NSTask *task;
+	task = [[NSTask alloc] init];
+	[task setLaunchPath: [resPath stringByAppendingPathComponent:@"binaries/x86_64/sscl"] ];
+
+	NSArray *arguments;
+	arguments = [NSArray arrayWithObjects: @"--share", moviePath, nil];
+	[task setArguments: arguments];
+	
+	NSPipe *pipe = [NSPipe pipe];
+	[task setStandardOutput: pipe];
+	//[task setStandardError: pipe];
+	
+	NSFileHandle *file;
+	file = [pipe fileHandleForReading];
+	
+	[task launch];
+	[task waitUntilExit];
+	
+	NSData *data;
+	data = [file readDataToEndOfFile];
+  
+  int status = [task terminationStatus];
+
+  [task release];
+	
+	NSString *retString;
+	retString = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+  MPLog(@"%d %s %lu %lu\n", status, [retString UTF8String], (unsigned long)[data length], (unsigned long)[retString length]);
+  
+	[POOL release];
+  
+  return [retString autorelease];
+}
+
 +(void)pushSubtitle:(PlayerController*)playerController {
   
   NSAutoreleasePool* POOL = [[NSAutoreleasePool alloc] init];	

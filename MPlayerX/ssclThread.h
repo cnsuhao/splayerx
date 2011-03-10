@@ -14,5 +14,6 @@
 +(void)pullSubtitle:(PlayerController*)playerController;
 +(void)pushSubtitle:(PlayerController*)playerController;
 +(void)authAppstore;
++(NSString*)shareMovie:(NSString*)moviePath;
 +(CFDataRef)genAppstoreGuid;
 @end
