@@ -272,6 +272,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[menuShowMediaInfo setEnabled:NO];
   
   [webView setFrameLoadDelegate:self];
+  [webView setPolicyDelegate:self];
   [webView setHidden:YES];
   [[[webView mainFrame] frameView] setAllowsScrolling:NO];
 	
@@ -1574,5 +1575,24 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	
 	// 这里是为了让字体大小符合窗口大小
 	[osd setStringValue:nil owner:osd.owner updateTimer:NO];
+}
+
+- (void)webView:(WebView *)sender decidePolicyForNewWindowAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request newFrameName:(NSString *)frameName decisionListener:(id < WebPolicyDecisionListener >)listener
+{
+  NSURL *URL = [request URL];
+  [[NSWorkspace sharedWorkspace] openURL:URL];
+}
+
+- (void)webView:(WebView *)sender decidePolicyForNavigationAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id < WebPolicyDecisionListener >)listener
+{
+  NSURL* link = [actionInformation objectForKey:WebActionOriginalURLKey];
+  if (link) {
+    NSRange textRange =[[link absoluteString] rangeOfString:@"#close_wnd"];
+    if(textRange.location != NSNotFound)
+      [webView setHidden:YES];
+
+  }
+  
+  [listener use];
 }
 @end
