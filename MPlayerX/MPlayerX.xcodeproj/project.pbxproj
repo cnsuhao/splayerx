@@ -148,6 +148,7 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		9D23C0A4132887B200980BA6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D23C0A3132887B200980BA6 /* WebKit.framework */; };
+		9D7E1296132B77F7009FD852 /* plug-ins in Copy plug-ins */ = {isa = PBXBuildFile; fileRef = 9D7E127E132B7716009FD852 /* plug-ins */; };
 		9DA4A25B12F1602400416180 /* BGHUDAppKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9DA49EE012F15D2D00416180 /* BGHUDAppKit.framework */; };
 		9DA4A34512F160B200416180 /* BGHUDAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DA4A34412F160B200416180 /* BGHUDAppKit.framework */; };
 		9DD929E4132632610003E85B /* share.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9DD929E3132632610003E85B /* share.pdf */; };
@@ -248,6 +249,17 @@
 				86A34A2510F60FA000AECBB2 /* UniversalDetector.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D7E1290132B7778009FD852 /* Copy plug-ins */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				9D7E1296132B77F7009FD852 /* plug-ins in Copy plug-ins */,
+			);
+			name = "Copy plug-ins";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -405,6 +417,7 @@
 		88D65B3812D023290044B3DD /* ssclThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ssclThread.m; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* SPlayerX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPlayerX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D23C0A3132887B200980BA6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		9D7E127E132B7716009FD852 /* plug-ins */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "plug-ins"; path = "../plug-ins"; sourceTree = SOURCE_ROOT; };
 		9DA49ED412F15D2C00416180 /* BGHUDAppKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BGHUDAppKit.xcodeproj; path = ../BGHUDAppKit/BGHUDAppKit.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9DA4A34412F160B200416180 /* BGHUDAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BGHUDAppKit.framework; path = ../BGHUDAppKit/build/Release/BGHUDAppKit.framework; sourceTree = SOURCE_ROOT; };
 		9DD929E3132632610003E85B /* share.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = share.pdf; sourceTree = "<group>"; };
@@ -513,6 +526,7 @@
 				866CD15011DF137200032F96 /* UI */,
 				866CD14F11DF135400032F96 /* icons */,
 				8608645C10BA533400459392 /* binaries */,
+				9D7E127E132B7716009FD852 /* plug-ins */,
 				861097EE10F1C98C0085B3DF /* MPlayerX-Info.plist */,
 			);
 			name = Resources;
@@ -831,6 +845,7 @@
 				86CAF21E10BA438D00848B8E /* Copy Frameworks */,
 				869DA5341223C93100D0D57A /* delete redundent files in Framework */,
 				86FD7D9811CE4961001726FD /* Localizations */,
+				9D7E1290132B7778009FD852 /* Copy plug-ins */,
 			);
 			buildRules = (
 			);

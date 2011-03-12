@@ -54,7 +54,7 @@
 	
 	NSTask *task;
 	task = [[NSTask alloc] init];
-	[task setLaunchPath: [resPath stringByAppendingPathComponent:@"binaries/x86_64/sscl"] ];
+	[task setLaunchPath: [resPath stringByAppendingPathComponent:@"plug-ins/sscl"] ];
 	
 	NSString* argPath = [NSString stringWithFormat:@"%@",[playerController.lastPlayedPath path]];
 
@@ -143,7 +143,7 @@
 	
 	NSTask *task;
 	task = [[NSTask alloc] init];
-	[task setLaunchPath: [resPath stringByAppendingPathComponent:@"binaries/x86_64/sscl"] ];
+	[task setLaunchPath: [resPath stringByAppendingPathComponent:@"plug-ins/sscl"] ];
 
 	NSArray *arguments;
 	arguments = [NSArray arrayWithObjects: @"--share", moviePath, nil];
@@ -191,7 +191,7 @@
 	NSString *resPath = [[NSBundle mainBundle] resourcePath];
 	NSTask *task;
 	task = [[NSTask alloc] init];
-	[task setLaunchPath: [resPath stringByAppendingPathComponent:@"binaries/x86_64/sscl"] ];
+	[task setLaunchPath: [resPath stringByAppendingPathComponent:@"plug-ins/sscl"] ];
 	
 	NSString* argPath = [NSString stringWithFormat:@"%@",[playerController.lastPlayedPath path]];
   
@@ -284,7 +284,7 @@
     return [POOL release];
   
   NSString* resPath = [[NSBundle mainBundle] resourcePath];
-  NSString* ssclPath = [resPath stringByAppendingPathComponent:@"binaries/x86_64/sscl"];
+  NSString* ssclPath = [resPath stringByAppendingPathComponent:@"plug-ins/sscl"];
   if ([fileManager fileExistsAtPath:ssclPath] == NO)
     return [POOL release];
   
