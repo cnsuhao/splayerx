@@ -259,6 +259,7 @@
 		[controlUI showUp];
 		[controlUI updateHintTime];
 	}
+  [super mouseMoved:theEvent];
 }
 
 -(void)mouseDown:(NSEvent *)theEvent
