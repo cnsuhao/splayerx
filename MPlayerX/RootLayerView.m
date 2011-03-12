@@ -773,7 +773,7 @@
 		NSRect rc = NSMakeRect(pos.x, pos.y, sz.width, sz.height);
 		rc = [playerWindow frameRectForContentRect:rc];
 		
-		[playerWindow setFrame:rc display:YES];
+		[playerWindow setFrame:rc display:YES animate:YES];
 		[playerWindow setContentAspectRatio:sz];
 		
 		if (![playerWindow isVisible]) {

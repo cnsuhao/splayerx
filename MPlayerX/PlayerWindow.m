@@ -50,6 +50,7 @@
 
 	NSRect scrnRC = [[self screen] frame];
 	NSRect winRC  = [self frame];
+  [self setFrame:winRC display:YES animate:YES];
 	winRC.origin.x = (scrnRC.size.width - winRC.size.width) / 2;
 	winRC.origin.y = (scrnRC.size.height-winRC.size.height) / 2;
   NSRect newWindowFrame = winRC;
