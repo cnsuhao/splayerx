@@ -271,6 +271,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 	[menuShowMediaInfo setEnabled:NO];
   
+  [webView setWantsLayer:YES];
   [webView setFrameLoadDelegate:self];
   [webView setPolicyDelegate:self];
   [webView setHidden:YES];
@@ -772,6 +773,16 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
     //   return;
     if ([shareUriCurrent length] == 0)
     {
+      NSRect dstFrame = [webView frame];
+      NSRect srcFrame;
+      srcFrame.origin.x = dstFrame.origin.x + dstFrame.size.width;
+      srcFrame.origin.x = dstFrame.origin.y + dstFrame.size.height;
+      srcFrame.size.width = 0;
+      srcFrame.size.height = 0;
+      [webView setFrame:srcFrame];
+      [webView setHidden:NO];      
+      [[webView animator] setFrame:dstFrame];
+      
       NSString* mediaPath = ([playerController.lastPlayedPath isFileURL])?([playerController.lastPlayedPath path]):([playerController.lastPlayedPath absoluteString]);
       shareUriCurrent = [ssclThread shareMovie:mediaPath];
       if ([shareUriCurrent length] == 0) 
