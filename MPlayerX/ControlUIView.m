@@ -782,6 +782,10 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
       [webView setFrame:srcFrame];
       [webView setHidden:NO];      
       [[webView animator] setFrame:dstFrame];
+      NSString *path = [[NSBundle mainBundle] pathForResource:@"busy" ofType:@"html"];
+      NSURL *url = [NSURL fileURLWithPath:path];
+      [[webView mainFrame] loadRequest:[NSURLRequest requestWithURL:url]];
+      
       
       NSString* mediaPath = ([playerController.lastPlayedPath isFileURL])?([playerController.lastPlayedPath path]):([playerController.lastPlayedPath absoluteString]);
       shareUriCurrent = [ssclThread shareMovie:mediaPath];
