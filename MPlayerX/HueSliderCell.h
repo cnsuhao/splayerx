@@ -19,7 +19,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import <BGHUDAppKit/BGHUDAppKit.h>
+#import <BGHUDAppKit.h>
 
 @interface HueSliderCell : BGHUDSliderCell
 {
