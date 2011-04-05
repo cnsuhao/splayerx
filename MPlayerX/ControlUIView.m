@@ -57,6 +57,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 -(void) resetSubtitleMenu;
 -(void) resetAudioMenu;
 -(void) resetVideoMenu;
+-(void) tryToHide;
 -(void) playBackOpened:(NSNotification*)notif;
 -(void) playBackStarted:(NSNotification*)notif;
 -(void) playBackStopped:(NSNotification*)notif;

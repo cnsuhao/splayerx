@@ -19,7 +19,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import <BGHUDAppKit.h>
+#import <BGHUDAppKit/BGHUDAppKit.h>
 
 @interface TimeSliderCell : BGHUDSliderCell
 {

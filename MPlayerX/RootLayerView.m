@@ -43,6 +43,7 @@
 -(void) adjustWindowSizeAndAspectRatio:(NSSize) sizeVal;
 -(void) setupLayers;
 -(void) reorderSubviews;
+-(void) prepareForStartingDisplay;
 
 -(void) playBackStopped:(NSNotification*)notif;
 -(void) playBackStarted:(NSNotification*)notif;

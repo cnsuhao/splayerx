@@ -79,6 +79,11 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 -(NSString*) subConverter:(SubConverter*)subConv detectedFile:(NSString*)path ofCharsetName:(NSString*)charsetName confidence:(float)confidence;
 @end
 
+@interface PlayerController (CoreControllerNotification)
+-(void) preventSystemSleep;
+-(void) playMedia:(NSURL*)url;
+@end
+
 @implementation PlayerController
 
 @synthesize lastPlayedPath;
