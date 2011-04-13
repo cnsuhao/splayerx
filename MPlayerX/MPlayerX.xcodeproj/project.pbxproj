@@ -109,8 +109,6 @@
 		866CCFAC11DE3EAB00032F96 /* Equalizer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 866CCFAB11DE3EAB00032F96 /* Equalizer.xib */; };
 		8671FAF51120456B00F7E5E5 /* doc_sub.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8671FAF41120456B00F7E5E5 /* doc_sub.icns */; };
 		867FDF351169FD2E000C71A6 /* HueSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 867FDF341169FD2E000C71A6 /* HueSliderCell.m */; };
-		86A34A0910F60F7E00AECBB2 /* UniversalDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A34A0810F60F7E00AECBB2 /* UniversalDetector.framework */; };
-		86A34A2510F60FA000AECBB2 /* UniversalDetector.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 86A34A0810F60F7E00AECBB2 /* UniversalDetector.framework */; };
 		86A5E40C10C7D24D00D061C7 /* wqy-microhei.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 86A5E40B10C7D24D00D061C7 /* wqy-microhei.ttc */; };
 		86B99D0210C9418600AB28FB /* OpenURLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B99D0110C9418600AB28FB /* OpenURLController.m */; };
 		86C02AEF12309BCF004E8181 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C02AEE12309BCF004E8181 /* UserDefaults.m */; };
@@ -144,14 +142,14 @@
 		8866A9D012D4E4F9009EFC33 /* SubEncoding.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8866A9C812D4E4F9009EFC33 /* SubEncoding.xib */; };
 		8866A9D112D4E4F9009EFC33 /* VideoTuner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8866A9CA12D4E4F9009EFC33 /* VideoTuner.xib */; };
 		8866A9E212D4E771009EFC33 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8866A9E012D4E771009EFC33 /* InfoPlist.strings */; };
+		88AE2516134BB04A005E7C60 /* BGHUDAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88AE2514134BB04A005E7C60 /* BGHUDAppKit.framework */; };
+		88AE2517134BB04A005E7C60 /* UniversalDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88AE2515134BB04A005E7C60 /* UniversalDetector.framework */; };
 		88D65B3912D023290044B3DD /* ssclThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D65B3812D023290044B3DD /* ssclThread.m */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		9D18753B132F7E3700F74402 /* busy.html in Resources */ = {isa = PBXBuildFile; fileRef = 9D18753A132F7E3700F74402 /* busy.html */; };
 		9D23C0A4132887B200980BA6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D23C0A3132887B200980BA6 /* WebKit.framework */; };
 		9D7E1296132B77F7009FD852 /* plug-ins in Copy plug-ins */ = {isa = PBXBuildFile; fileRef = 9D7E127E132B7716009FD852 /* plug-ins */; };
-		9DA4A25B12F1602400416180 /* BGHUDAppKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9DA49EE012F15D2D00416180 /* BGHUDAppKit.framework */; };
-		9DA4A34512F160B200416180 /* BGHUDAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DA4A34412F160B200416180 /* BGHUDAppKit.framework */; };
 		9DD929E4132632610003E85B /* share.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9DD929E3132632610003E85B /* share.pdf */; };
 		9DF6BCE9132A424A0049A28C /* Equalizer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DF6BCDB132A424A0049A28C /* Equalizer.xib */; };
 		9DF6BCEA132A424A0049A28C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9DF6BCDD132A424A0049A28C /* InfoPlist.strings */; };
@@ -198,6 +196,13 @@
 			remoteGlobalIDString = 8D1107260486CEB800E47090;
 			remoteInfo = SPlayerX;
 		};
+		88AE250A134BAF27005E7C60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9DA49ED412F15D2C00416180 /* BGHUDAppKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 53DF68FC067E5B5A0090B5B0;
+			remoteInfo = BGHUDAppKit;
+		};
 		9D7E70FA12E2BAA5008CD621 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -217,13 +222,6 @@
 			containerPortal = 9DA49ED412F15D2C00416180 /* BGHUDAppKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 53DF68FD067E5B5A0090B5B0;
-			remoteInfo = BGHUDAppKit;
-		};
-		9DA49EE112F15D3700416180 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9DA49ED412F15D2C00416180 /* BGHUDAppKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 53DF68FC067E5B5A0090B5B0;
 			remoteInfo = BGHUDAppKit;
 		};
 /* End PBXContainerItemProxy section */
@@ -246,8 +244,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				9DA4A25B12F1602400416180 /* BGHUDAppKit.framework in Copy Frameworks */,
-				86A34A2510F60FA000AECBB2 /* UniversalDetector.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,7 +352,6 @@
 		8671FAF41120456B00F7E5E5 /* doc_sub.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = doc_sub.icns; sourceTree = "<group>"; };
 		867FDF331169FD2E000C71A6 /* HueSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = HueSliderCell.h; sourceTree = "<group>"; };
 		867FDF341169FD2E000C71A6 /* HueSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = HueSliderCell.m; sourceTree = "<group>"; };
-		86A34A0810F60F7E00AECBB2 /* UniversalDetector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniversalDetector.framework; path = ../UniversalDetector/build/Release/UniversalDetector.framework; sourceTree = SOURCE_ROOT; };
 		86A5E40B10C7D24D00D061C7 /* wqy-microhei.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "wqy-microhei.ttc"; sourceTree = "<group>"; };
 		86B99D0010C9418600AB28FB /* OpenURLController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = OpenURLController.h; sourceTree = "<group>"; };
 		86B99D0110C9418600AB28FB /* OpenURLController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = OpenURLController.m; sourceTree = "<group>"; };
@@ -414,6 +409,8 @@
 		8866A9CB12D4E4F9009EFC33 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_CN; path = VideoTuner.xib; sourceTree = "<group>"; };
 		8866A9E112D4E771009EFC33 /* zh_CN */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = zh_CN; path = InfoPlist.strings; sourceTree = "<group>"; };
 		88752AA212CE1920005208C0 /* UniversalDetector.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UniversalDetector.xcodeproj; path = ../UniversalDetector/UniversalDetector.xcodeproj; sourceTree = SOURCE_ROOT; };
+		88AE2514134BB04A005E7C60 /* BGHUDAppKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BGHUDAppKit.framework; sourceTree = SOURCE_ROOT; };
+		88AE2515134BB04A005E7C60 /* UniversalDetector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UniversalDetector.framework; sourceTree = SOURCE_ROOT; };
 		88D65B3712D023290044B3DD /* ssclThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssclThread.h; sourceTree = "<group>"; };
 		88D65B3812D023290044B3DD /* ssclThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ssclThread.m; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* SPlayerX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPlayerX.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -421,7 +418,6 @@
 		9D23C0A3132887B200980BA6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		9D7E127E132B7716009FD852 /* plug-ins */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "plug-ins"; path = "../plug-ins"; sourceTree = SOURCE_ROOT; };
 		9DA49ED412F15D2C00416180 /* BGHUDAppKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BGHUDAppKit.xcodeproj; path = ../BGHUDAppKit/BGHUDAppKit.xcodeproj; sourceTree = SOURCE_ROOT; };
-		9DA4A34412F160B200416180 /* BGHUDAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BGHUDAppKit.framework; path = ../BGHUDAppKit/build/Release/BGHUDAppKit.framework; sourceTree = SOURCE_ROOT; };
 		9DD929E3132632610003E85B /* share.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = share.pdf; sourceTree = "<group>"; };
 		9DF6BCDC132A424A0049A28C /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_TW; path = Equalizer.xib; sourceTree = "<group>"; };
 		9DF6BCDE132A424A0049A28C /* zh_TW */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = zh_TW; path = InfoPlist.strings; sourceTree = "<group>"; };
@@ -437,12 +433,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88AE2516134BB04A005E7C60 /* BGHUDAppKit.framework in Frameworks */,
+				88AE2517134BB04A005E7C60 /* UniversalDetector.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				8608653910BA56A700459392 /* OpenGL.framework in Frameworks */,
 				8608654010BA56C100459392 /* QuartzCore.framework in Frameworks */,
 				8609C28110C6944A00B102CE /* IOKit.framework in Frameworks */,
-				86A34A0910F60F7E00AECBB2 /* UniversalDetector.framework in Frameworks */,
-				9DA4A34512F160B200416180 /* BGHUDAppKit.framework in Frameworks */,
 				9D23C0A4132887B200980BA6 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,7 +503,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				9D23C0A3132887B200980BA6 /* WebKit.framework */,
 			);
 			name = MplayerX;
 			sourceTree = "<group>";
@@ -538,13 +533,14 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9DA4A34412F160B200416180 /* BGHUDAppKit.framework */,
+				88AE2514134BB04A005E7C60 /* BGHUDAppKit.framework */,
+				88AE2515134BB04A005E7C60 /* UniversalDetector.framework */,
+				9D23C0A3132887B200980BA6 /* WebKit.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 				8608653810BA56A700459392 /* OpenGL.framework */,
 				8608653F10BA56C100459392 /* QuartzCore.framework */,
 				8609C28010C6944A00B102CE /* IOKit.framework */,
-				86A34A0810F60F7E00AECBB2 /* UniversalDetector.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -853,8 +849,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				88AE250B134BAF27005E7C60 /* PBXTargetDependency */,
 				88752AB612CE1940005208C0 /* PBXTargetDependency */,
-				9DA49EE212F15D3700416180 /* PBXTargetDependency */,
 				9D7E70FB12E2BAA5008CD621 /* PBXTargetDependency */,
 			);
 			name = SPlayerX;
@@ -1049,7 +1045,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rm -fR \"${CONFIGURATION_BUILD_DIR}/${WRAPPER_NAME}/Contents/Frameworks/BGHUDAppKit.framework/Versions/Current/Resources\"";
+			shellScript = "";
 		};
 		86A6E0FB10EFD250001F4890 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1160,15 +1156,15 @@
 			target = 8D1107260486CEB800E47090 /* SPlayerX */;
 			targetProxy = 8899109812D194D600D4D863 /* PBXContainerItemProxy */;
 		};
+		88AE250B134BAF27005E7C60 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BGHUDAppKit;
+			targetProxy = 88AE250A134BAF27005E7C60 /* PBXContainerItemProxy */;
+		};
 		9D7E70FB12E2BAA5008CD621 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 864F8616116CD07000785586 /* updateInfoPlist */;
 			targetProxy = 9D7E70FA12E2BAA5008CD621 /* PBXContainerItemProxy */;
-		};
-		9DA49EE212F15D3700416180 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BGHUDAppKit;
-			targetProxy = 9DA49EE112F15D3700416180 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1402,15 +1398,12 @@
 		9D15100012E2EBC200EF2234 /* Release codesign */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					x86_64,
-					i386,
-				);
+				ARCHS = x86_64;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_REUSE_STRINGS = YES;
 				GCC_SHORT_ENUMS = NO;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1453,6 +1446,7 @@
 					"\"$(SRCROOT)/..\"",
 					"\"$(SRCROOT)/../BGHUDAppKit\"",
 					"\"$(SRCROOT)/../BGHUDAppKit/build/Release\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1493,6 +1487,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = x86_64;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1500,6 +1495,7 @@
 					"\"$(SRCROOT)/..\"",
 					"\"$(SRCROOT)/../BGHUDAppKit\"",
 					"\"$(SRCROOT)/../BGHUDAppKit/build/Release\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -1528,6 +1524,7 @@
 					"\"$(SRCROOT)/..\"",
 					"\"$(SRCROOT)/../BGHUDAppKit\"",
 					"\"$(SRCROOT)/../BGHUDAppKit/build/Release\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1545,16 +1542,13 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					i386,
-					x86_64,
-				);
+				ARCHS = x86_64;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_REUSE_STRINGS = YES;
 				GCC_SHORT_ENUMS = NO;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1578,15 +1572,12 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					x86_64,
-					i386,
-				);
+				ARCHS = x86_64;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_REUSE_STRINGS = YES;
 				GCC_SHORT_ENUMS = NO;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
