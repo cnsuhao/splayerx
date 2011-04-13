@@ -57,6 +57,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 -(void) resetSubtitleMenu;
 -(void) resetAudioMenu;
 -(void) resetVideoMenu;
+-(void) tryToHide;
 -(void) playBackOpened:(NSNotification*)notif;
 -(void) playBackStarted:(NSNotification*)notif;
 -(void) playBackStopped:(NSNotification*)notif;
@@ -156,19 +157,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 	[menuVolInc setKeyEquivalent:kSCMVolumeUpKeyEquivalent];
 	[menuVolDec setKeyEquivalent:kSCMVolumeDownKeyEquivalent];
-  
-  [menuPlaySpeedInc setKeyEquivalent:kSCMPlaybackSpeedUpShortcutKey];
-  [menuPlaySpeedDec setKeyEquivalent:kSCMPlaybackSpeedDownShortcutKey];
-  [menuPlaySpeedReset setKeyEquivalent:kSCMPlaybackSpeedResetShortcutKey];
-   
-	[menuAudioDelayInc setKeyEquivalent:kSCMAudioDelayPlusShortcutKey];
-	[menuAudioDelayDec setKeyEquivalent:kSCMAudioDelayMinusShortcutKey];
-  [menuAudioDelayDec setKeyEquivalent:kSCMAudioDelayResetShortbutKey];
-  
-  [menuSubtitleDelayReset setKeyEquivalent:kSCMSubDelayResetShortcutKey];
-  [menuSubtitleDelayInc setKeyEquivalent:kSCMSubDelayPlusShortcutKey];
-	[menuSubtitleDelayDec setKeyEquivalent:kSCMSubDelayMinusShortcutKey];
-  
+	
 	[menuToggleLockAspectRatio setKeyEquivalent:kSCMToggleLockAspectRatioKeyEquivalent];
 	
 	[menuResetLockAspectRatio setKeyEquivalent:kSCMResetLockAspectRatioKeyEquivalent];
@@ -855,20 +844,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 -(IBAction) changeAudioDelay:(id) sender
 {
-  float delay = 0.0f;
-  switch ([sender tag])
-  {
-    case 1:
-      delay = 0.3f;
-      break;
-    case -1:
-      delay = -0.3f;
-      break;
-    default:
-      delay = [sender floatValue];
-      break;  
-  }
-	[playerController setAudioDelay:delay];	
+	[playerController setAudioDelay:[sender floatValue]];	
 }
 
 -(IBAction) changeSubDelay:(id)sender
@@ -1162,15 +1138,6 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[menuSwitchVideo setEnabled:YES];
 	
 	[menuShowMediaInfo setEnabled:YES];
-  
-  [menuAudioDelayDec setEnabled:YES];
-	[menuAudioDelayInc setEnabled:YES];
-	[menuAudioDelayReset setEnabled:YES];
-  
-  [menuPlaySpeedInc setEnabled:YES];
-  [menuPlaySpeedDec setEnabled:YES];
-  [menuPlaySpeedReset setEnabled:YES];
-  
 }
 
 -(void) playBackWillStop:(NSNotification*)notif
@@ -1206,19 +1173,6 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	
 	[menuSubScaleInc setEnabled:NO];
 	[menuSubScaleDec setEnabled:NO];
-  
-  [menuAudioDelayDec setEnabled:NO];
-	[menuAudioDelayInc setEnabled:NO];
-	[menuAudioDelayReset setEnabled:NO];
-  
-  [menuPlaySpeedInc setEnabled:NO];
-  [menuPlaySpeedDec setEnabled:NO];
-  [menuPlaySpeedReset setEnabled:NO];
-  
-  [menuSubtitleDelayDec setEnabled:NO];
-	[menuSubtitleDelayInc setEnabled:NO];
-  [menuSubtitleDelayReset setEnabled:NO];
-  
 	[menuPlayFromLastStoppedPlace setEnabled:NO];
 	
 	[menuShowMediaInfo setEnabled:NO];
@@ -1434,18 +1388,11 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 		[menuSwitchSub setEnabled:YES];
 		[menuSubScaleInc setEnabled:YES];
 		[menuSubScaleDec setEnabled:YES];
-    
-    [menuSubtitleDelayReset setEnabled:YES];
-    [menuSubtitleDelayDec setEnabled:YES];
-    [menuSubtitleDelayInc setEnabled:YES];
+		
 	} else if (changeKind == NSKeyValueChangeSetting) {
 		[menuSwitchSub setEnabled:NO];
 		[menuSubScaleInc setEnabled:NO];
 		[menuSubScaleDec setEnabled:NO];
-
-    [menuSubtitleDelayReset setEnabled:NO];
-    [menuSubtitleDelayDec setEnabled:NO];
-    [menuSubtitleDelayInc setEnabled:NO];
 	}
 }
 
