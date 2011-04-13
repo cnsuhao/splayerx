@@ -90,6 +90,15 @@
 	IBOutlet NSMenuItem *menuSwitchAudio;
 	IBOutlet NSMenuItem *menuVolInc;
 	IBOutlet NSMenuItem *menuVolDec;
+  IBOutlet NSMenuItem *menuAudioDelayInc;
+	IBOutlet NSMenuItem *menuAudioDelayDec;
+  IBOutlet NSMenuItem *menuAudioDelayReset;
+  IBOutlet NSMenuItem *menuSubtitleDelayReset;
+  IBOutlet NSMenuItem *menuSubtitleDelayInc;
+	IBOutlet NSMenuItem *menuSubtitleDelayDec;
+  IBOutlet NSMenuItem *menuPlaySpeedInc;
+  IBOutlet NSMenuItem *menuPlaySpeedDec;
+  IBOutlet NSMenuItem *menuPlaySpeedReset;
 	IBOutlet NSMenuItem *menuToggleLockAspectRatio;
 	IBOutlet NSMenuItem *menuResetLockAspectRatio;
 	IBOutlet NSMenuItem *menuToggleLetterBox;
