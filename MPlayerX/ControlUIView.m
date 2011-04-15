@@ -147,6 +147,31 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[menuSubScaleInc setKeyEquivalent:kSCMSubScaleIncreaseKeyEquivalent];
 	[menuSubScaleDec setKeyEquivalentModifierMask:kSCMSubScaleDecreaseKeyEquivalentModifierFlagMask];
 	[menuSubScaleDec setKeyEquivalent:kSCMSubScaleDecreaseKeyEquivalent];
+  
+  [menuSubtitleDelayInc setKeyEquivalent:kSCMSubPlayAudioPlusShortcutKeyEquivalent];
+  [menuSubtitleDelayInc setKeyEquivalentModifierMask:kSCMSubtitleModKeyEquivalentModifierFlagMask];
+  [menuSubtitleDelayDec setKeyEquivalent:kSCMSubPlayAudioMinusShortcutKeyEquivalent];
+  [menuSubtitleDelayDec setKeyEquivalentModifierMask:kSCMSubtitleModKeyEquivalentModifierFlagMask];
+  [menuSubtitleDelayReset setKeyEquivalent:kSCMSubPlayAudioResetShortcutKeyEquivalent];
+  [menuSubtitleDelayReset setKeyEquivalentModifierMask:kSCMSubtitleModKeyEquivalentModifierFlagMask];
+  [menuSubtitleDelayInc setTag: 1];
+  [menuSubtitleDelayDec setTag: -1];
+  
+  [menuPlaySpeedInc setKeyEquivalent:kSCMSubPlayAudioPlusShortcutKeyEquivalent];
+  [menuPlaySpeedDec setKeyEquivalent:kSCMSubPlayAudioMinusShortcutKeyEquivalent];
+  [menuPlaySpeedReset setKeyEquivalent:kSCMSubPlayAudioResetShortcutKeyEquivalent];
+  [menuPlaySpeedInc setTag: 1];
+  [menuPlaySpeedDec setTag: -1];
+
+  
+  [menuAudioDelayInc setKeyEquivalent:kSCMSubPlayAudioPlusShortcutKeyEquivalent];
+  [menuAudioDelayInc setKeyEquivalentModifierMask:kSCMAudioModKeyEquivalentModifierFlagMask];
+  [menuAudioDelayDec setKeyEquivalent:kSCMSubPlayAudioMinusShortcutKeyEquivalent];
+  [menuAudioDelayDec setKeyEquivalentModifierMask:kSCMAudioModKeyEquivalentModifierFlagMask];
+  [menuAudioDelayReset setKeyEquivalent:kSCMSubPlayAudioResetShortcutKeyEquivalent];
+  [menuAudioDelayReset setKeyEquivalentModifierMask:kSCMAudioModKeyEquivalentModifierFlagMask];
+  [menuAudioDelayInc setTag: 1];
+  [menuAudioDelayInc setTag: -1];
 	
 	[menuPlayFromLastStoppedPlace setKeyEquivalent:kSCMPlayFromLastStoppedKeyEquivalent];
 	[menuPlayFromLastStoppedPlace setKeyEquivalentModifierMask:kSCMPlayFromLastStoppedKeyEquivalentModifierFlagMask];
@@ -839,17 +864,33 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 -(IBAction) changeSpeed:(id) sender
 {
-	[playerController setSpeed:[sender floatValue]];
+	if ([sender tag])
+    [playerController setSpeed:([[[[playerController mediaInfo] 
+                                   playingInfo] speed] floatValue] 
+                                + (float)[sender tag]/10)];
+  else
+    [playerController setSpeed:[sender floatValue]];
 }
 
 -(IBAction) changeAudioDelay:(id) sender
 {
-	[playerController setAudioDelay:[sender floatValue]];	
+	if ([sender tag])
+    [playerController setAudioDelay:([[[[playerController mediaInfo] 
+                                        playingInfo] audioDelay] floatValue] 
+                                     + (float)[sender tag]/10)];
+  else
+    [playerController setAudioDelay:[sender floatValue]];	
 }
 
 -(IBAction) changeSubDelay:(id)sender
 {
-	[playerController setSubDelay:[sender floatValue]];
+
+  if ([sender tag])
+    [playerController setSubDelay:([[[[playerController mediaInfo] 
+                                      playingInfo] subDelay] floatValue] 
+                                   + (float)[sender tag]/10)];
+  else
+	  [playerController setSubDelay:[sender floatValue]];
 }
 
 -(IBAction) changeSubScale:(id)sender
@@ -1137,6 +1178,14 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[menuSwitchAudio setEnabled:YES];
 	[menuSwitchVideo setEnabled:YES];
 	
+	[menuAudioDelayInc setEnabled:YES];
+	[menuAudioDelayDec setEnabled:YES];
+	[menuAudioDelayReset setEnabled:YES];
+  
+	[menuPlaySpeedInc setEnabled:YES];
+	[menuPlaySpeedDec setEnabled:YES];
+	[menuPlaySpeedReset setEnabled:YES];
+  
 	[menuShowMediaInfo setEnabled:YES];
 }
 
@@ -1174,7 +1223,19 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[menuSubScaleInc setEnabled:NO];
 	[menuSubScaleDec setEnabled:NO];
 	[menuPlayFromLastStoppedPlace setEnabled:NO];
+  
+  [menuAudioDelayInc setEnabled:NO];
+	[menuAudioDelayDec setEnabled:NO];
+	[menuAudioDelayReset setEnabled:NO];
+  
+	[menuPlaySpeedInc setEnabled:NO];
+	[menuPlaySpeedDec setEnabled:NO];
+	[menuPlaySpeedReset setEnabled:NO];
 	
+	[menuSubtitleDelayInc setEnabled:NO];
+	[menuSubtitleDelayDec setEnabled:NO];
+	[menuSubtitleDelayReset setEnabled:NO];
+  
 	[menuShowMediaInfo setEnabled:NO];
 }
 
@@ -1388,11 +1449,19 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 		[menuSwitchSub setEnabled:YES];
 		[menuSubScaleInc setEnabled:YES];
 		[menuSubScaleDec setEnabled:YES];
+    
+    [menuSubtitleDelayReset setEnabled:YES];
+		[menuSubtitleDelayInc setEnabled:YES];
+		[menuSubtitleDelayDec setEnabled:YES];
 		
 	} else if (changeKind == NSKeyValueChangeSetting) {
 		[menuSwitchSub setEnabled:NO];
 		[menuSubScaleInc setEnabled:NO];
 		[menuSubScaleDec setEnabled:NO];
+    
+    [menuSubtitleDelayReset setEnabled:NO];
+		[menuSubtitleDelayInc setEnabled:NO];
+		[menuSubtitleDelayDec setEnabled:NO];
 	}
 }
 
