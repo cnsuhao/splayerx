@@ -52,6 +52,8 @@
 	IBOutlet ShortCutManager *shortCutManager;
 	IBOutlet VideoTunerController *VTController;
 	IBOutlet TitleView *titlebar;
+  IBOutlet NSProgressIndicator *centerProgress;
+  IBOutlet NSBox *centerProgessBox;
 }
 
 @property (readonly) CGDirectDisplayID fullScrnDevID;

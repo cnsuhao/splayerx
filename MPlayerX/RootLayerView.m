@@ -135,10 +135,10 @@
 	[root setDoubleSided:NO];
 
 	// 背景颜色
-	CGColorRef col =  CGColorCreateGenericGray(0.0, 1.0);
+	CGColorRef col =  CGColorCreateGenericGray(0.03, 0.9);
 	[root setBackgroundColor:col];
 	CGColorRelease(col);
-	
+  	
 	col = CGColorCreateGenericRGB(0.392, 0.643, 0.812, 0.75);
 	[root setBorderColor:col];
 	CGColorRelease(col);
@@ -150,6 +150,7 @@
 	logo = [[NSBitmapImageRep alloc] initWithCIImage:
 			[CIImage imageWithContentsOfURL:
 			 [[mainB resourceURL] URLByAppendingPathComponent:@"logo.png"]]];
+  
 	[root setContentsGravity:kCAGravityCenter];
 	[root setContents:(id)[logo CGImage]];
 	
@@ -204,12 +205,16 @@
 						name:NSApplicationDidBecomeActiveNotification object:NSApp];
 	[notifCenter addObserver:self selector:@selector(applicationDidResignActive:)
 						name:NSApplicationDidResignActiveNotification object:NSApp];
-	
+
+	[centerProgessBox setCornerRadius:7];
+  [centerProgessBox setAlphaValue:0.8];
+  
 	// show player window when start up
 	[self setPlayerWindowLevel];
 	
 	[playerWindow setContentSize:[playerWindow contentMinSize]];
 	[playerWindow makeKeyAndOrderFront:nil];
+  
 }
 
 -(void) closePlayerWindow
@@ -223,6 +228,9 @@
 	firstDisplay = YES;
 	[self setPlayerWindowLevel];
 	[playerWindow setTitle:kMPCStringMPlayerX];
+
+  [centerProgress stopAnimation:self];
+  [centerProgessBox setHidden:YES];
 }
 
 -(void) playBackStarted:(NSNotification*)notif
@@ -233,10 +241,16 @@
 		[playerWindow setContentSize:[playerWindow contentMinSize]];
 		[playerWindow makeKeyAndOrderFront:nil];
 	}
+  [centerProgress stopAnimation:self];
+  [centerProgessBox setHidden:YES];
 }
 
 -(void) playBackOpened:(NSNotification*)notif
 {
+  [[self layer] setContents:nil];
+  [centerProgessBox setHidden:NO];
+  [centerProgress startAnimation:self];
+  
 	NSURL *url = [[notif userInfo] objectForKey:kMPCPlayOpenedURLKey];
 	if (url) {		
 		if ([url isFileURL]) {
