@@ -106,6 +106,7 @@
 	IBOutlet NSMenuItem *menuSizeInc;
 	IBOutlet NSMenuItem *menuSizeDec;
 	IBOutlet NSMenuItem *menuShowMediaInfo;
+
 }
 
 ////////////////////////////////显示相关////////////////////////////////

@@ -809,8 +809,8 @@
 		9DA49ED512F15D2C00416180 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9DA49EDE12F15D2D00416180 /* BGHUDAppKitPlugin.ibplugin */,
 				9DA49EE012F15D2D00416180 /* BGHUDAppKit.framework */,
+				9DA49EDE12F15D2D00416180 /* BGHUDAppKitPlugin.ibplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";

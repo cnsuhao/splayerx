@@ -46,6 +46,10 @@ NSString * const kSCMVideoTunerPanelKeyEquivalent		= @"v";
 
 NSString * const kSCMToggleLetterBoxKeyEquivalent		= @"l";
 
+NSString * const kSCMSubPlayAudioPlusShortcutKeyEquivalent = @"]";
+NSString * const kSCMSubPlayAudioMinusShortcutKeyEquivalent = @"[";
+NSString * const kSCMSubPlayAudioResetShortcutKeyEquivalent = @"\\";
+
 NSString * const kSCMWindowSizeIncKeyEquivalent			= @"=";
 NSString * const kSCMWindowSizeDecKeyEquivalent			= @"-";
 

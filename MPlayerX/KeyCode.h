@@ -68,6 +68,13 @@ extern NSString * const kSCMToggleLetterBoxKeyEquivalent;
 #define kSCMSubDelayMinusShortcutKey		('[')
 #define kSCMSubDelayResetShortcutKey		('\\')
 
+extern NSString * const kSCMSubPlayAudioPlusShortcutKeyEquivalent;
+extern NSString * const kSCMSubPlayAudioMinusShortcutKeyEquivalent;
+extern NSString * const kSCMSubPlayAudioResetShortcutKeyEquivalent;
+#define kSCMSubtitleModKeyEquivalentModifierFlagMask		(NSCommandKeyMask)
+#define kSCMPlaySpeedModKeyEquivalentModifierFlagMask		(NSControlKeyMask)
+#define kSCMAudioModKeyEquivalentModifierFlagMask		(NSAlternateKeyMask)
+
 #define kSCMDeleteFileShortCutKey			(NSDeleteCharacter)
 
 #define kSCMFFMpegHandleStreamShortCurKey	(NSCommandKeyMask)
