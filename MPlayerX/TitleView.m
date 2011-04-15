@@ -99,7 +99,7 @@ NSString *kStringDots = @"...";
 	tbCornerLeft = [[NSImage imageNamed:@"titlebar-corner-left.png"] retain];
 	tbCornerRight= [[NSImage imageNamed:@"titlebar-corner-right.png"] retain];
 	tbMiddle = [[NSImage imageNamed:@"titlebar-middle.png"] retain];
-	
+
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(windowDidBecomKey:)
 												 name:NSWindowDidBecomeKeyNotification
@@ -108,7 +108,7 @@ NSString *kStringDots = @"...";
 											 selector:@selector(windowDidResignKey:)
 												 name:NSWindowDidResignKeyNotification
 											   object:[self window]];
-	[self display];
+  [self display];
 }
 
 -(void) mouseUp:(NSEvent *)theEvent
@@ -132,17 +132,17 @@ NSString *kStringDots = @"...";
 	dirtyRect.origin.y = 0;
 
 	dirtyRect.size = leftSize;
-	[tbCornerLeft drawAtPoint:drawPos fromRect:dirtyRect operation:NSCompositeCopy fraction:1.0];
+	[tbCornerLeft drawAtPoint:drawPos fromRect:dirtyRect operation:NSCompositeCopy fraction:0.9];
 	
 	drawPos.x = titleSize.width - rightSize.width;
 	dirtyRect.size = rightSize;
-	[tbCornerRight drawAtPoint:drawPos fromRect:dirtyRect operation:NSCompositeCopy fraction:1.0];
+	[tbCornerRight drawAtPoint:drawPos fromRect:dirtyRect operation:NSCompositeCopy fraction:0.9];
 	
 	dirtyRect.size = [tbMiddle size];
 	[tbMiddle drawInRect:NSMakeRect(leftSize.width, 0, titleSize.width-leftSize.width-rightSize.width, titleSize.height)
 				fromRect:dirtyRect
 			   operation:NSCompositeCopy
-				fraction:1.0];
+				fraction:0.9];
 
 	if (title) {
 		NSMutableString *renderStr = [title mutableCopy];
