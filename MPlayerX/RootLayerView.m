@@ -206,8 +206,6 @@
 	[notifCenter addObserver:self selector:@selector(applicationDidResignActive:)
 						name:NSApplicationDidResignActiveNotification object:NSApp];
 
-	[centerProgessBox setCornerRadius:7];
-  [centerProgessBox setAlphaValue:0.8];
   
 	// show player window when start up
 	[self setPlayerWindowLevel];
@@ -230,7 +228,7 @@
 	[playerWindow setTitle:kMPCStringMPlayerX];
 
   [centerProgress stopAnimation:self];
-  [centerProgessBox setHidden:YES];
+  [centerProgress setHidden:YES];
 }
 
 -(void) playBackStarted:(NSNotification*)notif
@@ -242,13 +240,13 @@
 		[playerWindow makeKeyAndOrderFront:nil];
 	}
   [centerProgress stopAnimation:self];
-  [centerProgessBox setHidden:YES];
+  [centerProgress setHidden:YES];
 }
 
 -(void) playBackOpened:(NSNotification*)notif
 {
   [[self layer] setContents:nil];
-  [centerProgessBox setHidden:NO];
+  [centerProgress setHidden:NO];
   [centerProgress startAnimation:self];
   
 	NSURL *url = [[notif userInfo] objectForKey:kMPCPlayOpenedURLKey];

@@ -135,6 +135,7 @@
 		86FB6F741131A2EB005E95B5 /* coredef.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FB6F731131A2EB005E95B5 /* coredef.m */; };
 		86FB6F801131A4BF005E95B5 /* coredef_private.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FB6F7F1131A4BF005E95B5 /* coredef_private.m */; };
 		86FB6FC51131B42D005E95B5 /* KeyCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FB6FC41131B42D005E95B5 /* KeyCode.m */; };
+		88180CBF135DF08400CF82EE /* WhiteIntermProgIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 88180CBE135DF08400CF82EE /* WhiteIntermProgIndicator.m */; };
 		8866A9CC12D4E4F9009EFC33 /* Equalizer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8866A9C012D4E4F8009EFC33 /* Equalizer.xib */; };
 		8866A9CD12D4E4F9009EFC33 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8866A9C212D4E4F8009EFC33 /* Localizable.strings */; };
 		8866A9CE12D4E4F9009EFC33 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8866A9C412D4E4F8009EFC33 /* MainMenu.xib */; };
@@ -401,6 +402,8 @@
 		86FB6F731131A2EB005E95B5 /* coredef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = coredef.m; sourceTree = "<group>"; };
 		86FB6F7F1131A4BF005E95B5 /* coredef_private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = coredef_private.m; sourceTree = "<group>"; };
 		86FB6FC41131B42D005E95B5 /* KeyCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = KeyCode.m; sourceTree = "<group>"; };
+		88180CBD135DF08400CF82EE /* WhiteIntermProgIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteIntermProgIndicator.h; sourceTree = "<group>"; };
+		88180CBE135DF08400CF82EE /* WhiteIntermProgIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteIntermProgIndicator.m; sourceTree = "<group>"; };
 		8866A9C112D4E4F8009EFC33 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_CN; path = Equalizer.xib; sourceTree = "<group>"; };
 		8866A9C312D4E4F8009EFC33 /* zh_CN */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = zh_CN; path = Localizable.strings; sourceTree = "<group>"; };
 		8866A9C512D4E4F8009EFC33 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_CN; path = MainMenu.xib; sourceTree = "<group>"; };
@@ -800,6 +803,8 @@
 		88D65B3612D022D90044B3DD /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				88180CBD135DF08400CF82EE /* WhiteIntermProgIndicator.h */,
+				88180CBE135DF08400CF82EE /* WhiteIntermProgIndicator.m */,
 				88D65B3712D023290044B3DD /* ssclThread.h */,
 				88D65B3812D023290044B3DD /* ssclThread.m */,
 			);
@@ -1135,6 +1140,7 @@
 				86C02AEF12309BCF004E8181 /* UserDefaults.m in Sources */,
 				865A5D2A12CA0E100021CF8E /* AppController.m in Sources */,
 				88D65B3912D023290044B3DD /* ssclThread.m in Sources */,
+				88180CBF135DF08400CF82EE /* WhiteIntermProgIndicator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
