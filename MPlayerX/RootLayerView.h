@@ -20,6 +20,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "CoreController.h"
+#import "WhiteIntermProgIndicator.h"
 
 @class ControlUIView, PlayerController, ShortCutManager, DisplayLayer, OsdText, VideoTunerController, TitleView;
 
@@ -52,8 +53,8 @@
 	IBOutlet ShortCutManager *shortCutManager;
 	IBOutlet VideoTunerController *VTController;
 	IBOutlet TitleView *titlebar;
-  IBOutlet NSProgressIndicator *centerProgress;
-  IBOutlet NSBox *centerProgessBox;
+  IBOutlet WhiteIntermProgIndicator *centerProgress;
+
 }
 
 @property (readonly) CGDirectDisplayID fullScrnDevID;
