@@ -395,8 +395,21 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 	if ([url isFileURL]) {
 		// local files
 		path = [url path];
-
-		[mplayer.pm setCache:([ud boolForKey:kUDKeyCachingLocal])?([ud integerForKey:kUDKeyCacheSize]):(0)];
+    
+    NSDictionary *fileSystemAttributes = [[NSFileManager defaultManager] 
+                                                    attributesOfItemAtPath:path error:NULL];
+    if (fileSystemAttributes != nil && 
+        [[fileSystemAttributes objectForKey:NSFileHFSCreatorCode] unsignedLongValue] != 0 )
+    {
+      // || [[fileSystemAttributes objectForKey:NSFileSize] unsignedLongLongValue]/1000 < [ud integerForKey:kUDKeyCacheSize]
+      MPLog(@"Local Paths %@ %@", path, [fileSystemAttributes objectForKey:NSFileHFSCreatorCode]);
+      [mplayer.pm setCache:0];
+    }
+    else
+    {
+      MPLog(@"Remote Paths %@ %@", path, [fileSystemAttributes objectForKey:NSFileHFSCreatorCode]);
+      [mplayer.pm setCache:([ud boolForKey:kUDKeyCachingLocal])?([ud integerForKey:kUDKeyCacheSize]):(0)];
+    }
 		[mplayer.pm setRtspOverHttp:NO];
 		
 		// 将文件加入Recent Menu里，只能加入本地文件
