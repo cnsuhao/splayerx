@@ -152,6 +152,8 @@
 		9D23C0A4132887B200980BA6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D23C0A3132887B200980BA6 /* WebKit.framework */; };
 		9D7E1296132B77F7009FD852 /* plug-ins in Copy plug-ins */ = {isa = PBXBuildFile; fileRef = 9D7E127E132B7716009FD852 /* plug-ins */; };
 		9DD929E4132632610003E85B /* share.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9DD929E3132632610003E85B /* share.pdf */; };
+		9DE0BBC21367D09F00A691F9 /* BGHUDAppKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 88AE2514134BB04A005E7C60 /* BGHUDAppKit.framework */; };
+		9DE0BBC31367D0AA00A691F9 /* UniversalDetector.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 88AE2515134BB04A005E7C60 /* UniversalDetector.framework */; };
 		9DF6BCE9132A424A0049A28C /* Equalizer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DF6BCDB132A424A0049A28C /* Equalizer.xib */; };
 		9DF6BCEA132A424A0049A28C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9DF6BCDD132A424A0049A28C /* InfoPlist.strings */; };
 		9DF6BCEB132A424A0049A28C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9DF6BCDF132A424A0049A28C /* Localizable.strings */; };
@@ -245,6 +247,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				9DE0BBC31367D0AA00A691F9 /* UniversalDetector.framework in Copy Frameworks */,
+				9DE0BBC21367D09F00A691F9 /* BGHUDAppKit.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,8 +416,8 @@
 		8866A9CB12D4E4F9009EFC33 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_CN; path = VideoTuner.xib; sourceTree = "<group>"; };
 		8866A9E112D4E771009EFC33 /* zh_CN */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = zh_CN; path = InfoPlist.strings; sourceTree = "<group>"; };
 		88752AA212CE1920005208C0 /* UniversalDetector.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UniversalDetector.xcodeproj; path = ../UniversalDetector/UniversalDetector.xcodeproj; sourceTree = SOURCE_ROOT; };
-		88AE2514134BB04A005E7C60 /* BGHUDAppKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BGHUDAppKit.framework; sourceTree = SOURCE_ROOT; };
-		88AE2515134BB04A005E7C60 /* UniversalDetector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UniversalDetector.framework; sourceTree = SOURCE_ROOT; };
+		88AE2514134BB04A005E7C60 /* BGHUDAppKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = BGHUDAppKit.framework; path = ../BGHUDAppKit/build/Release/BGHUDAppKit.framework; sourceTree = SOURCE_ROOT; };
+		88AE2515134BB04A005E7C60 /* UniversalDetector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = UniversalDetector.framework; path = ../UniversalDetector/build/Release/UniversalDetector.framework; sourceTree = SOURCE_ROOT; };
 		88D65B3712D023290044B3DD /* ssclThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssclThread.h; sourceTree = "<group>"; };
 		88D65B3812D023290044B3DD /* ssclThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ssclThread.m; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* SPlayerX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPlayerX.app; sourceTree = BUILT_PRODUCTS_DIR; };
