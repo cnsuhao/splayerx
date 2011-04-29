@@ -1429,7 +1429,7 @@
 				LLVM_LTO = NO;
 				PREBINDING = YES;
 				SDKROOT = macosx10.6;
-				VALID_ARCHS = "i386 x86_64";
+				VALID_ARCHS = x86_64;
 			};
 			name = "Release codesign";
 		};
@@ -1575,7 +1575,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
-				VALID_ARCHS = "i386 x86_64";
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -1603,7 +1603,7 @@
 				LLVM_LTO = NO;
 				PREBINDING = YES;
 				SDKROOT = macosx10.6;
-				VALID_ARCHS = "i386 x86_64";
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
