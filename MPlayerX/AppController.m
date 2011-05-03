@@ -212,7 +212,7 @@ static BOOL init_ed = NO;
 	
 	[openUrlController syncToBookmark:bookmarks];
 	
-	[bookmarks writeToFile:lastStoppedTimePath atomically:YES];
+	[bookmarks writeToFile:lastStoppedTimePath atomically:NO];
 	
 	return NSTerminateNow;	
 }
