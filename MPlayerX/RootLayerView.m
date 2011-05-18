@@ -135,7 +135,7 @@
 	[root setDoubleSided:NO];
 
 	// 背景颜色
-	CGColorRef col =  CGColorCreateGenericGray(0.03, 0.9);
+	CGColorRef col =  CGColorCreateGenericGray(0.0, 1.0);
 	[root setBackgroundColor:col];
 	CGColorRelease(col);
   	
