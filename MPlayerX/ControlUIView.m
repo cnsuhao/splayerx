@@ -806,7 +806,6 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
       NSString *path = [[NSBundle mainBundle] pathForResource:@"busy" ofType:@"html"];
       NSURL *url = [NSURL fileURLWithPath:path];
       [[webView mainFrame] loadRequest:[NSURLRequest requestWithURL:url]];
-
       
       NSString* mediaPath = ([playerController.lastPlayedPath isFileURL])?([playerController.lastPlayedPath path]):([playerController.lastPlayedPath absoluteString]);
       shareUriCurrent = [ssclThread shareMovie:mediaPath];
@@ -817,6 +816,13 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
                                         [NSURL URLWithString:shareUriCurrent]]]; 
     }
     [webView setHidden:NO];
+    NSSize dispSize = [dispView frame].size;
+    float webViewMag = [webView frame].size.height + 170;
+    if (dispSize.height < webViewMag)
+    {
+      webViewMag = webViewMag / dispSize.height - 1.0f;
+      [dispView changeWindowSizeBy:NSMakeSize(webViewMag, webViewMag) animate:YES];
+    }
   }
   else 
     [webView setHidden:YES];
