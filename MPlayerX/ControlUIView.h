@@ -20,6 +20,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
+#import "DOMProxySPlayer.h"
 
 @class RootLayerView, PlayerController, FloatWrapFormatter, ArrowTextField, ResizeIndicator, OsdText, TitleView, TimeFormatter;
 
@@ -51,6 +52,8 @@
 	NSMenu *videoListMenu;
 		
   NSString* shareUriCurrent;
+  
+  DOMProxySPlayer* wsoSPlayer;
   
 	float volStep;
 	float orgHeight;
