@@ -80,7 +80,7 @@
 	IBOutlet OsdText *osd;
 	IBOutlet TitleView *title;
 	
-  IBOutlet id webView;
+  IBOutlet WebView* webView;
   
 	IBOutlet NSMenuItem *menuSnapshot;
 	IBOutlet NSMenuItem *menuSwitchSub;
