@@ -300,6 +300,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   [webView setWantsLayer:YES];
   [webView setFrameLoadDelegate:self];
   [webView setPolicyDelegate:self];
+  [[webView layer] setCornerRadius:10.0f];
+  [[webView layer] setMasksToBounds:YES];
   [webView setHidden:YES];
   [[[webView mainFrame] frameView] setAllowsScrolling:NO];
 	
@@ -796,22 +798,15 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   {
     // can't we share url?
     // if (![playerController.lastPlayedPath isFileURL])
-    //   return;
+    //   return;   
+    
     if ([shareUriCurrent length] == 0)
     {
-      NSRect dstFrame = [webView frame];
-      NSRect srcFrame;
-      srcFrame.origin.x = dstFrame.origin.x + dstFrame.size.width;
-      srcFrame.origin.x = dstFrame.origin.y + dstFrame.size.height;
-      srcFrame.size.width = 0;
-      srcFrame.size.height = 0;
-      [webView setFrame:srcFrame];
-      [webView setHidden:NO];      
-      [[webView animator] setFrame:dstFrame];
+           
       NSString *path = [[NSBundle mainBundle] pathForResource:@"busy" ofType:@"html"];
       NSURL *url = [NSURL fileURLWithPath:path];
       [[webView mainFrame] loadRequest:[NSURLRequest requestWithURL:url]];
-      
+
       
       NSString* mediaPath = ([playerController.lastPlayedPath isFileURL])?([playerController.lastPlayedPath path]):([playerController.lastPlayedPath absoluteString]);
       shareUriCurrent = [ssclThread shareMovie:mediaPath];
