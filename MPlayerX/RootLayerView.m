@@ -282,6 +282,7 @@
 	
 	dragShouldResize = ((NSMaxX(winRC) - dragMousePos.x < 16) && (dragMousePos.y - NSMinY(winRC) < 16))?YES:NO;
 	
+  [controlUI hideShareControls:self];
 	// MPLog(@"mouseDown");
 }
 
