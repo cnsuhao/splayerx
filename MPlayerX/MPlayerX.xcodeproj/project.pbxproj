@@ -152,6 +152,7 @@
 		9D23C0A4132887B200980BA6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D23C0A3132887B200980BA6 /* WebKit.framework */; };
 		9D7E1296132B77F7009FD852 /* plug-ins in Copy plug-ins */ = {isa = PBXBuildFile; fileRef = 9D7E127E132B7716009FD852 /* plug-ins */; };
 		9DD929E4132632610003E85B /* share.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9DD929E3132632610003E85B /* share.pdf */; };
+		9DDA1187138E5BD60017874E /* DOMProxySPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDA1186138E5BD60017874E /* DOMProxySPlayer.m */; };
 		9DE0BBC21367D09F00A691F9 /* BGHUDAppKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 88AE2514134BB04A005E7C60 /* BGHUDAppKit.framework */; };
 		9DE0BBC31367D0AA00A691F9 /* UniversalDetector.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 88AE2515134BB04A005E7C60 /* UniversalDetector.framework */; };
 		9DF6BCE9132A424A0049A28C /* Equalizer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DF6BCDB132A424A0049A28C /* Equalizer.xib */; };
@@ -426,6 +427,8 @@
 		9D7E127E132B7716009FD852 /* plug-ins */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "plug-ins"; path = "../plug-ins"; sourceTree = SOURCE_ROOT; };
 		9DA49ED412F15D2C00416180 /* BGHUDAppKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BGHUDAppKit.xcodeproj; path = ../BGHUDAppKit/BGHUDAppKit.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9DD929E3132632610003E85B /* share.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = share.pdf; sourceTree = "<group>"; };
+		9DDA1185138E5BD60017874E /* DOMProxySPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMProxySPlayer.h; sourceTree = "<group>"; };
+		9DDA1186138E5BD60017874E /* DOMProxySPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMProxySPlayer.m; sourceTree = "<group>"; };
 		9DF6BCDC132A424A0049A28C /* zh_TW */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_TW; path = Equalizer.xib; sourceTree = "<group>"; };
 		9DF6BCDE132A424A0049A28C /* zh_TW */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = zh_TW; path = InfoPlist.strings; sourceTree = "<group>"; };
 		9DF6BCE0132A424A0049A28C /* zh_TW */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = zh_TW; path = Localizable.strings; sourceTree = "<group>"; };
@@ -456,6 +459,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9DDA1184138E5B940017874E /* WebView */,
 				88D65B3612D022D90044B3DD /* Library */,
 				86E7A8EF1155E8980014155D /* CocoaAppendix.h */,
 				86E7A8F01155E8980014155D /* CocoaAppendix.m */,
@@ -824,6 +828,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9DDA1184138E5B940017874E /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				9DDA1185138E5BD60017874E /* DOMProxySPlayer.h */,
+				9DDA1186138E5BD60017874E /* DOMProxySPlayer.m */,
+			);
+			name = WebView;
+			sourceTree = "<group>";
+		};
 		9DF6BCDA132A424A0049A28C /* zh_TW.lproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -1145,6 +1158,7 @@
 				865A5D2A12CA0E100021CF8E /* AppController.m in Sources */,
 				88D65B3912D023290044B3DD /* ssclThread.m in Sources */,
 				88180CBF135DF08400CF82EE /* WhiteIntermProgIndicator.m in Sources */,
+				9DDA1187138E5BD60017874E /* DOMProxySPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

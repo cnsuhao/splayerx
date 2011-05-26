@@ -300,11 +300,14 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   [webView setWantsLayer:YES];
   [webView setFrameLoadDelegate:self];
   [webView setPolicyDelegate:self];
+  [webView setUIDelegate: self];
   [[webView layer] setCornerRadius:10.0f];
   [[webView layer] setMasksToBounds:YES];
   [webView setHidden:YES];
   [[[webView mainFrame] frameView] setAllowsScrolling:NO];
-	
+  
+  wsoSPlayer = [DOMProxySPlayer alloc];
+  
 	// set OSD active status
 	[osd setActive:NO];
 	
@@ -359,6 +362,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[backGroundColor release];
 	[backGroundColor2 release];
 	
+  [wsoSPlayer release];
+  
 	[super dealloc];
 }
 
@@ -1685,4 +1690,35 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   
   [listener use];
 }
+
+
+
+/* this message is sent to the WebView's frame load delegate 
+ when the page is ready for JavaScript.  It will be called just after 
+ the page has loaded, but just before any JavaScripts start running on the
+ page.  This is the perfect time to install any of your own JavaScript
+ objects on the page.
+ */
+- (void)webView:(WebView *)sender windowScriptObjectAvailable:(WebScriptObject *)windowScriptObject {
+  NSLog(@"%@ received %@", self, NSStringFromSelector(_cmd));
+  
+  /* here we'll add our object to the window object as an object named
+   'console'.  We can use this object in JavaScript by referencing the 'console'
+   property of the 'window' object.   */
+  [[webView windowScriptObject] setValue:wsoSPlayer forKey:@"SPlayer"];
+  
+}
+
+
+
+/* sent to the WebView's ui delegate when alert() is called in JavaScript.
+ If you call alert() in your JavaScript methods, it will call this
+ method and display the alert message in the log.  In Safari, this method
+ displays an alert that presents the message to the user.
+ */
+- (void)webView:(WebView *)sender runJavaScriptAlertPanelWithMessage:(NSString *)message {
+  NSLog(@"%@ received %@ with '%@'", self, NSStringFromSelector(_cmd), message);
+}
+
+
 @end
