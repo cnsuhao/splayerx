@@ -789,7 +789,11 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 		[fillScreenButton setState: ([dispView toggleFillScreen])?NSOnState:NSOffState];
 	}
 }
-
+-(void)hideShareControls:(id)sender
+{
+  if (![webView isHidden]) 
+    [webView setHidden:YES];
+}
 -(IBAction) toggleShareControls:(id)sender
 {
   // open share controler

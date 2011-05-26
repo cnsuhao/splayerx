@@ -139,6 +139,7 @@ extern NSString * const kFillScreenButtonImageUBKey;
 -(IBAction) toggleFillScreen:(id)sender;
 
 -(IBAction) toggleShareControls:(id)sender;
+-(void)hideShareControls:(id)sender;
 
 -(IBAction) toggleAccessaryControls:(id)sender;
 -(IBAction) changeSpeed:(id) sender;
