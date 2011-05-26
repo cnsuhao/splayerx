@@ -11,6 +11,57 @@
 
 @implementation DOMProxySPlayer
 
+
+
+/* Here is our Objective-C implementation for the JavaScript SPlayer.Call() method.
+ api: rev para: '' 获取版本：
+ 截图: api:snapshoot para: ''
+ 获取当前影片时间： api:curtime para: ''
+ 获取影片总时间 api:totaltime para:''
+ 打开大窗口： api:openoauth para:''
+ 关闭大窗口: api:closeoauth para:''
+ 关闭当前窗:（大小窗口内都调这个函数） api:close para:''
+ 打开一个窗口:(暂时不启用) api:open para:'' 
+ */
+- (NSString*) Call:(NSString*)act Arg:(NSString*)arg
+{
+  NSLog(@"%@ received %@ with message=%@ %@", self, NSStringFromSelector(_cmd), act, arg);
+  
+  if ([act isEqualToString:@"rev"]) 
+    return @"2";
+  else if ([act isEqualToString:@"snapshoot"]) 
+  {
+    
+  }
+  else if ([act isEqualToString:@"curtime"]) 
+  {
+    
+  }
+  else if ([act isEqualToString:@"totaltime"]) 
+  {
+    
+  }
+  else if ([act isEqualToString:@"openoauth"]) 
+  {
+    
+  }
+  else if ([act isEqualToString:@"closeoauth"]) 
+  {
+    
+  }
+  else if ([act isEqualToString:@"close"]) 
+  {
+    
+  }
+  else if ([act isEqualToString:@"open"]) 
+  {
+    
+  }
+  
+  return @"";
+}
+
+
 /* the following three methods are used to determine 
  what methods on our object are exposed to JavaScript */
 
@@ -70,16 +121,5 @@
   
 }
 
-
-
-/* Here is our Objective-C implementation for the JavaScript SPlayer.Call() method.
- */
-- (NSString*) Call:(NSString*)act Arg:(NSString*)arg
-{
-  NSLog(@"%@ received %@ with message=%@ %@", self, NSStringFromSelector(_cmd), act, arg);
-  
-
-  return @"2";
-}
 
 @end
