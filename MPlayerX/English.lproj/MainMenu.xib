@@ -3,7 +3,7 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1060</int>
 		<string key="IBDocument.SystemVersion">10J869</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1305</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
@@ -15,7 +15,7 @@
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>1305</string>
+				<string>1306</string>
 				<string>30</string>
 			</object>
 		</object>
@@ -452,14 +452,6 @@
 									<reference key="NSOnImage" ref="35465992"/>
 									<reference key="NSMixedImage" ref="502551668"/>
 								</object>
-								<object class="NSMenuItem" id="21662899">
-									<reference key="NSMenu" ref="891719963"/>
-									<string key="NSTitle">Show Letterbox</string>
-									<string key="NSKeyEquiv"/>
-									<int key="NSMnemonicLoc">2147483647</int>
-									<reference key="NSOnImage" ref="35465992"/>
-									<reference key="NSMixedImage" ref="502551668"/>
-								</object>
 								<object class="NSMenuItem" id="733106672">
 									<reference key="NSMenu" ref="891719963"/>
 									<string key="NSTitle">Increase Size</string>
@@ -612,6 +604,14 @@
 									<reference key="NSMenu" ref="703180777"/>
 									<bool key="NSIsDisabled">YES</bool>
 									<string key="NSTitle">Switch Subtitle</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
+								</object>
+								<object class="NSMenuItem" id="21662899">
+									<reference key="NSMenu" ref="703180777"/>
+									<string key="NSTitle">Show Letterbox</string>
 									<string key="NSKeyEquiv"/>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="35465992"/>
@@ -927,7 +927,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 					</object>
 					<string key="NSFrameSize">{320, 347}</string>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1600, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
 				<string key="NSMinSize">{320, 366}</string>
 				<string key="NSMaxSize">{320, 366}</string>
 			</object>
@@ -1526,7 +1526,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 					<bool key="NSViewIsLayerTreeHost">YES</bool>
 					<int key="NSViewLayerContentsRedrawPolicy">2</int>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1600, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
 				<string key="NSMinSize">{480, 382}</string>
 				<string key="NSMaxSize">{1e+13, 1e+13}</string>
 				<string key="NSFrameAutosaveName">MPXPlayerWindow</string>
@@ -1722,7 +1722,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 					</object>
 					<string key="NSFrameSize">{500, 94}</string>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1600, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
 				<string key="NSMinSize">{500, 116}</string>
 				<string key="NSMaxSize">{500, 116}</string>
 			</object>
@@ -3322,7 +3322,6 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<reference ref="436413833"/>
 							<reference ref="976320646"/>
 							<reference ref="789096035"/>
-							<reference ref="21662899"/>
 							<reference ref="164921386"/>
 							<reference ref="733106672"/>
 							<reference ref="142053655"/>
@@ -3661,11 +3660,6 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">916</int>
-						<reference key="object" ref="21662899"/>
-						<reference key="parent" ref="891719963"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">922</int>
 						<reference key="object" ref="389026237"/>
 						<reference key="parent" ref="0"/>
@@ -3888,6 +3882,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<reference ref="903799122"/>
 							<reference ref="535750149"/>
 							<reference ref="449029959"/>
+							<reference ref="21662899"/>
 						</object>
 						<reference key="parent" ref="790071083"/>
 					</object>
@@ -3966,6 +3961,11 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 						<reference key="object" ref="525148249"/>
 						<reference key="parent" ref="439893737"/>
 						<string key="objectName">Async Arrows</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">916</int>
+						<reference key="object" ref="21662899"/>
+						<reference key="parent" ref="703180777"/>
 					</object>
 				</object>
 			</object>
@@ -5049,7 +5049,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<string>NSButton</string>
 							<string>NSButton</string>
 							<string>NSSlider</string>
-							<string>id</string>
+							<string>WebView</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -5282,7 +5282,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">webView</string>
-								<string key="candidateClassName">id</string>
+								<string key="candidateClassName">WebView</string>
 							</object>
 						</object>
 					</object>

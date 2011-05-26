@@ -3,7 +3,7 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1060</int>
 		<string key="IBDocument.SystemVersion">10J869</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1305</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
@@ -15,7 +15,7 @@
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>1305</string>
+				<string>1306</string>
 				<string>30</string>
 			</object>
 		</object>
@@ -422,14 +422,6 @@
 									<reference key="NSOnImage" ref="35465992"/>
 									<reference key="NSMixedImage" ref="502551668"/>
 								</object>
-								<object class="NSMenuItem" id="21662899">
-									<reference key="NSMenu" ref="891719963"/>
-									<string key="NSTitle">顯示字幕框</string>
-									<string key="NSKeyEquiv"/>
-									<int key="NSMnemonicLoc">2147483647</int>
-									<reference key="NSOnImage" ref="35465992"/>
-									<reference key="NSMixedImage" ref="502551668"/>
-								</object>
 								<object class="NSMenuItem" id="733106672">
 									<reference key="NSMenu" ref="891719963"/>
 									<string key="NSTitle">增加大小</string>
@@ -582,6 +574,14 @@
 									<reference key="NSMenu" ref="131567903"/>
 									<bool key="NSIsDisabled">YES</bool>
 									<string key="NSTitle">切換字幕</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
+								</object>
+								<object class="NSMenuItem" id="21662899">
+									<reference key="NSMenu" ref="131567903"/>
+									<string key="NSTitle">顯示字幕框</string>
 									<string key="NSKeyEquiv"/>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="35465992"/>
@@ -1423,7 +1423,6 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<string key="NSFrame">{{17, 92}, {446, 183}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="838931917">
@@ -3338,7 +3337,6 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<reference ref="436413833"/>
 							<reference ref="976320646"/>
 							<reference ref="789096035"/>
-							<reference ref="21662899"/>
 							<reference ref="164921386"/>
 							<reference ref="733106672"/>
 							<reference ref="142053655"/>
@@ -3694,11 +3692,6 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 						<reference key="parent" ref="835318025"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">916</int>
-						<reference key="object" ref="21662899"/>
-						<reference key="parent" ref="891719963"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">922</int>
 						<reference key="object" ref="389026237"/>
 						<reference key="parent" ref="0"/>
@@ -3836,6 +3829,7 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<reference ref="1010552316"/>
 							<reference ref="416676549"/>
 							<reference ref="776277300"/>
+							<reference ref="21662899"/>
 						</object>
 						<reference key="parent" ref="105714780"/>
 					</object>
@@ -3913,6 +3907,11 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 						<int key="objectID">1072</int>
 						<reference key="object" ref="819892328"/>
 						<reference key="parent" ref="439893737"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">916</int>
+						<reference key="object" ref="21662899"/>
+						<reference key="parent" ref="131567903"/>
 					</object>
 				</object>
 			</object>
@@ -5003,7 +5002,7 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<string>NSButton</string>
 							<string>NSButton</string>
 							<string>NSSlider</string>
-							<string>id</string>
+							<string>WebView</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -5236,7 +5235,7 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">webView</string>
-								<string key="candidateClassName">id</string>
+								<string key="candidateClassName">WebView</string>
 							</object>
 						</object>
 					</object>
