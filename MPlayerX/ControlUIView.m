@@ -307,6 +307,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   [[[webView mainFrame] frameView] setAllowsScrolling:NO];
   
   wsoSPlayer = [DOMProxySPlayer alloc];
+  [wsoSPlayer setDelegate:self];
+  [wsoSPlayer setHostWebView:webView];
   
 	// set OSD active status
 	[osd setActive:NO];
@@ -1692,7 +1694,6 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 }
 
 
-
 /* this message is sent to the WebView's frame load delegate 
  when the page is ready for JavaScript.  It will be called just after 
  the page has loaded, but just before any JavaScripts start running on the
@@ -1717,7 +1718,58 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
  displays an alert that presents the message to the user.
  */
 - (void)webView:(WebView *)sender runJavaScriptAlertPanelWithMessage:(NSString *)message {
-  NSLog(@"%@ received %@ with '%@'", self, NSStringFromSelector(_cmd), message);
+  NSLog(@"%@ alert received %@ with '%@'", self, NSStringFromSelector(_cmd), message);
+}
+
+
+//delegate of DOMProxySPlayerDelegate
+- (NSString*)dom_snapshot:(WebView *)hostWebView
+{
+  //take a image put into dom
+  //TODO: user WebResourc or something like that
+  // or data:image/png;base64,
+  NSString *snapshot_base64 = [dispView writeSnapshotToTempFile];
+  //NSURL *snapshotImageURL = [NSURL fileURLWithPath:[snapshot_path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+  //[snapshotImageURL absoluteString]
+  NSString *script = [NSString stringWithFormat:@"document.getElementById('cut-image-div').style.display='block';document.getElementById('cut-image-div').src = 'data:image/jpeg;base64,%@';document.getElementById('cut-image-data').value='%@'", snapshot_base64, snapshot_base64];
+  MPLog(script);
+  [[webView windowScriptObject] evaluateWebScript:script];
+  return @"";
+}
+
+- (NSString*)dom_movie_curtime:(WebView *)hostWebView
+{
+  return [NSString stringWithFormat:@"%qu0000" ,
+          (unsigned long long)([timeSlider floatValue]*1000)];
+}
+
+- (NSString*)dom_movie_totaltime:(WebView *)hostWebView
+{
+  return [NSString stringWithFormat:@"%qu0000" ,
+          (unsigned long long)([timeSlider maxValue]*1000)];
+}
+
+- (NSString*)dom_window_close:(WebView *)hostWebView
+{
+  [hostWebView setHidden:YES];
+  return @"";
+}
+
+- (NSString*)dom_window_open:(NSString*)url HostWebView:(WebView *)hostWebView
+{
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:url]];
+  return @"";
+}
+
+- (NSString*)dom_window_closeoauth:(WebView *)hostWebView
+{
+  return @"";
+}
+
+- (NSString*)dom_window_openoauth:(NSString*)url HostWebView:(WebView *)hostWebView
+{
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:url]];
+  return @"";
 }
 
 

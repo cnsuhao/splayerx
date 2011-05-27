@@ -11,18 +11,30 @@
 
 @implementation DOMProxySPlayer
 
+- (id)delegate
+{
+  return _delegate;
+}
 
+- (void)setDelegate:(id)new_delegate
+{
+  _delegate = new_delegate;
+}
+- (void)setHostWebView:(WebView*)new_hostWebView
+{
+  _hostWebView = new_hostWebView;
+}
 
 /* Here is our Objective-C implementation for the JavaScript SPlayer.Call() method.
  api: rev para: '' 获取版本：
  截图: api:snapshoot para: ''
  获取当前影片时间： api:curtime para: ''
  获取影片总时间 api:totaltime para:''
- 打开大窗口： api:openoauth para:''
+ 打开大窗口： api:openoauth para:url
  关闭大窗口: api:closeoauth para:''
  关闭当前窗:（大小窗口内都调这个函数） api:close para:''
- 打开一个窗口:(暂时不启用) api:open para:'' 
- */
+ 打开一个窗口:(暂时不启用) api:open para:url
+*/
 - (NSString*) Call:(NSString*)act Arg:(NSString*)arg
 {
   NSLog(@"%@ received %@ with message=%@ %@", self, NSStringFromSelector(_cmd), act, arg);
@@ -31,31 +43,38 @@
     return @"2";
   else if ([act isEqualToString:@"snapshoot"]) 
   {
-    
+    if ([_delegate respondsToSelector:@selector(dom_snapshot:)])
+      return [_delegate dom_snapshot:_hostWebView];
   }
   else if ([act isEqualToString:@"curtime"]) 
   {
-    
+    if ([_delegate respondsToSelector:@selector(dom_movie_curtime:)])
+      return [_delegate dom_movie_curtime:_hostWebView];
   }
   else if ([act isEqualToString:@"totaltime"]) 
   {
-    
+    if ([_delegate respondsToSelector:@selector(dom_movie_totaltime:)])
+      return [_delegate dom_movie_totaltime:_hostWebView];
   }
   else if ([act isEqualToString:@"openoauth"]) 
   {
-    
+    if ([_delegate respondsToSelector:@selector(dom_window_openoauth:HostWebView:)])
+      return [_delegate dom_window_openoauth:arg HostWebView:_hostWebView]; 
   }
   else if ([act isEqualToString:@"closeoauth"]) 
   {
-    
+    if ([_delegate respondsToSelector:@selector(dom_window_closeoauth:)])
+      return [_delegate dom_window_closeoauth:_hostWebView];
   }
   else if ([act isEqualToString:@"close"]) 
   {
-    
+    if ([_delegate respondsToSelector:@selector(dom_window_close:)])
+      return [_delegate dom_window_close:_hostWebView];
   }
   else if ([act isEqualToString:@"open"]) 
   {
-    
+    if ([_delegate respondsToSelector:@selector(dom_window_open:HostWebView:)])
+      return [_delegate dom_window_open:arg HostWebView:_hostWebView];
   }
   
   return @"";

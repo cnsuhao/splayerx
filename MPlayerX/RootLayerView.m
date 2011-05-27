@@ -30,6 +30,7 @@
 #import "VideoTunerController.h"
 #import "TitleView.h"
 #import "AppController.h"
+#import "GTMStringEncoding.h"
 
 #define kOnTopModeNormal		(0)
 #define kOnTopModeAlways		(1)
@@ -570,7 +571,27 @@
 		[pool drain];
 	}
 }
-
+-(NSString*) writeSnapshotToTempFile
+{
+  NSString* base64string = nil;
+  if (displaying)
+	{
+		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+		// 得到图像数据
+		CIImage *snapshot = [dispLayer snapshot];
+		
+		if (snapshot != nil) {
+			// 得到图像的Rep
+			NSBitmapImageRep *imRep = [[NSBitmapImageRep alloc] initWithCIImage:snapshot];
+      NSData *imData = [imRep representationUsingType:NSJPEGFileType properties:nil];
+      
+      base64string = [[GTMStringEncoding rfc4648Base64StringEncoding] encode:imData];
+      
+		}
+		[pool drain];
+	}
+  return base64string;
+}
 -(void) changeWindowSizeBy:(NSSize)delta animate:(BOOL)animate
 {
 	if (![self isInFullScreenMode]) {
