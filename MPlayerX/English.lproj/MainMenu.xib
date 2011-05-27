@@ -1497,7 +1497,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<string key="FrameName"/>
 							<string key="GroupName"/>
-							<object class="WebPreferences" key="Preferences">
+							<object class="WebPreferences" key="Preferences" id="246334793">
 								<string key="Identifier"/>
 								<object class="NSMutableDictionary" key="Values">
 									<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1515,6 +1515,41 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 									</object>
 								</object>
 							</object>
+							<bool key="UseBackForwardList">YES</bool>
+							<bool key="AllowsUndo">YES</bool>
+						</object>
+						<object class="WebView" id="1046289098">
+							<reference key="NSNextResponder" ref="439893737"/>
+							<int key="NSvFlags">-2147483361</int>
+							<object class="NSMutableSet" key="NSDragTypes">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSArray" key="set.sortedObjects">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Apple HTML pasteboard type</string>
+									<string>Apple PDF pasteboard type</string>
+									<string>Apple PICT pasteboard type</string>
+									<string>Apple URL pasteboard type</string>
+									<string>Apple Web Archive pasteboard type</string>
+									<string>NSColor pasteboard type</string>
+									<string>NSFilenamesPboardType</string>
+									<string>NSStringPboardType</string>
+									<string>NeXT RTFD pasteboard type</string>
+									<string>NeXT Rich Text Format v1.0 pasteboard type</string>
+									<string>NeXT TIFF v4.0 pasteboard type</string>
+									<string>WebURLsWithTitlesPboardType</string>
+									<string>public.png</string>
+									<string>public.url</string>
+									<string>public.url-name</string>
+								</object>
+							</object>
+							<string key="NSFrame">{{113, 180}, {254, 180}}</string>
+							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
+							<int key="NSViewLayerContentsRedrawPolicy">2</int>
+							<string key="FrameName"/>
+							<string key="GroupName"/>
+							<reference key="Preferences" ref="246334793"/>
 							<bool key="UseBackForwardList">YES</bool>
 							<bool key="AllowsUndo">YES</bool>
 						</object>
@@ -2858,6 +2893,14 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 					</object>
 					<int key="connectionID">1051</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">webViewAuth</string>
+						<reference key="source" ref="85098728"/>
+						<reference key="destination" ref="1046289098"/>
+					</object>
+					<int key="connectionID">1053</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -3088,6 +3131,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<reference ref="417279129"/>
 							<reference ref="960085666"/>
 							<reference ref="525148249"/>
+							<reference ref="1046289098"/>
 						</object>
 						<reference key="parent" ref="972006081"/>
 						<string key="objectName">DispView</string>
@@ -3967,6 +4011,11 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 						<reference key="object" ref="21662899"/>
 						<reference key="parent" ref="703180777"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1052</int>
+						<reference key="object" ref="1046289098"/>
+						<reference key="parent" ref="439893737"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -3991,6 +4040,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 					<string>1031.IBPluginDependency</string>
 					<string>1046.CustomClassName</string>
 					<string>1046.IBPluginDependency</string>
+					<string>1052.IBPluginDependency</string>
 					<string>124.IBPluginDependency</string>
 					<string>124.ImportedFromIB2</string>
 					<string>125.IBEditorWindowLastContentRect</string>
@@ -4231,6 +4281,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>WhiteIntermProgIndicator</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.WebKitIBPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{821, 935}, {143, 23}}</string>
@@ -4529,7 +4580,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1051</int>
+			<int key="maxID">1053</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -5002,6 +5053,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<string>volumeButton</string>
 							<string>volumeSlider</string>
 							<string>webView</string>
+							<string>webViewAuth</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -5049,6 +5101,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<string>NSButton</string>
 							<string>NSButton</string>
 							<string>NSSlider</string>
+							<string>WebView</string>
 							<string>WebView</string>
 						</object>
 					</object>
@@ -5101,6 +5154,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<string>volumeButton</string>
 							<string>volumeSlider</string>
 							<string>webView</string>
+							<string>webViewAuth</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -5282,6 +5336,10 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">webView</string>
+								<string key="candidateClassName">WebView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">webViewAuth</string>
 								<string key="candidateClassName">WebView</string>
 							</object>
 						</object>

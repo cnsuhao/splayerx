@@ -54,6 +54,7 @@
   NSString* shareUriCurrent;
   
   DOMProxySPlayer* wsoSPlayer;
+  DOMProxySPlayer* wsoSPlayerAuth;
   
 	float volStep;
 	float orgHeight;
@@ -84,6 +85,7 @@
 	IBOutlet TitleView *title;
 	
   IBOutlet WebView* webView;
+  IBOutlet WebView* webViewAuth;
   
 	IBOutlet NSMenuItem *menuSnapshot;
 	IBOutlet NSMenuItem *menuSwitchSub;
