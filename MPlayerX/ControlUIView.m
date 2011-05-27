@@ -297,18 +297,32 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 	[menuShowMediaInfo setEnabled:NO];
   
+  CGColorRef col =  CGColorCreateGenericGray(0.2, 1.0);
+  
   [webView setWantsLayer:YES];
   [webView setFrameLoadDelegate:self];
   [webView setPolicyDelegate:self];
   [webView setUIDelegate: self];
   [[webView layer] setCornerRadius:10.0f];
   [[webView layer] setMasksToBounds:YES];
+  [[webView layer] setBackgroundColor:col];
   [webView setHidden:YES];
   [[[webView mainFrame] frameView] setAllowsScrolling:NO];
+  
+  [webViewAuth setWantsLayer:YES];
+  [[webViewAuth layer] setCornerRadius:10.0f];
+  [[webViewAuth layer] setMasksToBounds:YES];
+  [[webViewAuth layer] setBackgroundColor:col];
+  [webViewAuth setHidden:YES];
+  [[[webViewAuth mainFrame] frameView] setAllowsScrolling:NO];
   
   wsoSPlayer = [DOMProxySPlayer alloc];
   [wsoSPlayer setDelegate:self];
   [wsoSPlayer setHostWebView:webView];
+  
+  wsoSPlayerAuth = [DOMProxySPlayer alloc];
+  [wsoSPlayerAuth setDelegate:self];
+  [wsoSPlayerAuth setHostWebView:webViewAuth];
   
 	// set OSD active status
 	[osd setActive:NO];
@@ -365,6 +379,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[backGroundColor2 release];
 	
   [wsoSPlayer release];
+  [wsoSPlayerAuth release];
   
 	[super dealloc];
 }
@@ -1726,13 +1741,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 - (NSString*)dom_snapshot:(WebView *)hostWebView
 {
   //take a image put into dom
-  //TODO: user WebResourc or something like that
-  // or data:image/png;base64,
   NSString *snapshot_base64 = [dispView writeSnapshotToTempFile];
-  //NSURL *snapshotImageURL = [NSURL fileURLWithPath:[snapshot_path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-  //[snapshotImageURL absoluteString]
   NSString *script = [NSString stringWithFormat:@"document.getElementById('cut-image-div').style.display='block';document.getElementById('cut-image-div').src = 'data:image/jpeg;base64,%@';document.getElementById('cut-image-data').value='%@'", snapshot_base64, snapshot_base64];
-  MPLog(script);
   [[webView windowScriptObject] evaluateWebScript:script];
   return @"";
 }
@@ -1763,12 +1773,20 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 - (NSString*)dom_window_closeoauth:(WebView *)hostWebView
 {
+  [webViewAuth setHidden:YES];
   return @"";
 }
 
 - (NSString*)dom_window_openoauth:(NSString*)url HostWebView:(WebView *)hostWebView
 {
-  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:url]];
+  NSString *path = [[NSBundle mainBundle] pathForResource:@"busy" ofType:@"html"];
+  //TODO: set user agent
+  [[webViewAuth mainFrame] loadRequest:[NSURLRequest requestWithURL:
+                                        [NSURL fileURLWithPath:path]]];
+  
+  [[webViewAuth mainFrame] loadRequest:[NSURLRequest requestWithURL:
+                                        [NSURL URLWithString:url]]];  
+  [webViewAuth setHidden:NO];
   return @"";
 }
 
