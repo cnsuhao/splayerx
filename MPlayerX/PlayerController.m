@@ -365,6 +365,9 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 	}
 }
 
+#include <sys/param.h>
+#include <sys/mount.h>
+
 -(void) playMedia:(NSURL*)url
 {
 	// 内部函数，没有那么必要判断url的有效性
@@ -396,18 +399,18 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 		// local files
 		path = [url path];
     
-    NSDictionary *fileSystemAttributes = [[NSFileManager defaultManager] 
-                                                    attributesOfItemAtPath:path error:NULL];
-    if (fileSystemAttributes != nil && 
-        [[fileSystemAttributes objectForKey:NSFileHFSCreatorCode] unsignedLongValue] != 0 )
+    struct statfs filesystemstat;
+    statfs([path cStringUsingEncoding:NSUTF8StringEncoding], &filesystemstat);
+    MPLog(@"statfs %x %s %d", filesystemstat.f_flags, filesystemstat.f_fstypename, filesystemstat.f_type /* 17  hfs */);
+    
+    if (filesystemstat.f_flags&MNT_LOCAL) 
     {
-      // || [[fileSystemAttributes objectForKey:NSFileSize] unsignedLongLongValue]/1000 < [ud integerForKey:kUDKeyCacheSize]
-      MPLog(@"Local Paths %@ %@", path, [fileSystemAttributes objectForKey:NSFileHFSCreatorCode]);
+      MPLog(@"Local Paths %@", path);
       [mplayer.pm setCache:0];
     }
     else
     {
-      MPLog(@"Remote Paths %@ %@", path, [fileSystemAttributes objectForKey:NSFileHFSCreatorCode]);
+      MPLog(@"Remote Paths %@", path);
       [mplayer.pm setCache:([ud boolForKey:kUDKeyCachingLocal])?([ud integerForKey:kUDKeyCacheSize]):(0)];
     }
 		[mplayer.pm setRtspOverHttp:NO];

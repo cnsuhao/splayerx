@@ -572,9 +572,9 @@
 		[pool drain];
 	}
 }
--(NSString*) writeSnapshotToTempFile
+-(NSString*) snapshotToBase64String
 {
-  NSString* base64string = nil;
+  NSString *base64String = nil;
   if (displaying)
 	{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -586,12 +586,11 @@
 			NSBitmapImageRep *imRep = [[NSBitmapImageRep alloc] initWithCIImage:snapshot];
       NSData *imData = [imRep representationUsingType:NSJPEGFileType properties:nil];
       
-      base64string = [[GTMStringEncoding rfc4648Base64StringEncoding] encode:imData];
-      
+      base64String = [[[GTMStringEncoding rfc4648Base64StringEncoding] encode:imData] copy];
 		}
 		[pool drain];
 	}
-  return base64string;
+  return base64String;
 }
 -(void) changeWindowSizeBy:(NSSize)delta animate:(BOOL)animate
 {

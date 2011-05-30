@@ -71,5 +71,5 @@
 -(void) setDefaultPlayerWindowSize;
 
 -(IBAction) writeSnapshotToFile:(id)sender;
--(NSString*) writeSnapshotToTempFile;
+-(NSString*) snapshotToBase64String;
 @end
