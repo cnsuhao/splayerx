@@ -299,7 +299,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 	[menuShowMediaInfo setEnabled:NO];
   
-  CGColorRef col =  CGColorCreateGenericGray(0.3, 1);
+  CGColorRef col =  CGColorCreateGenericGray(0.3, 0.7);
   
   shareUriCurrent = @"";
   
