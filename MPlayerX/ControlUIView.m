@@ -1784,10 +1784,6 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 - (NSString*)dom_window_openoauth:(NSString*)url HostWebView:(WebView *)hostWebView
 {
-  NSString *path = [[NSBundle mainBundle] pathForResource:@"busy" ofType:@"html"];
-  //TODO: set user agent
-  [[webViewAuth mainFrame] loadRequest:[NSURLRequest requestWithURL:
-                                        [NSURL fileURLWithPath:path]]];
   
   [self showOAuthView:self Url:url];
   
@@ -1796,8 +1792,11 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 -(void)showOAuthView:(id)sender Url:(NSString*) url
 {
+  NSString *path = [[NSBundle mainBundle] pathForResource:@"busy" ofType:@"html"];
+  //TODO: set user agent
   [[webViewAuth mainFrame] loadRequest:[NSURLRequest requestWithURL:
-                                        [NSURL URLWithString:url]]]; 
+                                        [NSURL fileURLWithPath:path]]];
+  
   NSRect rectOAuthView = [webViewAuth frame];
   NSRect rectDispView = [dispView frame];
   NSSize dispSize = rectDispView.size;
@@ -1824,6 +1823,10 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
   [closeOAuthButton setFrameOrigin:closeButtonOrigin];
   [closeOAuthButton setHidden:NO];
+  
+  [[webViewAuth mainFrame] loadRequest:[NSURLRequest requestWithURL:
+                                        [NSURL URLWithString:url]]]; 
+  
 }
 -(void)hideOAuthView:(id)sender
 {
