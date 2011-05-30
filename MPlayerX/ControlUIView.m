@@ -309,6 +309,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   [webView setHidden:YES];
   [[[webView mainFrame] frameView] setAllowsScrolling:NO];
   
+  nextAuthURLString = nil;
   [webViewAuth setCustomUserAgent:@"Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3"];
   
   [webViewAuth setFrameLoadDelegate:self];
@@ -1717,25 +1718,19 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 }
 
 
-- (void)webViewAuth:(WebView *)sender decidePolicyForNewWindowAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request newFrameName:(NSString *)frameName decisionListener:(id < WebPolicyDecisionListener >)listener
+-(void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
 {
-  NSURL *URL = [request URL];
-  [[NSWorkspace sharedWorkspace] openURL:URL];
-}
-
-- (void)webViewAuth:(WebView *)sender decidePolicyForNavigationAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id < WebPolicyDecisionListener >)listener
-{
-  NSURL* link = [actionInformation objectForKey:WebActionOriginalURLKey];
-  if (link) {
-    NSRange textRange =[[link absoluteString] rangeOfString:@"#close_wnd"];
-    if(textRange.location != NSNotFound)
-      [webView setHidden:YES];
-    
+  if (nextAuthURLString != nil && sender == webViewAuth)
+  {
+    MPLog(@"real load %@", nextAuthURLString );
+    NSString* url = [nextAuthURLString copy];
+    [nextAuthURLString release];
+    nextAuthURLString = nil;
+    [[sender mainFrame] loadRequest:[NSURLRequest requestWithURL:
+                                          [NSURL URLWithString:url]]]; 
+    [url release];
   }
-  
-  [listener use];
 }
-
 
 /* this message is sent to the WebView's frame load delegate 
  when the page is ready for JavaScript.  It will be called just after 
@@ -1749,7 +1744,11 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   /* here we'll add our object to the window object as an object named
    'console'.  We can use this object in JavaScript by referencing the 'console'
    property of the 'window' object.   */
-  [[webView windowScriptObject] setValue:wsoSPlayer forKey:@"SPlayer"];
+  if (sender == webViewAuth)
+    [[sender windowScriptObject] setValue:wsoSPlayerAuth forKey:@"SPlayer"];
+  else
+    [[sender windowScriptObject] setValue:wsoSPlayer forKey:@"SPlayer"];
+  
   
 }
 
@@ -1818,7 +1817,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 -(void)showOAuthView:(id)sender Url:(NSString*) url
 {
-  NSString *path = [[NSBundle mainBundle] pathForResource:@"busy" ofType:@"html"];
+  NSString *path = [[NSBundle mainBundle] pathForResource:@"busy-white" ofType:@"html"];
 
   [[webViewAuth mainFrame] loadRequest:[NSURLRequest requestWithURL:
                                         [NSURL fileURLWithPath:path]]];
@@ -1850,8 +1849,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   [closeOAuthButton setFrameOrigin:closeButtonOrigin];
   [closeOAuthButton setHidden:NO];
   
-  [[webViewAuth mainFrame] loadRequest:[NSURLRequest requestWithURL:
-                                        [NSURL URLWithString:url]]]; 
+  nextAuthURLString = [url copy];
   
 }
 -(void)hideOAuthView:(id)sender
