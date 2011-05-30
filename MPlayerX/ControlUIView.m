@@ -80,6 +80,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 @implementation ControlUIView
 
+@synthesize shareUriCurrent;
+
 +(void) initialize
 {
 	NSNumber *boolYes = [NSNumber numberWithBool:YES];
@@ -297,7 +299,9 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 	[menuShowMediaInfo setEnabled:NO];
   
-  CGColorRef col =  CGColorCreateGenericGray(0.2, 1.0);
+  CGColorRef col =  CGColorCreateGenericGray(0.3, 1);
+  
+  shareUriCurrent = @"";
   
   [webView setFrameLoadDelegate:self];
   [webView setPolicyDelegate:self];
@@ -306,10 +310,13 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   [[webView layer] setCornerRadius:10.0f];
   [[webView layer] setMasksToBounds:YES];
   [[webView layer] setBackgroundColor:col];
+  [webView setDrawsBackground:NO];
   [webView setHidden:YES];
   [[[webView mainFrame] frameView] setAllowsScrolling:NO];
   
   nextAuthURLString = nil;
+  nextShareURLString = nil;
+  
   [webViewAuth setCustomUserAgent:@"Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3"];
   
   [webViewAuth setFrameLoadDelegate:self];
@@ -318,7 +325,6 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   [webViewAuth setWantsLayer:YES];
   [[webViewAuth layer] setCornerRadius:10.0f];
   [[webViewAuth layer] setMasksToBounds:YES];
-  [[webViewAuth layer] setBackgroundColor:col];
   [webViewAuth setHidden:YES];
   [[[webViewAuth mainFrame] frameView] setAllowsScrolling:NO];
   
@@ -833,23 +839,11 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   {
     // can't we share url?
     // if (![playerController.lastPlayedPath isFileURL])
-    //   return;   
+    //   return;  
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"busy" ofType:@"html"];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    [[webView mainFrame] loadRequest:[NSURLRequest requestWithURL:url]];
     
-    if ([shareUriCurrent length] == 0)
-    {
-           
-      NSString *path = [[NSBundle mainBundle] pathForResource:@"busy" ofType:@"html"];
-      NSURL *url = [NSURL fileURLWithPath:path];
-      [[webView mainFrame] loadRequest:[NSURLRequest requestWithURL:url]];
-      
-      NSString* mediaPath = ([playerController.lastPlayedPath isFileURL])?([playerController.lastPlayedPath path]):([playerController.lastPlayedPath absoluteString]);
-      shareUriCurrent = [ssclThread shareMovie:mediaPath];
-      if ([shareUriCurrent length] == 0) 
-        return;
-    
-      [[webView mainFrame] loadRequest:[NSURLRequest requestWithURL:
-                                        [NSURL URLWithString:shareUriCurrent]]]; 
-    }
     [webView setHidden:NO];
     NSSize dispSize = [dispView frame].size;
     float webViewMag = [webView frame].size.height + 170;
@@ -858,6 +852,17 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
       webViewMag = webViewMag / dispSize.height - 1.0f;
       [dispView changeWindowSizeBy:NSMakeSize(webViewMag, webViewMag) animate:YES];
     }
+    
+    if ([shareUriCurrent length] == 0)
+    {
+      NSString* mediaPath = ([playerController.lastPlayedPath isFileURL])?([playerController.lastPlayedPath path]):([playerController.lastPlayedPath absoluteString]);
+      
+      [NSThread detachNewThreadSelector:@selector(shareMovie:) toTarget:[ssclThread class] withObject:[NSArray arrayWithObjects:[mediaPath copy],
+                                                                                                       webView, self, nil]];
+    }
+    else
+      nextShareURLString = [shareUriCurrent copy];
+    
   }
   else 
     [webView setHidden:YES];
@@ -1284,7 +1289,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	// 并且重置 fillScreen状态
 	[self toggleFillScreen:nil];
   
-  shareUriCurrent = nil;
+  shareUriCurrent = @"";
 	[webView setHidden:YES];
   
 	if ([ud boolForKey:kUDKeyCloseWindowWhenStopped]) 
@@ -1728,6 +1733,16 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
     nextAuthURLString = nil;
     [[sender mainFrame] loadRequest:[NSURLRequest requestWithURL:
                                           [NSURL URLWithString:url]]]; 
+    [url release];
+  }
+  else if(nextShareURLString != nil && sender == webView)
+  {
+    MPLog(@"real load %@", nextShareURLString );
+    NSString* url = [nextShareURLString copy];
+    [nextShareURLString release];
+    nextShareURLString = nil;
+    [[sender mainFrame] loadRequest:[NSURLRequest requestWithURL:
+                                     [NSURL URLWithString:url]]]; 
     [url release];
   }
 }

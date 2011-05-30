@@ -53,6 +53,7 @@
 		
   NSString* shareUriCurrent;
   NSString* nextAuthURLString;
+  NSString* nextShareURLString;
   
   DOMProxySPlayer* wsoSPlayer;
   DOMProxySPlayer* wsoSPlayerAuth;
@@ -116,9 +117,13 @@
 
 }
 
+@property (retain) NSString* shareUriCurrent;
+
 ////////////////////////////////显示相关////////////////////////////////
 extern NSString * const kFillScreenButtonImageLRKey;
 extern NSString * const kFillScreenButtonImageUBKey;
+
+
 -(void) setFillScreenMode:(NSString*)modeKey state:(NSInteger) state;
 
 -(void) displayStarted;

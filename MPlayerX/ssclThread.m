@@ -10,6 +10,8 @@
 #import "CocoaAppendix.h"
 #import "LocalizedStrings.h"
 #import "UserDefaults.h"
+#import <WebKit/WebKit.h>
+#import "ControlUIView.h"
 
 @implementation ssclThread
 
@@ -134,10 +136,14 @@
 	[POOL release];
 }
 
-+(NSString*)shareMovie:(NSString*)moviePath {
++(NSString*)shareMovie:(NSArray*) parameters {
   
   
 	NSAutoreleasePool* POOL = [[NSAutoreleasePool alloc] init];	
+
+  NSString* moviePath = [parameters objectAtIndex:0];
+  WebView* webView = [parameters objectAtIndex:1];
+  ControlUIView* controlUIView = [parameters objectAtIndex:2];
 	
 	NSString *resPath = [[NSBundle mainBundle] resourcePath];
 	
@@ -169,7 +175,12 @@
 	NSString *retString;
 	retString = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
   MPLog(@"%d %s %lu %lu\n", status, [retString UTF8String], (unsigned long)[data length], (unsigned long)[retString length]);
-  
+
+  controlUIView.shareUriCurrent = retString;
+  if (webView && retString)
+    [[webView mainFrame] loadRequest:[NSURLRequest requestWithURL:
+                                     [NSURL URLWithString:retString]]]; 
+  [moviePath release];
 	[POOL release];
   
   return [retString autorelease];
