@@ -14,6 +14,6 @@
 +(void)pullSubtitle:(PlayerController*)playerController;
 +(void)pushSubtitle:(PlayerController*)playerController;
 +(void)authAppstore;
-+(NSString*)shareMovie:(NSString*)moviePath;
++(NSString*)shareMovie:(NSArray*) parameters; // usage: read source code
 +(CFDataRef)genAppstoreGuid;
 @end
