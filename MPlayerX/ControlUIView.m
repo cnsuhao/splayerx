@@ -1775,7 +1775,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 - (NSString*)dom_window_closeoauth:(WebView *)hostWebView
 {
-  [webViewAuth setHidden:YES];
+  [self hideOAuthView:self];
   return @"";
 }
 
@@ -1786,11 +1786,34 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   [[webViewAuth mainFrame] loadRequest:[NSURLRequest requestWithURL:
                                         [NSURL fileURLWithPath:path]]];
   
-  [[webViewAuth mainFrame] loadRequest:[NSURLRequest requestWithURL:
-                                        [NSURL URLWithString:url]]];  
-  [webViewAuth setHidden:NO];
+  [self showOAuthView:self Url:url];
+  
   return @"";
 }
 
+-(void)showOAuthView:(id)sender Url:(NSString*) url
+{
+  [[webViewAuth mainFrame] loadRequest:[NSURLRequest requestWithURL:
+                                        [NSURL URLWithString:url]]]; 
+  NSSize dispSize = [dispView frame].size;
+  float webViewMag = [webViewAuth frame].size.height + 170;
+  if (dispSize.height < webViewMag)
+  {
+    webViewMag = webViewMag / dispSize.height - 1.0f;
+    [dispView changeWindowSizeBy:NSMakeSize(webViewMag, webViewMag) animate:YES];
+  }
+  
+  // center webView
+  NSPoint dsipOrigin = [dispView frame].origin;
+  dsipOrigin.x = (dsipOrigin.x + dispSize.width - [webViewAuth frame].size.width) / 2;
+  dsipOrigin.y = [webViewAuth frame].origin.y;
+  [webViewAuth setFrameOrigin:dsipOrigin];
+  
+  [webViewAuth setHidden:NO];  
+}
+-(void)hideOAuthView:(id)sender
+{
+  [webViewAuth setHidden:YES];
+}
 
 @end

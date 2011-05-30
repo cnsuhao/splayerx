@@ -146,6 +146,9 @@ extern NSString * const kFillScreenButtonImageUBKey;
 -(IBAction) toggleShareControls:(id)sender;
 -(void)hideShareControls:(id)sender;
 
+-(void)showOAuthView:(id)sender Url:(NSString*) url;
+-(void)hideOAuthView:(id)sender;
+
 -(IBAction) toggleAccessaryControls:(id)sender;
 -(IBAction) changeSpeed:(id) sender;
 -(IBAction) changeAudioDelay:(id) sender;
