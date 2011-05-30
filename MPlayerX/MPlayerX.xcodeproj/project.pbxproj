@@ -152,6 +152,7 @@
 		9D1B8471138F892D00049901 /* GTMStringEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B8470138F892D00049901 /* GTMStringEncoding.m */; };
 		9D23C0A4132887B200980BA6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D23C0A3132887B200980BA6 /* WebKit.framework */; };
 		9D7E1296132B77F7009FD852 /* plug-ins in Copy plug-ins */ = {isa = PBXBuildFile; fileRef = 9D7E127E132B7716009FD852 /* plug-ins */; };
+		9DBA13FC139384DB000F86D6 /* close_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DBA13FB139384DB000F86D6 /* close_big.png */; };
 		9DD929E4132632610003E85B /* share.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9DD929E3132632610003E85B /* share.pdf */; };
 		9DDA1187138E5BD60017874E /* DOMProxySPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDA1186138E5BD60017874E /* DOMProxySPlayer.m */; };
 		9DE0BBC21367D09F00A691F9 /* BGHUDAppKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 88AE2514134BB04A005E7C60 /* BGHUDAppKit.framework */; };
@@ -430,6 +431,7 @@
 		9D23C0A3132887B200980BA6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		9D7E127E132B7716009FD852 /* plug-ins */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "plug-ins"; path = "../plug-ins"; sourceTree = SOURCE_ROOT; };
 		9DA49ED412F15D2C00416180 /* BGHUDAppKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BGHUDAppKit.xcodeproj; path = ../BGHUDAppKit/BGHUDAppKit.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9DBA13FB139384DB000F86D6 /* close_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_big.png; sourceTree = "<group>"; };
 		9DD929E3132632610003E85B /* share.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = share.pdf; sourceTree = "<group>"; };
 		9DDA1185138E5BD60017874E /* DOMProxySPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMProxySPlayer.h; sourceTree = "<group>"; };
 		9DDA1186138E5BD60017874E /* DOMProxySPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMProxySPlayer.m; sourceTree = "<group>"; };
@@ -626,6 +628,7 @@
 		8629272810C155300077B63E /* buttons */ = {
 			isa = PBXGroup;
 			children = (
+				9DBA13FB139384DB000F86D6 /* close_big.png */,
 				860F6728111C6A6E00190BCC /* VideoTuner */,
 				8610F4671100F539006A1447 /* toolbar_audio.icns */,
 				8610F44A1100F329006A1447 /* toolbar_video.icns */,
@@ -1029,6 +1032,7 @@
 				9DF6BCEE132A424A0049A28C /* SubEncoding.xib in Resources */,
 				9DF6BCEF132A424A0049A28C /* VideoTuner.xib in Resources */,
 				9D18753B132F7E3700F74402 /* busy.html in Resources */,
+				9DBA13FC139384DB000F86D6 /* close_big.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

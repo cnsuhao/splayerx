@@ -326,6 +326,9 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   [wsoSPlayerAuth setDelegate:self];
   [wsoSPlayerAuth setHostWebView:webViewAuth];
   
+  [[closeOAuthButton layer]setCornerRadius:20.0];
+  [[closeOAuthButton layer] setMasksToBounds:YES];
+  
 	// set OSD active status
 	[osd setActive:NO];
 	
@@ -1795,8 +1798,10 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 {
   [[webViewAuth mainFrame] loadRequest:[NSURLRequest requestWithURL:
                                         [NSURL URLWithString:url]]]; 
-  NSSize dispSize = [dispView frame].size;
-  float webViewMag = [webViewAuth frame].size.height + 170;
+  NSRect rectOAuthView = [webViewAuth frame];
+  NSRect rectDispView = [dispView frame];
+  NSSize dispSize = rectDispView.size;
+  float webViewMag = rectOAuthView.size.height + 170;
   if (dispSize.height < webViewMag)
   {
     webViewMag = webViewMag / dispSize.height - 1.0f;
@@ -1804,16 +1809,26 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   }
   
   // center webView
-  NSPoint dsipOrigin = [dispView frame].origin;
-  dsipOrigin.x = (dsipOrigin.x + dispSize.width - [webViewAuth frame].size.width) / 2;
-  dsipOrigin.y = [webViewAuth frame].origin.y;
+  NSPoint dsipOrigin = rectDispView.origin;
+  dsipOrigin.x = (dsipOrigin.x + dispSize.width - rectOAuthView.size.width) / 2;
+  dsipOrigin.y = rectOAuthView.origin.y;
   [webViewAuth setFrameOrigin:dsipOrigin];
   
-  [webViewAuth setHidden:NO];  
+  [webViewAuth setHidden:NO];
+  
+  rectOAuthView = [webViewAuth frame];
+  NSPoint closeButtonOrigin = rectOAuthView.origin;
+  NSRect rectCloseButton = [closeOAuthButton frame];
+  closeButtonOrigin.x = rectOAuthView.origin.x + rectOAuthView.size.width - rectCloseButton.size.width/2;
+  closeButtonOrigin.y = rectOAuthView.origin.y + rectOAuthView.size.height - rectCloseButton.size.height/2;
+
+  [closeOAuthButton setFrameOrigin:closeButtonOrigin];
+  [closeOAuthButton setHidden:NO];
 }
 -(void)hideOAuthView:(id)sender
 {
   [webViewAuth setHidden:YES];
+  [closeOAuthButton setHidden:YES];
 }
 
 @end
