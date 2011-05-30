@@ -1825,17 +1825,20 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   NSRect rectOAuthView = [webViewAuth frame];
   NSRect rectDispView = [dispView frame];
   NSSize dispSize = rectDispView.size;
-  float webViewMag = rectOAuthView.size.height + 170;
-  if (dispSize.height < webViewMag)
+  float webViewMagHeight = rectOAuthView.size.height + 170;
+  float webViewMagWidth = rectOAuthView.size.width + [webView frame].size.width * 2+20;
+  if (dispSize.height < webViewMagHeight || dispSize.width < webViewMagWidth)
   {
-    webViewMag = webViewMag / dispSize.height - 1.0f;
+    float webViewMag = MAX(webViewMagHeight / dispSize.height - 1.0f , 
+                           webViewMagWidth / dispSize.width - 1.0f);
     [dispView changeWindowSizeBy:NSMakeSize(webViewMag, webViewMag) animate:YES];
   }
   
   // center webView
+  rectDispView = [dispView frame];
   NSPoint dsipOrigin = rectDispView.origin;
   dsipOrigin.x = (dsipOrigin.x + dispSize.width - rectOAuthView.size.width) / 2;
-  dsipOrigin.y = rectOAuthView.origin.y;
+  dsipOrigin.y = rectDispView.size.height - rectOAuthView.size.height - 45;
   [webViewAuth setFrameOrigin:dsipOrigin];
   
   [webViewAuth setHidden:NO];
