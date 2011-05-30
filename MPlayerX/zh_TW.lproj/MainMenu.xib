@@ -1424,7 +1424,7 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<string key="NSFrame">{{17, 92}, {446, 183}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="1066323138"/>
+							<reference key="NSNextKeyView" ref="819892328"/>
 							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="838931917">
@@ -1451,7 +1451,7 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<string key="NSFrame">{{0, 277}, {480, 23}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="171470766"/>
+							<reference key="NSNextKeyView" ref="891844091"/>
 							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<string key="NSClassName">TitleView</string>
 						</object>
@@ -1486,7 +1486,7 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<string key="FrameName"/>
 							<string key="GroupName"/>
-							<object class="WebPreferences" key="Preferences" id="326795608">
+							<object class="WebPreferences" key="Preferences" id="26193322">
 								<string key="Identifier"/>
 								<object class="NSMutableDictionary" key="Values">
 									<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1507,9 +1507,9 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<bool key="UseBackForwardList">YES</bool>
 							<bool key="AllowsUndo">YES</bool>
 						</object>
-						<object class="WebView" id="1066323138">
+						<object class="WebView" id="891844091">
 							<reference key="NSNextResponder" ref="439893737"/>
-							<int key="NSvFlags">-2147483361</int>
+							<int key="NSvFlags">-2147483379</int>
 							<object class="NSMutableSet" key="NSDragTypes">
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSArray" key="set.sortedObjects">
@@ -1531,14 +1531,14 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 									<string>public.url-name</string>
 								</object>
 							</object>
-							<string key="NSFrame">{{113, 120}, {254, 180}}</string>
+							<string key="NSFrame">{{-10, -125}, {500, 400}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView"/>
 							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<string key="FrameName"/>
 							<string key="GroupName"/>
-							<reference key="Preferences" ref="326795608"/>
+							<reference key="Preferences" ref="26193322"/>
 							<bool key="UseBackForwardList">YES</bool>
 							<bool key="AllowsUndo">YES</bool>
 						</object>
@@ -2870,7 +2870,7 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">webViewAuth</string>
 						<reference key="source" ref="85098728"/>
-						<reference key="destination" ref="1066323138"/>
+						<reference key="destination" ref="891844091"/>
 					</object>
 					<int key="connectionID">1081</int>
 				</object>
@@ -3098,7 +3098,7 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<reference ref="85098728"/>
 							<reference ref="220043646"/>
 							<reference ref="819892328"/>
-							<reference ref="1066323138"/>
+							<reference ref="891844091"/>
 						</object>
 						<reference key="parent" ref="972006081"/>
 						<string key="objectName">DispView</string>
@@ -3962,7 +3962,7 @@ gOS9k+S4reaWhyAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1080</int>
-						<reference key="object" ref="1066323138"/>
+						<reference key="object" ref="891844091"/>
 						<reference key="parent" ref="439893737"/>
 					</object>
 				</object>

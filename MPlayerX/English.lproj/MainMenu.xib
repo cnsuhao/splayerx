@@ -1426,6 +1426,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<string key="NSFrame">{{466, 2}, {12, 12}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<string key="NSClassName">ResizeIndicator</string>
 						</object>
@@ -1497,7 +1498,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<string key="FrameName"/>
 							<string key="GroupName"/>
-							<object class="WebPreferences" key="Preferences" id="246334793">
+							<object class="WebPreferences" key="Preferences" id="988264785">
 								<string key="Identifier"/>
 								<object class="NSMutableDictionary" key="Values">
 									<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1518,9 +1519,9 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<bool key="UseBackForwardList">YES</bool>
 							<bool key="AllowsUndo">YES</bool>
 						</object>
-						<object class="WebView" id="1046289098">
+						<object class="WebView" id="627780744">
 							<reference key="NSNextResponder" ref="439893737"/>
-							<int key="NSvFlags">-2147483361</int>
+							<int key="NSvFlags">-2147483379</int>
 							<object class="NSMutableSet" key="NSDragTypes">
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSArray" key="set.sortedObjects">
@@ -1542,14 +1543,14 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 									<string>public.url-name</string>
 								</object>
 							</object>
-							<string key="NSFrame">{{113, 180}, {254, 180}}</string>
+							<string key="NSFrame">{{-10, -65}, {500, 400}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView"/>
 							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<string key="FrameName"/>
 							<string key="GroupName"/>
-							<reference key="Preferences" ref="246334793"/>
+							<reference key="Preferences" ref="988264785"/>
 							<bool key="UseBackForwardList">YES</bool>
 							<bool key="AllowsUndo">YES</bool>
 						</object>
@@ -1557,7 +1558,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 					<string key="NSFrame">{{7, 11}, {480, 360}}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
-					<reference key="NSNextKeyView" ref="417279129"/>
+					<reference key="NSNextKeyView" ref="627780744"/>
 					<bool key="NSViewIsLayerTreeHost">YES</bool>
 					<int key="NSViewLayerContentsRedrawPolicy">2</int>
 				</object>
@@ -2897,7 +2898,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">webViewAuth</string>
 						<reference key="source" ref="85098728"/>
-						<reference key="destination" ref="1046289098"/>
+						<reference key="destination" ref="627780744"/>
 					</object>
 					<int key="connectionID">1053</int>
 				</object>
@@ -3131,7 +3132,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<reference ref="417279129"/>
 							<reference ref="960085666"/>
 							<reference ref="525148249"/>
-							<reference ref="1046289098"/>
+							<reference ref="627780744"/>
 						</object>
 						<reference key="parent" ref="972006081"/>
 						<string key="objectName">DispView</string>
@@ -4013,7 +4014,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1052</int>
-						<reference key="object" ref="1046289098"/>
+						<reference key="object" ref="627780744"/>
 						<reference key="parent" ref="439893737"/>
 					</object>
 				</object>
