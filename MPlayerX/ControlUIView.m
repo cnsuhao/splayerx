@@ -299,10 +299,10 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   
   CGColorRef col =  CGColorCreateGenericGray(0.2, 1.0);
   
-  [webView setWantsLayer:YES];
   [webView setFrameLoadDelegate:self];
   [webView setPolicyDelegate:self];
   [webView setUIDelegate: self];
+  [webView setWantsLayer:YES];
   [[webView layer] setCornerRadius:10.0f];
   [[webView layer] setMasksToBounds:YES];
   [[webView layer] setBackgroundColor:col];
@@ -311,6 +311,9 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   
   [webViewAuth setCustomUserAgent:@"Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3"];
   
+  [webViewAuth setFrameLoadDelegate:self];
+  [webViewAuth setPolicyDelegate:self];
+  [webViewAuth setUIDelegate: self];
   [webViewAuth setWantsLayer:YES];
   [[webViewAuth layer] setCornerRadius:10.0f];
   [[webViewAuth layer] setMasksToBounds:YES];
@@ -1714,6 +1717,26 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 }
 
 
+- (void)webViewAuth:(WebView *)sender decidePolicyForNewWindowAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request newFrameName:(NSString *)frameName decisionListener:(id < WebPolicyDecisionListener >)listener
+{
+  NSURL *URL = [request URL];
+  [[NSWorkspace sharedWorkspace] openURL:URL];
+}
+
+- (void)webViewAuth:(WebView *)sender decidePolicyForNavigationAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id < WebPolicyDecisionListener >)listener
+{
+  NSURL* link = [actionInformation objectForKey:WebActionOriginalURLKey];
+  if (link) {
+    NSRange textRange =[[link absoluteString] rangeOfString:@"#close_wnd"];
+    if(textRange.location != NSNotFound)
+      [webView setHidden:YES];
+    
+  }
+  
+  [listener use];
+}
+
+
 /* this message is sent to the WebView's frame load delegate 
  when the page is ready for JavaScript.  It will be called just after 
  the page has loaded, but just before any JavaScripts start running on the
@@ -1746,9 +1769,12 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 - (NSString*)dom_snapshot:(WebView *)hostWebView
 {
   //take a image put into dom
-  NSString *snapshot_base64 = [dispView writeSnapshotToTempFile];
+  NSString *snapshot_base64 = [NSString stringWithString:[dispView snapshotToBase64String]];
+  if (snapshot_base64 == nil)
+    return nil;
   NSString *script = [NSString stringWithFormat:@"document.getElementById('cut-image-div').style.display='block';document.getElementById('cut-image-div').src = 'data:image/jpeg;base64,%@';document.getElementById('cut-image-data').value='%@'", snapshot_base64, snapshot_base64];
   [[webView windowScriptObject] evaluateWebScript:script];
+  [snapshot_base64 release];
   return @"";
 }
 
@@ -1793,7 +1819,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 -(void)showOAuthView:(id)sender Url:(NSString*) url
 {
   NSString *path = [[NSBundle mainBundle] pathForResource:@"busy" ofType:@"html"];
-  //TODO: set user agent
+
   [[webViewAuth mainFrame] loadRequest:[NSURLRequest requestWithURL:
                                         [NSURL fileURLWithPath:path]]];
   
