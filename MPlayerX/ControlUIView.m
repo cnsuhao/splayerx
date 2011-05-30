@@ -309,6 +309,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   [webView setHidden:YES];
   [[[webView mainFrame] frameView] setAllowsScrolling:NO];
   
+  [webViewAuth setCustomUserAgent:@"Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3"];
+  
   [webViewAuth setWantsLayer:YES];
   [[webViewAuth layer] setCornerRadius:10.0f];
   [[webViewAuth layer] setMasksToBounds:YES];
