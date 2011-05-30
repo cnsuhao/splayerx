@@ -52,6 +52,7 @@
 	NSMenu *videoListMenu;
 		
   NSString* shareUriCurrent;
+  NSString* nextAuthURLString;
   
   DOMProxySPlayer* wsoSPlayer;
   DOMProxySPlayer* wsoSPlayerAuth;
