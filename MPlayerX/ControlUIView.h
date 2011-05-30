@@ -55,6 +55,7 @@
   
   DOMProxySPlayer* wsoSPlayer;
   DOMProxySPlayer* wsoSPlayerAuth;
+  IBOutlet NSButton *closeOAuthButton;
   
 	float volStep;
 	float orgHeight;
@@ -144,10 +145,10 @@ extern NSString * const kFillScreenButtonImageUBKey;
 -(IBAction) toggleFillScreen:(id)sender;
 
 -(IBAction) toggleShareControls:(id)sender;
--(void)hideShareControls:(id)sender;
+-(IBAction) hideShareControls:(id)sender;
 
--(void)showOAuthView:(id)sender Url:(NSString*) url;
--(void)hideOAuthView:(id)sender;
+-(IBAction) showOAuthView:(id)sender Url:(NSString*) url;
+-(IBAction) hideOAuthView:(id)sender;
 
 -(IBAction) toggleAccessaryControls:(id)sender;
 -(IBAction) changeSpeed:(id) sender;
