@@ -311,7 +311,6 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   [[webView layer] setMasksToBounds:YES];
   [[webView layer] setBackgroundColor:col];
   [webView setDrawsBackground:NO];
-  [webView setHidden:YES];
   [[[webView mainFrame] frameView] setAllowsScrolling:NO];
   
   nextAuthURLString = nil;
@@ -325,7 +324,6 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   [webViewAuth setWantsLayer:YES];
   [[webViewAuth layer] setCornerRadius:10.0f];
   [[webViewAuth layer] setMasksToBounds:YES];
-  [webViewAuth setHidden:YES];
   [[[webViewAuth mainFrame] frameView] setAllowsScrolling:NO];
   
   wsoSPlayer = [DOMProxySPlayer alloc];
@@ -338,6 +336,9 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   
   [[closeOAuthButton layer]setCornerRadius:20.0];
   [[closeOAuthButton layer] setMasksToBounds:YES];
+    
+  [self hideShareControls:self];
+  [self hideOAuthView:self];
   
 	// set OSD active status
 	[osd setActive:NO];
@@ -828,8 +829,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 }
 -(void)hideShareControls:(id)sender
 {
-  if (![webView isHidden]) 
-    [webView setHidden:YES];
+  [self hideAndTrash:webView];
 }
 -(IBAction) toggleShareControls:(id)sender
 {
@@ -844,7 +844,6 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
     NSURL *url = [NSURL fileURLWithPath:path];
     [[webView mainFrame] loadRequest:[NSURLRequest requestWithURL:url]];
     
-    [webView setHidden:NO];
     NSSize dispSize = [dispView frame].size;
     float webViewMag = [webView frame].size.height + 170;
     if (dispSize.height < webViewMag)
@@ -852,6 +851,14 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
       webViewMag = webViewMag / dispSize.height - 1.0f;
       [dispView changeWindowSizeBy:NSMakeSize(webViewMag, webViewMag) animate:YES];
     }
+    
+    dispSize = [dispView frame].size;
+    NSSize webViewSize= [webView frame].size;
+    NSPoint webViewOrigin;
+    webViewOrigin.x = dispSize.width - webViewSize.width - 30;
+    webViewOrigin.y = 100;
+    [webView setFrameOrigin:webViewOrigin];
+    [webView setHidden:NO];
     
     if ([shareUriCurrent length] == 0)
     {
@@ -865,7 +872,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
     
   }
   else 
-    [webView setHidden:YES];
+    [self hideShareControls:self];
 }
 
 -(IBAction) toggleAccessaryControls:(id)sender
@@ -1290,7 +1297,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[self toggleFillScreen:nil];
   
   shareUriCurrent = @"";
-	[webView setHidden:YES];
+	[self hideShareControls:self];
+  [self hideOAuthView:self];
   
 	if ([ud boolForKey:kUDKeyCloseWindowWhenStopped]) 
 		[dispView closePlayerWindow];
@@ -1715,13 +1723,12 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   if (link) {
     NSRange textRange =[[link absoluteString] rangeOfString:@"#close_wnd"];
     if(textRange.location != NSNotFound)
-      [webView setHidden:YES];
+      [self hideAndTrash:sender];
 
   }
   
   [listener use];
 }
-
 
 -(void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
 {
@@ -1767,8 +1774,6 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   
 }
 
-
-
 /* sent to the WebView's ui delegate when alert() is called in JavaScript.
  If you call alert() in your JavaScript methods, it will call this
  method and display the alert message in the log.  In Safari, this method
@@ -1778,6 +1783,11 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
   NSLog(@"%@ alert received %@ with '%@'", self, NSStringFromSelector(_cmd), message);
 }
 
+-(void) hideAndTrash:(NSView*)sender
+{
+  [sender setHidden:YES];
+  [sender setFrameOrigin:NSMakePoint(-3000,-3000)];
+}
 
 //delegate of DOMProxySPlayerDelegate
 - (NSString*)dom_snapshot:(WebView *)hostWebView
@@ -1806,7 +1816,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 - (NSString*)dom_window_close:(WebView *)hostWebView
 {
-  [hostWebView setHidden:YES];
+  [self hideAndTrash:hostWebView];
   return @"";
 }
 
@@ -1872,7 +1882,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 }
 -(void)hideOAuthView:(id)sender
 {
-  [webViewAuth setHidden:YES];
+  [self hideAndTrash:webViewAuth];
   [closeOAuthButton setHidden:YES];
 }
 
