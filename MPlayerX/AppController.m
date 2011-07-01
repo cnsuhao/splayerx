@@ -24,6 +24,7 @@
 #import "PlayerController.h"
 #import "OpenURLController.h"
 #import "LocalizedStrings.h"
+#import "Appirater.h"
 
 NSString * const kMPCFMTBookmarkPath	= @"%@/Library/Preferences/%@.bookmarks.plist";
 
@@ -93,7 +94,7 @@ static BOOL init_ed = NO;
 		if (!bookmarks) {
 			// 如果文件不存在或者格式非法
 			bookmarks = [[NSMutableDictionary alloc] initWithCapacity:10];
-		}		
+		}
 	}
 	return self;
 }
@@ -213,7 +214,11 @@ static BOOL init_ed = NO;
 	[openUrlController syncToBookmark:bookmarks];
 	
 	[bookmarks writeToFile:lastStoppedTimePath atomically:NO];
-	
+    
+    
+    // ***** Rate It *****
+    [Appirater appLaunched:YES];
+    
 	return NSTerminateNow;	
 }
 
