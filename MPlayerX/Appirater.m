@@ -58,7 +58,6 @@ NSString *templateReviewURLIpad = @"itms-apps://ax.itunes.apple.com/WebObjects/M
 - (void)showRatingAlert;
 - (BOOL)ratingConditionsHaveBeenMet;
 - (void)incrementUseCount;
-//- (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
 @end
 
 @implementation Appirater (hidden)
@@ -151,10 +150,17 @@ NSString *templateReviewURLIpad = @"itms-apps://ax.itunes.apple.com/WebObjects/M
 	// get the version number that we've been tracking
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	NSString *trackingVersion = [userDefaults stringForKey:kAppiraterCurrentVersion];
-	if (trackingVersion == nil)
+	
+    // first time run the app, initialization, reset all user defaults
+    if (trackingVersion == nil)
 	{
 		trackingVersion = version;
-		[userDefaults setObject:version forKey:kAppiraterCurrentVersion];
+        [userDefaults setObject:version forKey:kAppiraterCurrentVersion];
+		[userDefaults setDouble:[[NSDate date] timeIntervalSince1970] forKey:kAppiraterFirstUseDate];
+		[userDefaults setInteger:1 forKey:kAppiraterUseCount];
+		[userDefaults setBool:NO forKey:kAppiraterRatedCurrentVersion];
+		[userDefaults setBool:NO forKey:kAppiraterDeclinedToRate];
+		[userDefaults setDouble:0 forKey:kAppiraterReminderRequestDate];
 	}
 	
 	if (APPIRATER_DEBUG)
@@ -179,12 +185,14 @@ NSString *templateReviewURLIpad = @"itms-apps://ax.itunes.apple.com/WebObjects/M
 	}
 	else
 	{
-		// it's a new version of the app, so restart tracking
+		/* it's a new version of the app, 
+         *     refresh the version
+         *     restart tracking date and times
+         *     but not rate it again if custom has already choosen "no" or "rate it"
+         */
 		[userDefaults setObject:version forKey:kAppiraterCurrentVersion];
 		[userDefaults setDouble:[[NSDate date] timeIntervalSince1970] forKey:kAppiraterFirstUseDate];
 		[userDefaults setInteger:1 forKey:kAppiraterUseCount];
-		[userDefaults setBool:NO forKey:kAppiraterRatedCurrentVersion];
-		[userDefaults setBool:NO forKey:kAppiraterDeclinedToRate];
 		[userDefaults setDouble:0 forKey:kAppiraterReminderRequestDate];
 	}
 	
@@ -230,47 +238,6 @@ NSString *templateReviewURLIpad = @"itms-apps://ax.itunes.apple.com/WebObjects/M
 	[userDefaults synchronize];
 
 }
-    /*
-    
-	[alert beginSheetModalForWindow:[[NSApplication sharedApplication] mainWindow]
-					  modalDelegate:self
-					 didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:)
-						contextInfo:nil];
-}
-
-- (void) alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	
-	switch (returnCode) {
-		case NSAlertAlternateReturn:
-		{
-			// they don't want to rate it
-			[userDefaults setBool:YES forKey:kAppiraterDeclinedToRate];
-			break;
-		}
-		case NSAlertDefaultReturn:
-		{
-			// they want to rate it
-			NSString *reviewURL = [templateReviewURL stringByReplacingOccurrencesOfString:@"APP_ID" withString:[NSString stringWithFormat:@"%d", APPIRATER_APP_ID]];
-			[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:reviewURL]];
-			
-			[userDefaults setBool:YES forKey:kAppiraterRatedCurrentVersion];
-			break;
-		}
-		case NSAlertOtherReturn:
-			// remind them later
-            [userDefaults setDouble:[[NSDate date] timeIntervalSince1970] forKey:kAppiraterReminderRequestDate];
-			break;
-		default:
-			break;
-	}
-	
-	[userDefaults synchronize];
-	
-	[self release];
-}
-*/
-
 @end
 
 @implementation Appirater
