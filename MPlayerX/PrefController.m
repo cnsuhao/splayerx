@@ -19,9 +19,11 @@
  */
 
 #import "UserDefaults.h"
+#import "AppController.h"
 #import	"LocalizedStrings.h"
 #import "PrefController.h"
 #import "PlayerController.h"
+#import "StoreHandler.h"
 #import "RootLayerView.h"
 #import "ControlUIView.h"
 #import "CocoaAppendix.h"
@@ -58,12 +60,22 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
 		nibLoaded = NO;
 		prefViews = nil;
 	}
+    
+    // ***** app store IAP support
+    NSNotificationCenter *dc = [NSNotificationCenter defaultCenter];
+    [dc addObserver:self 
+           selector:@selector(refreshButton:) 
+               name:@"RefreshButton"
+             object:SHandler];
+    SHandler = [[StoreHandler alloc] init];
+    // *****
+    
 	return self;
 }
 
 -(IBAction) showUI:(id)sender
 {
-	if (!nibLoaded) {
+    if (!nibLoaded) {
 		[NSBundle loadNibNamed:@"Pref" owner:self];
 		
 		[[charsetListPopup menu] removeAllItems];
@@ -107,15 +119,21 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
 		NSPoint org = [prefWin frame].origin;
 		org.y -= (winH - [prefWin frame].size.height);
 		[prefWin setFrameOrigin:org];
-		
+        
 		nibLoaded = YES;
+        
+        // ***** app store IAP support *****
+        [self setButtonState];
+        // *****
 	}
+    
 	[prefWin makeKeyAndOrderFront:nil];
 }
 
 -(void) dealloc
 {
-	[prefViews release];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+    [prefViews release];
 	[super release];
 }
 
@@ -141,6 +159,70 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
 		[ud setInteger:[sender tag] forKey:kUDKeySelectedPrefView];
 	}
 }
+
+// ***** app store IAP support *****
+-(IBAction)subscribe:(id)sender
+{
+    [dueDateTextField setStringValue:kMPXStringStoreProcessing];
+    [subscribeButton setEnabled:NO];
+    [SHandler sendRequest];
+}
+-(void) refreshButton:(NSNotification *)notif
+{
+    [subscribeButton setEnabled:YES];
+    [self setButtonState];
+}
+
+-(void) setButtonState
+{       
+    if ([[[NSBundle mainBundle] bundleIdentifier] isEqualToString:SPlayerXBundleID])
+    {
+        [subscribeButton setEnabled:NO];
+        [subtitleEnableButton setEnabled:YES];
+        [subtitleSelectionButton setEnabled:YES];
+        [subscribeButton setTitle:kMPXStringStoreButtonPurchased];
+        [dueDateTextField setStringValue:kMPXStringStoreNoExpire];
+    }
+    else if ([[[NSBundle mainBundle] bundleIdentifier] isEqualToString:SPlayerXLiteBundleID])
+    {
+    if ([SHandler checkServiceAuth]) 
+    {
+        NSDate *dueDate = [[NSUserDefaults standardUserDefaults] objectForKey:kUDKeyReceiptDueDate];
+        NSDateFormatter *outputFormat = [[NSDateFormatter alloc] init];
+        [outputFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        [dueDateTextField setStringValue:
+         [kMPXStringStoreDueDate stringByAppendingFormat:
+          [outputFormat stringFromDate:dueDate]]];
+    }
+    else [dueDateTextField setStringValue:kMPXStringStoreNoAuth];
+    
+    if (![SHandler checkSubscriptable])
+    {
+        [subscribeButton setEnabled:NO];
+        [subtitleEnableButton setEnabled:YES];
+        [subtitleSelectionButton setEnabled:YES];
+        [subscribeButton setTitle:kMPXStringStoreButtonPurchased];
+    }
+    else
+    {
+        [subscribeButton setEnabled:YES];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO]
+                                                  forKey:kUDKeySmartSubMatching];
+        [subtitleEnableButton setEnabled:NO];
+        [subtitleSelectionButton setEnabled:NO];
+        [subscribeButton setTitle:kMPXStringStoreButtonNeedPurchase];
+    }
+    }
+}
+// *****
+
+// *** for testing
+- (IBAction)reset:(id)sender
+{
+    [SHandler reset];
+    [self setButtonState];
+}
+// ***
 
 - (IBAction)multiThreadChanged:(id)sender
 {

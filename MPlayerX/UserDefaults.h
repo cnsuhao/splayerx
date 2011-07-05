@@ -92,3 +92,8 @@ extern NSString * const kUDKeyAutoLBHeightInFullScr;		// TODO
 
 extern NSString * const kUDKeyNextSVPauthTime;
 extern NSString * const kUDKeySVPLanguage;
+
+// for in-app purchase
+extern NSString * const kUDKeyReceipt;
+extern NSString * const kUDKeyReceiptDueDate;
+extern NSString * const kUDKeyReceiptExpireRemindDate;

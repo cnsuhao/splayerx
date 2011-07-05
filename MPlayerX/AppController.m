@@ -25,6 +25,7 @@
 #import "OpenURLController.h"
 #import "LocalizedStrings.h"
 #import "Appirater.h"
+#import "StoreHandler.h"
 
 NSString * const kMPCFMTBookmarkPath	= @"%@/Library/Preferences/%@.bookmarks.plist";
 
@@ -224,6 +225,7 @@ static BOOL init_ed = NO;
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
+    [StoreHandler expireAlert];
 }
 
 @end
