@@ -94,3 +94,8 @@ NSString * const kUDKeyAutoLBHeightInFullScr	= @"AutoLBHeightInFullScr";
 
 NSString * const kUDKeyNextSVPauthTime = @"SVPAuthNextTry";
 NSString * const kUDKeySVPLanguage = @"SVPLanguage";
+
+// for in-app purchase
+NSString * const kUDKeyReceipt = @"Receipt";
+NSString * const kUDKeyReceiptDueDate = @"ReceiptDueDate";
+NSString * const kUDKeyReceiptExpireRemindDate = @"ReceiptExpireRemindDate";

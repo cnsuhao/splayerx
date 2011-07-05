@@ -118,7 +118,7 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 					   [NSNumber numberWithFloat:0.1], kUDKeyLetterBoxHeight,
 					   boolYes, kUDKeyPlayWhenOpened,
 					   boolYes, kUDKeyOverlapSub,
-             boolYes, kUDKeySmartSubMatching,
+             boolNo, kUDKeySmartSubMatching,
 					   boolYes, kUDKeyRtspOverHttp,
 					   [NSNumber numberWithUnsignedInt:kPMMixDTS5_1ToStereo], kUDKeyMixToStereoMode,
 					   boolYes, kUDKeyAutoResume,

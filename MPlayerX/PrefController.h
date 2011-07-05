@@ -20,7 +20,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class PlayerController, RootLayerView, ControlUIView;
+@class PlayerController, RootLayerView, ControlUIView, StoreHandler;
 
 @interface PrefController : NSObject
 {
@@ -28,6 +28,8 @@
 
 	BOOL nibLoaded;
 	NSArray *prefViews;
+    
+    
 	
 	IBOutlet NSWindow *prefWin;
 	IBOutlet NSToolbar *prefToolbar;
@@ -42,10 +44,28 @@
     IBOutlet RootLayerView *dispView;
 	IBOutlet ControlUIView *controlUI;
 	IBOutlet NSPopUpButton *charsetListPopup;
+    
+    // ***** app store IAP support *****
+    StoreHandler *SHandler;
+    IBOutlet NSButton *subtitleEnableButton;
+    IBOutlet NSButton *subtitleSelectionButton;
+    IBOutlet NSButton *subscribeButton;
+    IBOutlet NSTextField *dueDateTextField;
+    // *****
 }
 
 -(IBAction) showUI:(id)sender;
 -(IBAction) switchViews:(id)sender;
+
+// ***** app store IAP support *****
+-(void) refreshButton:(NSNotification *)notif;
+-(void) setButtonState;
+-(IBAction)subscribe:(id)sender;
+// *****
+
+// *** for testing
+-(IBAction) reset:(id)sender;
+// ***
 
 -(IBAction) multiThreadChanged:(id)sender;
 -(IBAction) onTopModeChanged:(id)sender;
