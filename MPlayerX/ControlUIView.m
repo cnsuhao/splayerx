@@ -687,6 +687,14 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 					owner:kOSDOwnerNotifier
 					updateTimer:YES];
 }
+
+-(void) setOSDMessageNow:(NSString *)msg
+{
+    [osd setStringValue:msg
+                  owner:kOSDOwnerOther
+            updateTimer:YES];
+}
+
 -(IBAction) setVolume:(id)sender
 {
 	if ([volumeSlider isEnabled]) {
@@ -1492,7 +1500,21 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 		if (changeKind == NSKeyValueChangeSetting) {
 			[[subListMenu itemAtIndex:0] setState:NSOnState];
 		} else {
-			[self setSubWithID:mItem];
+			
+            //[self setSubWithID:mItem];
+            
+            /* Changed to fix the bug on OSD subtile search result
+             *      not calling setSubWithID so there's no OSD sub changed info
+             *      but sub infro still show on OSD when manually switch sub
+             */
+            [playerController setSubtitle:[mItem tag]];
+            for (NSMenuItem* mItem in [subListMenu itemArray]) {
+                if ([mItem state] == NSOnState) {
+                    [mItem setState:NSOffState];
+                    break;
+                }
+            }
+            [mItem setState:NSOnState];
 		}
 
 		[menuSwitchSub setEnabled:YES];

@@ -725,6 +725,11 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 	[controlUI setOSDMessage:msg];
 }
 
+-(void) setOSDMessageNow:(NSString *)msg
+{
+    [controlUI setOSDMessageNow:msg];
+}
+
 -(void) setLetterBox:(BOOL) renderSubInLB top:(float) topRatio bottom:(float)bottomRatio
 {
 	if (PlayerCouldAcceptCommand) {
