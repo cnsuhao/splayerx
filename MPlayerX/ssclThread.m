@@ -139,7 +139,7 @@
 				if (acctureCount == 0)
 					[playerController setOSDMessage:kMPXStringSSCLZeroMatched];
 				else
-					[playerController setOSDMessage:[NSString stringWithFormat:
+					[playerController setOSDMessageNow:[NSString stringWithFormat:
                                                         kMPXStringSSCLGotResults, acctureCount]];
 		  }	
 			break;

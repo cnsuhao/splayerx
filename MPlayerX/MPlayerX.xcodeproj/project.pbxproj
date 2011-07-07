@@ -977,10 +977,6 @@
 		86CAF22310BA447900848B8E /* PlayerCore */ = {
 			isa = PBXGroup;
 			children = (
-				0EE2CD5713BAE02E008E5DD9 /* StoreHandler.h */,
-				0EE2CD5813BAE02E008E5DD9 /* StoreHandler.m */,
-				0E0AA44613BB2E67005BBC30 /* Appirater.h */,
-				0E0AA44713BB2E67005BBC30 /* Appirater.m */,
 				86E34BBD10FF42A40004C4E7 /* CoreController.h */,
 				86E34BBE10FF42A40004C4E7 /* CoreController.m */,
 				86CAF24410BA44F700848B8E /* ParameterManager.h */,
@@ -1036,10 +1032,14 @@
 		88D65B3612D022D90044B3DD /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				88180CBD135DF08400CF82EE /* WhiteIntermProgIndicator.h */,
-				88180CBE135DF08400CF82EE /* WhiteIntermProgIndicator.m */,
+				0EE2CD5713BAE02E008E5DD9 /* StoreHandler.h */,
+				0EE2CD5813BAE02E008E5DD9 /* StoreHandler.m */,
+				0E0AA44613BB2E67005BBC30 /* Appirater.h */,
+				0E0AA44713BB2E67005BBC30 /* Appirater.m */,
 				88D65B3712D023290044B3DD /* ssclThread.h */,
 				88D65B3812D023290044B3DD /* ssclThread.m */,
+				88180CBD135DF08400CF82EE /* WhiteIntermProgIndicator.h */,
+				88180CBE135DF08400CF82EE /* WhiteIntermProgIndicator.m */,
 				9D1B846F138F892D00049901 /* GTMStringEncoding.h */,
 				9D1B8470138F892D00049901 /* GTMStringEncoding.m */,
 				9D1B8472138F8A0400049901 /* GTMDefines.h */,

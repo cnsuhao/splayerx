@@ -155,16 +155,23 @@
 				aString = [self stringValue];
 			}
 			
+            /* bug fixing: OSD won't set front size until window size updated
+             */
+            if (ow ==  kOSDOwnerNotifier)
+            {
+                NSDate *future = [NSDate dateWithTimeIntervalSinceNow: 0.3];
+                [NSThread sleepUntilDate:future];
+            }
+            
 			NSSize sz = [[self superview] bounds].size;
-			
+            
 			float fontSize = MIN(fontSizeMax, MAX(fontSizeMin, (sz.height*fontSizeRatio) + fontSizeOffset));
 			if (ow == kOSDOwnerMediaInfo) 
 				fontSize *= 0.7;
 			else if (ow == kOSDOwnerNotifier)
-				fontSize *= 0.5;
+                fontSize *= 0.7;
 			else
 				fontSize *= 0.8;
-			
 			NSFont *font = [NSFont systemFontOfSize:fontSize];
 			
 			NSDictionary *attrDict = [[NSDictionary alloc] initWithObjectsAndKeys:

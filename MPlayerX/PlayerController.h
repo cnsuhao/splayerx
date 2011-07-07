@@ -102,5 +102,9 @@ extern NSString * const kMPCPlayInfoUpdatedChangeDictKey;
 -(void) pullSubtitle;
 -(void) pushSubtitle;
 
+/* for subtitle search OSD display
+ * latter method set owner:kOSDOwnerOther
+ */
 -(void) setOSDMessage:(NSString*) msg;
+-(void) setOSDMessageNow:(NSString*)msg;
 @end
