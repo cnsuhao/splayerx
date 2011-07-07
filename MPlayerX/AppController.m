@@ -25,7 +25,6 @@
 #import "OpenURLController.h"
 #import "LocalizedStrings.h"
 #import "Appirater.h"
-#import "StoreHandler.h"
 
 NSString * const kMPCFMTBookmarkPath	= @"%@/Library/Preferences/%@.bookmarks.plist";
 
@@ -179,11 +178,11 @@ static BOOL init_ed = NO;
 }
 -(IBAction) pushSubtitle:(id)sender
 {
-  [playerController pushSubtitle];
+    [playerController pushSubtitle];
 }
 -(IBAction) smartMatchingSubtitle:(id)sender
 {
-  [playerController pullSubtitle];
+    [playerController pullSubtitle];
 }
 -(IBAction) searchSubtitleFromWeb:(id)sender
 {
@@ -225,7 +224,6 @@ static BOOL init_ed = NO;
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
-    [StoreHandler expireAlert];
 }
 
 @end

@@ -12,6 +12,7 @@
 #import "UserDefaults.h"
 #import <WebKit/WebKit.h>
 #import "ControlUIView.h"
+#import "StoreHandler.h"
 
 @implementation ssclThread
 
@@ -28,30 +29,38 @@
 +(void)pullSubtitle:(PlayerController*)playerController 
 {
 
-  [self authAppstore];
+    [self authAppstore];
   
 	NSAutoreleasePool* POOL = [[NSAutoreleasePool alloc] init];	
 	// send osd
 	if (![playerController.lastPlayedPath isFileURL])
 		return [POOL release];
+    
+    // add IAP expire reminder on OSD
+    if ([StoreHandler expireReminder])
+    {
+        [playerController setOSDMessage:[kMPXStringSSCLFetching 
+                                         stringByAppendingFormat:kMPXStringStoreExpireReminder,
+                                         [StoreHandler subscriptionLeftDay]]];
+    }
+    else [playerController setOSDMessage:kMPXStringSSCLFetching];
 	
-	[playerController setOSDMessage:kMPXStringSSCLFetching];
 	
-  NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
 	NSString* argLang = [NSString stringWithString:@"chn"];
 	NSString* langCurrent = [[ud objectForKey:@"AppleLanguages"] objectAtIndex:0];
 	if ([langCurrent hasPrefix:@"zh"] == NO)
 		argLang = [NSString stringWithString:@"eng"];
 		
-  if ([ud integerForKey:kUDKeySVPLanguage] != 0)
-  {
-    if ([argLang compare:@"eng"] == NSOrderedSame)
-      argLang = [NSString stringWithString:@"chn"];
-    else
-      argLang = [NSString stringWithString:@"eng"];
-  }
+    if ([ud integerForKey:kUDKeySVPLanguage] != 0)
+    {
+        if ([argLang compare:@"eng"] == NSOrderedSame)
+            argLang = [NSString stringWithString:@"chn"];
+        else
+            argLang = [NSString stringWithString:@"eng"];
+    }
   
-  // call sscl [playerController.lastPlayedPath path]
+    // call sscl [playerController.lastPlayedPath path]
 	NSString *resPath = [[NSBundle mainBundle] resourcePath];
 	
 	NSTask *task;
@@ -71,7 +80,7 @@
 	
 	NSFileHandle *file;
 	file = [pipe fileHandleForReading];
-	
+	 
 	[task launch];
 	[task waitUntilExit];
 	
@@ -86,26 +95,28 @@
 			// TODO: message box?
 			return [POOL release];
 			break;
-		default:
-			
-			break;
+        default:
+            break;
 	}
 	[task release];
 	
-		
 	NSString *retString;
 	retString = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-  MPLog(@"%s %lu %lu\n", [retString UTF8String], (unsigned long)[data length], (unsigned long)[retString length]);
+    MPLog(@"%s %lu %lu\n", [retString UTF8String], (unsigned long)[data length], (unsigned long)[retString length]);
   
 	int resultCount = 0;
 	NSArray *retLines = nil;
 	if ([retString length] > 0)
 	{
-	  retLines = [retString componentsSeparatedByCharactersInSet:
+        retLines = [retString componentsSeparatedByCharactersInSet:
 										     [NSCharacterSet newlineCharacterSet]];
-  	resultCount = [retLines count];
+        resultCount = [retLines count];
 	}
-	switch (resultCount) {
+	
+    
+    [playerController setOSDMessage:kMPXStringSSCLZeroMatched];
+    
+    switch (resultCount) {
 		case 0:
 			[playerController setOSDMessage:kMPXStringSSCLZeroMatched];
 			break;
@@ -118,7 +129,7 @@
 					for (NSString* subPath in reversedLines)
 					{
 						// printf("%s \n", [subPath UTF8String]);
-						if (subPath && [subPath length] > 0)
+						if (subPath && ([subPath length] > 0))
 						{
 							[playerController loadSubFile:subPath];
 							acctureCount++;
@@ -129,7 +140,7 @@
 					[playerController setOSDMessage:kMPXStringSSCLZeroMatched];
 				else
 					[playerController setOSDMessage:[NSString stringWithFormat:
-																					 kMPXStringSSCLGotResults, acctureCount]];
+                                                        kMPXStringSSCLGotResults, acctureCount]];
 		  }	
 			break;
 	}

@@ -22,9 +22,6 @@ extern NSString *const SPlayerXLiteBundleID;
 // Customize "app give expiring alert xx days before expire date"
 #define ALERT_DAY_BEFORE_EXPIRE         15
 
-// In how long (seconds) will next expire alert popped
-#define ALERT_TIME_BEFORE_REMINDING     2
-
 
 @interface StoreHandler : NSObject <SKPaymentTransactionObserver, SKProductsRequestDelegate> 
 {
@@ -32,11 +29,10 @@ extern NSString *const SPlayerXLiteBundleID;
     SKProductsRequest *productsRequest;
 }
 
-/* CALLED: when app did finish lauching
- * FUNC: check the left days in subscription and pop NSAlert
- * disabled when there's no valid receipt
- */
-+ (void) expireAlert;
+
++ (int) subscriptionLeftDay;
+
++ (BOOL) expireReminder;
 
 /* Three functions CALLED in observer delegate protocol function
  * FUNC: handling the received transactions from app store

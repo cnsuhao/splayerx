@@ -187,6 +187,8 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
     {
     if ([SHandler checkServiceAuth]) 
     {
+        [subtitleEnableButton setEnabled:YES];
+        [subtitleSelectionButton setEnabled:YES];
         NSDate *dueDate = [[NSUserDefaults standardUserDefaults] objectForKey:kUDKeyReceiptDueDate];
         NSDateFormatter *outputFormat = [[NSDateFormatter alloc] init];
         [outputFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -194,22 +196,23 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
          [kMPXStringStoreDueDate stringByAppendingFormat:
           [outputFormat stringFromDate:dueDate]]];
     }
-    else [dueDateTextField setStringValue:kMPXStringStoreNoAuth];
+    else 
+    {
+        [dueDateTextField setStringValue:kMPXStringStoreNoAuth];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO]
+                                                  forKey:kUDKeySmartSubMatching];
+        [subtitleEnableButton setEnabled:NO];
+        [subtitleSelectionButton setEnabled:NO];
+    }
     
     if (![SHandler checkSubscriptable])
     {
         [subscribeButton setEnabled:NO];
-        [subtitleEnableButton setEnabled:YES];
-        [subtitleSelectionButton setEnabled:YES];
         [subscribeButton setTitle:kMPXStringStoreButtonPurchased];
     }
     else
     {
         [subscribeButton setEnabled:YES];
-        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO]
-                                                  forKey:kUDKeySmartSubMatching];
-        [subtitleEnableButton setEnabled:NO];
-        [subtitleSelectionButton setEnabled:NO];
         [subscribeButton setTitle:kMPXStringStoreButtonNeedPurchase];
     }
     }

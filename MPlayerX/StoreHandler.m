@@ -25,7 +25,6 @@ NSString * const SPlayerXLiteBundleID       = @"org.splayer.splayerx";
 	 [NSDictionary dictionaryWithObjectsAndKeys:
 	  [NSNumber numberWithBool:NO], kUDKeyReceipt,
       [NSDate date], kUDKeyReceiptDueDate,
-      [NSDate date], kUDKeyReceiptExpireRemindDate,
 	  nil]];
 }
 
@@ -38,15 +37,12 @@ NSString * const SPlayerXLiteBundleID       = @"org.splayer.splayerx";
         [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
         
         // *** for testing
-        
+        /*
         [ud setObject:[NSNumber numberWithBool:YES] forKey:kUDKeyReceipt];
         [ud setObject:[NSDate dateWithTimeIntervalSinceNow:(2 * 24 * 3600)]
-                                                    forKey:kUDKeyReceiptDueDate];
-        [ud setObject:[NSDate dateWithTimeIntervalSinceNow:
-                       (( 2 - ALERT_DAY_BEFORE_EXPIRE ) * 24 * 3600)] 
-                                                    forKey:kUDKeyReceiptExpireRemindDate];
+               forKey:kUDKeyReceiptDueDate];
         [ud setObject:[NSNumber numberWithBool:YES] forKey:kUDKeySmartSubMatching];
-        
+        */
         // ***
         
         // refresh subtitle service status
@@ -67,7 +63,7 @@ NSString * const SPlayerXLiteBundleID       = @"org.splayer.splayerx";
 }
 
 - (void) productsRequest:(SKProductsRequest *)request 
-     didReceiveResponse:(SKProductsResponse *)response
+      didReceiveResponse:(SKProductsResponse *)response
 {
     [productsRequest release];
     
@@ -78,7 +74,7 @@ NSString * const SPlayerXLiteBundleID       = @"org.splayer.splayerx";
 }
 
 - (void) paymentQueue:(SKPaymentQueue *)queue 
- updatedTransactions:(NSArray *)transactions
+  updatedTransactions:(NSArray *)transactions
 {
     for (SKPaymentTransaction *transaction in transactions) 
     {
@@ -98,38 +94,26 @@ NSString * const SPlayerXLiteBundleID       = @"org.splayer.splayerx";
 
 
 // ***** own methods *****
-+ (void) expireAlert
++ (BOOL) expireReminder
 {
     if ([[NSUserDefaults standardUserDefaults] boolForKey:kUDKeyReceipt])
     {
-        NSDate *remindDate = [[NSUserDefaults standardUserDefaults] 
-                              objectForKey:kUDKeyReceiptExpireRemindDate];
-        if ([remindDate compare:[NSDate date]]== NSOrderedAscending)
-        {
-            NSDate *dueDate = [[NSUserDefaults standardUserDefaults] 
-                               objectForKey:kUDKeyReceiptDueDate];
-            int leftDay = ( (int)[dueDate timeIntervalSinceNow] / (3600 * 24) ) + 1;
-            NSString *text = [kMPXStringStoreAlertInformativeTextOne 
-                              stringByAppendingFormat:@"%d", leftDay];
-            text = [text stringByAppendingString:kMPXStringStoreAlertInformativeTextTwo];
-            
-            NSAlert *alert = [NSAlert alertWithMessageText:kMPXStringStoreAlertTitle
-                                             defaultButton:kMPXStringStoreAlertButton
-                                           alternateButton:nil
-                                               otherButton:nil
-                                 informativeTextWithFormat:text];
-
-            [alert runModal];
-            
-            if (leftDay < 4) [[NSUserDefaults standardUserDefaults] 
-                              setObject:[NSDate dateWithTimeIntervalSinceNow:(24 * 3600)] 
-                              forKey:kUDKeyReceiptExpireRemindDate];
-            else [[NSUserDefaults standardUserDefaults] 
-                  setObject:[NSDate dateWithTimeIntervalSinceNow:ALERT_TIME_BEFORE_REMINDING] 
-                  forKey:kUDKeyReceiptExpireRemindDate];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        }
+        NSDate *dueDate = [[NSUserDefaults standardUserDefaults] 
+                           objectForKey:kUDKeyReceiptDueDate];
+        
+        if ([dueDate timeIntervalSinceNow] < 3600 * 24 * ALERT_DAY_BEFORE_EXPIRE)
+            return YES;
     }
+    return NO;
+}
+
++ (int) subscriptionLeftDay
+{
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:kUDKeyReceipt]) 
+        return -1;
+    NSDate *dueDate = [[NSUserDefaults standardUserDefaults]
+                       objectForKey:kUDKeyReceiptDueDate];
+    return ( (int)[dueDate timeIntervalSinceNow] / 3600 / 24 + 1);
 }
 
 - (void) completedPurchaseTransaction: (SKPaymentTransaction *) transaction
@@ -140,19 +124,12 @@ NSString * const SPlayerXLiteBundleID       = @"org.splayer.splayerx";
         [ud setObject:[NSDate dateWithTimeInterval:(365 * 24 * 3600)
                                          sinceDate:duedate]
                forKey:kUDKeyReceiptDueDate];
-        [ud setObject:[NSDate dateWithTimeInterval:
-                       ((365 - ALERT_DAY_BEFORE_EXPIRE ) * 24 * 3600) 
-                                         sinceDate:duedate] 
-               forKey:kUDKeyReceiptExpireRemindDate];
     }
     else 
     {
         [ud setObject:[NSNumber numberWithBool:YES] forKey:kUDKeyReceipt];
         [ud setObject:[NSDate dateWithTimeIntervalSinceNow:(365 * 24 * 3600)]
                forKey:kUDKeyReceiptDueDate];
-        [ud setObject:[NSDate dateWithTimeIntervalSinceNow:
-                       ((365 - ALERT_DAY_BEFORE_EXPIRE ) * 24 * 3600)]
-               forKey:kUDKeyReceiptExpireRemindDate];
         [ud setObject:[NSNumber numberWithBool:YES] forKey:kUDKeySmartSubMatching];
     }
     
@@ -198,16 +175,16 @@ NSString * const SPlayerXLiteBundleID       = @"org.splayer.splayerx";
     
     // *** for testing
     /*[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES]
-                                              forKey:kUDKeyReceipt];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate dateWithTimeIntervalSinceNow:(2*365*24*3600)]
-                                              forKey:kUDKeyReceiptDueDate];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES]
-                                              forKey:kUDKeySmartSubMatching];
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc postNotificationName:@"RefreshButton" object:self];*/
+     forKey:kUDKeyReceipt];
+     [[NSUserDefaults standardUserDefaults] setObject:[NSDate dateWithTimeIntervalSinceNow:(2*365*24*3600)]
+     forKey:kUDKeyReceiptDueDate];
+     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES]
+     forKey:kUDKeySmartSubMatching];
+     
+     [[NSUserDefaults standardUserDefaults] synchronize];
+     
+     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+     [nc postNotificationName:@"RefreshButton" object:self];*/
     // ***
 }
 
@@ -218,7 +195,7 @@ NSString * const SPlayerXLiteBundleID       = @"org.splayer.splayerx";
     if ([dueDate compare:[NSDate date]] == NSOrderedDescending)
         return YES;
     [ud setObject:[NSNumber numberWithBool:NO]
-                                              forKey:kUDKeyReceipt];
+           forKey:kUDKeyReceipt];
     [ud synchronize];
     return NO;
 }
