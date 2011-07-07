@@ -677,9 +677,9 @@
 			children = (
 				9DDA1184138E5B940017874E /* WebView */,
 				88D65B3612D022D90044B3DD /* Library */,
+				86450B871108840700E79645 /* LocalizedStrings.h */,
 				86E7A8EF1155E8980014155D /* CocoaAppendix.h */,
 				86E7A8F01155E8980014155D /* CocoaAppendix.m */,
-				86450B871108840700E79645 /* LocalizedStrings.h */,
 				86C02AED12309BCF004E8181 /* UserDefaults.h */,
 				86C02AEE12309BCF004E8181 /* UserDefaults.m */,
 				86C5492310C5216600DC1511 /* PlayList.h */,
