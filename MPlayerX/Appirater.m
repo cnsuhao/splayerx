@@ -37,6 +37,7 @@
 #import "Appirater.h"
 #import <SystemConfiguration/SCNetworkReachability.h>
 #include <netinet/in.h>
+#import "LocalizedStrings.h"
 
 NSString *const kAppiraterFirstUseDate				= @"kAppiraterFirstUseDate";
 NSString *const kAppiraterUseCount					= @"kAppiraterUseCount";
@@ -200,11 +201,11 @@ NSString *templateReviewURLIpad = @"itms-apps://ax.itunes.apple.com/WebObjects/M
 }
 
 - (void)showRatingAlert {
-	NSAlert *alert = [NSAlert alertWithMessageText:APPIRATER_MESSAGE_TITLE
-									 defaultButton:APPIRATER_RATE_BUTTON
-								   alternateButton:APPIRATER_CANCEL_BUTTON
-									   otherButton:APPIRATER_RATE_LATER
-						 informativeTextWithFormat:APPIRATER_MESSAGE];
+	NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:kMPXStringAppiraterAlertTitle, APPIRATER_APP_NAME]
+									 defaultButton:[NSString stringWithFormat:kMPXStringAppiraterDefaultButton, APPIRATER_APP_NAME]
+								   alternateButton:kMPXStringAppiraterRejectButton
+									   otherButton:kMPXStringAppiraterRemindLaterButton
+						 informativeTextWithFormat:[NSString stringWithFormat:kMPXStringAppiraterAlertMessage, APPIRATER_APP_NAME]];
 	
     
     

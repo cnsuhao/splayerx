@@ -143,10 +143,18 @@
 #define kMPXStringStoreProcessing   (NSLocalizedString(@"Processing", @"Store Support"))
 #define kMPXStringStoreExpireReminder   (NSLocalizedString(@"Expire Reminder", @"Store Support"))
 
-// ***** set default alert support
+// ***** set default alert support *****
 #define kMPXStringSetDefaultAlertMessage    (NSLocalizedString(@"Alert Message", @"Set Default Support"))
 #define kMPXStringSetDefaultAlertTitle  (NSLocalizedString(@"Alert Title", @"Set Default Support"))
 #define kMPXStringSetDefaultRejectButton    (NSLocalizedString(@"Reject Button", @"Set Default Support"))
 #define kMPXStringSetDefaultDefaultButton   (NSLocalizedString(@"Default Button", @"Set Default Support"))
 #define kMPXStringSetDefaultRemindLaterButton (NSLocalizedString(@"Remind Later Button", @"Set Default Support"))
+
+
+// ***** appirater support *****
+#define kMPXStringAppiraterAlertMessage     (NSLocalizedString(@"Appirater Alert Message", @"Appirater Support"))
+#define kMPXStringAppiraterAlertTitle   (NSLocalizedString(@"Appirater Alert Title", @"Appirater Support"))
+#define kMPXStringAppiraterRejectButton     (NSLocalizedString(@"Appirater Reject Button", @"Appirater Support"))
+#define kMPXStringAppiraterDefaultButton    (NSLocalizedString(@"Appirater Default Button", @"Appirater Support"))
+#define kMPXStringAppiraterRemindLaterButton    (NSLocalizedString(@"Appirater Remind Later Button", @"Appirater Support"))
 

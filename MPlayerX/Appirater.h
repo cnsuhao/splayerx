@@ -54,33 +54,7 @@ extern NSString *const kAppiraterReminderRequestDate;
 /*
  Your app's name.
  */
-#define APPIRATER_APP_NAME				[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey]
-
-/*
- This is the message your users will see once they've passed the day+launches
- threshold.
- */
-#define APPIRATER_MESSAGE				[NSString stringWithFormat:@"If you enjoy using %@, would you mind taking a moment to rate it? It won't take more than a minute. Thanks for your support!", APPIRATER_APP_NAME]
-
-/*
- This is the title of the message alert that users will see.
- */
-#define APPIRATER_MESSAGE_TITLE			[NSString stringWithFormat:@"Rate %@", APPIRATER_APP_NAME]
-
-/*
- The text of the button that rejects reviewing the app.
- */
-#define APPIRATER_CANCEL_BUTTON			@"No, Thanks"
-
-/*
- Text of button that will send user to app review page.
- */
-#define APPIRATER_RATE_BUTTON			[NSString stringWithFormat:@"Rate %@", APPIRATER_APP_NAME]
-
-/*
- Text for button to remind the user to review later.
- */
-#define APPIRATER_RATE_LATER			@"Remind me later"
+#define APPIRATER_APP_NAME				[[[NSBundle mainBundle] localizedInfoDictionary] objectForKey:(NSString*)kCFBundleNameKey]
 
 /*
  Users will need to have the same version of your app installed for this many
