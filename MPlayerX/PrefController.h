@@ -29,8 +29,6 @@
 	BOOL nibLoaded;
 	NSArray *prefViews;
     
-    
-	
 	IBOutlet NSWindow *prefWin;
 	IBOutlet NSToolbar *prefToolbar;
 	
@@ -57,15 +55,16 @@
 -(IBAction) showUI:(id)sender;
 -(IBAction) switchViews:(id)sender;
 
+// ***** for setting default player
+-(IBAction)setDefaultButton:(id)sender;
+
 // ***** app store IAP support *****
 -(void) refreshButton:(NSNotification *)notif;
 -(void) setButtonState;
 -(IBAction)subscribe:(id)sender;
-// *****
 
 // *** for testing
 -(IBAction) reset:(id)sender;
-// ***
 
 -(IBAction) multiThreadChanged:(id)sender;
 -(IBAction) onTopModeChanged:(id)sender;

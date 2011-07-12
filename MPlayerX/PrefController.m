@@ -27,6 +27,7 @@
 #import "RootLayerView.h"
 #import "ControlUIView.h"
 #import "CocoaAppendix.h"
+#import "LaunchServiceHandler.h"
 
 NSString * const PrefToolBarItemIdGeneral	= @"TBIGeneral";
 NSString * const PrefToolBarItemIdVideo		= @"TBIVideo";
@@ -160,6 +161,12 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
 	}
 }
 
+// ***** for set default player
+-(IBAction)setDefaultButton:(id)sender
+{
+    [LaunchServiceHandler setDefaultAction];
+}
+
 // ***** app store IAP support *****
 -(IBAction)subscribe:(id)sender
 {
@@ -217,7 +224,6 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
     }
     }
 }
-// *****
 
 // *** for testing
 - (IBAction)reset:(id)sender
