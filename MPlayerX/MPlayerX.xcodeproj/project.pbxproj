@@ -45,7 +45,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		0E01D16913B1F5CF006F2873 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E01D16813B1F5CF006F2873 /* StoreKit.framework */; };
 		0E0AA44813BB2E67005BBC30 /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AA44713BB2E67005BBC30 /* Appirater.m */; };
 		0E24C9FF13BC862200AFCFA7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E24C9FE13BC862200AFCFA7 /* SystemConfiguration.framework */; };
 		0E24CA0913BC886C00AFCFA7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 860EF90D1127BAE40015B6EE /* MainMenu.xib */; };
@@ -167,11 +166,17 @@
 		0E24CA7F13BC886C00AFCFA7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8608653F10BA56C100459392 /* QuartzCore.framework */; };
 		0E24CA8013BC886C00AFCFA7 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8609C28010C6944A00B102CE /* IOKit.framework */; };
 		0E24CA8113BC886C00AFCFA7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D23C0A3132887B200980BA6 /* WebKit.framework */; };
-		0E24CA8213BC886C00AFCFA7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E01D16813B1F5CF006F2873 /* StoreKit.framework */; };
 		0E24CA8413BC886C00AFCFA7 /* binaries in Copy Binaries */ = {isa = PBXBuildFile; fileRef = 8608645C10BA533400459392 /* binaries */; };
 		0E24CA8613BC886C00AFCFA7 /* UniversalDetector.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 88AE2515134BB04A005E7C60 /* UniversalDetector.framework */; };
 		0E24CA8713BC886C00AFCFA7 /* BGHUDAppKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 88AE2514134BB04A005E7C60 /* BGHUDAppKit.framework */; };
 		0E24CA8B13BC886C00AFCFA7 /* plug-ins in Copy plug-ins */ = {isa = PBXBuildFile; fileRef = 9D7E127E132B7716009FD852 /* plug-ins */; };
+		0E3DA67813C596BE00E53099 /* LaunchServiceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E3DA67713C596BE00E53099 /* LaunchServiceHandler.m */; };
+		0E3DA67913C596BE00E53099 /* LaunchServiceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E3DA67713C596BE00E53099 /* LaunchServiceHandler.m */; };
+		0E3DA67B13C5A37600E53099 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E3DA67A13C5A37600E53099 /* ApplicationServices.framework */; };
+		0E5BE7EE13CC04C300403B2A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5BE7ED13CC04C300403B2A /* StoreKit.framework */; };
+		0E5BE7EF13CC04C300403B2A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5BE7ED13CC04C300403B2A /* StoreKit.framework */; };
+		0E65375B13CC584100187456 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0E65375913CC584100187456 /* InfoPlist.strings */; };
+		0E65375C13CC584100187456 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0E65375913CC584100187456 /* InfoPlist.strings */; };
 		0EE2CD5913BAE02E008E5DD9 /* StoreHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE2CD5813BAE02E008E5DD9 /* StoreHandler.m */; };
 		86030A9311F1E00600F8D1E8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86030A9211F1E00600F8D1E8 /* Localizable.strings */; };
 		86034C3210D13DBF001CB180 /* fold.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 86034C3010D13DBF001CB180 /* fold.pdf */; };
@@ -454,11 +459,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0E01D16813B1F5CF006F2873 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StoreKit.framework; sourceTree = "<group>"; };
 		0E0AA44613BB2E67005BBC30 /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
 		0E0AA44713BB2E67005BBC30 /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
 		0E24C9FE13BC862200AFCFA7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = SDKs/MacOSX10.7.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		0E24CA9013BC886C00AFCFA7 /* SPlayerX copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "SPlayerX copy.app"; path = "SPlayerX Lite.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E3DA67613C596BE00E53099 /* LaunchServiceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchServiceHandler.h; sourceTree = "<group>"; };
+		0E3DA67713C596BE00E53099 /* LaunchServiceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchServiceHandler.m; sourceTree = "<group>"; };
+		0E3DA67A13C5A37600E53099 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = SDKs/MacOSX10.7.sdk/System/Library/Frameworks/ApplicationServices.framework; sourceTree = DEVELOPER_DIR; };
+		0E5BE7ED13CC04C300403B2A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StoreKit.framework; sourceTree = "<group>"; };
+		0E65375A13CC584100187456 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0EE2CD5713BAE02E008E5DD9 /* StoreHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreHandler.h; sourceTree = "<group>"; };
 		0EE2CD5813BAE02E008E5DD9 /* StoreHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreHandler.m; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -649,7 +658,7 @@
 				0E24CA7F13BC886C00AFCFA7 /* QuartzCore.framework in Frameworks */,
 				0E24CA8013BC886C00AFCFA7 /* IOKit.framework in Frameworks */,
 				0E24CA8113BC886C00AFCFA7 /* WebKit.framework in Frameworks */,
-				0E24CA8213BC886C00AFCFA7 /* StoreKit.framework in Frameworks */,
+				0E5BE7EF13CC04C300403B2A /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,6 +666,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E3DA67B13C5A37600E53099 /* ApplicationServices.framework in Frameworks */,
 				0E24C9FF13BC862200AFCFA7 /* SystemConfiguration.framework in Frameworks */,
 				88AE2516134BB04A005E7C60 /* BGHUDAppKit.framework in Frameworks */,
 				88AE2517134BB04A005E7C60 /* UniversalDetector.framework in Frameworks */,
@@ -665,7 +675,7 @@
 				8608654010BA56C100459392 /* QuartzCore.framework in Frameworks */,
 				8609C28110C6944A00B102CE /* IOKit.framework in Frameworks */,
 				9D23C0A4132887B200980BA6 /* WebKit.framework in Frameworks */,
-				0E01D16913B1F5CF006F2873 /* StoreKit.framework in Frameworks */,
+				0E5BE7EE13CC04C300403B2A /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -762,8 +772,9 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0E5BE7ED13CC04C300403B2A /* StoreKit.framework */,
+				0E3DA67A13C5A37600E53099 /* ApplicationServices.framework */,
 				0E24C9FE13BC862200AFCFA7 /* SystemConfiguration.framework */,
-				0E01D16813B1F5CF006F2873 /* StoreKit.framework */,
 				88AE2514134BB04A005E7C60 /* BGHUDAppKit.framework */,
 				88AE2515134BB04A005E7C60 /* UniversalDetector.framework */,
 				9D23C0A3132887B200980BA6 /* WebKit.framework */,
@@ -890,6 +901,7 @@
 				8866A9BF12D4E4F8009EFC33 /* zh_CN.lproj */,
 				86030A9211F1E00600F8D1E8 /* Localizable.strings */,
 				860EF90D1127BAE40015B6EE /* MainMenu.xib */,
+				0E65375913CC584100187456 /* InfoPlist.strings */,
 				860EF90F1127BB050015B6EE /* Pref.xib */,
 				860EF9111127BB0E0015B6EE /* VideoTuner.xib */,
 				86E7A8FE1155EBCD0014155D /* SubEncoding.xib */,
@@ -1036,6 +1048,8 @@
 				0EE2CD5813BAE02E008E5DD9 /* StoreHandler.m */,
 				0E0AA44613BB2E67005BBC30 /* Appirater.h */,
 				0E0AA44713BB2E67005BBC30 /* Appirater.m */,
+				0E3DA67613C596BE00E53099 /* LaunchServiceHandler.h */,
+				0E3DA67713C596BE00E53099 /* LaunchServiceHandler.m */,
 				88D65B3712D023290044B3DD /* ssclThread.h */,
 				88D65B3812D023290044B3DD /* ssclThread.m */,
 				88180CBD135DF08400CF82EE /* WhiteIntermProgIndicator.h */,
@@ -1281,6 +1295,7 @@
 				0E24CA4713BC886C00AFCFA7 /* busy.html in Resources */,
 				0E24CA4813BC886C00AFCFA7 /* close_big.png in Resources */,
 				0E24CA4913BC886C00AFCFA7 /* busy-white.html in Resources */,
+				0E65375C13CC584100187456 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1353,6 +1368,7 @@
 				9D18753B132F7E3700F74402 /* busy.html in Resources */,
 				9DBA13FC139384DB000F86D6 /* close_big.png in Resources */,
 				9DBA13FE1393A64B000F86D6 /* busy-white.html in Resources */,
+				0E65375B13CC584100187456 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1550,6 +1566,7 @@
 				0E24CA7613BC886C00AFCFA7 /* GTMStringEncoding.m in Sources */,
 				0E24CA7713BC886C00AFCFA7 /* StoreHandler.m in Sources */,
 				0E24CA7813BC886C00AFCFA7 /* Appirater.m in Sources */,
+				0E3DA67913C596BE00E53099 /* LaunchServiceHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1603,6 +1620,7 @@
 				9D1B8471138F892D00049901 /* GTMStringEncoding.m in Sources */,
 				0EE2CD5913BAE02E008E5DD9 /* StoreHandler.m in Sources */,
 				0E0AA44813BB2E67005BBC30 /* Appirater.m in Sources */,
+				0E3DA67813C596BE00E53099 /* LaunchServiceHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1652,6 +1670,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		0E65375913CC584100187456 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0E65375A13CC584100187456 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		86030A9211F1E00600F8D1E8 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
