@@ -9,12 +9,9 @@
 #import "StoreHandler.h"
 
 // *** normal code ***
-//NSString * const SPlayerXBundleID           = @"org.splayer.splayerx";
-//NSString * const SPlayerXLiteBundleID       = @"Unknown";
-// *** test code
-NSString * const SPlayerXBundleID           = @"Unknown";
-NSString * const SPlayerXLiteBundleID       = @"org.splayer.splayerx";
-// ***
+NSString * const SPlayerXBundleID           = @"org.splayer.splayerx";
+NSString * const SPlayerXRevisedBundleID       = @"org.splayer.splayerx.revised";
+
 
 @implementation StoreHandler
 
@@ -50,7 +47,7 @@ NSString * const SPlayerXLiteBundleID       = @"org.splayer.splayerx";
         {
             [ud setObject:[NSNumber numberWithBool:YES] forKey:kUDKeySmartSubMatching];
         }
-        else if ([[[NSBundle mainBundle] bundleIdentifier] isEqualToString:SPlayerXLiteBundleID]) 
+        else if ([[[NSBundle mainBundle] bundleIdentifier] isEqualToString:SPlayerXRevisedBundleID]) 
         {
             if (![self checkServiceAuth])
             {
