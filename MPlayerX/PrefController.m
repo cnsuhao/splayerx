@@ -190,7 +190,7 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
         [subscribeButton setTitle:kMPXStringStoreButtonPurchased];
         [dueDateTextField setStringValue:kMPXStringStoreNoExpire];
     }
-    else if ([[[NSBundle mainBundle] bundleIdentifier] isEqualToString:SPlayerXLiteBundleID])
+    else if ([[[NSBundle mainBundle] bundleIdentifier] isEqualToString:SPlayerXRevisedBundleID])
     {
     if ([SHandler checkServiceAuth]) 
     {
