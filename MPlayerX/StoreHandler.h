@@ -14,10 +14,10 @@
 #import "LocalizedStrings.h"
 
 extern NSString *const SPlayerXBundleID;
-extern NSString *const SPlayerXLiteBundleID;
+extern NSString *const SPlayerXRevisedBundleID;
 
 // IAP Product ID (edit in itunesconnect)
-#define SERVICE_PRODUCT_ID              @"org.splayer.splayerx.p01.1.0"
+#define SERVICE_PRODUCT_ID              @"org.splayer.splayerx.revised.p01"
 
 // Customize "app give expiring alert xx days before expire date"
 #define ALERT_DAY_BEFORE_EXPIRE         15

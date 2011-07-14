@@ -222,7 +222,17 @@ NSString *templateReviewURLIpad = @"itms-apps://ax.itunes.apple.com/WebObjects/M
 		case NSAlertDefaultReturn:
 		{
 			// they want to rate it
-			NSString *reviewURL = [templateReviewURL stringByReplacingOccurrencesOfString:@"APP_ID" withString:[NSString stringWithFormat:@"%d", APPIRATER_APP_ID]];
+            NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
+            NSString *reviewURL;
+            if ([bundleID isEqualToString:@"org.splayer.splayerx"])
+            {
+               reviewURL = [templateReviewURL stringByReplacingOccurrencesOfString:@"APP_ID" withString:[NSString stringWithFormat:@"%d", 414675434]];
+            }
+            else if ([bundleID isEqualToString:@"org.splayer.splayerx.revised"])
+            {
+                reviewURL = [templateReviewURL stringByReplacingOccurrencesOfString:@"APP_ID" withString:[NSString stringWithFormat:@"%d", 450445999]];
+            }
+            
 			[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:reviewURL]];
 			
 			[userDefaults setBool:YES forKey:kAppiraterRatedCurrentVersion];
