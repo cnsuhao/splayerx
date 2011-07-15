@@ -57,11 +57,8 @@
 
 /* Begin PBXBuildFile section */
 		0E0AA44813BB2E67005BBC30 /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AA44713BB2E67005BBC30 /* Appirater.m */; };
-		0E24C9FF13BC862200AFCFA7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E24C9FE13BC862200AFCFA7 /* SystemConfiguration.framework */; };
 		0E3DA67813C596BE00E53099 /* LaunchServiceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E3DA67713C596BE00E53099 /* LaunchServiceHandler.m */; };
-		0E3DA67B13C5A37600E53099 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E3DA67A13C5A37600E53099 /* ApplicationServices.framework */; };
 		0E65375B13CC584100187456 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0E65375913CC584100187456 /* InfoPlist.strings */; };
-		0ED6E4FE13D049B0004511B2 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED6E4FD13D049B0004511B2 /* StoreKit.framework */; };
 		0ED6E50813D049C6004511B2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 860EF90D1127BAE40015B6EE /* MainMenu.xib */; };
 		0ED6E50913D049C6004511B2 /* Pref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 860EF90F1127BB050015B6EE /* Pref.xib */; };
 		0ED6E50A13D049C6004511B2 /* VideoTuner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 860EF9111127BB0E0015B6EE /* VideoTuner.xib */; };
@@ -176,8 +173,6 @@
 		0ED6E57813D049C6004511B2 /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AA44713BB2E67005BBC30 /* Appirater.m */; };
 		0ED6E57913D049C6004511B2 /* LaunchServiceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E3DA67713C596BE00E53099 /* LaunchServiceHandler.m */; };
 		0ED6E57B13D049C6004511B2 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED6E4FD13D049B0004511B2 /* StoreKit.framework */; };
-		0ED6E57C13D049C6004511B2 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E3DA67A13C5A37600E53099 /* ApplicationServices.framework */; };
-		0ED6E57D13D049C6004511B2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E24C9FE13BC862200AFCFA7 /* SystemConfiguration.framework */; };
 		0ED6E57E13D049C6004511B2 /* BGHUDAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88AE2514134BB04A005E7C60 /* BGHUDAppKit.framework */; };
 		0ED6E57F13D049C6004511B2 /* UniversalDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88AE2515134BB04A005E7C60 /* UniversalDetector.framework */; };
 		0ED6E58013D049C6004511B2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -280,6 +275,7 @@
 		86FB6F741131A2EB005E95B5 /* coredef.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FB6F731131A2EB005E95B5 /* coredef.m */; };
 		86FB6F801131A4BF005E95B5 /* coredef_private.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FB6F7F1131A4BF005E95B5 /* coredef_private.m */; };
 		86FB6FC51131B42D005E95B5 /* KeyCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FB6FC41131B42D005E95B5 /* KeyCode.m */; };
+		88035E7D13D097B100207405 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88035E7C13D097B100207405 /* SystemConfiguration.framework */; };
 		88180CBF135DF08400CF82EE /* WhiteIntermProgIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 88180CBE135DF08400CF82EE /* WhiteIntermProgIndicator.m */; };
 		8866A9CC12D4E4F9009EFC33 /* Equalizer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8866A9C012D4E4F8009EFC33 /* Equalizer.xib */; };
 		8866A9CD12D4E4F9009EFC33 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8866A9C212D4E4F8009EFC33 /* Localizable.strings */; };
@@ -473,10 +469,8 @@
 /* Begin PBXFileReference section */
 		0E0AA44613BB2E67005BBC30 /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
 		0E0AA44713BB2E67005BBC30 /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
-		0E24C9FE13BC862200AFCFA7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = SDKs/MacOSX10.7.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		0E3DA67613C596BE00E53099 /* LaunchServiceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchServiceHandler.h; sourceTree = "<group>"; };
 		0E3DA67713C596BE00E53099 /* LaunchServiceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchServiceHandler.m; sourceTree = "<group>"; };
-		0E3DA67A13C5A37600E53099 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = SDKs/MacOSX10.7.sdk/System/Library/Frameworks/ApplicationServices.framework; sourceTree = DEVELOPER_DIR; };
 		0E65375A13CC584100187456 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0ED6E4FD13D049B0004511B2 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = SDKs/MacOSX10.7.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		0ED6E59213D049C6004511B2 /* SPlayerX Revised.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SPlayerX Revised.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -621,6 +615,7 @@
 		86FB6F731131A2EB005E95B5 /* coredef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = coredef.m; sourceTree = "<group>"; };
 		86FB6F7F1131A4BF005E95B5 /* coredef_private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = coredef_private.m; sourceTree = "<group>"; };
 		86FB6FC41131B42D005E95B5 /* KeyCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 2; path = KeyCode.m; sourceTree = "<group>"; };
+		88035E7C13D097B100207405 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		88180CBD135DF08400CF82EE /* WhiteIntermProgIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteIntermProgIndicator.h; sourceTree = "<group>"; };
 		88180CBE135DF08400CF82EE /* WhiteIntermProgIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteIntermProgIndicator.m; sourceTree = "<group>"; };
 		8866A9C112D4E4F8009EFC33 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_CN; path = Equalizer.xib; sourceTree = "<group>"; };
@@ -663,8 +658,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0ED6E57B13D049C6004511B2 /* StoreKit.framework in Frameworks */,
-				0ED6E57C13D049C6004511B2 /* ApplicationServices.framework in Frameworks */,
-				0ED6E57D13D049C6004511B2 /* SystemConfiguration.framework in Frameworks */,
 				0ED6E57E13D049C6004511B2 /* BGHUDAppKit.framework in Frameworks */,
 				0ED6E57F13D049C6004511B2 /* UniversalDetector.framework in Frameworks */,
 				0ED6E58013D049C6004511B2 /* Cocoa.framework in Frameworks */,
@@ -679,9 +672,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0ED6E4FE13D049B0004511B2 /* StoreKit.framework in Frameworks */,
-				0E3DA67B13C5A37600E53099 /* ApplicationServices.framework in Frameworks */,
-				0E24C9FF13BC862200AFCFA7 /* SystemConfiguration.framework in Frameworks */,
+				88035E7D13D097B100207405 /* SystemConfiguration.framework in Frameworks */,
 				88AE2516134BB04A005E7C60 /* BGHUDAppKit.framework in Frameworks */,
 				88AE2517134BB04A005E7C60 /* UniversalDetector.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
@@ -747,6 +738,7 @@
 		29B97314FDCFA39411CA2CEA /* MplayerX */ = {
 			isa = PBXGroup;
 			children = (
+				88035E7C13D097B100207405 /* SystemConfiguration.framework */,
 				9DA49ED412F15D2C00416180 /* BGHUDAppKit.xcodeproj */,
 				88752AA212CE1920005208C0 /* UniversalDetector.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -786,8 +778,6 @@
 			isa = PBXGroup;
 			children = (
 				0ED6E4FD13D049B0004511B2 /* StoreKit.framework */,
-				0E3DA67A13C5A37600E53099 /* ApplicationServices.framework */,
-				0E24C9FE13BC862200AFCFA7 /* SystemConfiguration.framework */,
 				88AE2514134BB04A005E7C60 /* BGHUDAppKit.framework */,
 				88AE2515134BB04A005E7C60 /* UniversalDetector.framework */,
 				9D23C0A3132887B200980BA6 /* WebKit.framework */,
