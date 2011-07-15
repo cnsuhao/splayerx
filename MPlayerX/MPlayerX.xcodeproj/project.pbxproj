@@ -480,7 +480,6 @@
 		0E65375A13CC584100187456 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0ED6E4FD13D049B0004511B2 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = SDKs/MacOSX10.7.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		0ED6E59213D049C6004511B2 /* SPlayerX Revised.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SPlayerX Revised.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0ED6E59413D049C6004511B2 /* SPlayerX copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SPlayerX copy-Info.plist"; path = "/Users/sichengzhu/splayerx/MPlayerX/SPlayerX copy-Info.plist"; sourceTree = "<absolute>"; };
 		0EE2CD5713BAE02E008E5DD9 /* StoreHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreHandler.h; sourceTree = "<group>"; };
 		0EE2CD5813BAE02E008E5DD9 /* StoreHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreHandler.m; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -755,7 +754,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				0ED6E59413D049C6004511B2 /* SPlayerX copy-Info.plist */,
 			);
 			name = MplayerX;
 			sourceTree = "<group>";
