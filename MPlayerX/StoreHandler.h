@@ -7,17 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+
+extern NSString *const SPlayerXBundleID;
+extern NSString *const SPlayerXRevisedBundleID;
+
+#ifdef NS_AVAILABLE_MAC
 #import <StoreKit/StoreKit.h>
 
 #import "UserDefaults.h"
 #import "Appirater.h"
 #import "LocalizedStrings.h"
 
-extern NSString *const SPlayerXBundleID;
-extern NSString *const SPlayerXRevisedBundleID;
+#define     HAVE_STOREKIT   YES
 
 // IAP Product ID (edit in itunesconnect)
-#define SERVICE_PRODUCT_ID              @"org.splayer.splayerx.revised.p01"
+#define SERVICE_PRODUCT_ID           @"org.splayer.splayerx.revised.p01"
 
 // Customize "app give expiring alert xx days before expire date"
 #define ALERT_DAY_BEFORE_EXPIRE         15
@@ -61,3 +65,5 @@ extern NSString *const SPlayerXRevisedBundleID;
 // ***
 
 @end
+
+#endif

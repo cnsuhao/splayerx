@@ -23,11 +23,11 @@
 #import	"LocalizedStrings.h"
 #import "PrefController.h"
 #import "PlayerController.h"
-#import "StoreHandler.h"
 #import "RootLayerView.h"
 #import "ControlUIView.h"
 #import "CocoaAppendix.h"
 #import "LaunchServiceHandler.h"
+#import "StoreHandler.h"
 
 NSString * const PrefToolBarItemIdGeneral	= @"TBIGeneral";
 NSString * const PrefToolBarItemIdVideo		= @"TBIVideo";
@@ -62,6 +62,8 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
 		prefViews = nil;
 	}
     
+
+    #ifdef HAVE_STOREKIT
     // ***** app store IAP support
     NSNotificationCenter *dc = [NSNotificationCenter defaultCenter];
     [dc addObserver:self 
@@ -70,6 +72,8 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
              object:SHandler];
     SHandler = [[StoreHandler alloc] init];
     // *****
+    #endif
+    
     
 	return self;
 }
@@ -170,9 +174,11 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
 // ***** app store IAP support *****
 -(IBAction)subscribe:(id)sender
 {
+    #ifdef HAVE_STOREKIT
     [dueDateTextField setStringValue:kMPXStringStoreProcessing];
     [subscribeButton setEnabled:NO];
     [SHandler sendRequest];
+    #endif
 }
 -(void) refreshButton:(NSNotification *)notif
 {
@@ -182,47 +188,59 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
 
 -(void) setButtonState
 {       
+
+    #ifdef HAVE_STOREKIT
+
     if ([[[NSBundle mainBundle] bundleIdentifier] isEqualToString:SPlayerXBundleID])
     {
-        [subscribeButton setEnabled:NO];
+        [subscribeButton setHidden:YES];
         [subtitleEnableButton setEnabled:YES];
         [subtitleSelectionButton setEnabled:YES];
-        [subscribeButton setTitle:kMPXStringStoreButtonPurchased];
-        [dueDateTextField setStringValue:kMPXStringStoreNoExpire];
+        [dueDateTextField setHidden:YES];
     }
     else if ([[[NSBundle mainBundle] bundleIdentifier] isEqualToString:SPlayerXRevisedBundleID])
     {
-    if ([SHandler checkServiceAuth]) 
-    {
-        [subtitleEnableButton setEnabled:YES];
-        [subtitleSelectionButton setEnabled:YES];
-        NSDate *dueDate = [[NSUserDefaults standardUserDefaults] objectForKey:kUDKeyReceiptDueDate];
-        NSDateFormatter *outputFormat = [[NSDateFormatter alloc] init];
-        [outputFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        [dueDateTextField setStringValue:
-         [kMPXStringStoreDueDate stringByAppendingFormat:
-          [outputFormat stringFromDate:dueDate]]];
-    }
-    else 
-    {
-        [dueDateTextField setStringValue:kMPXStringStoreNoAuth];
-        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO]
-                                                  forKey:kUDKeySmartSubMatching];
-        [subtitleEnableButton setEnabled:NO];
-        [subtitleSelectionButton setEnabled:NO];
-    }
+        if ([SHandler checkServiceAuth]) 
+        {
+            [subtitleEnableButton setEnabled:YES];
+            [subtitleSelectionButton setEnabled:YES];
+            NSDate *dueDate = [[NSUserDefaults standardUserDefaults] objectForKey:kUDKeyReceiptDueDate];
+            NSDateFormatter *outputFormat = [[NSDateFormatter alloc] init];
+            [outputFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            [dueDateTextField setStringValue:
+            [kMPXStringStoreDueDate stringByAppendingFormat:
+            [outputFormat stringFromDate:dueDate]]];
+        }
+        else 
+        {
+            [dueDateTextField setStringValue:kMPXStringStoreNoAuth];
+            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO]
+                                                      forKey:kUDKeySmartSubMatching];
+            [subtitleEnableButton setEnabled:NO];
+            [subtitleSelectionButton setEnabled:NO];
+        }
     
-    if (![SHandler checkSubscriptable])
-    {
-        [subscribeButton setEnabled:NO];
-        [subscribeButton setTitle:kMPXStringStoreButtonPurchased];
+        if (![SHandler checkSubscriptable])
+        {
+            [subscribeButton setEnabled:NO];
+            [subscribeButton setTitle:kMPXStringStoreButtonPurchased];
+        }
+        else
+        {
+            [subscribeButton setEnabled:YES];
+            [subscribeButton setTitle:kMPXStringStoreButtonNeedPurchase];
+        }
     }
-    else
-    {
-        [subscribeButton setEnabled:YES];
-        [subscribeButton setTitle:kMPXStringStoreButtonNeedPurchase];
-    }
-    }
+
+    #else
+    [dueDateTextField setStringValue:kMPXStringStoreNoAuth];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO]
+                                                  forKey:kUDKeySmartSubMatching];
+    [subscribeButton setEnabled:NO];
+    [subtitleEnableButton setEnabled:NO];
+    [subtitleSelectionButton setEnabled:NO];
+    #endif
+    
 }
 
 // *** for testing
