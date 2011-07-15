@@ -36,7 +36,7 @@
 	if (![playerController.lastPlayedPath isFileURL])
 		return [POOL release];
     
-    #ifdef HAVE_STOREKIT
+#ifdef HAVE_STOREKIT
     // add IAP expire reminder on OSD
     if ([StoreHandler expireReminder])
     {
@@ -44,8 +44,11 @@
                                          stringByAppendingFormat:kMPXStringStoreExpireReminder,
                                          [StoreHandler subscriptionLeftDay]]];
     }
-    else [playerController setOSDMessage:kMPXStringSSCLFetching];
-    #endif
+    else 
+      [playerController setOSDMessage:kMPXStringSSCLFetching];
+#else
+    [playerController setOSDMessage:kMPXStringSSCLFetching];
+#endif
 	
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
 	NSString* argLang = [NSString stringWithString:@"chn"];
@@ -72,7 +75,8 @@
 
 	// printf("%s \n", [argPath UTF8String]);
 	NSArray *arguments;
-	arguments = [NSArray arrayWithObjects: @"--pull", argPath, @"--lang", argLang, nil];
+	arguments = [NSArray arrayWithObjects: @"--pull", argPath, @"--lang", argLang, 
+               @"--appid", [[[[NSBundle mainBundle] bundlePath] lastPathComponent] stringByDeletingPathExtension], nil];
 	[task setArguments: arguments];
 	
 	NSPipe *pipe = [NSPipe pipe];
@@ -114,10 +118,7 @@
         resultCount = [retLines count];
 	}
 	
-    
-    [playerController setOSDMessage:kMPXStringSSCLZeroMatched];
-    
-    switch (resultCount) {
+  switch (resultCount) {
 		case 0:
 			[playerController setOSDMessage:kMPXStringSSCLZeroMatched];
 			break;
