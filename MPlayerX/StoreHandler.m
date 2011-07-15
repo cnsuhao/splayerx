@@ -8,10 +8,10 @@
 
 #import "StoreHandler.h"
 
-// *** normal code ***
 NSString * const SPlayerXBundleID           = @"org.splayer.splayerx";
 NSString * const SPlayerXRevisedBundleID       = @"org.splayer.splayerx.revised";
 
+#ifdef HAVE_STOREKIT
 
 @implementation StoreHandler
 
@@ -158,7 +158,13 @@ NSString * const SPlayerXRevisedBundleID       = @"org.splayer.splayerx.revised"
 - (void) handleFailedTransaction: (SKPaymentTransaction *) transaction
 {
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    
+    NSLog(@"%@", transaction );
+     
+    
     [nc postNotificationName:@"RefreshButton" object:self];
+    
+    
     
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
 }
@@ -213,5 +219,6 @@ NSString * const SPlayerXRevisedBundleID       = @"org.splayer.splayerx.revised"
     [ud synchronize];
 }
 // ***
-
 @end
+
+#endif

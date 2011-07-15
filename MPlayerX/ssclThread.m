@@ -36,6 +36,7 @@
 	if (![playerController.lastPlayedPath isFileURL])
 		return [POOL release];
     
+    #ifdef HAVE_STOREKIT
     // add IAP expire reminder on OSD
     if ([StoreHandler expireReminder])
     {
@@ -44,7 +45,7 @@
                                          [StoreHandler subscriptionLeftDay]]];
     }
     else [playerController setOSDMessage:kMPXStringSSCLFetching];
-	
+    #endif
 	
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
 	NSString* argLang = [NSString stringWithString:@"chn"];

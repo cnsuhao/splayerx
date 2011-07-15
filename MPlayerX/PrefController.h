@@ -20,7 +20,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class PlayerController, RootLayerView, ControlUIView, StoreHandler;
+@class PlayerController, RootLayerView, ControlUIView;
 
 @interface PrefController : NSObject
 {
@@ -44,7 +44,7 @@
 	IBOutlet NSPopUpButton *charsetListPopup;
     
     // ***** app store IAP support *****
-    StoreHandler *SHandler;
+    id SHandler;
     IBOutlet NSButton *subtitleEnableButton;
     IBOutlet NSButton *subtitleSelectionButton;
     IBOutlet NSButton *subscribeButton;
