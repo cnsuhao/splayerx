@@ -189,7 +189,7 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
 -(void) setButtonState
 {       
 
-    #ifdef HAVE_STOREKIT
+#ifdef HAVE_STOREKIT
 
     if ([[[NSBundle mainBundle] bundleIdentifier] isEqualToString:SPlayerXBundleID])
     {
@@ -232,14 +232,15 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
         }
     }
 
-    #else
-    [dueDateTextField setStringValue:kMPXStringStoreNoAuth];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO]
-                                                  forKey:kUDKeySmartSubMatching];
-    [subscribeButton setEnabled:NO];
-    [subtitleEnableButton setEnabled:NO];
-    [subtitleSelectionButton setEnabled:NO];
-    #endif
+#else
+    
+  [dueDateTextField setStringValue:kMPXStringStoreNoAuth];
+  [dueDateTextField setHidden:YES];
+    
+  [subscribeButton setEnabled:NO];
+  [subscribeButton setHidden:YES];
+
+#endif
     
 }
 

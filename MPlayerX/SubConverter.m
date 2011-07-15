@@ -22,7 +22,7 @@
 #import <UniversalDetector/UniversalDetector.h>
 #import <sys/types.h>
 #import <pwd.h>
-
+#import "./StoreHandler.h"
 
 NSString * const kWorkDirSubDir = @"Subs";
 
@@ -194,9 +194,13 @@ NSString * const kWorkDirSubDir = @"Subs";
 	// 播放文件名称
 	NSString *movieName = [[[moviePath lastPathComponent] stringByDeletingPathExtension] lowercaseString];
 	
+  
+  NSString *SVPSubDir = [NSString stringWithFormat:@"Library/Application Support/%@/SVPSub/",
+                         [[[[NSBundle mainBundle] bundlePath] lastPathComponent] stringByDeletingPathExtension]];
+
 	// 文件夹路径
 	NSArray *directoriesTobeChecked = [NSArray arrayWithObjects:[moviePath stringByDeletingLastPathComponent],
-																		[NSHomeDirectory() stringByAppendingPathComponent:@"Library/Application Support/SPlayerX/SVPSub/"], 
+																		[NSHomeDirectory() stringByAppendingPathComponent:SVPSubDir], 
 																		 nil];
 
 	for (NSString *directoryPath in directoriesTobeChecked)

@@ -1390,7 +1390,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH=${PATH}:/opt/local/bin\nnewVersion=`hg id -n  | sed 's/^ *\\(.*\\)+ *$/\\1/'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $newVersion\" MPlayerX-Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleIdentifier org.splayer.splayerx.revised\" MPlayerX-Info.plist\ntouch -amfc MPlayerX-Info.plist\n\nexit 0";
+			shellScript = "PATH=${PATH}:/opt/local/bin\nnewVersion=`hg id -n  | sed 's/^ *\\(.*\\)+ *$/\\1/'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $newVersion\" MPlayerX-Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleIdentifier org.splayer.splayerx.revised\" MPlayerX-Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleName SPlayerX Revised\" MPlayerX-Info.plist\ntouch -amfc MPlayerX-Info.plist\n\nexit 0";
 		};
 		0ED6E50613D049C6004511B2 /* build Localizable.strings */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1460,7 +1460,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH=${PATH}:/opt/local/bin\nnewVersion=`hg id -n  | sed 's/^ *\\(.*\\)+ *$/\\1/'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $newVersion\" MPlayerX-Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleIdentifier org.splayer.splayerx\" MPlayerX-Info.plist\ntouch -amfc MPlayerX-Info.plist\n\nexit 0";
+			shellScript = "PATH=${PATH}:/opt/local/bin\nnewVersion=`hg id -n  | sed 's/^ *\\(.*\\)+ *$/\\1/'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $newVersion\" MPlayerX-Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleIdentifier org.splayer.splayerx\" MPlayerX-Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleName SPlayerX\" MPlayerX-Info.plist\ntouch -amfc MPlayerX-Info.plist\n\nexit 0";
 		};
 		869DA5341223C93100D0D57A /* delete redundent files in Framework */ = {
 			isa = PBXShellScriptBuildPhase;
