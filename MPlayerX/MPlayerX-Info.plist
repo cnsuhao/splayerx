@@ -61,6 +61,7 @@
 				<string>fli</string>
 				<string>flv</string>
 				<string>m2ts</string>
+        <string>m2t</string>
 				<string>m4v</string>
 				<string>mjp</string>
 				<string>mkv</string>
@@ -384,6 +385,23 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>m2ts</string>
+				</array>
+			</dict>
+		</dict>
+    <dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.movie</string>
+			</array>
+			<key>UTTypeIconFile</key>
+			<string>doc_video.icns</string>
+			<key>UTTypeIdentifier</key>
+			<string>org.splayer.splayerx.m2t</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>m2t</string>
 				</array>
 			</dict>
 		</dict>
