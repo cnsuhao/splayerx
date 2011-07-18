@@ -26,6 +26,8 @@ extern NSString *const SPlayerXRevisedBundleID;
 // Customize "app give expiring alert xx days before expire date"
 #define ALERT_DAY_BEFORE_EXPIRE         15
 
+// Customize how many days for trial of smart subtitle matching service
+#define SERVICE_TRIAL_DURATION  60
 
 @interface StoreHandler : NSObject <SKPaymentTransactionObserver, SKProductsRequestDelegate> 
 {

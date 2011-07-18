@@ -20,8 +20,8 @@ NSString * const SPlayerXRevisedBundleID       = @"org.splayer.splayerx.revised"
 {
 	[[NSUserDefaults standardUserDefaults] registerDefaults:
 	 [NSDictionary dictionaryWithObjectsAndKeys:
-	  [NSNumber numberWithBool:NO], kUDKeyReceipt,
-      [NSDate date], kUDKeyReceiptDueDate,
+	  [NSNumber numberWithBool:YES], kUDKeyReceipt,
+      [NSDate dateWithTimeIntervalSinceNow:(SERVICE_TRIAL_DURATION * 3600 * 24)], kUDKeyReceiptDueDate,
 	  nil]];
 }
 

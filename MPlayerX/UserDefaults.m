@@ -98,4 +98,3 @@ NSString * const kUDKeySVPLanguage = @"SVPLanguage";
 // for in-app purchase
 NSString * const kUDKeyReceipt = @"Receipt";
 NSString * const kUDKeyReceiptDueDate = @"ReceiptDueDate";
-NSString * const kUDKeyReceiptExpireRemindDate = @"ReceiptExpireRemindDate";
