@@ -2094,7 +2094,7 @@
 				);
 				OTHER_CFLAGS = "-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK";
 				PRODUCT_NAME = SPlayerX;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.6;
 			};
 			name = "Release codesign";
 		};
@@ -2148,7 +2148,7 @@
 				);
 				OTHER_CFLAGS = "-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK";
 				PRODUCT_NAME = SPlayerX;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.6;
 			};
 			name = Debug;
 		};
@@ -2177,7 +2177,7 @@
 				);
 				OTHER_CFLAGS = "-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK";
 				PRODUCT_NAME = SPlayerX;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.6;
 			};
 			name = Release;
 		};
