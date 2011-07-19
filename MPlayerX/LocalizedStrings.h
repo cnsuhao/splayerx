@@ -136,9 +136,7 @@
 
 // ***** app store IAP support *****
 #define kMPXStringStoreButtonNeedPurchase   (NSLocalizedString(@"Button Need Purchase", @"Store Support"))
-#define kMPXStringStoreButtonPurchased  (NSLocalizedString(@"Button Purchased", @"Store Support"))
 #define kMPXStringStoreNoAuth   (NSLocalizedString(@"No Auth", @"App Store IAP Support"))
-#define kMPXStringStoreNoExpire (NSLocalizedString(@"No Expire", @"App Store IAP Support"))
 #define kMPXStringStoreDueDate  (NSLocalizedString(@"Due Date", @"App Store IAP Support"))
 #define kMPXStringStoreProcessing   (NSLocalizedString(@"Processing", @"Store Support"))
 #define kMPXStringStoreExpireReminder   (NSLocalizedString(@"Expire Reminder", @"Store Support"))

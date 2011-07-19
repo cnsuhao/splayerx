@@ -26,7 +26,6 @@ NSString * const SPlayerXRevisedBundleID       = @"org.splayer.splayerx.revised"
       [NSDate date], kUDKeyReceiptDueDate,
       [NSNumber numberWithBool:NO], kUDKeyTrial,
       nil]];
-     
 }
 
 - (id) init
@@ -163,12 +162,7 @@ NSString * const SPlayerXRevisedBundleID       = @"org.splayer.splayerx.revised"
 {
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     
-    NSLog(@"%@", transaction );
-     
-    
     [nc postNotificationName:@"RefreshButton" object:self];
-    
-    
     
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
 }
@@ -190,15 +184,6 @@ NSString * const SPlayerXRevisedBundleID       = @"org.splayer.splayerx.revised"
     [ud setObject:[NSNumber numberWithBool:NO]
            forKey:kUDKeyReceipt];
     [ud synchronize];
-    return NO;
-}
-
-- (BOOL) checkSubscriptable
-{
-    if (![self checkServiceAuth]) return YES;
-    NSDate *dueDate = [ud objectForKey:kUDKeyReceiptDueDate];
-    NSTimeInterval timeToExpire = [dueDate timeIntervalSinceNow];
-    if (timeToExpire < (ALERT_DAY_BEFORE_EXPIRE * 24 * 60 * 60)) return YES;
     return NO;
 }
 

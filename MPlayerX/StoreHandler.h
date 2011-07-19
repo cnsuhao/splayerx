@@ -35,9 +35,14 @@ extern NSString *const SPlayerXRevisedBundleID;
     SKProductsRequest *productsRequest;
 }
 
-
+/* 
+ * FUNC: return subscription left valid day
+ */
 + (int) subscriptionLeftDay;
 
+/* CALLED in ssclThread class to determine if we need OSD expire reminder
+ * FUNC: return YES if we don't have valid receipt or receipt is going to expire
+ */
 + (BOOL) expireReminder;
 
 /* Three functions CALLED in observer delegate protocol function
@@ -56,11 +61,6 @@ extern NSString *const SPlayerXRevisedBundleID;
  * FUNC: check the receipt to see if service enabled or expired 
  */
 - (BOOL) checkServiceAuth;
-
-/* CALLED to disable the Subscribe button in pref
- * FUNC: return YES if we don't have valid receipt or receipt is going to expire
- */
-- (BOOL) checkSubscriptable;
 
 // *** for testing
 - (void)reset;

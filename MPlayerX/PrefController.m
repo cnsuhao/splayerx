@@ -129,7 +129,6 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
         
         // ***** app store IAP support *****
         [self setButtonState];
-        // *****
 	}
     
 	[prefWin makeKeyAndOrderFront:nil];
@@ -206,7 +205,7 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
             [subtitleSelectionButton setEnabled:YES];
             NSDate *dueDate = [[NSUserDefaults standardUserDefaults] objectForKey:kUDKeyReceiptDueDate];
             NSDateFormatter *outputFormat = [[NSDateFormatter alloc] init];
-            [outputFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            [outputFormat setDateFormat:@"yyyy-MM-dd"];
             [dueDateTextField setStringValue:
             [kMPXStringStoreDueDate stringByAppendingFormat:
             [outputFormat stringFromDate:dueDate]]];
@@ -219,17 +218,8 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
             [subtitleEnableButton setEnabled:NO];
             [subtitleSelectionButton setEnabled:NO];
         }
-    
-        if (![SHandler checkSubscriptable])
-        {
-            [subscribeButton setEnabled:NO];
-            [subscribeButton setTitle:kMPXStringStoreButtonPurchased];
-        }
-        else
-        {
-            [subscribeButton setEnabled:YES];
-            [subscribeButton setTitle:kMPXStringStoreButtonNeedPurchase];
-        }
+        [subscribeButton setEnabled:YES];
+        [subscribeButton setTitle:kMPXStringStoreButtonNeedPurchase];
     }
 
 #else
