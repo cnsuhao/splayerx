@@ -18,11 +18,15 @@ NSString * const SPlayerXRevisedBundleID       = @"org.splayer.splayerx.revised"
 // ***** define methods in protocol *****
 + (void) initialize
 {
-	[[NSUserDefaults standardUserDefaults] registerDefaults:
-	 [NSDictionary dictionaryWithObjectsAndKeys:
-	  [NSNumber numberWithBool:YES], kUDKeyReceipt,
-      [NSDate dateWithTimeIntervalSinceNow:(SERVICE_TRIAL_DURATION * 3600 * 24)], kUDKeyReceiptDueDate,
-	  nil]];
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    
+    [ud registerDefaults:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [NSNumber numberWithBool:NO], kUDKeyReceipt,
+      [NSDate date], kUDKeyReceiptDueDate,
+      [NSNumber numberWithBool:NO], kUDKeyTrial,
+      nil]];
+     
 }
 
 - (id) init
@@ -33,14 +37,14 @@ NSString * const SPlayerXRevisedBundleID       = @"org.splayer.splayerx.revised"
         ud = [NSUserDefaults standardUserDefaults];
         [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
         
-        // *** for testing
-        /*
-        [ud setObject:[NSNumber numberWithBool:YES] forKey:kUDKeyReceipt];
-        [ud setObject:[NSDate dateWithTimeIntervalSinceNow:(2 * 24 * 3600)]
-               forKey:kUDKeyReceiptDueDate];
-        [ud setObject:[NSNumber numberWithBool:YES] forKey:kUDKeySmartSubMatching];
-        */
-        // ***
+        // add trial
+        if (![[ud objectForKey:kUDKeyTrial] boolValue])
+        {
+            [ud setObject:[NSNumber numberWithBool:YES] forKey:kUDKeyTrial];
+            [ud setObject:[NSNumber numberWithBool:YES] forKey:kUDKeyReceipt];
+            [ud setObject:[NSDate dateWithTimeIntervalSinceNow:(SERVICE_TRIAL_DURATION * 3600 * 24)] 
+                   forKey:kUDKeyReceiptDueDate];
+        }
         
         // refresh subtitle service status
         if ([[[NSBundle mainBundle] bundleIdentifier] isEqualToString:SPlayerXBundleID])
@@ -175,20 +179,6 @@ NSString * const SPlayerXRevisedBundleID       = @"org.splayer.splayerx.revised"
                        [NSSet setWithObject: SERVICE_PRODUCT_ID]];
     productsRequest.delegate = self;
     [productsRequest start];
-    
-    // *** for testing
-    /*[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES]
-     forKey:kUDKeyReceipt];
-     [[NSUserDefaults standardUserDefaults] setObject:[NSDate dateWithTimeIntervalSinceNow:(2*365*24*3600)]
-     forKey:kUDKeyReceiptDueDate];
-     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES]
-     forKey:kUDKeySmartSubMatching];
-     
-     [[NSUserDefaults standardUserDefaults] synchronize];
-     
-     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-     [nc postNotificationName:@"RefreshButton" object:self];*/
-    // ***
 }
 
 - (BOOL) checkServiceAuth

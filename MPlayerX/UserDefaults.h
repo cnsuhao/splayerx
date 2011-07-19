@@ -96,3 +96,4 @@ extern NSString * const kUDKeySVPLanguage;
 // for in-app purchase
 extern NSString * const kUDKeyReceipt;
 extern NSString * const kUDKeyReceiptDueDate;
+extern NSString * const kUDKeyTrial;
