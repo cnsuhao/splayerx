@@ -150,6 +150,7 @@ NSString *const kLaunchServiceNextAlertDate = @"kLaunchServiceNextAlertDate";
                                                kLSRolesViewer,
                                                (CFStringRef)[[NSBundle mainBundle] bundleIdentifier]);
     }
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:kLaunchServiceDeclinedCount];
 }
 
 - (void)showAlert {
@@ -184,7 +185,6 @@ NSString *const kLaunchServiceNextAlertDate = @"kLaunchServiceNextAlertDate";
         {
             // customer want to set it default
             [LaunchServiceHandler setDefault];
-            [ud setInteger:0 forKey:kLaunchServiceDeclinedCount];
             break;
         }
         case NSAlertOtherReturn:
