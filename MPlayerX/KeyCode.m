@@ -19,6 +19,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#include "StoreHandler.h"
 
 /////////////////////////////////short keys defination/////////////////////////////////
 NSString * const kSCMVolumeUpKeyEquivalent		= @"=";
@@ -57,4 +58,8 @@ NSString * const kSCMShowMediaInfoKeyEquivalent			= @"i";
 
 NSString * const kSCMEqualizerPanelKeyEquivalent		= @"e";
 
+#ifdef HAVE_STOREKIT
+NSString * const kMPCStringMPlayerX		= @"SPlayerX Revised";
+#else
 NSString * const kMPCStringMPlayerX		= @"SPlayerX";
+#endif
