@@ -45,19 +45,14 @@
 	NSTimeInterval autoHideTimeInterval;
 	BOOL shouldHide;
 	NSTimer *autoHideTimer;
-
-	// list for sub/audio/video
-	NSMenu *subListMenu;
-	NSMenu *audioListMenu;
-	NSMenu *videoListMenu;
 		
-  NSString* shareUriCurrent;
-  NSString* nextAuthURLString;
-  NSString* nextShareURLString;
+    NSString* shareUriCurrent;
+    NSString* nextAuthURLString;
+    NSString* nextShareURLString;
   
-  DOMProxySPlayer* wsoSPlayer;
-  DOMProxySPlayer* wsoSPlayerAuth;
-  IBOutlet NSButton *closeOAuthButton;
+    DOMProxySPlayer* wsoSPlayer;
+    DOMProxySPlayer* wsoSPlayerAuth;
+    IBOutlet NSButton *closeOAuthButton;
   
 	float volStep;
 	float orgHeight;
@@ -77,7 +72,7 @@
 	
 	IBOutlet NSView *accessaryContainer;
 	IBOutlet NSButton *toggleAcceButton;
-  IBOutlet NSButton *toggleShareButton;
+    IBOutlet NSButton *toggleShareButton;
 
 	IBOutlet ArrowTextField *speedText;
 	IBOutlet ArrowTextField *subDelayText;
@@ -87,34 +82,50 @@
 	IBOutlet OsdText *osd;
 	IBOutlet TitleView *title;
 	
-  IBOutlet WebView* webView;
-  IBOutlet WebView* webViewAuth;
-  
-	IBOutlet NSMenuItem *menuSnapshot;
+    IBOutlet WebView* webView;
+    IBOutlet WebView* webViewAuth;
+    
+    // list for sub/audio/video
+	NSMenu *subListMenu;
+	NSMenu *audioListMenu;
+	NSMenu *videoListMenu;
+    
+    // Playback Menu
+    IBOutlet NSMenu *menuPlayback;
+    IBOutlet NSMenuItem *menuPlayFromLastStoppedPlace;
+    IBOutlet NSMenuItem *menuSwitchVideo;
+    IBOutlet NSMenuItem *menuToggleLockAspectRatio;
+    IBOutlet NSMenuItem *menuResetLockAspectRatio;
+    IBOutlet NSMenuItem *menuSizeInc;
+    IBOutlet NSMenuItem *menuSizeDec;
+    IBOutlet NSMenuItem *menuPlaySpeedInc;
+    IBOutlet NSMenuItem *menuPlaySpeedDec;
+    IBOutlet NSMenuItem *menuSwitchAudio;
+    IBOutlet NSMenuItem *menuVolInc;
+	IBOutlet NSMenuItem *menuVolDec;
+    IBOutlet NSMenuItem *menuAudioDelayInc;
+	IBOutlet NSMenuItem *menuAudioDelayDec;
+    IBOutlet NSMenuItem *menuSnapshot;
+    
+    IBOutlet NSMenuItem *menuPlaySpeedReset;
+    IBOutlet NSMenuItem *menuAudioDelayReset;
+    
+    // Subtitle Menu
+    IBOutlet NSMenu *menuSubtitle;
 	IBOutlet NSMenuItem *menuSwitchSub;
+    IBOutlet NSMenuItem *menuToggleLetterBox;
 	IBOutlet NSMenuItem *menuSubScaleInc;
 	IBOutlet NSMenuItem *menuSubScaleDec;
-	IBOutlet NSMenuItem *menuPlayFromLastStoppedPlace;
-	IBOutlet NSMenuItem *menuSwitchAudio;
-	IBOutlet NSMenuItem *menuVolInc;
-	IBOutlet NSMenuItem *menuVolDec;
-  IBOutlet NSMenuItem *menuAudioDelayInc;
-	IBOutlet NSMenuItem *menuAudioDelayDec;
-  IBOutlet NSMenuItem *menuAudioDelayReset;
-  IBOutlet NSMenuItem *menuSubtitleDelayReset;
-  IBOutlet NSMenuItem *menuSubtitleDelayInc;
+    IBOutlet NSMenuItem *menuSubtitleDelayInc;
 	IBOutlet NSMenuItem *menuSubtitleDelayDec;
-  IBOutlet NSMenuItem *menuPlaySpeedInc;
-  IBOutlet NSMenuItem *menuPlaySpeedDec;
-  IBOutlet NSMenuItem *menuPlaySpeedReset;
-	IBOutlet NSMenuItem *menuToggleLockAspectRatio;
-	IBOutlet NSMenuItem *menuResetLockAspectRatio;
-	IBOutlet NSMenuItem *menuToggleLetterBox;
-	IBOutlet NSMenuItem *menuSwitchVideo;
-	IBOutlet NSMenuItem *menuSizeInc;
-	IBOutlet NSMenuItem *menuSizeDec;
+    IBOutlet NSMenuItem *menuSubtitleMatch;
+    IBOutlet NSMenuItem *menuSubtitleSearchOnWeb;
+    
+    IBOutlet NSMenuItem *menuSubtitleDelayReset;
+    
+    // Window Menu	
+    IBOutlet NSMenu *menuWindow;
 	IBOutlet NSMenuItem *menuShowMediaInfo;
-
 }
 
 @property (retain) NSString* shareUriCurrent;

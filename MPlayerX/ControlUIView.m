@@ -77,7 +77,6 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 -(void) gotVideoInfo:(NSArray*) vis;
 @end
 
-
 @implementation ControlUIView
 
 @synthesize shareUriCurrent;
@@ -150,30 +149,23 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[menuSubScaleDec setKeyEquivalentModifierMask:kSCMSubScaleDecreaseKeyEquivalentModifierFlagMask];
 	[menuSubScaleDec setKeyEquivalent:kSCMSubScaleDecreaseKeyEquivalent];
   
-  [menuSubtitleDelayInc setKeyEquivalent:kSCMSubPlayAudioPlusShortcutKeyEquivalent];
-  [menuSubtitleDelayInc setKeyEquivalentModifierMask:kSCMSubtitleModKeyEquivalentModifierFlagMask];
-  [menuSubtitleDelayDec setKeyEquivalent:kSCMSubPlayAudioMinusShortcutKeyEquivalent];
-  [menuSubtitleDelayDec setKeyEquivalentModifierMask:kSCMSubtitleModKeyEquivalentModifierFlagMask];
-  [menuSubtitleDelayReset setKeyEquivalent:kSCMSubPlayAudioResetShortcutKeyEquivalent];
-  [menuSubtitleDelayReset setKeyEquivalentModifierMask:kSCMSubtitleModKeyEquivalentModifierFlagMask];
-  [menuSubtitleDelayInc setTag: 1];
-  [menuSubtitleDelayDec setTag: -1];
+    [menuSubtitleDelayInc setKeyEquivalent:kSCMSubPlayAudioPlusShortcutKeyEquivalent];
+    [menuSubtitleDelayInc setKeyEquivalentModifierMask:kSCMSubtitleModKeyEquivalentModifierFlagMask];
+    [menuSubtitleDelayDec setKeyEquivalent:kSCMSubPlayAudioMinusShortcutKeyEquivalent];
+    [menuSubtitleDelayDec setKeyEquivalentModifierMask:kSCMSubtitleModKeyEquivalentModifierFlagMask];
+    [menuSubtitleDelayReset setKeyEquivalent:kSCMSubPlayAudioResetShortcutKeyEquivalent];
+    [menuSubtitleDelayReset setKeyEquivalentModifierMask:kSCMSubtitleModKeyEquivalentModifierFlagMask];
   
-  [menuPlaySpeedInc setKeyEquivalent:kSCMSubPlayAudioPlusShortcutKeyEquivalent];
-  [menuPlaySpeedDec setKeyEquivalent:kSCMSubPlayAudioMinusShortcutKeyEquivalent];
-  [menuPlaySpeedReset setKeyEquivalent:kSCMSubPlayAudioResetShortcutKeyEquivalent];
-  [menuPlaySpeedInc setTag: 1];
-  [menuPlaySpeedDec setTag: -1];
-
-  
-  [menuAudioDelayInc setKeyEquivalent:kSCMSubPlayAudioPlusShortcutKeyEquivalent];
-  [menuAudioDelayInc setKeyEquivalentModifierMask:kSCMAudioModKeyEquivalentModifierFlagMask];
-  [menuAudioDelayDec setKeyEquivalent:kSCMSubPlayAudioMinusShortcutKeyEquivalent];
-  [menuAudioDelayDec setKeyEquivalentModifierMask:kSCMAudioModKeyEquivalentModifierFlagMask];
-  [menuAudioDelayReset setKeyEquivalent:kSCMSubPlayAudioResetShortcutKeyEquivalent];
-  [menuAudioDelayReset setKeyEquivalentModifierMask:kSCMAudioModKeyEquivalentModifierFlagMask];
-  [menuAudioDelayInc setTag: 1];
-  [menuAudioDelayInc setTag: -1];
+    [menuPlaySpeedInc setKeyEquivalent:kSCMSubPlayAudioPlusShortcutKeyEquivalent];
+    [menuPlaySpeedDec setKeyEquivalent:kSCMSubPlayAudioMinusShortcutKeyEquivalent];
+    [menuPlaySpeedReset setKeyEquivalent:kSCMSubPlayAudioResetShortcutKeyEquivalent];
+      
+    [menuAudioDelayInc setKeyEquivalent:kSCMSubPlayAudioPlusShortcutKeyEquivalent];
+    [menuAudioDelayInc setKeyEquivalentModifierMask:kSCMAudioModKeyEquivalentModifierFlagMask];
+    [menuAudioDelayDec setKeyEquivalent:kSCMSubPlayAudioMinusShortcutKeyEquivalent];
+    [menuAudioDelayDec setKeyEquivalentModifierMask:kSCMAudioModKeyEquivalentModifierFlagMask];
+    [menuAudioDelayReset setKeyEquivalent:kSCMSubPlayAudioResetShortcutKeyEquivalent];
+    [menuAudioDelayReset setKeyEquivalentModifierMask:kSCMAudioModKeyEquivalentModifierFlagMask];
 	
 	[menuPlayFromLastStoppedPlace setKeyEquivalent:kSCMPlayFromLastStoppedKeyEquivalent];
 	[menuPlayFromLastStoppedPlace setKeyEquivalentModifierMask:kSCMPlayFromLastStoppedKeyEquivalentModifierFlagMask];
@@ -210,9 +202,9 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 								  [NSArray arrayWithObjects:[NSImage imageNamed:@"fillscreen_ub"], [NSImage imageNamed:@"exitfillscreen_ub"], nil], kFillScreenButtonImageUBKey, 
 								  nil];
 
-  [fullScreenButton  setHidden:YES];
-  [toggleShareButton setHidden:YES];
-  [toggleAcceButton  setHidden:YES];
+    [fullScreenButton  setHidden:YES];
+    [toggleShareButton setHidden:YES];
+    [toggleAcceButton  setHidden:YES];
 
 	// 自动隐藏设定
 	[self refreshAutoHideTimer];
@@ -281,72 +273,80 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[menuSwitchVideo setSubmenu:videoListMenu];
 	[videoListMenu setAutoenablesItems:NO];
 	[self resetVideoMenu];
-	
+    
+    // disable build-in autoenable system for menus
+    [menuPlayback setAutoenablesItems:NO];
+    [menuSubtitle setAutoenablesItems:NO];
+    [menuWindow setAutoenablesItems:NO];
+    
 	// set menuItem tags
 	[menuSubScaleInc setTag:1];
 	[menuSubScaleDec setTag:-1];
-	
 	[menuSizeInc setTag:1];
 	[menuSizeDec setTag:-1];
+    [menuSubtitleDelayInc setTag: 1];
+    [menuSubtitleDelayDec setTag: -1];
+    [menuPlaySpeedInc setTag: 1];
+    [menuPlaySpeedDec setTag: -1];
+    [menuAudioDelayInc setTag: 1];
+    [menuAudioDelayInc setTag: -1];
 
 	// set menu status
 	[menuToggleLockAspectRatio setEnabled:NO];
-	[menuToggleLockAspectRatio setTitle:([dispView lockAspectRatio])?(kMPXStringMenuUnlockAspectRatio):(kMPXStringMenuLockAspectRatio)];
+	[menuToggleLockAspectRatio setTitle:([dispView lockAspectRatio])?
+     (kMPXStringMenuUnlockAspectRatio):(kMPXStringMenuLockAspectRatio)];
 	[menuResetLockAspectRatio setAlternate:YES];
 	
-	[menuToggleLetterBox setTitle:([ud integerForKey:kUDKeyLetterBoxMode] == kPMLetterBoxModeNotDisplay)?(kMPXStringMenuShowLetterBox):
-																										 (kMPXStringMenuHideLetterBox)];
+	[menuToggleLetterBox setTitle:([ud integerForKey:kUDKeyLetterBoxMode] == kPMLetterBoxModeNotDisplay)?
+     (kMPXStringMenuShowLetterBox):(kMPXStringMenuHideLetterBox)];
+    [menuToggleLetterBox setEnabled:NO];
 
-	[menuShowMediaInfo setEnabled:NO];
+    // webView initialize support
+    CGColorRef col =  CGColorCreateGenericGray(0.3, 0.7);
   
-  CGColorRef col =  CGColorCreateGenericGray(0.3, 0.7);
+    shareUriCurrent = @"";
   
-  shareUriCurrent = @"";
+    [webView setFrameLoadDelegate:self];
+    [webView setPolicyDelegate:self];
+    [webView setUIDelegate: self];
+    [webView setWantsLayer:YES];
+    [[webView layer] setCornerRadius:10.0f];
+    [[webView layer] setMasksToBounds:YES];
+    [[webView layer] setBackgroundColor:col];
+    [webView setDrawsBackground:NO];
+    [[[webView mainFrame] frameView] setAllowsScrolling:NO];
   
-  [webView setFrameLoadDelegate:self];
-  [webView setPolicyDelegate:self];
-  [webView setUIDelegate: self];
-  [webView setWantsLayer:YES];
-  [[webView layer] setCornerRadius:10.0f];
-  [[webView layer] setMasksToBounds:YES];
-  [[webView layer] setBackgroundColor:col];
-  [webView setDrawsBackground:NO];
-  [[[webView mainFrame] frameView] setAllowsScrolling:NO];
+    nextAuthURLString = nil;
+    nextShareURLString = nil;
   
-  nextAuthURLString = nil;
-  nextShareURLString = nil;
+    [webViewAuth setCustomUserAgent:@"Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3"];
   
-  [webViewAuth setCustomUserAgent:@"Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3"];
+    [webViewAuth setFrameLoadDelegate:self];
+    [webViewAuth setPolicyDelegate:self];
+    [webViewAuth setUIDelegate: self];
+    [webViewAuth setWantsLayer:YES];
+    [[webViewAuth layer] setCornerRadius:10.0f];
+    [[webViewAuth layer] setMasksToBounds:YES];
+    [[[webViewAuth mainFrame] frameView] setAllowsScrolling:NO];
   
-  [webViewAuth setFrameLoadDelegate:self];
-  [webViewAuth setPolicyDelegate:self];
-  [webViewAuth setUIDelegate: self];
-  [webViewAuth setWantsLayer:YES];
-  [[webViewAuth layer] setCornerRadius:10.0f];
-  [[webViewAuth layer] setMasksToBounds:YES];
-  [[[webViewAuth mainFrame] frameView] setAllowsScrolling:NO];
+    wsoSPlayer = [DOMProxySPlayer alloc];
+    [wsoSPlayer setDelegate:self];
+    [wsoSPlayer setHostWebView:webView];
   
-  wsoSPlayer = [DOMProxySPlayer alloc];
-  [wsoSPlayer setDelegate:self];
-  [wsoSPlayer setHostWebView:webView];
+    wsoSPlayerAuth = [DOMProxySPlayer alloc];
+    [wsoSPlayerAuth setDelegate:self];
+    [wsoSPlayerAuth setHostWebView:webViewAuth];
   
-  wsoSPlayerAuth = [DOMProxySPlayer alloc];
-  [wsoSPlayerAuth setDelegate:self];
-  [wsoSPlayerAuth setHostWebView:webViewAuth];
-  
-  [[closeOAuthButton layer]setCornerRadius:20.0];
-  [[closeOAuthButton layer] setMasksToBounds:YES];
+    [[closeOAuthButton layer]setCornerRadius:20.0];
+    [[closeOAuthButton layer] setMasksToBounds:YES];
     
-  [self hideShareControls:self];
-  [self hideOAuthView:self];
-  
-	// set OSD active status
-	[osd setActive:NO];
+    [self hideShareControls:self];
+    [self hideOAuthView:self];
 	
+    // add notification observers
 	[notifCenter addObserver:self selector:@selector(windowHasResized:)
 						name:NSWindowDidResizeNotification
 					  object:[self window]];
-	
 	[notifCenter addObserver:self selector:@selector(playBackOpened:)
 						name:kMPCPlayOpenedNotification object:playerController];
 	[notifCenter addObserver:self selector:@selector(playBackStarted:)
@@ -357,7 +357,6 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 						name:kMPCPlayStoppedNotification object:playerController];
 	[notifCenter addObserver:self selector:@selector(playBackFinalized:)
 						name:kMPCPlayFinalizedNotification object:playerController];
-
 	[notifCenter addObserver:self selector:@selector(playInfoUpdated:)
 						name:kMPCPlayInfoUpdatedNotification object:playerController];
 	
@@ -366,15 +365,17 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 	// force hide titlebar
 	[title setAlphaValue:([ud boolForKey:kUDKeyHideTitlebar])?0:CONTROLALPHA];
+    
+    // set OSD active status
+	[osd setActive:NO];
 }
 
 -(void) dealloc
 {
 	[notifCenter removeObserver:self];
 	
-	if (autoHideTimer) {
-		[autoHideTimer invalidate];
-	}
+	if (autoHideTimer) 
+        [autoHideTimer invalidate];
 
 	[fillScreenButtonAllImages release];
 	[volumeButtonImages release];
@@ -394,8 +395,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[backGroundColor release];
 	[backGroundColor2 release];
 	
-  [wsoSPlayer release];
-  [wsoSPlayerAuth release];
+    [wsoSPlayer release];
+    [wsoSPlayerAuth release];
   
 	[super dealloc];
 }
@@ -1179,10 +1180,10 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 ////////////////////////////////////////////////displayThings//////////////////////////////////////////////////
 -(void) displayStarted
 {
-  BOOL not_playing = (playerController.playerState == kMPCStoppedState)?YES:NO;
+    BOOL not_playing = (playerController.playerState == kMPCStoppedState)?YES:NO;
 	[fullScreenButton setHidden: not_playing];
-  [toggleAcceButton setHidden: not_playing];
-  [toggleShareButton setHidden: not_playing];
+    [toggleAcceButton setHidden: not_playing];
+    [toggleShareButton setHidden: not_playing];
 
 	[timeText setHidden: NO];
 	[timeTextAlt setHidden: NO];
@@ -1198,8 +1199,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 -(void) displayStopped
 {
 	[fullScreenButton setHidden: YES];
-  [toggleAcceButton setHidden: YES];
-  [toggleShareButton setHidden: YES];
+    [toggleAcceButton setHidden: YES];
+    [toggleShareButton setHidden: YES];
 	[timeText setHidden: YES];
 	[timeTextAlt setHidden: YES];
 	
@@ -1231,17 +1232,21 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[subDelayText setEnabled:YES];
 	[audioDelayText setEnabled:YES];
 	
+    // Playback Menu
 	[menuSwitchAudio setEnabled:YES];
 	[menuSwitchVideo setEnabled:YES];
-	
 	[menuAudioDelayInc setEnabled:YES];
 	[menuAudioDelayDec setEnabled:YES];
 	[menuAudioDelayReset setEnabled:YES];
-  
 	[menuPlaySpeedInc setEnabled:YES];
 	[menuPlaySpeedDec setEnabled:YES];
 	[menuPlaySpeedReset setEnabled:YES];
   
+    // Subtitle Menu
+    [menuSubtitleMatch setEnabled:YES];
+    [menuSubtitleSearchOnWeb setEnabled:YES];
+    
+    // Window Menu
 	[menuShowMediaInfo setEnabled:YES];
 }
 
@@ -1272,26 +1277,28 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[subDelayText setEnabled:NO];
 	[audioDelayText setEnabled:NO];
 	
-	[menuSwitchAudio setEnabled:NO];
-	[menuSwitchSub setEnabled:NO];
-	[menuSwitchVideo setEnabled:NO];
-	
-	[menuSubScaleInc setEnabled:NO];
-	[menuSubScaleDec setEnabled:NO];
+    // Playback Menu
 	[menuPlayFromLastStoppedPlace setEnabled:NO];
-  
-  [menuAudioDelayInc setEnabled:NO];
-	[menuAudioDelayDec setEnabled:NO];
-	[menuAudioDelayReset setEnabled:NO];
-  
+    [menuSwitchVideo setEnabled:NO];
 	[menuPlaySpeedInc setEnabled:NO];
 	[menuPlaySpeedDec setEnabled:NO];
 	[menuPlaySpeedReset setEnabled:NO];
-	
+    [menuSwitchAudio setEnabled:NO];
+    [menuAudioDelayInc setEnabled:NO];
+	[menuAudioDelayDec setEnabled:NO];
+	[menuAudioDelayReset setEnabled:NO];
+    
+    // Subtitle Menu
+	[menuSwitchSub setEnabled:NO];
+	[menuSubScaleInc setEnabled:NO];
+	[menuSubScaleDec setEnabled:NO];
 	[menuSubtitleDelayInc setEnabled:NO];
 	[menuSubtitleDelayDec setEnabled:NO];
 	[menuSubtitleDelayReset setEnabled:NO];
-  
+    [menuSubtitleMatch setEnabled:NO];
+    [menuSubtitleSearchOnWeb setEnabled:NO];
+
+    // Window Menu
 	[menuShowMediaInfo setEnabled:NO];
 }
 
@@ -1521,18 +1528,22 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 		[menuSubScaleInc setEnabled:YES];
 		[menuSubScaleDec setEnabled:YES];
     
-    [menuSubtitleDelayReset setEnabled:YES];
+        [menuSubtitleDelayReset setEnabled:YES];
 		[menuSubtitleDelayInc setEnabled:YES];
 		[menuSubtitleDelayDec setEnabled:YES];
+        
+        [menuToggleLetterBox setEnabled:YES];
 		
 	} else if (changeKind == NSKeyValueChangeSetting) {
 		[menuSwitchSub setEnabled:NO];
 		[menuSubScaleInc setEnabled:NO];
 		[menuSubScaleDec setEnabled:NO];
     
-    [menuSubtitleDelayReset setEnabled:NO];
+        [menuSubtitleDelayReset setEnabled:NO];
 		[menuSubtitleDelayInc setEnabled:NO];
 		[menuSubtitleDelayDec setEnabled:NO];
+        
+        [menuToggleLetterBox setEnabled:NO];
 	}
 }
 

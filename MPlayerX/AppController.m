@@ -187,7 +187,12 @@ static BOOL init_ed = NO;
 }
 -(IBAction) searchSubtitleFromWeb:(id)sender
 {
-  //[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString initWithFormat:@"https://wwws.shooter.cn/search/%@/",  [playerController lastPlayedPath]]];
+    NSString *filename = [[playerController.lastPlayedPath lastPathComponent] stringByDeletingPathExtension];
+    NSString *URLStr = [NSString stringWithFormat:@"https://www.shooter.cn/search/%@/", filename];
+    NSString *encodedURLStr = [URLStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [NSURL URLWithString:encodedURLStr];
+    
+    [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 /////////////////////////////////////Application Delegate//////////////////////////////////////
@@ -219,7 +224,7 @@ static BOOL init_ed = NO;
     
     // ***** Rate It *****
     [Appirater appLaunched:YES];
-    
+
 	return NSTerminateNow;	
 }
 
