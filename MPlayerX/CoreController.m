@@ -334,8 +334,8 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 		NSString *subStr;
 		NSArray *subsArray;
 		
-    // 只重置与播放有关的
-    [movieInfo.playingInfo resetWithParameterManager:pm];
+        // 只重置与播放有关的
+        [movieInfo.playingInfo resetWithParameterManager:pm];
     
 		if ([pm vobSub] == nil) {
 			// 如果用户没有自己设置vobsub的话，这个变量会在每次播放完之后设为nil
@@ -343,8 +343,8 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 			[pm setVobSub:vobStr];
 		}
 		if ([subEncDict count]) {
-      for (NSString* path in subEncDict)
-        [movieInfo.playingInfo.loadedSubtitle addObject:path];
+            for (NSString* path in subEncDict)
+                [movieInfo.playingInfo.loadedSubtitle addObject:path];
       
 			// 如果有字幕文件
 			subsArray = [subConv convertTextSubsAndEncodings:subEncDict];
@@ -587,18 +587,23 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 	}
 }
 
--(void) loadSubFile: (NSString*) path
+-(BOOL) loadSubFile: (NSString*) path
 {
 	NSString *cpStr = [subConv getCPOfTextSubtitle:path];
-	if (cpStr) {
+	if (cpStr) 
+    {
 		// 找到了编码方式
 		NSArray *newPaths = [subConv convertTextSubsAndEncodings:[NSDictionary dictionaryWithObjectsAndKeys:cpStr, path, nil]];
-		if (newPaths && [newPaths count]) {
-      MPLog(@"%@", [NSString stringWithFormat:@"%@ \"%@\"", kMPCSubLoad, [newPaths objectAtIndex:0]]);
-      [movieInfo.playingInfo.loadedSubtitle addObject:path];
+        [movieInfo.playingInfo.loadedSubtitle addObject:path];
+		if (newPaths && [newPaths count]) 
+        {
+            MPLog(@"%@", [NSString stringWithFormat:@"%@ \"%@\"", kMPCSubLoad, [newPaths objectAtIndex:0]]);
+            
 			[playerCore sendStringCommand:[NSString stringWithFormat:@"%@ \"%@\"\n", kMPCSubLoad, [newPaths objectAtIndex:0]]];
+            return YES;
 		}
 	}
+    return NO;
 }
 -(NSString*) getCurrentSubtitlePath
 {

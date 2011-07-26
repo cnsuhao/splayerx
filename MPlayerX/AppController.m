@@ -183,7 +183,7 @@ static BOOL init_ed = NO;
 }
 -(IBAction) smartMatchingSubtitle:(id)sender
 {
-    [playerController pullSubtitle];
+    [playerController forcePullSubtitle];
 }
 -(IBAction) searchSubtitleFromWeb:(id)sender
 {

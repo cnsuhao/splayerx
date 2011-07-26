@@ -73,7 +73,7 @@ NSString * const kWorkDirSubDir = @"Subs";
 {
 	BOOL isDir = YES;
 	NSString *cpStr = nil;	
-	
+    
 	if (path && [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && (!isDir) &&
 		[textSubFileExts containsObject:[[path pathExtension] lowercaseString]]) {
 
@@ -140,16 +140,10 @@ NSString * const kWorkDirSubDir = @"Subs";
 				prefix = nil;
 				
 				// 因为有重名的可能性，所以要找到一个不重复的文件名
-				while([fm fileExistsAtPath:subPathNew isDirectory:&isDir] && (!isDir)) {
-					if (ext == nil) {
-						ext = [subPathNew pathExtension];
-					}
-					if (prefix == nil) {
-						prefix = [subPathNew stringByDeletingPathExtension];
-					}
-					// 如果该文件存在那么就寻找下一个不存在的文件名
-					subPathNew = [prefix stringByAppendingFormat:@".mpx.%d.%@", idx++, ext];
-				}
+                // (change it to do nothing, by Sicheng Zhu
+                // because pull again may cause duplicate items in sub menu)
+				if ([fm fileExistsAtPath:subPathNew isDirectory:&isDir] && (!isDir)) 
+                    return nil;
 				
 				// CP949据说总会fallback到EUC_KR，这里把它回到CP949(kCFStringEncodingDOSKorean)
 				if ((ce == kCFStringEncodingMacKorean) || (ce == kCFStringEncodingEUC_KR)) {
@@ -181,7 +175,7 @@ NSString * const kWorkDirSubDir = @"Subs";
 
 -(NSDictionary*) getCPFromMoviePath:(NSString*)moviePath nameRule:(SUBFILE_NAMERULE)nameRule alsoFindVobSub:(NSString**)vobPath
 {
-  NSString *cpStr = nil;
+    NSString *cpStr = nil;
 	NSString *subPath = nil;
 	NSMutableDictionary *subEncDict = [[NSMutableDictionary alloc] initWithCapacity:2];
 
@@ -195,7 +189,7 @@ NSString * const kWorkDirSubDir = @"Subs";
 	NSString *movieName = [[[moviePath lastPathComponent] stringByDeletingPathExtension] lowercaseString];
 	
   
-  NSString *SVPSubDir = [NSString stringWithFormat:@"Library/Application Support/%@/SVPSub/",
+    NSString *SVPSubDir = [NSString stringWithFormat:@"Library/Application Support/%@/SVPSub/",
                          [[[[NSBundle mainBundle] bundlePath] lastPathComponent] stringByDeletingPathExtension]];
 
 	// 文件夹路径

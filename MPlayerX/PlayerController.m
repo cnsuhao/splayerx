@@ -699,20 +699,25 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 	[mplayer setVideo:videoID];
 }
 
--(void) loadSubFile:(NSString*)subPath
+-(BOOL) loadSubFile:(NSString*)subPath
 {
-  [mplayer loadSubFile:subPath];
+  return [mplayer loadSubFile:subPath];
 }
 -(NSString*) getCurrentSubtitlePath
 {
   return [mplayer getCurrentSubtitlePath];
 }
--(void) pullSubtitle
+-(void) smartPullSubtitle
 {
 	if ([mplayer.movieInfo.subInfo count] > 0)
-		return;
-		
+        return;
+    
 	[NSThread detachNewThreadSelector:@selector(pullSubtitle:) toTarget:[ssclThread class] withObject:self];
+}
+
+-(void) forcePullSubtitle
+{
+    [NSThread detachNewThreadSelector:@selector(pullSubtitle:) toTarget:[ssclThread class] withObject:self];
 }
 
 -(void) pushSubtitle
@@ -811,7 +816,7 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
     return;
   
   if ([[NSUserDefaults standardUserDefaults] boolForKey:kUDKeySmartSubMatching])
-  	[self pullSubtitle];
+  	[self smartPullSubtitle];
 }
 
 -(void) playebackWillStop
