@@ -43,6 +43,7 @@ NSString * const SPlayerXRevisedBundleID       = @"org.splayer.splayerx.revised"
             [ud setObject:[NSNumber numberWithBool:YES] forKey:kUDKeyReceipt];
             [ud setObject:[NSDate dateWithTimeIntervalSinceNow:(SERVICE_TRIAL_DURATION * 3600 * 24)] 
                    forKey:kUDKeyReceiptDueDate];
+            [ud setObject:[NSNumber numberWithBool:YES] forKey:kUDKeySmartSubMatching];
         }
         
         // refresh subtitle service status
