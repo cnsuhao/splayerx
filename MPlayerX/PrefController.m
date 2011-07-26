@@ -1,0 +1,371 @@
+/*
+ * MPlayerX - PrefController.m
+ *
+ * Copyright (C) 2009 Zongyao QU
+ * 
+ * MPlayerX is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * MPlayerX is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with MPlayerX; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
+#import "UserDefaults.h"
+#import "AppController.h"
+#import	"LocalizedStrings.h"
+#import "PrefController.h"
+#import "PlayerController.h"
+#import "RootLayerView.h"
+#import "ControlUIView.h"
+#import "CocoaAppendix.h"
+#import "LaunchServiceHandler.h"
+#import "StoreHandler.h"
+
+NSString * const PrefToolBarItemIdGeneral	= @"TBIGeneral";
+NSString * const PrefToolBarItemIdVideo		= @"TBIVideo";
+NSString * const PrefToolBarItemIdAudio		= @"TBIAudio";
+NSString * const PrefToolBarItemIdSubtitle	= @"TBISubtitle";
+NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
+
+#define PrefTBILabelGeneral			(kMPXStringTBILabelGeneral)
+#define PrefTBILabelVideo			(kMPXStringTBILabelVideo)
+#define PrefTBILabelAudio			(kMPXStringTBILabelAudio)
+#define PrefTBILabelSubtitle		(kMPXStringTBILabelSubtitle)
+#define PrefTBILabelNetwork			(kMPXStringTBILabelNetwork)
+
+@implementation PrefController
+
++(void) initialize
+{
+	[[NSUserDefaults standardUserDefaults] registerDefaults:
+	 [NSDictionary dictionaryWithObjectsAndKeys:
+	  [NSNumber numberWithInt:0], kUDKeySelectedPrefView,
+	  nil]];
+}
+
+-(id) init
+{
+	self = [super init];
+	
+	if (self) {
+		ud = [NSUserDefaults standardUserDefaults];
+
+		nibLoaded = NO;
+		prefViews = nil;
+	}
+    
+
+    #ifdef HAVE_STOREKIT
+    // ***** app store IAP support
+    NSNotificationCenter *dc = [NSNotificationCenter defaultCenter];
+    [dc addObserver:self 
+           selector:@selector(refreshButton:) 
+               name:@"RefreshButton"
+             object:SHandler];
+    SHandler = [[StoreHandler alloc] init];
+    // *****
+    #endif
+    
+    
+	return self;
+}
+
+-(IBAction) showUI:(id)sender
+{
+    if (!nibLoaded) {
+		[NSBundle loadNibNamed:@"Pref" owner:self];
+		
+		[[charsetListPopup menu] removeAllItems];
+		
+		NSMenuItem *mItem;
+		mItem = [[NSMenuItem alloc] init];
+		[mItem setTitle:kMPXStringTextSubEncAskMe];
+		[mItem setTag:kCFStringEncodingInvalidId];
+		[mItem setEnabled:YES];
+		[[charsetListPopup menu] addItem:mItem];
+
+		[[charsetListPopup menu] addItem:[NSMenuItem separatorItem]];
+
+		[[charsetListPopup menu] appendCharsetList];
+
+		if ([ud boolForKey:kUDKeyTextSubtitleCharsetManual]) {
+			[charsetListPopup selectItem:mItem];
+		} else {
+			[charsetListPopup selectItem:[[charsetListPopup menu] itemWithTag:[ud integerForKey:kUDKeyTextSubtitleCharsetFallback]]];
+		}
+
+		[mItem release];
+		
+		CGFloat winH = [prefWin frame].size.height;
+		
+		prefViews = [[NSArray alloc] initWithObjects:viewGeneral, viewVideo, viewAudio, viewSub, viewNetwork, nil];
+		
+		NSToolbarItem *tbi = [[prefToolbar items] objectAtIndex:[ud integerForKey:kUDKeySelectedPrefView]];
+		
+		if (tbi) {
+			[prefToolbar setSelectedItemIdentifier:[tbi itemIdentifier]];
+			
+			[self switchViews:tbi];
+		}
+		
+		[prefWin setLevel:NSMainMenuWindowLevel];
+		
+		// 可以选择 透明度
+		[[NSColorPanel sharedColorPanel] setShowsAlpha:YES];
+		
+		NSPoint org = [prefWin frame].origin;
+		org.y -= (winH - [prefWin frame].size.height);
+		[prefWin setFrameOrigin:org];
+        
+		nibLoaded = YES;
+        
+        // ***** app store IAP support *****
+        [self setButtonState];
+	}
+    
+	[prefWin makeKeyAndOrderFront:nil];
+}
+
+-(void) dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+    [prefViews release];
+	[super release];
+}
+
+-(IBAction) switchViews:(id)sender
+{
+	NSView *viewToShow = [prefViews objectAtIndex:[sender tag]];
+	
+	if (viewToShow && ([prefWin contentView] != viewToShow)) {
+		
+		[prefToolbar setSelectedItemIdentifier:[sender itemIdentifier]];
+		
+		NSRect rc = [prefWin frameRectForContentRect:[viewToShow bounds]];
+		NSRect winFrm = [prefWin frame];
+		
+		rc.origin = winFrm.origin;
+		rc.origin.y -= (rc.size.height - winFrm.size.height);
+		
+		[prefWin setContentView: viewToShow];
+		[prefWin setFrame:rc display:YES animate:YES];
+
+		[prefWin setTitle:[sender label]];
+		
+		[ud setInteger:[sender tag] forKey:kUDKeySelectedPrefView];
+	}
+}
+
+// ***** for set default player
+-(IBAction)setDefaultButton:(id)sender
+{
+    [LaunchServiceHandler setDefaultAction];
+}
+
+// ***** app store IAP support *****
+-(IBAction)subscribe:(id)sender
+{
+    #ifdef HAVE_STOREKIT
+    [dueDateTextField setStringValue:kMPXStringStoreProcessing];
+    [subscribeButton setEnabled:NO];
+    [SHandler sendRequest];
+    #endif
+}
+-(void) refreshButton:(NSNotification *)notif
+{
+    [subscribeButton setEnabled:YES];
+    [self setButtonState];
+}
+
+-(void) setButtonState
+{       
+
+#ifdef HAVE_STOREKIT
+
+    if ([[[NSBundle mainBundle] bundleIdentifier] isEqualToString:SPlayerXBundleID])
+    {
+        [subscribeButton setHidden:YES];
+        [subtitleEnableButton setEnabled:YES];
+        [subtitleSelectionButton setEnabled:YES];
+        [dueDateTextField setHidden:YES];
+    }
+    else if ([[[NSBundle mainBundle] bundleIdentifier] isEqualToString:SPlayerXRevisedBundleID])
+    {
+        if ([SHandler checkServiceAuth]) 
+        {
+            [subtitleEnableButton setEnabled:YES];
+            [subtitleSelectionButton setEnabled:YES];
+            NSDate *dueDate = [[NSUserDefaults standardUserDefaults] objectForKey:kUDKeyReceiptDueDate];
+            NSDateFormatter *outputFormat = [[NSDateFormatter alloc] init];
+            [outputFormat setDateFormat:@"yyyy-MM-dd"];
+            [dueDateTextField setStringValue:
+            [kMPXStringStoreDueDate stringByAppendingFormat:
+            [outputFormat stringFromDate:dueDate]]];
+        }
+        else 
+        {
+            [dueDateTextField setStringValue:kMPXStringStoreNoAuth];
+            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO]
+                                                      forKey:kUDKeySmartSubMatching];
+            [subtitleEnableButton setEnabled:NO];
+            [subtitleSelectionButton setEnabled:NO];
+        }
+        [subscribeButton setEnabled:YES];
+        [subscribeButton setTitle:kMPXStringStoreButtonNeedPurchase];
+    }
+
+#else
+    
+  [dueDateTextField setStringValue:kMPXStringStoreNoAuth];
+  [dueDateTextField setHidden:YES];
+    
+  [subscribeButton setEnabled:NO];
+  [subscribeButton setHidden:YES];
+
+#endif
+    
+}
+
+// *** for testing
+- (IBAction)reset:(id)sender
+{
+    [SHandler reset];
+    [self setButtonState];
+}
+// ***
+
+- (IBAction)multiThreadChanged:(id)sender
+{
+	[playerController setMultiThreadMode:[ud boolForKey:kUDKeyEnableMultiThread]];
+}
+
+- (IBAction)onTopModeChanged:(id)sender
+{
+	[dispView setPlayerWindowLevel];
+}
+
+- (IBAction)onSVPLanguageChanged:(id)sender
+{
+	// TODO: change ud
+  
+}
+
+-(IBAction) controlUIAppearanceChanged:(id)sender
+{
+	[controlUI refreshAutoHideTimer];
+	[controlUI refreshBackgroundAlpha];
+	[controlUI showUp];
+}
+
+-(IBAction) osdSetChanged:(id)sender
+{
+	[controlUI refreshOSDSetting];
+}
+
+-(IBAction) checkCacheFormat:(id)sender
+{
+	float cache = [ud floatForKey:kUDKeyCacheSize];
+	
+	if (cache < 0) { cache = 0; }
+
+	[ud setInteger:((unsigned int)cache) forKey:kUDKeyCacheSize];
+}
+
+-(IBAction) letterBoxModeChanged:(id)sender
+{
+	unsigned int mode = [ud integerForKey:kUDKeyLetterBoxMode];
+	
+	if (mode != kPMLetterBoxModeNotDisplay) {
+		// 如果是现实letterbox，那么更新alt
+		[ud setInteger:mode forKey:kUDKeyLetterBoxModeAlt];
+	}
+	// 更新menu
+	[controlUI toggleLetterBox:nil];
+}
+
+-(IBAction) subEncodingSchemeChanged:(id)sender
+{
+	NSInteger tag = [[charsetListPopup selectedItem] tag];
+	
+	if (tag == kCFStringEncodingInvalidId) {
+		[ud setBool:YES forKey:kUDKeyTextSubtitleCharsetManual];
+	} else {
+		[ud setBool:NO forKey:kUDKeyTextSubtitleCharsetManual];
+		[ud setInteger:tag forKey:kUDKeyTextSubtitleCharsetFallback];
+	}
+}
+
+/////////////////////////////Toolbar Delegate/////////////////////
+/*
+ * 如何添加新的Pref View
+ * 1. 在Pref.xib添加一个新的View，并将这个View设置为与ContentView的尺寸绑定
+ * 2. 在PrefController中添加新的Outlet来代表这个View
+ * 3. 根据新的View添加ToolbarItem的Indentifier和Name
+ * 4. prefViews的初始化中，添加新View的outlet到其中
+ * 5. toolbarAllowedItemIdentifiers中加入新Identifier
+ * 6. 在toobar: itemForItemIdentifier :willBeInsertedIntoToolbar中创建相应的Item
+ * (注意需要相应的图片资源等)
+ */
+- (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar
+{
+	return [NSArray arrayWithObjects:PrefToolBarItemIdGeneral, PrefToolBarItemIdVideo, PrefToolBarItemIdAudio,
+									PrefToolBarItemIdSubtitle, PrefToolbarItemIdNetwork, nil];
+}
+- (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar
+{
+	return [self toolbarAllowedItemIdentifiers:toolbar];
+}
+- (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar
+{
+	return [self toolbarAllowedItemIdentifiers:toolbar];
+}
+- (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag
+{
+	NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
+	
+	if ([itemIdentifier isEqualToString:PrefToolBarItemIdGeneral]) {
+		[item setLabel:PrefTBILabelGeneral];
+		[item setImage:[NSImage imageNamed:NSImageNamePreferencesGeneral]];
+		[item setTag:0];
+		
+	} else if ([itemIdentifier isEqualToString:PrefToolBarItemIdVideo]) {
+		[item setLabel:PrefTBILabelVideo];
+		[item setImage:[NSImage imageNamed:@"toolbar_video"]];
+		[item setTag:1];
+		
+	} else if ([itemIdentifier isEqualToString:PrefToolBarItemIdAudio]) {
+		[item setLabel:PrefTBILabelAudio];
+		[item setImage:[NSImage imageNamed:@"toolbar_audio"]];
+		[item setTag:2];
+		
+	} else if ([itemIdentifier isEqualToString:PrefToolBarItemIdSubtitle]) {
+		[item setLabel:PrefTBILabelSubtitle];
+		[item setImage:[NSImage imageNamed:NSImageNameFontPanel]];
+		[item setTag:3];
+		
+	} else if ([itemIdentifier isEqualToString:PrefToolbarItemIdNetwork]) {
+		[item setLabel:PrefTBILabelNetwork];
+		[item setImage:[NSImage imageNamed:NSImageNameNetwork]];
+		[item setTag:4];
+		
+	} else {
+		[item release];
+		return nil;
+	}
+
+	[item setTarget:self];
+	[item setAction:@selector(switchViews:)];
+	[item setAutovalidates:NO];
+
+	return [item autorelease];
+}
+
+@end
