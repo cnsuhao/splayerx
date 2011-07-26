@@ -1491,8 +1491,13 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 		NSMenuItem *mItem = nil;
 		
 		// 将所有的字幕名字加到菜单中
-		for(NSString *str in subs) {
-			mItem = [[NSMenuItem alloc] init];
+		for(NSString *str in subs) 
+        {
+            // fix the 
+            if (![str isEqualToString:@"unknown"])
+            {
+            if ([subListMenu itemWithTitle:str])continue;
+            mItem = [[NSMenuItem alloc] init];
 			[mItem setEnabled:YES];
 			[mItem setTarget:self];
 			[mItem setAction:@selector(setSubWithID:)];
@@ -1502,6 +1507,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 			[subListMenu insertItem:mItem atIndex:idx];
 			[mItem release];
 			idx++;
+            }
 		}
 		
 		if (changeKind == NSKeyValueChangeSetting) {

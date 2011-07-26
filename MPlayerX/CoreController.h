@@ -138,7 +138,7 @@ extern NSString * const kMPCPlayStoppedTimeKey;
 /** 成功发送的话，playingInfo的subScale属性会被更新 */
 -(void) setSubScale: (float) scale;
 
--(void) loadSubFile: (NSString*) path;
+-(BOOL) loadSubFile: (NSString*) path;
 
 -(NSString*) getCurrentSubtitlePath;
 

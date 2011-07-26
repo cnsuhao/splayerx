@@ -97,9 +97,10 @@ extern NSString * const kMPCPlayInfoUpdatedChangeDictKey;
 -(void) setLetterBox:(BOOL) renderSubInLB top:(float) topRatio bottom:(float)bottomRatio;
 -(void) setEqualizer:(NSArray*) amps;
 
--(void) loadSubFile:(NSString*)subPath;
+-(BOOL) loadSubFile:(NSString*)subPath;
 -(NSString*) getCurrentSubtitlePath;
--(void) pullSubtitle;
+-(void) smartPullSubtitle;
+-(void) forcePullSubtitle;
 -(void) pushSubtitle;
 
 /* for subtitle search OSD display

@@ -118,8 +118,6 @@
 				<string>smil</string>
 				<string>jss</string>
 				<string>rt</string>
-				<string>sub</string>
-				<string>idx</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>doc_sub.icns</string>
@@ -140,7 +138,7 @@
 	<key>CFBundleIconFile</key>
 	<string>MPlayerX.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.splayer.splayerx.revised</string>
+	<string>org.splayer.splayerx</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleLocalizations</key>
@@ -150,7 +148,7 @@
 		<string>zh_tw</string>
 	</array>
 	<key>CFBundleName</key>
-	<string>SPlayerX Revised</string>
+	<string>SPlayerX</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -218,7 +216,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1068</string>
+	<string>1071</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.video</string>
 	<key>LSHasLocalizedDisplayName</key>

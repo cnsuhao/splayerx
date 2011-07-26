@@ -44,8 +44,7 @@
                                          stringByAppendingFormat:kMPXStringStoreExpireReminder,
                                          [StoreHandler subscriptionLeftDay]]];
     }
-    else 
-      [playerController setOSDMessage:kMPXStringSSCLFetching];
+    else [playerController setOSDMessage:kMPXStringSSCLFetching];
 #else
     [playerController setOSDMessage:kMPXStringSSCLFetching];
 #endif
@@ -133,8 +132,7 @@
 						// printf("%s \n", [subPath UTF8String]);
 						if (subPath && ([subPath length] > 0))
 						{
-							[playerController loadSubFile:subPath];
-							acctureCount++;
+							if ([playerController loadSubFile:subPath])acctureCount++;
 						}
 					}
 				}
