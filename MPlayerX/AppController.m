@@ -26,6 +26,7 @@
 #import "LocalizedStrings.h"
 #import "Appirater.h"
 #import "LaunchServiceHandler.h"
+#import "StoreHandler.h"
 
 NSString * const kMPCFMTBookmarkPath	= @"%@/Library/Preferences/%@.bookmarks.plist";
 
@@ -230,6 +231,22 @@ static BOOL init_ed = NO;
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
+#ifdef HAVE_STOREKIT
+    // check receipt
+    NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
+    NSError *err;
+    if (![receiptURL checkResourceIsReachableAndReturnError:&err])
+    {
+        NSAlert *alert = [NSAlert alertWithMessageText:kMPXStringReceiptValidationTitle
+                                         defaultButton:kMPXStringReceiptValidationButton
+                                       alternateButton:nil
+                                           otherButton:nil
+                             informativeTextWithFormat:kMPXStringReceiptValidationText];
+        [alert runModal];
+        exit(173);
+    }
+#endif
+    // check set default
     [LaunchServiceHandler appLaunched:YES];
 }
 

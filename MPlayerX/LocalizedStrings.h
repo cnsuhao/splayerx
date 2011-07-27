@@ -156,3 +156,10 @@
 #define kMPXStringAppiraterDefaultButton    (NSLocalizedString(@"Appirater Default Button", @"Appirater Support"))
 #define kMPXStringAppiraterRemindLaterButton    (NSLocalizedString(@"Appirater Remind Later Button", @"Appirater Support"))
 
+// ***** receipt validation support *****
+#define kMPXStringReceiptValidationTitle    (NSLocalizedString(@"Receipt Title", @"Receipt Validation Support"))
+
+#define kMPXStringReceiptValidationText    (NSLocalizedString(@"Receipt Text", @"Receipt Validation Support"))
+
+#define kMPXStringReceiptValidationButton    (NSLocalizedString(@"Receipt Button", @"Receipt Validation Support"))
+
