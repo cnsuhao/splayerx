@@ -91,6 +91,7 @@ extern NSString * const kMPCPlayInfoUpdatedChangeDictKey;
 -(void) setAudioBalance:(float)bal;
 
 -(void) setSubtitle:(int) subID;
+-(void) mergeSubtitle:(NSString *)subName secondSubName:(NSString *)secondSubName;
 -(void) setAudio:(int) audioID;
 -(void) setVideo:(int) videoID;
 

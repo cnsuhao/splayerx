@@ -55,6 +55,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 -(void) windowHasResized:(NSNotification*)notification;
 -(void) calculateHintTime;
 -(void) resetSubtitleMenu;
+-(void) resetSecondSubtitleMenu;
 -(void) resetAudioMenu;
 -(void) resetVideoMenu;
 -(void) tryToHide;
@@ -121,6 +122,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 		timeFormatter = [[TimeFormatter alloc] init];
 		floatWrapFormatter = [[FloatWrapFormatter alloc] init];
 		subListMenu = [[NSMenu alloc] initWithTitle:@"SubListMenu"];
+        secondSubListMenu = [[NSMenu alloc] initWithTitle:@"SecondSubListMenu"];
 		audioListMenu = [[NSMenu alloc] initWithTitle:@"AudioListMenu"];
 		videoListMenu = [[NSMenu alloc] initWithTitle:@"VideoListMenu"];
 	}
@@ -130,6 +132,10 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 - (void)awakeFromNib
 {
 	orgHeight = [self bounds].size.height;
+
+    mergedSubID = -1;
+    mergeEnabled = NO;
+    subCount = 0;
 	
 	// 自身的设定
 	[self setAlphaValue:CONTROLALPHA];
@@ -265,6 +271,10 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[menuSwitchSub setSubmenu:subListMenu];
 	[subListMenu setAutoenablesItems:NO];
 	[self resetSubtitleMenu];
+    
+    [menuSwitchSecondSub setSubmenu:secondSubListMenu];
+    [secondSubListMenu setAutoenablesItems:NO];
+    [self resetSecondSubtitleMenu];
 	
 	[menuSwitchAudio setSubmenu:audioListMenu];
 	[audioListMenu setAutoenablesItems:NO];
@@ -384,6 +394,9 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	
 	[menuSwitchSub setSubmenu:nil];
 	[subListMenu release];
+    
+    [menuSwitchSecondSub setSubmenu:nil];
+    [secondSubListMenu release];
 
 	[menuSwitchAudio setSubmenu:nil];
 	[audioListMenu release];
@@ -979,23 +992,120 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[self setSubWithID:mItem];
 }
 
+-(IBAction) stepSecondSubtitles:(id)sender
+{
+    int selectedTag = -2;
+	NSMenuItem* mItem;
+	
+	// 找到目前被选中的字幕
+	for (mItem in [subListMenu itemArray]) {
+		if ([mItem state] == NSOnState) {
+			selectedTag = [mItem tag];
+			break;
+		}
+	}
+	// 得到下一个字幕的tag
+	// 如果没有一个菜单选项被选中，那么就选中隐藏显示字幕
+	selectedTag++;
+	
+	if (!(mItem = [secondSubListMenu itemWithTag:selectedTag])) {
+		// 如果是字幕的最后一项，那么就轮到隐藏字幕菜单选项
+		mItem = [secondSubListMenu itemWithTag:-1];
+	}
+	
+	[self setSecondSubWithID:mItem];
+}
+
 -(IBAction) setSubWithID:(id)sender
 {
-	if (sender) {
-		[playerController setSubtitle:[sender tag]];
-		
-		for (NSMenuItem* mItem in [subListMenu itemArray]) {
+	if (sender) {        
+        // main sub only
+		if (!mergeEnabled)
+        {
+            [playerController setSubtitle:[sender tag]];
+        }
+        // double sub
+        else
+        {
+            mergedSubID = [self nextAvailableSubTag];
+            
+            NSString *secondSubName;
+            for (NSMenuItem *mItem in [secondSubListMenu itemArray])
+            {
+                if ([mItem state] == NSOnState)
+                    secondSubName = [mItem title];
+            }
+            
+            [playerController mergeSubtitle:[sender title] secondSubName:secondSubName];
+            
+            [playerController setSubtitle:mergedSubID];
+        }
+        for (NSMenuItem* mItem in [subListMenu itemArray]) {
+            if ([mItem state] == NSOnState) {
+                [mItem setState:NSOffState];
+                break;
+            }
+        }
+        [sender setState:NSOnState];
+        [osd setStringValue:[NSString stringWithFormat:kMPXStringOSDMainSubtitleHint, [sender title]]
+                      owner:kOSDOwnerOther
+                updateTimer:YES];
+	}
+}
+
+-(IBAction) setSecondSubWithID:(id)sender
+{
+    if (sender)
+    {
+        if ([sender tag] == -1) 
+        {
+            for (NSMenuItem *mItem in [subListMenu itemArray])
+                if ([mItem state] == NSOnState)
+                    [playerController setSubtitle:[mItem tag]];
+            mergeEnabled = NO;
+        }
+            else 
+        {
+            mergedSubID = [self nextAvailableSubTag];
+            
+            NSString *firstSubName;
+            for (NSMenuItem *mItem in [subListMenu itemArray])
+            {
+                if ([mItem state] == NSOnState)
+                    firstSubName = [mItem title];
+            }
+            
+            [playerController mergeSubtitle:firstSubName secondSubName:[sender title]];
+            
+            [playerController setSubtitle:mergedSubID];
+            
+            mergeEnabled = YES;
+        }
+        
+        for (NSMenuItem* mItem in [secondSubListMenu itemArray]) 
+        {
 			if ([mItem state] == NSOnState) {
 				[mItem setState:NSOffState];
 				break;
 			}
 		}
 		[sender setState:NSOnState];
-		
-		[osd setStringValue:[NSString stringWithFormat:kMPXStringOSDSubtitleHint, [sender title]]
-					  owner:kOSDOwnerOther
-				updateTimer:YES];
-	}
+        
+        [osd setStringValue:[NSString stringWithFormat:kMPXStringOSDSecSubtitleHint, [sender title]]
+                      owner:kOSDOwnerOther
+                updateTimer:YES];
+    }
+}
+
+-(int) nextAvailableSubTag
+{
+    int output = -1;
+    if (mergedSubID > output) output = mergedSubID;
+    for (NSMenuItem *mItem in [subListMenu itemArray])
+    {
+        if ([mItem tag] > output) output = [mItem tag];
+    }
+    return (output + 1);
 }
 
 -(IBAction) stepAudios:(id)sender
@@ -1290,6 +1400,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
     
     // Subtitle Menu
 	[menuSwitchSub setEnabled:NO];
+    [menuSwitchSecondSub setEnabled:NO];
 	[menuSubScaleInc setEnabled:NO];
 	[menuSubScaleDec setEnabled:NO];
 	[menuSubtitleDelayInc setEnabled:NO];
@@ -1479,58 +1590,109 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[mItem release];	
 }
 
+-(void) resetSecondSubtitleMenu
+{
+    [secondSubListMenu removeAllItems];
+	
+	// 添加分割线
+	NSMenuItem *mItem = [NSMenuItem separatorItem];
+	[mItem setEnabled:NO];
+	[mItem setTag:-2];
+	[mItem setState:NSOffState];
+	[secondSubListMenu addItem:mItem];
+	
+	// 添加 隐藏字幕的菜单选项
+	mItem = [[NSMenuItem alloc] init];
+	[mItem setEnabled:YES];
+	[mItem setTarget:self];
+	[mItem setAction:@selector(setSecondSubWithID:)];
+	[mItem setTitle:kMPXStringDisable];
+	[mItem setTag:-1];
+	[mItem setState:NSOffState];
+	[secondSubListMenu addItem:mItem];
+	[mItem release];
+}
+
 -(void) gotSubInfo:(NSArray*) subs changed:(int)changeKind
 {
-	if (changeKind == NSKeyValueChangeSetting) {
-		[self resetSubtitleMenu];
+    if (changeKind == NSKeyValueChangeSetting) {
+		// menu reset
+        [self resetSubtitleMenu];
+        [self resetSecondSubtitleMenu];
 	}
 	
 	if (subs && (subs != (id)[NSNull null]) && [subs count]) {
 		
 		NSInteger idx = [subListMenu numberOfItems] - 2;
-		NSMenuItem *mItem = nil;
+		NSMenuItem *mItemOne = nil;
+        NSMenuItem *mItemTwo = nil;
 		
 		// 将所有的字幕名字加到菜单中
 		for(NSString *str in subs) 
         {
-            // fix the 
-            if (![str isEqualToString:@"unknown"])
+            if ([str isEqualToString:@"_mergedsub.srt"])
+                continue;
+            
+            // fix the duplicate name of subs issues
+            if  (![str isEqualToString:@"unknown"])
             {
-            if ([subListMenu itemWithTitle:str])continue;
-            mItem = [[NSMenuItem alloc] init];
-			[mItem setEnabled:YES];
-			[mItem setTarget:self];
-			[mItem setAction:@selector(setSubWithID:)];
-			[mItem setTitle:str];
-			[mItem setTag:idx];
-			[mItem setState:NSOffState];
-			[subListMenu insertItem:mItem atIndex:idx];
-			[mItem release];
-			idx++;
+                if ([subListMenu itemWithTitle:str])continue;
+                mItemOne = [[NSMenuItem alloc] init];
+                [mItemOne setEnabled:YES];
+                [mItemOne setTarget:self];
+                [mItemOne setAction:@selector(setSubWithID:)];
+                [mItemOne setTitle:str];
+                [mItemOne setTag:[self nextAvailableSubTag]];
+                [mItemOne setState:NSOffState];
+                [subListMenu insertItem:mItemOne atIndex:idx];
+                [mItemOne release];
+                mItemTwo = [[NSMenuItem alloc] init];
+                [mItemTwo setEnabled:YES];
+                [mItemTwo setTarget:self];
+                [mItemTwo setAction:@selector(setSecondSubWithID:)];
+                [mItemTwo setTitle:str];
+                [mItemTwo setTag:[self nextAvailableSubTag]];
+                [mItemTwo setState:NSOffState];
+                [secondSubListMenu insertItem:mItemTwo atIndex:idx];
+                [mItemTwo release];
+                idx++;
             }
 		}
 		
 		if (changeKind == NSKeyValueChangeSetting) {
-			[[subListMenu itemAtIndex:0] setState:NSOnState];
+            // set initiate menu status
+            [[subListMenu itemAtIndex:0] setState:NSOnState];
+            [[secondSubListMenu itemWithTag:-1] setState:NSOnState];
 		} else {
-			
-            //[self setSubWithID:mItem];
-            
             /* Changed to fix the bug on OSD subtile search result
              *      not calling setSubWithID so there's no OSD sub changed info
              *      but sub infro still show on OSD when manually switch sub
              */
-            [playerController setSubtitle:[mItem tag]];
-            for (NSMenuItem* mItem in [subListMenu itemArray]) {
-                if ([mItem state] == NSOnState) {
-                    [mItem setState:NSOffState];
-                    break;
+            if ([subListMenu numberOfItems] != subCount)
+            {
+                [playerController setSubtitle:[mItemOne tag]];
+                
+                for (NSMenuItem* mItem in [subListMenu itemArray]) {
+                    if ([mItem state] == NSOnState) {
+                        [mItem setState:NSOffState];
+                        break;
+                    }
                 }
+                [mItemOne setState:NSOnState];
+                
+                for (NSMenuItem* mItem in [secondSubListMenu itemArray]) {
+                    if ([mItem state] == NSOnState) {
+                        [mItem setState:NSOffState];
+                        break;
+                    }
+                }
+                [[secondSubListMenu itemWithTag:-1] setState:NSOnState];
             }
-            [mItem setState:NSOnState];
 		}
-
+        subCount = [subListMenu numberOfItems];
+        
 		[menuSwitchSub setEnabled:YES];
+        [menuSwitchSecondSub setEnabled:YES];
 		[menuSubScaleInc setEnabled:YES];
 		[menuSubScaleDec setEnabled:YES];
     
@@ -1540,8 +1702,13 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
         
         [menuToggleLetterBox setEnabled:YES];
 		
-	} else if (changeKind == NSKeyValueChangeSetting) {
-		[menuSwitchSub setEnabled:NO];
+	} 
+    else if (changeKind == NSKeyValueChangeSetting) 
+    {
+		subCount = 0;
+        
+        [menuSwitchSub setEnabled:NO];
+        [menuSwitchSecondSub setEnabled:NO];
 		[menuSubScaleInc setEnabled:NO];
 		[menuSubScaleDec setEnabled:NO];
     

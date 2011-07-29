@@ -576,7 +576,16 @@
 								<object class="NSMenuItem" id="809725105">
 									<reference key="NSMenu" ref="703180777"/>
 									<bool key="NSIsDisabled">YES</bool>
-									<string key="NSTitle">Switch Subtitle</string>
+									<string key="NSTitle">Main Subtitle</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
+								</object>
+								<object class="NSMenuItem" id="674884863">
+									<reference key="NSMenu" ref="703180777"/>
+									<bool key="NSIsDisabled">YES</bool>
+									<string key="NSTitle">Secondary Subtitle</string>
 									<string key="NSKeyEquiv"/>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="35465992"/>
@@ -1431,6 +1440,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<string key="NSFrame">{{466, 2}, {12, 12}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<string key="NSClassName">ResizeIndicator</string>
 						</object>
@@ -1508,15 +1518,29 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 									<bool key="EncodedWithXMLCoder">YES</bool>
 									<object class="NSArray" key="dict.sortedKeys">
 										<bool key="EncodedWithXMLCoder">YES</bool>
+										<string>WebKitCacheModelPreferenceKey</string>
 										<string>WebKitDefaultFixedFontSize</string>
 										<string>WebKitDefaultFontSize</string>
+										<string>WebKitJavaEnabled</string>
+										<string>WebKitJavaScriptCanOpenWindowsAutomatically</string>
+										<string>WebKitJavaScriptEnabled</string>
 										<string>WebKitMinimumFontSize</string>
+										<string>WebKitPluginsEnabled</string>
+										<string>WebKitUserStyleSheetEnabledPreferenceKey</string>
+										<string>WebKitUserStyleSheetLocationPreferenceKey</string>
 									</object>
 									<object class="NSMutableArray" key="dict.values">
 										<bool key="EncodedWithXMLCoder">YES</bool>
+										<integer value="0"/>
 										<integer value="12"/>
 										<integer value="12"/>
+										<boolean value="NO"/>
+										<boolean value="NO"/>
+										<boolean value="NO"/>
 										<integer value="1"/>
+										<boolean value="NO"/>
+										<boolean value="YES"/>
+										<string>/System/Library/PrivateFrameworks/Lookup.framework/Resources/LUWebKitModuleStyle.css</string>
 									</object>
 								</object>
 							</object>
@@ -1702,14 +1726,14 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 								<object class="NSComboTableView" key="NSTableView" id="320193884">
 									<reference key="NSNextResponder"/>
 									<int key="NSvFlags">274</int>
-									<string key="NSFrameSize">{13, 0}</string>
+									<string key="NSFrameSize">{15, 0}</string>
 									<reference key="NSSuperview"/>
 									<reference key="NSWindow"/>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSMutableArray" key="NSTableColumns">
 										<bool key="EncodedWithXMLCoder">YES</bool>
 										<object class="NSTableColumn">
-											<double key="NSWidth">10</double>
+											<double key="NSWidth">12</double>
 											<double key="NSMinWidth">10</double>
 											<double key="NSMaxWidth">1000</double>
 											<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -1760,7 +1784,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 									</object>
 									<double key="NSRowHeight">19</double>
 									<string key="NSAction">tableViewAction:</string>
-									<int key="NSTvFlags">-765427712</int>
+									<int key="NSTvFlags">-767524864</int>
 									<reference key="NSDelegate" ref="524065192"/>
 									<reference key="NSDataSource" ref="524065192"/>
 									<reference key="NSTarget" ref="524065192"/>
@@ -2993,6 +3017,22 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 					</object>
 					<int key="connectionID">1070</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setSecondSubWithID:</string>
+						<reference key="source" ref="85098728"/>
+						<reference key="destination" ref="674884863"/>
+					</object>
+					<int key="connectionID">1072</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">menuSwitchSecondSub</string>
+						<reference key="source" ref="85098728"/>
+						<reference key="destination" ref="674884863"/>
+					</object>
+					<int key="connectionID">1073</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -3998,6 +4038,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<reference ref="1012876636"/>
 							<reference ref="266804155"/>
 							<reference ref="573655087"/>
+							<reference ref="674884863"/>
 						</object>
 						<reference key="parent" ref="790071083"/>
 					</object>
@@ -4123,6 +4164,11 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 						<reference key="object" ref="652041866"/>
 						<reference key="parent" ref="110575045"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1071</int>
+						<reference key="object" ref="674884863"/>
+						<reference key="parent" ref="703180777"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -4155,6 +4201,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 					<string>1059.IBPluginDependency</string>
 					<string>1061.IBPluginDependency</string>
 					<string>1064.IBPluginDependency</string>
+					<string>1071.IBPluginDependency</string>
 					<string>124.IBPluginDependency</string>
 					<string>125.IBPluginDependency</string>
 					<string>126.IBPluginDependency</string>
@@ -4346,6 +4393,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 					<string>WhiteIntermProgIndicator</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.WebKitIBPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4597,7 +4645,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1070</int>
+			<int key="maxID">1073</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4837,11 +4885,13 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<string>resetAspectRatio:</string>
 							<string>seekTo:</string>
 							<string>setAudioWithID:</string>
+							<string>setSecondSubWithID:</string>
 							<string>setSubWithID:</string>
 							<string>setVideoWithID:</string>
 							<string>setVolume:</string>
 							<string>showMediaInfo:</string>
 							<string>stepAudios:</string>
+							<string>stepSecondSubtitles:</string>
 							<string>stepSubtitles:</string>
 							<string>stepVideos:</string>
 							<string>stepWindowSize:</string>
@@ -4856,6 +4906,8 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -4902,11 +4954,13 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<string>resetAspectRatio:</string>
 							<string>seekTo:</string>
 							<string>setAudioWithID:</string>
+							<string>setSecondSubWithID:</string>
 							<string>setSubWithID:</string>
 							<string>setVideoWithID:</string>
 							<string>setVolume:</string>
 							<string>showMediaInfo:</string>
 							<string>stepAudios:</string>
+							<string>stepSecondSubtitles:</string>
 							<string>stepSubtitles:</string>
 							<string>stepVideos:</string>
 							<string>stepWindowSize:</string>
@@ -4970,6 +5024,10 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
+								<string key="name">setSecondSubWithID:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
 								<string key="name">setSubWithID:</string>
 								<string key="candidateClassName">id</string>
 							</object>
@@ -4987,6 +5045,10 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">stepAudios:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">stepSecondSubtitles:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -5068,6 +5130,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<string>menuSubtitleMatch</string>
 							<string>menuSubtitleSearchOnWeb</string>
 							<string>menuSwitchAudio</string>
+							<string>menuSwitchSecondSub</string>
 							<string>menuSwitchSub</string>
 							<string>menuSwitchVideo</string>
 							<string>menuToggleLetterBox</string>
@@ -5117,6 +5180,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<string>NSMenuItem</string>
 							<string>NSMenuItem</string>
 							<string>NSMenu</string>
+							<string>NSMenuItem</string>
 							<string>NSMenuItem</string>
 							<string>NSMenuItem</string>
 							<string>NSMenuItem</string>
@@ -5181,6 +5245,7 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							<string>menuSubtitleMatch</string>
 							<string>menuSubtitleSearchOnWeb</string>
 							<string>menuSwitchAudio</string>
+							<string>menuSwitchSecondSub</string>
 							<string>menuSwitchSub</string>
 							<string>menuSwitchVideo</string>
 							<string>menuToggleLetterBox</string>
@@ -5321,6 +5386,10 @@ bmVzZSAtIEFuYWtpbn5NYWNAbWFjaWRlYS5jb20</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">menuSwitchAudio</string>
+								<string key="candidateClassName">NSMenuItem</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">menuSwitchSecondSub</string>
 								<string key="candidateClassName">NSMenuItem</string>
 							</object>
 							<object class="IBToOneOutletInfo">
