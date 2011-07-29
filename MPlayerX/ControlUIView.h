@@ -57,6 +57,10 @@
 	float volStep;
 	float orgHeight;
 
+    int mergedSubID;
+    int subCount;
+    BOOL mergeEnabled;
+
 	IBOutlet PlayerController *playerController;
 	IBOutlet RootLayerView *dispView;
 	IBOutlet NSButton *fillScreenButton;
@@ -87,6 +91,7 @@
     
     // list for sub/audio/video
 	NSMenu *subListMenu;
+    NSMenu *secondSubListMenu;
 	NSMenu *audioListMenu;
 	NSMenu *videoListMenu;
     
@@ -113,6 +118,7 @@
     // Subtitle Menu
     IBOutlet NSMenu *menuSubtitle;
 	IBOutlet NSMenuItem *menuSwitchSub;
+    IBOutlet NSMenuItem *menuSwitchSecondSub;
     IBOutlet NSMenuItem *menuToggleLetterBox;
 	IBOutlet NSMenuItem *menuSubScaleInc;
 	IBOutlet NSMenuItem *menuSubScaleDec;
@@ -177,6 +183,11 @@ extern NSString * const kFillScreenButtonImageUBKey;
 -(IBAction) stepSubtitles:(id)sender;
 -(IBAction) setSubWithID:(id)sender;
 
+-(IBAction) stepSecondSubtitles:(id)sender;
+-(IBAction) setSecondSubWithID:(id)sender;
+
+-(int) nextAvailableSubTag;
+
 -(IBAction) changeSubScale:(id)sender;
 
 -(IBAction) stepAudios:(id)sender;
@@ -198,7 +209,7 @@ extern NSString * const kFillScreenButtonImageUBKey;
 -(IBAction) showMediaInfo:(id)sender;
 
 -(void) setOSDMessage:(NSString*) msg;
-
+-(void) setOSDMessageNow:(NSString *)msg;
 
 //delegate of DOMProxySPlayerDelegate
 - (NSString*)dom_snapshot:(WebView *)hostWebView;

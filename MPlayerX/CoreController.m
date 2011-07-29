@@ -554,11 +554,38 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 	[playerCore sendStringCommand:[NSString stringWithFormat:kCmdStringFMTInteger, kMPCSetPropertyPreFixPauseKeep, kMPCSwitchVideo, videoID]];
 }
 
--(void) setSub: (int) subID
+-(void) setSub:(int) subID
 {
-  [movieInfo.playingInfo setCurrentSub:subID];
-  [movieInfo.playingInfo setContinuousPlaytimeStart:[NSDate date]];
-	[playerCore sendStringCommand:[NSString stringWithFormat:kCmdStringFMTInteger, kMPCSetPropertyPreFixPauseKeep, kMPCSub, subID]];
+    [movieInfo.playingInfo setCurrentSub:subID];
+    [movieInfo.playingInfo setContinuousPlaytimeStart:[NSDate date]];
+    [playerCore sendStringCommand:[NSString stringWithFormat:kCmdStringFMTInteger, kMPCSetPropertyPreFixPauseKeep, kMPCSub, subID]];
+}
+
+-(void) mergeSub:(NSString *) subName secondSub:(NSString *) secondSubName
+{
+    NSTask *task = [[NSTask alloc] init];
+    [task setLaunchPath: @"/bin/sh"];
+    
+    NSString *resPath = [[NSBundle mainBundle] resourcePath];
+    NSString *mergeshPath = [resPath stringByAppendingPathComponent:@"plug-ins/merge.sh"];
+    NSArray *dirs = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,NSUserDomainMask,YES);
+    NSString *pathToFolder = (NSString *) [dirs objectAtIndex:0];
+    NSString *pathToSub;
+    if ([[[NSBundle mainBundle] bundleIdentifier] isEqualToString:@"org.splayer.splayerx"])
+        pathToSub = [pathToFolder stringByAppendingString:@"/Application Support/SPlayerX/Subs/"];
+    else pathToSub = [pathToFolder stringByAppendingString:@"/Application Support/SPlayerX Revised/Subs/"];
+    
+    NSString *subPath = [pathToSub stringByAppendingString:subName];
+    NSString *secondSubPath = [pathToSub stringByAppendingString:secondSubName];
+    NSString *outputSubPath = [pathToSub stringByAppendingPathComponent:@"_mergedsub.srt"];
+    
+    [task setArguments:[NSArray arrayWithObjects: mergeshPath, subPath, secondSubPath, outputSubPath, nil]];
+    
+    [task launch];
+    [task waitUntilExit];
+	[task release];
+    
+    [playerCore sendStringCommand:[NSString stringWithFormat:@"%@ \"%@\"\n", kMPCSubLoad, outputSubPath]];
 }
 
 -(void) setSubDelay: (float) delay

@@ -684,6 +684,11 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 	[mplayer setSub:subID];
 }
 
+-(void) mergeSubtitle:(NSString *)subName secondSubName:(NSString *)secondSubName
+{
+    [mplayer mergeSub: subName secondSub:secondSubName];
+}
+
 -(void) setAudio:(int) audioID
 {
 	[mplayer setAudio:audioID];
