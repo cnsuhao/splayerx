@@ -179,6 +179,14 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
     [SHandler sendRequest];
     #endif
 }
+
+-(IBAction)renewOnScreen:(id)sender
+{
+#ifdef HAVE_STOREKIT
+    [SHandler sendRequest];
+#endif
+}
+
 -(void) refreshButton:(NSNotification *)notif
 {
     [subscribeButton setEnabled:YES];

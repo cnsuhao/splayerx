@@ -60,8 +60,10 @@
     int mergedSubID;
     int subCount;
     BOOL mergeEnabled;
-
-	IBOutlet PlayerController *playerController;
+    
+    IBOutlet NSButton *renewButton;
+    
+    IBOutlet PlayerController *playerController;
 	IBOutlet RootLayerView *dispView;
 	IBOutlet NSButton *fillScreenButton;
 	IBOutlet NSButton *fullScreenButton;
@@ -208,8 +210,11 @@ extern NSString * const kFillScreenButtonImageUBKey;
 
 -(IBAction) showMediaInfo:(id)sender;
 
--(void) setOSDMessage:(NSString*) msg;
+-(void) setOSDMessage:(NSString*)msg;
 -(void) setOSDMessageNow:(NSString *)msg;
+
+-(void) showRenewButton;
+-(void) renewButtonHide;
 
 //delegate of DOMProxySPlayerDelegate
 - (NSString*)dom_snapshot:(WebView *)hostWebView;

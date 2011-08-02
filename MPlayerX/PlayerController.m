@@ -759,6 +759,13 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 	}
 }
 
+-(void) showRenewButtonOnScreen
+{
+    [controlUI showRenewButton];
+}
+
+
+
 //////////////////////////////////////private methods////////////////////////////////////////////////////
 -(BOOL) shouldRun64bitMPlayer
 {
