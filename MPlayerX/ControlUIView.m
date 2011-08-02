@@ -32,6 +32,7 @@
 #import "CocoaAppendix.h"
 #import "TimeFormatter.h"
 #import "ssclThread.h"
+#import "StoreHandler.h"
 
 #define CONTROLALPHA		(1)
 #define BACKGROUNDALPHA		(0.2)
@@ -379,6 +380,9 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
     
     // set OSD active status
 	[osd setActive:NO];
+    
+    // hide renew button
+    [renewButton setHidden:YES];
 }
 
 -(void) dealloc
@@ -1816,6 +1820,25 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
     [osd setStringValue:[NSString stringWithFormat:kMPXStringOSDSubScaleHint, ([scl floatValue]*100)]
                   owner:kOSDOwnerOther
             updateTimer:YES];
+}
+
+-(void) showRenewButton
+{
+    [renewButton setHidden:NO];
+    autoHideTimer = [NSTimer timerWithTimeInterval:5
+                                            target:self
+                                          selector:@selector(renewButtonHide)
+                                          userInfo:nil
+                                           repeats:YES];
+    NSRunLoop *rl = [NSRunLoop mainRunLoop];
+    [rl addTimer:autoHideTimer forMode:NSDefaultRunLoopMode];
+    [rl addTimer:autoHideTimer forMode:NSModalPanelRunLoopMode];
+    [rl addTimer:autoHideTimer forMode:NSEventTrackingRunLoopMode];
+}
+
+-(void) renewButtonHide
+{
+    [renewButton setHidden:YES];
 }
 
 ////////////////////////////////////////////////draw myself//////////////////////////////////////////////////

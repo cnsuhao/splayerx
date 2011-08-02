@@ -62,6 +62,7 @@
 -(void) refreshButton:(NSNotification *)notif;
 -(void) setButtonState;
 -(IBAction)subscribe:(id)sender;
+-(IBAction)renewOnScreen:(id)sender;
 
 // *** for testing
 -(IBAction) reset:(id)sender;

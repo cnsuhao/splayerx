@@ -38,13 +38,8 @@
     
 #ifdef HAVE_STOREKIT
     // add IAP expire reminder on OSD
-    if ([StoreHandler expireReminder])
-    {
-        [playerController setOSDMessage:[kMPXStringSSCLFetching 
-                                         stringByAppendingFormat:kMPXStringStoreExpireReminder,
-                                         [StoreHandler subscriptionLeftDay]]];
-    }
-    else [playerController setOSDMessage:kMPXStringSSCLFetching];
+    if ([StoreHandler expireReminder]) [playerController showRenewButtonOnScreen];
+    [playerController setOSDMessage:kMPXStringSSCLFetching];
 #else
     [playerController setOSDMessage:kMPXStringSSCLFetching];
 #endif
