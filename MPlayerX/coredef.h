@@ -63,6 +63,7 @@ extern NSString * const kKVOPropertyKeyPathDemuxer;
 extern NSString * const kKVOPropertyKeyPathSpeed;
 extern NSString * const kKVOPropertyKeyPathSubDelay;
 extern NSString * const kKVOPropertyKeyPathAudioDelay;
-
 extern NSString * const kKVOPropertyKeyPathVideoInfo;
 extern NSString * const kKVOPropertyKeyPathAudioInfo;
+extern NSString * const kKVOPropertyKeyPathSubScale;
+

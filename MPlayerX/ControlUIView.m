@@ -76,6 +76,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 -(void) gotCachingPercent:(NSNumber*) caching;
 -(void) gotAudioInfo:(NSArray*) ais;
 -(void) gotVideoInfo:(NSArray*) vis;
+-(void) gotSubScale:(NSNumber*) scl;
 @end
 
 @implementation ControlUIView
@@ -1478,6 +1479,9 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	} else if ([keyPath isEqualToString:kKVOPropertyKeyPathVideoInfo]) {
 		// got the video info
 		[self gotVideoInfo:[change objectForKey:NSKeyValueChangeNewKey]];
+	} else if ([keyPath isEqualToString:kKVOPropertyKeyPathSubScale]) {
+		// got the sub scale
+		[self gotSubScale:[change objectForKey:NSKeyValueChangeNewKey]];
 	}
 }
 ////////////////////////////////////////////////KVO for time//////////////////////////////////////////////////
@@ -1806,6 +1810,14 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 		[menuSwitchVideo setEnabled:NO];
 	}
 }
+
+-(void) gotSubScale:(NSNumber*) scl
+{
+    [osd setStringValue:[NSString stringWithFormat:kMPXStringOSDSubScaleHint, ([scl floatValue]*100)]
+                  owner:kOSDOwnerOther
+            updateTimer:YES];
+}
+
 ////////////////////////////////////////////////draw myself//////////////////////////////////////////////////
 - (void)drawRect:(NSRect)dirtyRect
 {
