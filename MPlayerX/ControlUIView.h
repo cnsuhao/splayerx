@@ -22,7 +22,7 @@
 #import <WebKit/WebKit.h>
 #import "DOMProxySPlayer.h"
 
-@class RootLayerView, PlayerController, FloatWrapFormatter, ArrowTextField, ResizeIndicator, OsdText, TitleView, TimeFormatter;
+@class RootLayerView, PlayerController, FloatWrapFormatter, ArrowTextField, ResizeIndicator, OSDView, TitleView, TimeFormatter;
 
 @interface ControlUIView : NSView
 {
@@ -61,8 +61,6 @@
     int subCount;
     BOOL mergeEnabled;
     
-    IBOutlet NSButton *renewButton;
-    
     IBOutlet PlayerController *playerController;
 	IBOutlet RootLayerView *dispView;
 	IBOutlet NSButton *fillScreenButton;
@@ -85,7 +83,6 @@
 	IBOutlet ArrowTextField *audioDelayText;
 	
 	IBOutlet ResizeIndicator *rzIndicator;
-	IBOutlet OsdText *osd;
 	IBOutlet TitleView *title;
 	
     IBOutlet WebView* webView;
@@ -154,7 +151,6 @@ extern NSString * const kFillScreenButtonImageUBKey;
 -(void) doHide;
 -(void) refreshBackgroundAlpha;
 -(void) refreshAutoHideTimer;
--(void) refreshOSDSetting;
 
 //////////////////////////////其他控件相关/////////////////////////////
 -(IBAction) togglePlayPause:(id)sender;
@@ -209,12 +205,6 @@ extern NSString * const kFillScreenButtonImageUBKey;
 -(IBAction) stepWindowSize:(id)sender;
 
 -(IBAction) showMediaInfo:(id)sender;
-
--(void) setOSDMessage:(NSString*)msg;
--(void) setOSDMessageNow:(NSString *)msg;
-
--(void) showRenewButton;
--(void) renewButtonHide;
 
 //delegate of DOMProxySPlayerDelegate
 - (NSString*)dom_snapshot:(WebView *)hostWebView;

@@ -26,7 +26,6 @@
 #import "ControlUIView.h"
 #import "PlayerController.h"
 #import "ShortCutManager.h"
-#import "OsdText.h"
 #import "VideoTunerController.h"
 #import "TitleView.h"
 #import "AppController.h"

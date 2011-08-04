@@ -70,7 +70,6 @@
 -(IBAction) multiThreadChanged:(id)sender;
 -(IBAction) onTopModeChanged:(id)sender;
 -(IBAction) controlUIAppearanceChanged:(id)sender;
--(IBAction) osdSetChanged:(id)sender;
 -(IBAction) checkCacheFormat:(id)sender;
 -(IBAction) letterBoxModeChanged:(id)sender;
 -(IBAction) subEncodingSchemeChanged:(id)sender;
