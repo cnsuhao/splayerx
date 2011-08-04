@@ -27,7 +27,6 @@
 #import "FloatWrapFormatter.h"
 #import "ArrowTextField.h"
 #import "ResizeIndicator.h"
-#import "OsdText.h"
 #import "TitleView.h"
 #import "CocoaAppendix.h"
 #import "TimeFormatter.h"
@@ -377,12 +376,6 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 	// force hide titlebar
 	[title setAlphaValue:([ud boolForKey:kUDKeyHideTitlebar])?0:CONTROLALPHA];
-    
-    // set OSD active status
-	[osd setActive:NO];
-    
-    // hide renew button
-    [renewButton setHidden:YES];
 }
 
 -(void) dealloc
@@ -436,25 +429,6 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	backGroundColor2 = [[NSColor colorWithDeviceWhite:0.32 alpha:backAlpha] retain];
 	
 	[self setNeedsDisplay:YES];
-}
-
--(void) refreshOSDSetting
-{
-	BOOL new = [ud boolForKey:kUDKeyShowOSD]; 
-	if (new) {
-		// 如果是显示OSD的话，那么就得到新值
-		[osd setAutoHideTimeInterval:[ud doubleForKey:kUDKeyOSDAutoHideTime]];
-		[osd setFrontColor:[NSUnarchiver unarchiveObjectWithData:[ud objectForKey:kUDKeyOSDFrontColor]]];
-		// 并且强制显示OSD，但是这个和目前OSD的状态不一定一样
-		[osd setActive:YES];
-		[osd setStringValue:kMPXStringOSDSettingChanged owner:kOSDOwnerOther updateTimer:YES];
-	}
-	if ([playerController couldAcceptCommand]) {
-		// 如果正在播放，那么就设定显示
-		// 如果不在播放，osd的active状态会被设置为强制OFF，所以不能设定
-		// 在开始播放的时候，会再一次设定active状态
-		[osd setActive:new];
-	}
 }
 
 -(void) showMediaInfo:(id)sender
@@ -556,10 +530,10 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 		}
 		
 		if (showOSD) {
-			BOOL actOld = [osd isActive];
-			[osd setActive:YES];
-			[osd setStringValue:dispStr owner:kOSDOwnerMediaInfo updateTimer:YES];
-			[osd setActive:actOld];
+			BOOL actOld = [playerController isOSDActive];
+			[playerController setOSDActive:YES];
+            [playerController setOSDMessage:dispStr type:kOSDTypeMediaInfo];
+            [playerController setOSDActive:actOld];
 		}
 	}
 	[dispStr release];
@@ -681,7 +655,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 			osdStr = kMPXStringOSDNull;
 			break;
 	}
-	[osd setStringValue:osdStr owner:kOSDOwnerOther updateTimer:YES];
+	[playerController setOSDMessage:osdStr type:kOSDTypeCoreControl];
 }
 
 -(IBAction) toggleMute:(id)sender
@@ -695,23 +669,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[menuVolDec setEnabled:!mute];
 	
 	// update OSD
-	[osd setStringValue:(mute)?(kMPXStringOSDMuteON):(kMPXStringOSDMuteOFF)
-				  owner:kOSDOwnerOther
-			updateTimer:YES];
-}
--(void) setOSDMessage:(NSString*) msg
-{
-	// update OSD
-	[osd setStringValue:msg
-					owner:kOSDOwnerNotifier
-					updateTimer:YES];
-}
-
--(void) setOSDMessageNow:(NSString *)msg
-{
-    [osd setStringValue:msg
-                  owner:kOSDOwnerOther
-            updateTimer:YES];
+    [playerController setOSDMessage:(mute)?(kMPXStringOSDMuteON):(kMPXStringOSDMuteOFF)
+                               type:kOSDTypeCoreControl];
 }
 
 -(IBAction) setVolume:(id)sender
@@ -733,9 +692,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 		[ud setFloat:vol forKey:kUDKeyVolume];
 		
 		// update OSD
-		[osd setStringValue:[NSString stringWithFormat:kMPXStringOSDVolumeHint, vol]
-					  owner:kOSDOwnerOther
-				updateTimer:YES];
+        [playerController setOSDMessage:[NSString stringWithFormat:kMPXStringOSDVolumeHint, vol]
+                                   type:kOSDTypeCoreControl];
 	}
 }
 
@@ -763,14 +721,14 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	
 	[self updateHintTime];
 	
-	if ([osd isActive] && (time > 0)) {
+	if ([playerController isOSDActive] && (time > 0)) {
 		NSString *osdStr = [timeFormatter stringForObjectValue:[NSNumber numberWithFloat:time]];
 		double length = [timeSlider maxValue];
 		
 		if (length > 0) {
 			osdStr = [osdStr stringByAppendingFormat:kStringFMTTimeAppendTotal, [timeFormatter stringForObjectValue:[NSNumber numberWithDouble:length]]];
 		}
-		[osd setStringValue:osdStr owner:kOSDOwnerTime updateTimer:YES];
+		[playerController setOSDMessage:osdStr type:kOSDTypeCoreControl];
 	}
 }
 
@@ -778,14 +736,14 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 {
 	float time = [playerController changeTimeBy:delta];
 
-	if ([osd isActive] && (time > 0)) {
+	if ([playerController isOSDActive] && (time > 0)) {
 		NSString *osdStr = [timeFormatter stringForObjectValue:[NSNumber numberWithFloat:time]];
 		double length = [timeSlider maxValue];
 		
 		if (length > 0) {
 			osdStr = [osdStr stringByAppendingFormat:kStringFMTTimeAppendTotal, [timeFormatter stringForObjectValue:[NSNumber numberWithDouble:length]]];
 		}
-		[osd setStringValue:osdStr owner:kOSDOwnerTime updateTimer:YES];
+		[playerController setOSDMessage:osdStr type:kOSDTypeCoreControl];
 	}
 }
 
@@ -1052,9 +1010,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
             }
         }
         [sender setState:NSOnState];
-        [osd setStringValue:[NSString stringWithFormat:kMPXStringOSDMainSubtitleHint, [sender title]]
-                      owner:kOSDOwnerOther
-                updateTimer:YES];
+        [playerController setOSDMessage:[NSString stringWithFormat:kMPXStringOSDMainSubtitleHint, [sender title]] 
+                                   type:kOSDTypeCoreControl];
 	}
 }
 
@@ -1096,9 +1053,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 		}
 		[sender setState:NSOnState];
         
-        [osd setStringValue:[NSString stringWithFormat:kMPXStringOSDSecSubtitleHint, [sender title]]
-                      owner:kOSDOwnerOther
-                updateTimer:YES];
+        [playerController setOSDMessage:[NSString stringWithFormat:kMPXStringOSDSecSubtitleHint, [sender title]] 
+                                   type:kOSDTypeCoreControl];
     }
 }
 
@@ -1143,11 +1099,11 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 		// This is a hack
 		// since I have to reset the volume when switch audio
 		// so I should disable OSD when set volume
-		BOOL oldAct = [osd isActive];
-		[osd setActive:NO];
+		BOOL oldAct = [playerController isOSDActive];
+        [playerController setOSDActive:NO];
 		// 这个可能是mplayer的bug，当轮转一圈从各个音轨到无声在回到音轨时，声音会变到最大，所以这里再设定一次音量
 		[self setVolume:volumeSlider];
-		[osd setActive:oldAct];
+		[playerController setOSDActive:oldAct];
 		
 		for (NSMenuItem* mItem in [audioListMenu itemArray]) {
 			if ([mItem state] == NSOnState) {
@@ -1157,9 +1113,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 		}
 		[sender setState:NSOnState];
 		
-		[osd setStringValue:[NSString stringWithFormat:kMPXStringOSDAudioHint, [sender title]]
-					  owner:kOSDOwnerOther
-				updateTimer:YES];
+        [playerController setOSDMessage:[NSString stringWithFormat:kMPXStringOSDAudioHint, [sender title]] 
+                                   type:kOSDTypeCoreControl];
 	}
 }
 
@@ -1198,9 +1153,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 		}
 		[sender setState:NSOnState];
 		
-		[osd setStringValue:[NSString stringWithFormat:kMPXStringOSDVideoHint, [sender title]]
-					  owner:kOSDOwnerOther
-				updateTimer:YES];
+        [playerController setOSDMessage:[NSString stringWithFormat:kMPXStringOSDVideoHint, [sender title]] 
+                                   type:kOSDTypeCoreControl];
 	}
 }
 
@@ -1234,9 +1188,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	BOOL lock = [dispView lockAspectRatio];
 	[menuToggleLockAspectRatio setTitle:(lock)?(kMPXStringMenuUnlockAspectRatio):(kMPXStringMenuLockAspectRatio)];
 	
-	[osd setStringValue:(lock)?(kMPXStringOSDAspectRatioLocked):(kMPXStringOSDAspectRatioUnLocked)
-				  owner:kOSDOwnerOther
-			updateTimer:YES];
+	[playerController setOSDMessage:(lock)?(kMPXStringOSDAspectRatioLocked):(kMPXStringOSDAspectRatioUnLocked)
+                               type:kOSDTypeCoreControl];
 }
 
 -(IBAction) resetAspectRatio:(id)sender
@@ -1244,9 +1197,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[dispView resetAspectRatio];
 	[menuToggleLockAspectRatio setTitle:([dispView lockAspectRatio])?(kMPXStringMenuUnlockAspectRatio):(kMPXStringMenuLockAspectRatio)];
 	
-	[osd setStringValue:kMPXStringOSDAspectRatioReset
-				  owner:kOSDOwnerOther
-			updateTimer:YES];
+	[playerController setOSDMessage:kMPXStringOSDAspectRatioReset type:kOSDTypeCoreControl];
 }
 
 -(IBAction) toggleLetterBox:(id)sender
@@ -1265,10 +1216,10 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 	if ([ud integerForKey:kUDKeyLetterBoxMode] == kPMLetterBoxModeNotDisplay) {
 		[menuToggleLetterBox setTitle:kMPXStringMenuShowLetterBox];
-		[osd setStringValue:kMPXStringOSDLetterBoxWillHide owner:kOSDOwnerOther updateTimer:YES];
+		[playerController setOSDMessage:kMPXStringOSDLetterBoxWillHide type:kOSDTypeCoreControl];
 	} else {
 		[menuToggleLetterBox setTitle:kMPXStringMenuHideLetterBox];
-		[osd setStringValue:kMPXStringOSDLetterBoxWillShow owner:kOSDOwnerOther updateTimer:YES];
+        [playerController setOSDMessage:kMPXStringOSDLetterBoxWillShow type:kOSDTypeCoreControl];
 	}
 }
 
@@ -1327,7 +1278,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 ////////////////////////////////////////////////playback//////////////////////////////////////////////////
 -(void) playBackOpened:(NSNotification*)notif
 {
-	[osd setActive:[ud boolForKey:kUDKeyShowOSD]];
+	[playerController setOSDActive:[ud boolForKey:kUDKeyShowOSD]];
 
 	NSNumber *stopTime = [[notif userInfo] objectForKey:kMPCPlayLastStoppedTimeKey];
 	if (stopTime) {
@@ -1367,8 +1318,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 -(void) playBackWillStop:(NSNotification*)notif
 {
-	[osd setStringValue:@"" owner:kOSDOwnerOther updateTimer:YES];
-	[osd setActive:NO];
+    [playerController setOSDMessage:@"" type:kOSDTypeCoreControl];
+	[playerController setOSDActive:NO];
 }
 
 /** 这个API会在两个时间点被调用，
@@ -1533,13 +1484,13 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 		[self calculateHintTime];
 	}
 	
-	if ([osd isActive] && (time > 0)) {
+	if ([playerController isOSDActive] && (time > 0)) {
 		NSString *osdStr = [timeFormatter stringForObjectValue:timePos];
 		
 		if (length > 0) {
 			osdStr = [osdStr stringByAppendingFormat:kStringFMTTimeAppendTotal, [timeFormatter stringForObjectValue:[NSNumber numberWithDouble:length]]];
 		}
-		[osd setStringValue:osdStr owner:kOSDOwnerTime updateTimer:NO];		
+        [playerController setOSDMessage:osdStr type:kOSDTypeTime];	
 	}
 }
 
@@ -1552,27 +1503,24 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 {
 	[speedText setFloatValue:[speed floatValue]];
 	
-	[osd setStringValue:[NSString stringWithFormat:kMPXStringOSDSpeedHint, [speed floatValue]] 
-				  owner:kOSDOwnerOther
-			updateTimer:YES];
+	[playerController setOSDMessage:[NSString stringWithFormat:kMPXStringOSDSpeedHint, [speed floatValue]] 
+                               type:kOSDTypeCoreControl];
 }
 
 -(void) gotSubDelay:(NSNumber*) sd
 {
 	[subDelayText setFloatValue:[sd floatValue]];
 	
-	[osd setStringValue:[NSString stringWithFormat:kMPXStringOSDSubDelayHint, [sd floatValue]]
-				  owner:kOSDOwnerOther
-			updateTimer:YES];
+	[playerController setOSDMessage:[NSString stringWithFormat:kMPXStringOSDSubDelayHint, [sd floatValue]]
+                               type:kOSDTypeCoreControl];
 }
 
 -(void) gotAudioDelay:(NSNumber*) ad
 {
 	[audioDelayText setFloatValue:[ad floatValue]];
 
-	[osd setStringValue:[NSString stringWithFormat:kMPXStringOSDAudioDelayHint, [ad floatValue]]
-				  owner:kOSDOwnerOther
-			updateTimer:YES];
+	[playerController setOSDMessage:[NSString stringWithFormat:kMPXStringOSDAudioDelayHint, [ad floatValue]]
+                               type:kOSDTypeCoreControl];
 }
 
 -(void) resetSubtitleMenu
@@ -1733,7 +1681,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	NSWindow *win = [self window];
 	float percent = [caching floatValue];
 	
-	if ([osd isActive] && (percent > 0.01)) {
+	if ([playerController isOSDActive] && (percent > 0.01)) {
 		if (![win isVisible]) {
 			[win makeKeyAndOrderFront:self];
 		}
@@ -1743,9 +1691,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 																	continuousPlaytimeStart]];
 			
 		if (timePlayed > 3.0)
-  		[osd setStringValue:[NSString stringWithFormat:kMPXStringOSDCachingPercent, percent*100]
-					  owner:kOSDOwnerNotifier updateTimer:YES];
-		
+            [playerController setOSDMessage:kMPXStringOSDCachingPercent type:kOSDTypeCoreControl];
 	}
 }
 
@@ -1817,28 +1763,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 -(void) gotSubScale:(NSNumber*) scl
 {
-    [osd setStringValue:[NSString stringWithFormat:kMPXStringOSDSubScaleHint, ([scl floatValue]*100)]
-                  owner:kOSDOwnerOther
-            updateTimer:YES];
-}
-
--(void) showRenewButton
-{
-    [renewButton setHidden:NO];
-    autoHideTimer = [NSTimer timerWithTimeInterval:5
-                                            target:self
-                                          selector:@selector(renewButtonHide)
-                                          userInfo:nil
-                                           repeats:YES];
-    NSRunLoop *rl = [NSRunLoop mainRunLoop];
-    [rl addTimer:autoHideTimer forMode:NSDefaultRunLoopMode];
-    [rl addTimer:autoHideTimer forMode:NSModalPanelRunLoopMode];
-    [rl addTimer:autoHideTimer forMode:NSEventTrackingRunLoopMode];
-}
-
--(void) renewButtonHide
-{
-    [renewButton setHidden:YES];
+    [playerController setOSDMessage:[NSString stringWithFormat:kMPXStringOSDSubScaleHint, ([scl floatValue]*100)] 
+                               type:kOSDTypeCoreControl];
 }
 
 ////////////////////////////////////////////////draw myself//////////////////////////////////////////////////
@@ -1949,7 +1875,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[hintTime.animator setAlphaValue:0];
 	
 	// 这里是为了让字体大小符合窗口大小
-	[osd setStringValue:nil owner:osd.owner updateTimer:NO];
+    [playerController OSDResize];
 }
 
 - (void)webView:(WebView *)sender decidePolicyForNewWindowAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request newFrameName:(NSString *)frameName decisionListener:(id < WebPolicyDecisionListener >)listener

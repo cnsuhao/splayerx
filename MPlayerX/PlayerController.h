@@ -20,6 +20,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "CoreController.h"
+#import "OSDView.h"
 
 ///////////////////////////Notifications///////////////////////////
 extern NSString * const kMPCPlayOpenedNotification;
@@ -50,13 +51,16 @@ extern NSString * const kMPCPlayInfoUpdatedChangeDictKey;
 	NSURL *lastPlayedPathPre;
 
 	BOOL kvoSetuped;
+    BOOL OSDActive;
 
-	IBOutlet ControlUIView *controlUI;
+	IBOutlet OSDView *osd;
+    IBOutlet ControlUIView *controlUI;
 	IBOutlet OpenURLController *openUrlController;
 	IBOutlet CharsetQueryController *charsetController;
 }
 
 @property (readonly) NSURL *lastPlayedPath;
+@property (assign, readwrite, getter=isOSDActive) BOOL OSDActive;
 
 -(void) setupKVO;
 
@@ -104,11 +108,9 @@ extern NSString * const kMPCPlayInfoUpdatedChangeDictKey;
 -(void) forcePullSubtitle;
 -(void) pushSubtitle;
 
--(void) showRenewButtonOnScreen;
-
 /* for subtitle search OSD display
- * latter method set owner:kOSDOwnerOther
  */
--(void) setOSDMessage:(NSString*) msg;
--(void) setOSDMessageNow:(NSString*)msg;
+-(void) setOSDMessage:(NSString*) msg type:(OSDTYPE)tp;
+-(void) OSDResize;
+
 @end

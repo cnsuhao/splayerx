@@ -273,11 +273,6 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
 	[controlUI showUp];
 }
 
--(IBAction) osdSetChanged:(id)sender
-{
-	[controlUI refreshOSDSetting];
-}
-
 -(IBAction) checkCacheFormat:(id)sender
 {
 	float cache = [ud floatForKey:kUDKeyCacheSize];

@@ -87,6 +87,7 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 @implementation PlayerController
 
 @synthesize lastPlayedPath;
+@synthesize OSDActive;
 
 +(void) initialize
 {
@@ -181,6 +182,8 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 		lastPlayedPathPre = nil;
 
 		kvoSetuped = NO;
+        
+        OSDActive = NO;
 	}
 	return self;
 }
@@ -735,14 +738,18 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
   [NSThread detachNewThreadSelector:@selector(pushSubtitle:) toTarget:[ssclThread class] withObject:self];
 }
 
--(void) setOSDMessage:(NSString*) msg
+-(void) setOSDMessage:(NSString*) msg type:(OSDTYPE)tp
 {
-	[controlUI setOSDMessage:msg];
+    if (OSDActive) 
+    {
+        if (tp == kOSDTypeTime)[osd setStringValue:msg type:tp updateTimer:NO];
+        else [osd setStringValue:msg type:tp updateTimer:YES];
+    }
 }
 
--(void) setOSDMessageNow:(NSString *)msg
+-(void) OSDResize
 {
-    [controlUI setOSDMessageNow:msg];
+    if (OSDActive) [osd setStringValue:nil type:osd.type updateTimer:NO];
 }
 
 -(void) setLetterBox:(BOOL) renderSubInLB top:(float) topRatio bottom:(float)bottomRatio
@@ -758,13 +765,6 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 		[mplayer setEqualizer:amps];
 	}
 }
-
--(void) showRenewButtonOnScreen
-{
-    [controlUI showRenewButton];
-}
-
-
 
 //////////////////////////////////////private methods////////////////////////////////////////////////////
 -(BOOL) shouldRun64bitMPlayer

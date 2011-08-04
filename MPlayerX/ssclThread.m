@@ -12,7 +12,6 @@
 #import "UserDefaults.h"
 #import <WebKit/WebKit.h>
 #import "ControlUIView.h"
-#import "StoreHandler.h"
 
 @implementation ssclThread
 
@@ -36,13 +35,8 @@
 	if (![playerController.lastPlayedPath isFileURL])
 		return [POOL release];
     
-#ifdef HAVE_STOREKIT
     // add IAP expire reminder on OSD
-    if ([StoreHandler expireReminder]) [playerController showRenewButtonOnScreen];
-    [playerController setOSDMessage:kMPXStringSSCLFetching];
-#else
-    [playerController setOSDMessage:kMPXStringSSCLFetching];
-#endif
+    [playerController setOSDMessage:kMPXStringSSCLFetching type:kOSDTypeSubSearch];
 	
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
 	NSString* argLang = [NSString stringWithString:@"chn"];
@@ -90,7 +84,7 @@
 	switch (status) {
 		case 3:
 			// require auth
-			[playerController setOSDMessage:kMPXStringSSCLReqAuth];
+			[playerController setOSDMessage:kMPXStringSSCLReqAuth type:kOSDTypeSubSearch];
 			// TODO: message box?
 			return [POOL release];
 			break;
@@ -114,7 +108,7 @@
 	
   switch (resultCount) {
 		case 0:
-			[playerController setOSDMessage:kMPXStringSSCLZeroMatched];
+			[playerController setOSDMessage:kMPXStringSSCLZeroMatched type:kOSDTypeSubSearch];
 			break;
 		default:
 		  {
@@ -132,10 +126,10 @@
 					}
 				}
 				if (acctureCount == 0)
-					[playerController setOSDMessage:kMPXStringSSCLZeroMatched];
+					[playerController setOSDMessage:kMPXStringSSCLZeroMatched type:kOSDTypeSubSearch];
 				else
-					[playerController setOSDMessageNow:[NSString stringWithFormat:
-                                                        kMPXStringSSCLGotResults, acctureCount]];
+					[playerController setOSDMessage:[NSString stringWithFormat:
+                                                        kMPXStringSSCLGotResults, acctureCount] type:kOSDTypeSubSearch];
 		  }	
 			break;
 	}
