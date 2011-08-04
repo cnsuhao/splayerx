@@ -306,6 +306,16 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
 	}
 }
 
+-(IBAction) subScaleChanged:(id)sender
+{
+    [playerController setSubScale: ([[sender stringValue] floatValue] / 100)];
+}
+
+-(IBAction) subFontColorChanged:(id)sender
+{
+    [playerController setSubFontColor:[sender color]];
+}
+
 /////////////////////////////Toolbar Delegate/////////////////////
 /*
  * 如何添加新的Pref View

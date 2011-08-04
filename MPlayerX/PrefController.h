@@ -49,7 +49,6 @@
     IBOutlet NSButton *subtitleSelectionButton;
     IBOutlet NSButton *subscribeButton;
     IBOutlet NSTextField *dueDateTextField;
-    // *****
 }
 
 -(IBAction) showUI:(id)sender;
@@ -74,5 +73,7 @@
 -(IBAction) letterBoxModeChanged:(id)sender;
 -(IBAction) subEncodingSchemeChanged:(id)sender;
 -(IBAction) onSVPLanguageChanged:(id)sender;
+-(IBAction) subScaleChanged:(id)sender;
+-(IBAction) subFontColorChanged:(id)sender;
 
 @end
