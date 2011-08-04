@@ -89,6 +89,9 @@ extern NSString * const kMPCPlayInfoUpdatedChangeDictKey;
 -(float) changeSubPosBy:(float)delta;
 -(float) changeAudioBalanceBy:(float)delta;
 
+-(float) setSubScale:(float) sc;
+-(NSColor*) setSubFontColor:(NSColor*)col;
+
 -(float) setSpeed:(float) spd;
 -(float) setSubDelay:(float) sd;
 -(float) setAudioDelay:(float) ad;

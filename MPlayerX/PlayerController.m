@@ -642,7 +642,9 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 -(float) changeSubScaleBy:(float) delta
 {
 	if (PlayerCouldAcceptCommand) {
-		[mplayer setSubScale: [mplayer.movieInfo.playingInfo.subScale floatValue] + delta];
+        float newScale = [mplayer.movieInfo.playingInfo.subScale floatValue] + delta;
+		[mplayer setSubScale: newScale];
+        [ud setFloat:newScale forKey:kUDKeySubScale];
 	}
 	return [mplayer.movieInfo.playingInfo.subScale floatValue];
 }
@@ -661,6 +663,22 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 		[mplayer setBalance:mplayer.movieInfo.playingInfo.audioBalance + delta];
 	}
 	return mplayer.movieInfo.playingInfo.audioBalance;
+}
+
+-(float) setSubScale:(float) sc
+{
+    if (PlayerCouldAcceptCommand) {
+		[mplayer setSubScale: sc];
+        [ud setFloat:sc forKey:kUDKeySubScale];
+	}
+	return [mplayer.movieInfo.playingInfo.subScale floatValue];
+}
+
+-(NSColor*) setSubFontColor:(NSColor*)col
+{
+    if (PlayerCouldAcceptCommand)
+        [mplayer.pm setSubFontColor:col];
+    return col;
 }
 
 -(float) setSpeed:(float) spd
