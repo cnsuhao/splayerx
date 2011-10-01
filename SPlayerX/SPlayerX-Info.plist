@@ -136,9 +136,9 @@
 	<key>CFBundleGetInfoString</key>
 	<string></string>
 	<key>CFBundleIconFile</key>
-	<string>MPlayerX.icns</string>
+	<string>SPlayerX.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.splayer.splayerx</string>
+	<string>org.splayer.splayerx.revised</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleLocalizations</key>
@@ -148,7 +148,7 @@
 		<string>zh_tw</string>
 	</array>
 	<key>CFBundleName</key>
-	<string>SPlayerX</string>
+	<string>SPlayerX Revised</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -216,7 +216,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1071</string>
+	<string>1080</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.video</string>
 	<key>LSHasLocalizedDisplayName</key>
@@ -227,8 +227,6 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>NSServices</key>
-	<array/>
 	<key>Revision</key>
 	<string>0</string>
 	<key>UTExportedTypeDeclarations</key>
