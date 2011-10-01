@@ -182,12 +182,13 @@
         type = tp;
         shouldHide = NO;
     }
-    
+#ifdef HAVE_STOREKIT    
     // add the loggic for button
     if (([StoreHandler expireReminder]) && (tp == kOSDTypeSubSearch))
     {
         [renewButton setHidden:NO];
     }
+#endif
 }
 
 
