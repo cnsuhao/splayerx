@@ -698,23 +698,6 @@
 			<key>UTTypeIconFile</key>
 			<string>doc_video.icns</string>
 			<key>UTTypeIdentifier</key>
-			<string>org.splayer.splayerx.vob</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.filename-extension</key>
-				<array>
-					<string>vob</string>
-				</array>
-			</dict>
-		</dict>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>public.movie</string>
-			</array>
-			<key>UTTypeIconFile</key>
-			<string>doc_video.icns</string>
-			<key>UTTypeIdentifier</key>
 			<string>org.splayer.splayerx.vro</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
