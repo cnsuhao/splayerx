@@ -7,13 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		042BBC2B1436EBA900749603 /* Equalizer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC1D1436EBA900749603 /* Equalizer.xib */; };
-		042BBC2C1436EBA900749603 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC1F1436EBA900749603 /* InfoPlist.strings */; };
-		042BBC2D1436EBA900749603 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC211436EBA900749603 /* Localizable.strings */; };
-		042BBC2E1436EBA900749603 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC231436EBA900749603 /* MainMenu.xib */; };
-		042BBC2F1436EBA900749603 /* Pref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC251436EBA900749603 /* Pref.xib */; };
-		042BBC301436EBA900749603 /* SubEncoding.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC271436EBA900749603 /* SubEncoding.xib */; };
-		042BBC311436EBA900749603 /* VideoTuner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC291436EBA900749603 /* VideoTuner.xib */; };
 		04CB1A011436C7E800DEDA15 /* BGHUDAppKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8846C54E14362813009043F1 /* BGHUDAppKit.framework */; };
 		04CB1A021436C7E800DEDA15 /* UniversalDetector.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 883CBD4514359FD600D20499 /* UniversalDetector.framework */; };
 		04DFB71114377946006B3F6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CD154B1435859500CDDF1C /* main.m */; };
@@ -123,15 +116,50 @@
 		04DFB77D14377946006B3F6F /* vol_mid.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 883CBC8A14358E0600D20499 /* vol_mid.pdf */; };
 		04DFB77E14377946006B3F6F /* vol_no.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 883CBC8B14358E0600D20499 /* vol_no.pdf */; };
 		04DFB77F14377946006B3F6F /* wqy-microhei.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 883CBC8E14358E0600D20499 /* wqy-microhei.ttc */; };
-		04DFB78014377946006B3F6F /* Equalizer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC1D1436EBA900749603 /* Equalizer.xib */; };
-		04DFB78114377946006B3F6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC1F1436EBA900749603 /* InfoPlist.strings */; };
-		04DFB78214377946006B3F6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC211436EBA900749603 /* Localizable.strings */; };
-		04DFB78314377946006B3F6F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC231436EBA900749603 /* MainMenu.xib */; };
-		04DFB78414377946006B3F6F /* Pref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC251436EBA900749603 /* Pref.xib */; };
-		04DFB78514377946006B3F6F /* SubEncoding.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC271436EBA900749603 /* SubEncoding.xib */; };
-		04DFB78614377946006B3F6F /* VideoTuner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC291436EBA900749603 /* VideoTuner.xib */; };
 		04DFB78814377946006B3F6F /* binaries in Copy binaries */ = {isa = PBXBuildFile; fileRef = 8846C55614362936009043F1 /* binaries */; };
 		04DFB78A14377946006B3F6F /* plug-ins in Copy Plug-ins */ = {isa = PBXBuildFile; fileRef = 8846C5591436294F009043F1 /* plug-ins */; };
+		04DFB86914378504006B3F6F /* Equalizer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC1D1436EBA900749603 /* Equalizer.xib */; };
+		04DFB86A14378504006B3F6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC1F1436EBA900749603 /* InfoPlist.strings */; };
+		04DFB86B14378504006B3F6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC211436EBA900749603 /* Localizable.strings */; };
+		04DFB86C14378504006B3F6F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC231436EBA900749603 /* MainMenu.xib */; };
+		04DFB86D14378504006B3F6F /* Pref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC251436EBA900749603 /* Pref.xib */; };
+		04DFB86E14378504006B3F6F /* SubEncoding.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC271436EBA900749603 /* SubEncoding.xib */; };
+		04DFB86F14378504006B3F6F /* VideoTuner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC291436EBA900749603 /* VideoTuner.xib */; };
+		04DFB87014378504006B3F6F /* Equalizer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0311436CB4400730552 /* Equalizer.xib */; };
+		04DFB87114378504006B3F6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0331436CB4400730552 /* InfoPlist.strings */; };
+		04DFB87214378504006B3F6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0351436CB4400730552 /* Localizable.strings */; };
+		04DFB87314378504006B3F6F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0371436CB4400730552 /* MainMenu.xib */; };
+		04DFB87414378504006B3F6F /* Pref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0391436CB4400730552 /* Pref.xib */; };
+		04DFB87514378504006B3F6F /* SubEncoding.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE03B1436CB4400730552 /* SubEncoding.xib */; };
+		04DFB87614378504006B3F6F /* VideoTuner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE03D1436CB4400730552 /* VideoTuner.xib */; };
+		04DFB87714378504006B3F6F /* Equalizer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0401436CB4400730552 /* Equalizer.xib */; };
+		04DFB87814378504006B3F6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0421436CB4400730552 /* InfoPlist.strings */; };
+		04DFB87914378504006B3F6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0441436CB4400730552 /* Localizable.strings */; };
+		04DFB87A14378504006B3F6F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0461436CB4400730552 /* MainMenu.xib */; };
+		04DFB87B14378504006B3F6F /* Pref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0481436CB4400730552 /* Pref.xib */; };
+		04DFB87C14378504006B3F6F /* SubEncoding.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE04A1436CB4400730552 /* SubEncoding.xib */; };
+		04DFB87D14378504006B3F6F /* VideoTuner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE04C1436CB4400730552 /* VideoTuner.xib */; };
+		04DFB87E14378526006B3F6F /* Equalizer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC1D1436EBA900749603 /* Equalizer.xib */; };
+		04DFB87F14378526006B3F6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC1F1436EBA900749603 /* InfoPlist.strings */; };
+		04DFB88014378526006B3F6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC211436EBA900749603 /* Localizable.strings */; };
+		04DFB88114378526006B3F6F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC231436EBA900749603 /* MainMenu.xib */; };
+		04DFB88214378526006B3F6F /* Pref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC251436EBA900749603 /* Pref.xib */; };
+		04DFB88314378526006B3F6F /* SubEncoding.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC271436EBA900749603 /* SubEncoding.xib */; };
+		04DFB88414378526006B3F6F /* VideoTuner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC291436EBA900749603 /* VideoTuner.xib */; };
+		04DFB88514378526006B3F6F /* Equalizer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0311436CB4400730552 /* Equalizer.xib */; };
+		04DFB88614378526006B3F6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0331436CB4400730552 /* InfoPlist.strings */; };
+		04DFB88714378526006B3F6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0351436CB4400730552 /* Localizable.strings */; };
+		04DFB88814378526006B3F6F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0371436CB4400730552 /* MainMenu.xib */; };
+		04DFB88914378526006B3F6F /* Pref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0391436CB4400730552 /* Pref.xib */; };
+		04DFB88A14378526006B3F6F /* SubEncoding.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE03B1436CB4400730552 /* SubEncoding.xib */; };
+		04DFB88B14378526006B3F6F /* VideoTuner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE03D1436CB4400730552 /* VideoTuner.xib */; };
+		04DFB88C14378526006B3F6F /* Equalizer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0401436CB4400730552 /* Equalizer.xib */; };
+		04DFB88D14378526006B3F6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0421436CB4400730552 /* InfoPlist.strings */; };
+		04DFB88E14378526006B3F6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0441436CB4400730552 /* Localizable.strings */; };
+		04DFB88F14378526006B3F6F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0461436CB4400730552 /* MainMenu.xib */; };
+		04DFB89014378526006B3F6F /* Pref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0481436CB4400730552 /* Pref.xib */; };
+		04DFB89114378526006B3F6F /* SubEncoding.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE04A1436CB4400730552 /* SubEncoding.xib */; };
+		04DFB89214378526006B3F6F /* VideoTuner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE04C1436CB4400730552 /* VideoTuner.xib */; };
 		883CBCAD14358E0600D20499 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CBBED14358E0500D20499 /* AppController.m */; };
 		883CBCAE14358E0600D20499 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CBBEF14358E0500D20499 /* AppDelegate.m */; };
 		883CBCAF14358E0600D20499 /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CBBF114358E0500D20499 /* Appirater.m */; };
@@ -394,7 +422,7 @@
 		042CE0491436CB4400730552 /* zh_tw */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_tw; path = Pref.xib; sourceTree = "<group>"; };
 		042CE04B1436CB4400730552 /* zh_tw */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_tw; path = SubEncoding.xib; sourceTree = "<group>"; };
 		042CE04D1436CB4400730552 /* zh_tw */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_tw; path = VideoTuner.xib; sourceTree = "<group>"; };
-		04DFB78E14377946006B3F6F /* SPlayerX Revised copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SPlayerX Revised copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		04DFB78E14377946006B3F6F /* SPlayerX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPlayerX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		883CBBEC14358E0500D20499 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		883CBBED14358E0500D20499 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
 		883CBBEE14358E0500D20499 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -550,7 +578,7 @@
 		8846C54414362813009043F1 /* BGHUDAppKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BGHUDAppKit.xcodeproj; path = BGHUDAppKit/BGHUDAppKit.xcodeproj; sourceTree = "<group>"; };
 		8846C55614362936009043F1 /* binaries */ = {isa = PBXFileReference; lastKnownFileType = folder; path = binaries; sourceTree = "<group>"; };
 		8846C5591436294F009043F1 /* plug-ins */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "plug-ins"; sourceTree = "<group>"; };
-		88CD153B1435859500CDDF1C /* SPlayerX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = SPlayerX.app; path = "SPlayerX Revised.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		88CD153B1435859500CDDF1C /* SPlayerX Revised.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SPlayerX Revised.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88CD153F1435859500CDDF1C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		88CD15421435859500CDDF1C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		88CD15431435859500CDDF1C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -864,8 +892,8 @@
 		88CD153C1435859500CDDF1C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				88CD153B1435859500CDDF1C /* SPlayerX.app */,
-				04DFB78E14377946006B3F6F /* SPlayerX Revised copy.app */,
+				88CD153B1435859500CDDF1C /* SPlayerX Revised.app */,
+				04DFB78E14377946006B3F6F /* SPlayerX.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -940,7 +968,7 @@
 			);
 			name = SPlayerX;
 			productName = SPlayerX;
-			productReference = 04DFB78E14377946006B3F6F /* SPlayerX Revised copy.app */;
+			productReference = 04DFB78E14377946006B3F6F /* SPlayerX.app */;
 			productType = "com.apple.product-type.application";
 		};
 		88CD153A1435859500CDDF1C /* SPlayerX Revised */ = {
@@ -963,7 +991,7 @@
 			);
 			name = "SPlayerX Revised";
 			productName = SPlayerX;
-			productReference = 88CD153B1435859500CDDF1C /* SPlayerX.app */;
+			productReference = 88CD153B1435859500CDDF1C /* SPlayerX Revised.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1043,6 +1071,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04DFB87E14378526006B3F6F /* Equalizer.xib in Resources */,
+				04DFB87F14378526006B3F6F /* InfoPlist.strings in Resources */,
+				04DFB88014378526006B3F6F /* Localizable.strings in Resources */,
+				04DFB88114378526006B3F6F /* MainMenu.xib in Resources */,
+				04DFB88214378526006B3F6F /* Pref.xib in Resources */,
+				04DFB88314378526006B3F6F /* SubEncoding.xib in Resources */,
+				04DFB88414378526006B3F6F /* VideoTuner.xib in Resources */,
+				04DFB88514378526006B3F6F /* Equalizer.xib in Resources */,
+				04DFB88614378526006B3F6F /* InfoPlist.strings in Resources */,
+				04DFB88714378526006B3F6F /* Localizable.strings in Resources */,
+				04DFB88814378526006B3F6F /* MainMenu.xib in Resources */,
+				04DFB88914378526006B3F6F /* Pref.xib in Resources */,
+				04DFB88A14378526006B3F6F /* SubEncoding.xib in Resources */,
+				04DFB88B14378526006B3F6F /* VideoTuner.xib in Resources */,
+				04DFB88C14378526006B3F6F /* Equalizer.xib in Resources */,
+				04DFB88D14378526006B3F6F /* InfoPlist.strings in Resources */,
+				04DFB88E14378526006B3F6F /* Localizable.strings in Resources */,
+				04DFB88F14378526006B3F6F /* MainMenu.xib in Resources */,
+				04DFB89014378526006B3F6F /* Pref.xib in Resources */,
+				04DFB89114378526006B3F6F /* SubEncoding.xib in Resources */,
+				04DFB89214378526006B3F6F /* VideoTuner.xib in Resources */,
 				04DFB75314377946006B3F6F /* brightness-max.tiff in Resources */,
 				04DFB75414377946006B3F6F /* brightness-min.tiff in Resources */,
 				04DFB75514377946006B3F6F /* busy-white.html in Resources */,
@@ -1088,13 +1137,6 @@
 				04DFB77D14377946006B3F6F /* vol_mid.pdf in Resources */,
 				04DFB77E14377946006B3F6F /* vol_no.pdf in Resources */,
 				04DFB77F14377946006B3F6F /* wqy-microhei.ttc in Resources */,
-				04DFB78014377946006B3F6F /* Equalizer.xib in Resources */,
-				04DFB78114377946006B3F6F /* InfoPlist.strings in Resources */,
-				04DFB78214377946006B3F6F /* Localizable.strings in Resources */,
-				04DFB78314377946006B3F6F /* MainMenu.xib in Resources */,
-				04DFB78414377946006B3F6F /* Pref.xib in Resources */,
-				04DFB78514377946006B3F6F /* SubEncoding.xib in Resources */,
-				04DFB78614377946006B3F6F /* VideoTuner.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1102,6 +1144,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04DFB86914378504006B3F6F /* Equalizer.xib in Resources */,
+				04DFB86A14378504006B3F6F /* InfoPlist.strings in Resources */,
+				04DFB86B14378504006B3F6F /* Localizable.strings in Resources */,
+				04DFB86C14378504006B3F6F /* MainMenu.xib in Resources */,
+				04DFB86D14378504006B3F6F /* Pref.xib in Resources */,
+				04DFB86E14378504006B3F6F /* SubEncoding.xib in Resources */,
+				04DFB86F14378504006B3F6F /* VideoTuner.xib in Resources */,
+				04DFB87014378504006B3F6F /* Equalizer.xib in Resources */,
+				04DFB87114378504006B3F6F /* InfoPlist.strings in Resources */,
+				04DFB87214378504006B3F6F /* Localizable.strings in Resources */,
+				04DFB87314378504006B3F6F /* MainMenu.xib in Resources */,
+				04DFB87414378504006B3F6F /* Pref.xib in Resources */,
+				04DFB87514378504006B3F6F /* SubEncoding.xib in Resources */,
+				04DFB87614378504006B3F6F /* VideoTuner.xib in Resources */,
+				04DFB87714378504006B3F6F /* Equalizer.xib in Resources */,
+				04DFB87814378504006B3F6F /* InfoPlist.strings in Resources */,
+				04DFB87914378504006B3F6F /* Localizable.strings in Resources */,
+				04DFB87A14378504006B3F6F /* MainMenu.xib in Resources */,
+				04DFB87B14378504006B3F6F /* Pref.xib in Resources */,
+				04DFB87C14378504006B3F6F /* SubEncoding.xib in Resources */,
+				04DFB87D14378504006B3F6F /* VideoTuner.xib in Resources */,
 				883CBCB214358E0600D20499 /* brightness-max.tiff in Resources */,
 				883CBCB314358E0600D20499 /* brightness-min.tiff in Resources */,
 				883CBCB414358E0600D20499 /* busy-white.html in Resources */,
@@ -1147,13 +1210,6 @@
 				883CBD0F14358E0600D20499 /* vol_mid.pdf in Resources */,
 				883CBD1014358E0600D20499 /* vol_no.pdf in Resources */,
 				883CBD1214358E0600D20499 /* wqy-microhei.ttc in Resources */,
-				042BBC2B1436EBA900749603 /* Equalizer.xib in Resources */,
-				042BBC2C1436EBA900749603 /* InfoPlist.strings in Resources */,
-				042BBC2D1436EBA900749603 /* Localizable.strings in Resources */,
-				042BBC2E1436EBA900749603 /* MainMenu.xib in Resources */,
-				042BBC2F1436EBA900749603 /* Pref.xib in Resources */,
-				042BBC301436EBA900749603 /* SubEncoding.xib in Resources */,
-				042BBC311436EBA900749603 /* VideoTuner.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1508,7 +1564,7 @@
 				GCC_PREFIX_HEADER = "SPlayerX/SPlayerX-Prefix.pch";
 				INFOPLIST_FILE = "SPlayerX/SPlayerX-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				PRODUCT_NAME = "SPlayerX Revised copy";
+				PRODUCT_NAME = SPlayerX;
 				SDKROOT = macosx10.6;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1522,7 +1578,7 @@
 				GCC_PREFIX_HEADER = "SPlayerX/SPlayerX-Prefix.pch";
 				INFOPLIST_FILE = "SPlayerX/SPlayerX-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				PRODUCT_NAME = "SPlayerX Revised copy";
+				PRODUCT_NAME = SPlayerX;
 				SDKROOT = macosx10.6;
 				WRAPPER_EXTENSION = app;
 			};
