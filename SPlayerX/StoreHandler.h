@@ -21,7 +21,7 @@ extern NSString *const SPlayerXRevisedBundleID;
 #define     HAVE_STOREKIT   YES
 
 // IAP Product ID (edit in itunesconnect)
-#define SERVICE_PRODUCT_ID           @"org.splayer.splayerx.revised.p01"
+#define SERVICE_PRODUCT_ID           @"org.splayer.splayerx.revised.p02"
 
 // Customize "app give expiring alert xx days before expire date"
 #define ALERT_DAY_BEFORE_EXPIRE         15
