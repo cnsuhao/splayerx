@@ -440,7 +440,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	NSMutableString *dispStr = [[NSMutableString alloc] initWithCapacity:60];
 	
 	if (mi) {
-		BOOL showOSD = NO;
+    BOOL showOSD = NO;
 		
 		[dispStr appendFormat:kMPXStringOSDMediaInfoDemuxer, [[mi demuxer] uppercaseString]];
 
@@ -1434,7 +1434,12 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	} else if ([keyPath isEqualToString:kKVOPropertyKeyPathVideoInfo]) {
 		// got the video info
 		[self gotVideoInfo:[change objectForKey:NSKeyValueChangeNewKey]];
-	} else if ([keyPath isEqualToString:kKVOPropertyKeyPathSubScale]) {
+	} else if ([keyPath isEqualToString:kKVOPropertyKeyPathAudioInfoID] ||
+              [keyPath isEqualToString:kKVOPropertyKeyPathVideoInfoID]) {
+    //MovieInfo *mi = [playerController mediaInfo];
+		//NSLog(@"VID %d AID %d", [mi.playingInfo currentVideoID], [mi.playingInfo currentAudioID]);
+	}
+  else if ([keyPath isEqualToString:kKVOPropertyKeyPathSubScale]) {
 		// got the sub scale
 		[self gotSubScale:[change objectForKey:NSKeyValueChangeNewKey]];
 	}
