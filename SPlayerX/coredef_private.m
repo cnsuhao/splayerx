@@ -22,7 +22,9 @@
 #import "coredef.h"
 
 // mplayer通信所用的command的字符串
-NSString * const kMPCTogglePauseCmd		= @"pause\n";
+NSString * const kMPCPauseCmd			= @"pause 1\n";
+NSString * const kMPCPlayCmd			= @"pause -1\n";
+
 NSString * const kMPCFrameStepCmd		= @"frame_step\n";
 NSString * const kMPCSubSelectCmd		= @"sub_select\n";
 NSString * const kMPCSeekCmd			= @"seek";
@@ -32,8 +34,10 @@ NSString * const kMPCAfDelCmd			= @"af_del";
 
 NSString * const kMPCGetPropertyPreFix	= @"get_property";
 NSString * const kMPCSetPropertyPreFix	= @"set_property";
-NSString * const kMPCSetPropertyPreFixPauseKeep	= @"pausing_keep_force set_property";
+NSString * const kMPCSetPropertyPreFixPauseKeepForce	= @"pausing_keep_force set_property";
 NSString * const kMPCPausingKeepForce	= @"pausing_keep_force";
+NSString * const kMPCPausingKeep		= @"pausing_keep";
+NSString * const kMPCSetPropertyPreFixPauseKeep = @"pausing_keep set_property";
 
 ////////////////////////////////////////////////////////////////////
 // 没有ID结尾的是 命令字符串 和 属性字符串 有可能是公用的
@@ -66,7 +70,8 @@ NSString * const kMPCPlayBackStartedID	= @"PBST";
 NSString * const kMPCAudioInfoID		= @"AUDIOINFO";
 NSString * const kMPCVideoInfoID		= @"VIDEOINFO";
 NSString * const kMPCAudioIDs			= @"AUDIO_IDS";
-NSString * const kMPCVideoIDs			= @"VDEO_IDS";
+NSString * const kMPCVideoIDs			= @"VIDEO_IDS";
 NSString * const kMPCDemuxerID			= @"DEMUXER";
+NSString * const kMPCChapterInfoID		= @"CHAPTERSINFO";
 
 NSString * const kKVOPropertyKeyPathState	= @"state";
