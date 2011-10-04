@@ -713,7 +713,7 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 					// 这里如果直接使用KVO的话，产生的时Insert的change，效率太低
 					// 因此手动发生KVO
 					[movieInfo willChangeValueForKey:kMovieInfoKVOSubInfo];
-					[movieInfo.subInfo setArray:[[dict objectForKey:key] componentsSeparatedByString:@":"]];
+					[movieInfo.subInfo setArray:[[dict objectForKey:key] componentsSeparatedByString:@";;"]];
 					[movieInfo didChangeValueForKey:kMovieInfoKVOSubInfo];
 					break;
 				case kMITypeSubAppend:
@@ -746,12 +746,12 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 				{
 					AudioInfo *info;
 					NSArray *idLang;
-					NSArray *IDs = [[dict objectForKey:key] componentsSeparatedByString:@":"];
+					NSArray *IDs = [[dict objectForKey:key] componentsSeparatedByString:@";;"];
 					
 					[movieInfo willChangeValueForKey:kMovieInfoKVOAudioInfo];
 					
 					for (NSString *str in IDs) {
-						idLang = [str componentsSeparatedByString:@","];
+						idLang = [str componentsSeparatedByString:@"^^"];
 						
 						info = [[AudioInfo alloc] init];
 
@@ -769,12 +769,12 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 				{
 					VideoInfo *info;
 					NSArray *idLang;
-					NSArray *IDs = [[dict objectForKey:key] componentsSeparatedByString:@":"];
+					NSArray *IDs = [[dict objectForKey:key] componentsSeparatedByString:@";;"];
 					
 					[movieInfo willChangeValueForKey:kMovieInfoKVOVideoInfo];
 					
 					for (NSString *str in IDs) {
-						idLang = [str componentsSeparatedByString:@","];
+						idLang = [str componentsSeparatedByString:@"^^"];
 						
 						info = [[VideoInfo alloc] init];
 						
@@ -794,12 +794,16 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 				// 1. when playback is opened but not started, core just got the infos
 				// 2. in multi-track media, this will be called when track was changed
 				{
-					NSArray *strArr = [[dict objectForKey:key] componentsSeparatedByString:@":"];
+          NSArray *strArr = [[dict objectForKey:key] componentsSeparatedByString:@":"];
 					int ID = [[strArr objectAtIndex:0] intValue];
 					NSArray *obj = [self valueForKeyPath:keyPath];
+          NSLog(@"info %@ %@", keyPath, obj);
 					id infoToSet = nil;
+					NSString *idKeyPath = nil;
+					NSNumber *currentID;
 					
 					for (id info in obj) {
+            NSLog(@"info %@", info);
 						if ([info ID] == ID) {
 							infoToSet = info;
 							break;
@@ -807,26 +811,16 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 					}
 					if (infoToSet) {
 						[infoToSet setInfoDataWithArray:strArr];
-						if (type == kMITypeAudioGotInfo) {
-							[movieInfo.playingInfo setCurrentAudioID:ID];
-							/*
-							if ((state & kMPCStateMask) && (!([pm ac3Pass] || [pm dtsPass])) && ([pm mixToStereo] != kPMMixToStereoNO)) {
-								// pan filter should be set when mplayer could accpect command
-								// in multi-track media, when track is changed, the downmixing pan filter should be set again
-								[self mapAudioChannelsTo:2];
-							}
-							*/
-						} else {
-							[movieInfo.playingInfo setCurrentVideoID:ID];
-						}
+						currentID = [NSNumber numberWithInt:ID];
 					} else {
-						if (type == kMITypeAudioGotInfo) {
-							[movieInfo.playingInfo setCurrentAudioID:kPIAudioIDInvalid];
-						} else {
-							[movieInfo.playingInfo setCurrentVideoID:kPIVideoIDInvalid];
-						}
+						currentID = nil;
 					}
-
+					if (type == kMITypeAudioGotInfo) {
+						idKeyPath = kKVOPropertyKeyPathAudioInfoID;
+					} else {
+						idKeyPath = kKVOPropertyKeyPathVideoInfoID;
+					}
+					[self setValue:currentID forKeyPath:idKeyPath];
 					break;	
 				}
 				default:
