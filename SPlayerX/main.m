@@ -24,11 +24,12 @@ int main(int argc, char *argv[])
 {
   id pool = [NSAutoreleasePool new];
   
+    /*
 	NSString *logPath = [[[NSHomeDirectory() stringByAppendingPathComponent:@"Library/Application Support/"]
                          stringByAppendingPathComponent:[[[[NSBundle mainBundle] bundlePath] lastPathComponent] stringByDeletingPathExtension]]   
                          stringByAppendingPathComponent:@"SPlayerX.log"];
 	freopen([logPath fileSystemRepresentation], "a", stderr);
-  	
+  	*/
 	[pool release];
 
 	return NSApplicationMain(argc,  (const char **) argv);

@@ -28,6 +28,12 @@
 #import "LaunchServiceHandler.h"
 #import "StoreHandler.h"
 
+#ifdef HAVE_STOREKIT
+#import "validatereceipt.h"
+const NSString * global_bundleVersion = @"1.1.5";
+const NSString * global_bundleIdentifier = @"org.splayer.splayerx.revised";
+#endif
+
 NSString * const kMPCFMTBookmarkPath	= @"%@/Library/Preferences/%@.bookmarks.plist";
 
 static AppController *sharedInstance = nil;
@@ -50,6 +56,17 @@ static BOOL init_ed = NO;
 
   // force enabled
 	MPSetLogEnable(true); // [[NSUserDefaults standardUserDefaults] boolForKey:kUDKeyLogMode])
+    
+#ifdef HAVE_STOREKIT
+    // check receipt
+    NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
+    
+    if (!validateReceiptAtPath([receiptURL path]))
+		exit(173);
+    
+    
+#endif
+
 }
 					   
 +(AppController*) sharedAppController
@@ -231,21 +248,6 @@ static BOOL init_ed = NO;
 
 -(void) applicationDidFinishLaunching:(NSNotification *)notification
 {
-#ifdef HAVE_STOREKIT
-    // check receipt
-    NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
-    NSError *err;
-    if (![receiptURL checkResourceIsReachableAndReturnError:&err])
-    {
-        NSAlert *alert = [NSAlert alertWithMessageText:kMPXStringReceiptValidationTitle
-                                         defaultButton:kMPXStringReceiptValidationButton
-                                       alternateButton:nil
-                                           otherButton:nil
-                             informativeTextWithFormat:kMPXStringReceiptValidationText];
-        [alert runModal];
-        exit(173);
-    }
-#endif
     // check set default
     [LaunchServiceHandler appLaunched:YES];
 }

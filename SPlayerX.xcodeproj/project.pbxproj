@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		04CB1A011436C7E800DEDA15 /* BGHUDAppKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8846C54E14362813009043F1 /* BGHUDAppKit.framework */; };
 		04CB1A021436C7E800DEDA15 /* UniversalDetector.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 883CBD4514359FD600D20499 /* UniversalDetector.framework */; };
+		04D7005E143ED6E9001E26AA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D7005D143ED6E9001E26AA /* Security.framework */; };
+		04D70061143EDD24001E26AA /* validatereceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D70060143EDD24001E26AA /* validatereceipt.m */; };
 		04DFB71114377946006B3F6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CD154B1435859500CDDF1C /* main.m */; };
 		04DFB71214377946006B3F6F /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CBBED14358E0500D20499 /* AppController.m */; };
 		04DFB71314377946006B3F6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CBBEF14358E0500D20499 /* AppDelegate.m */; };
@@ -422,6 +424,9 @@
 		042CE0491436CB4400730552 /* zh_tw */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_tw; path = Pref.xib; sourceTree = "<group>"; };
 		042CE04B1436CB4400730552 /* zh_tw */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_tw; path = SubEncoding.xib; sourceTree = "<group>"; };
 		042CE04D1436CB4400730552 /* zh_tw */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_tw; path = VideoTuner.xib; sourceTree = "<group>"; };
+		04D7005D143ED6E9001E26AA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		04D7005F143EDD24001E26AA /* validatereceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = validatereceipt.h; path = SPlayerX/validatereceipt.h; sourceTree = "<group>"; };
+		04D70060143EDD24001E26AA /* validatereceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = validatereceipt.m; path = SPlayerX/validatereceipt.m; sourceTree = "<group>"; };
 		04DFB78E14377946006B3F6F /* SPlayerX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPlayerX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		883CBBEC14358E0500D20499 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		883CBBED14358E0500D20499 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
@@ -611,6 +616,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D7005E143ED6E9001E26AA /* Security.framework in Frameworks */,
 				8846C55314362840009043F1 /* BGHUDAppKit.framework in Frameworks */,
 				883CBDAD1435A13500D20499 /* UniversalDetector.framework in Frameworks */,
 				883CBDAC1435A10F00D20499 /* StoreKit.framework in Frameworks */,
@@ -747,6 +753,8 @@
 			children = (
 				883CBC6D14358E0600D20499 /* ssclThread.h */,
 				883CBC6E14358E0600D20499 /* ssclThread.m */,
+				04D7005F143EDD24001E26AA /* validatereceipt.h */,
+				04D70060143EDD24001E26AA /* validatereceipt.m */,
 				883CBC3314358E0600D20499 /* GTMDefines.h */,
 				883CBC3414358E0600D20499 /* GTMStringEncoding.h */,
 				883CBC3514358E0600D20499 /* GTMStringEncoding.m */,
@@ -901,6 +909,7 @@
 		88CD153E1435859500CDDF1C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04D7005D143ED6E9001E26AA /* Security.framework */,
 				88CD15421435859500CDDF1C /* AppKit.framework */,
 				88CD15431435859500CDDF1C /* CoreData.framework */,
 				88CD15441435859500CDDF1C /* Foundation.framework */,
@@ -1228,7 +1237,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH=${PATH}:/opt/local/bin\ncd SPlayerX\nnewVersion=`hg id -n  | sed 's/^ *\\(.*\\)+ *$/\\1/'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $newVersion\" SPlayerX-Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleIdentifier org.splayer.splayerx\" SPlayerX-Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleName SPlayerX\" SPlayerX-Info.plist\ntouch -amfc SPlayerX-Info.plist\n\nexit 0";
+			shellScript = "PATH=${PATH}:/opt/local/bin\ncd SPlayerX\nnewVersion=`hg id -n  | sed 's/^ *\\(.*\\)+ *$/\\1/'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $newVersion\" SPlayerX-Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleIdentifier org.splayer.splayerx\" SPlayerX-Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleName SPlayerX\" SPlayerX-Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleDisplayName SPlayerX\" SPlayerX-Info.plist\n\ntouch -amfc SPlayerX-Info.plist\n\nexit 0";
 		};
 		8846C55B14362A21009043F1 /* Generate info.plist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1242,7 +1251,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH=${PATH}:/opt/local/bin\ncd SPlayerX\nnewVersion=`hg id -n  | sed 's/^ *\\(.*\\)+ *$/\\1/'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $newVersion\" SPlayerX-Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleIdentifier org.splayer.splayerx.revised\" SPlayerX-Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleName SPlayerX Revised\" SPlayerX-Info.plist\ntouch -amfc SPlayerX-Info.plist\n\nexit 0";
+			shellScript = "PATH=${PATH}:/opt/local/bin\ncd SPlayerX\nnewVersion=`hg id -n  | sed 's/^ *\\(.*\\)+ *$/\\1/'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $newVersion\" SPlayerX-Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleIdentifier org.splayer.splayerx.revised\" SPlayerX-Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleName SPlayerX Revised\" SPlayerX-Info.plist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleDisplayName SPlayerX Revised\" SPlayerX-Info.plist\n\ntouch -amfc SPlayerX-Info.plist\n\nexit 0";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1356,6 +1365,7 @@
 				883CBD7E1435A09600D20499 /* AppleRemote.m in Sources */,
 				883CBD821435A09600D20499 /* HIDRemoteControlDevice.m in Sources */,
 				883CBD891435A09600D20499 /* RemoteControl.m in Sources */,
+				04D70061143EDD24001E26AA /* validatereceipt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1639,6 +1649,10 @@
 				GCC_PREFIX_HEADER = "SPlayerX/SPlayerX-Prefix.pch";
 				INFOPLIST_FILE = "SPlayerX/SPlayerX-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = (
+					"-lcrypto",
+					"-lssl",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1652,6 +1666,10 @@
 				GCC_PREFIX_HEADER = "SPlayerX/SPlayerX-Prefix.pch";
 				INFOPLIST_FILE = "SPlayerX/SPlayerX-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = (
+					"-lcrypto",
+					"-lssl",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
