@@ -710,11 +710,17 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 					[self setValue:[dict objectForKey:key] forKeyPath:keyPath];
 					break;
 				case kMITypeSubArray:
-					// 这里如果直接使用KVO的话，产生的时Insert的change，效率太低
+				  // 这里如果直接使用KVO的话，产生的时Insert的change，效率太低
 					// 因此手动发生KVO
-					[movieInfo willChangeValueForKey:kMovieInfoKVOSubInfo];
-					[movieInfo.subInfo setArray:[[dict objectForKey:key] componentsSeparatedByString:@";;"]];
-					[movieInfo didChangeValueForKey:kMovieInfoKVOSubInfo];
+        {
+          NSArray *res = [[dict objectForKey:key] componentsSeparatedByString:@";;"];
+          //[movieInfo.playingInfo setCurrentSubID:[res lastObject]];
+          
+          [movieInfo willChangeValueForKey:kMovieInfoKVOSubInfo];
+          [movieInfo.subInfo setArray:[[res objectAtIndex:0] componentsSeparatedByString:@"^^"]];
+          [movieInfo didChangeValueForKey:kMovieInfoKVOSubInfo];
+        }
+          
 					break;
 				case kMITypeSubAppend:
 					// 会发生insert的KVO change
