@@ -1249,6 +1249,9 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
     BOOL not_playing = (playerController.playerState == kMPCStoppedState)?YES:NO;
 	[fullScreenButton setHidden: not_playing];
     [toggleAcceButton setHidden: not_playing];
+  
+  NSString* langCurrent = [[[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"] objectAtIndex:0];
+	if ([langCurrent hasPrefix:@"zh"] != NO)
     [toggleShareButton setHidden: not_playing];
 
 	[timeText setHidden: NO];
