@@ -92,7 +92,18 @@ NSString * const SPlayerXRevisedBundleID       = @"org.splayer.splayerx.revised"
         }
     }
 }
-
+- (void)paymentQueue:(SKPaymentQueue *)queue removedTransactions:(NSArray *)transactions
+{
+  
+}
+- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
+{
+  NSLog(@"restoreCompletedTransactionsFailedWithError %@", error);
+}
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
+{
+  
+}
 
 // ***** own methods *****
 + (BOOL) expireReminder
@@ -122,8 +133,8 @@ NSString * const SPlayerXRevisedBundleID       = @"org.splayer.splayerx.revised"
     if ([ud boolForKey:kUDKeyReceipt])
     {
         NSDate *duedate = [ud objectForKey:kUDKeyReceiptDueDate];
-        [ud setObject:[NSDate dateWithTimeInterval:(365 * 24 * 3600)
-                                         sinceDate:duedate]
+        [ud setObject:MIN([NSDate dateWithTimeInterval:(365 * 24 * 3600)
+                                         sinceDate:duedate], [NSDate dateWithTimeIntervalSinceNow:(365 * 24 * 3600)])
                forKey:kUDKeyReceiptDueDate];
     }
     else 
@@ -147,7 +158,7 @@ NSString * const SPlayerXRevisedBundleID       = @"org.splayer.splayerx.revised"
 {
     [ud setObject:[NSNumber numberWithBool:YES] forKey:kUDKeyReceipt];
     NSDate *date = transaction.originalTransaction.transactionDate;
-    [ud setObject:[NSDate dateWithTimeInterval:(2*365*24*3600) sinceDate:date]
+    [ud setObject:[NSDate dateWithTimeInterval:(365*24*3600) sinceDate:date]
            forKey:kUDKeyReceiptDueDate];
     [ud setObject:[NSNumber numberWithBool:YES] forKey:kUDKeySmartSubMatching];
     
