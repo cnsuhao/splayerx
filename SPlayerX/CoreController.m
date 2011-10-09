@@ -21,6 +21,7 @@
 #import "CoreController.h"
 #import <sys/mman.h>
 #import "CocoaAppendix.h"
+#import "PlayerController.h"
 
 #define kPollingTimeForTimePos	(1)
 
@@ -84,6 +85,7 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 @synthesize mpPathPair;
 @synthesize la;
 @synthesize delegate;
+@synthesize playerController;
 
 ///////////////////////////////////////////Init/Dealloc////////////////////////////////////////////////////////
 -(id) init
@@ -561,7 +563,7 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
     [playerCore sendStringCommand:[NSString stringWithFormat:kCmdStringFMTInteger, kMPCSetPropertyPreFixPauseKeep, kMPCSub, subID]];
 }
 
--(void) mergeSub:(NSString *) subName secondSub:(NSString *) secondSubName
+-(BOOL) mergeSub:(NSString *) subName secondSub:(NSString *) secondSubName
 {
     NSTask *task = [[NSTask alloc] init];
     [task setLaunchPath: @"/bin/sh"];
@@ -578,14 +580,39 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
     NSString *subPath = [pathToSub stringByAppendingString:subName];
     NSString *secondSubPath = [pathToSub stringByAppendingString:secondSubName];
     NSString *outputSubPath = [pathToSub stringByAppendingPathComponent:@"_mergedsub.srt"];
+    NSString *mplayerPath = [mpPathPair objectForKey:kX86_64Key];
+  NSString *moviePath = [[self playerController].lastPlayedPath path];
+  
+    [task setArguments:[NSArray arrayWithObjects: mergeshPath, mplayerPath, moviePath, subPath, secondSubPath, outputSubPath, nil]];
+
+  if ([[NSFileManager defaultManager] fileExistsAtPath:subPath] != YES ||
+      [[NSFileManager defaultManager] fileExistsAtPath:secondSubName] != YES)
+  {
     
-    [task setArguments:[NSArray arrayWithObjects: mergeshPath, subPath, secondSubPath, outputSubPath, nil]];
-    
+    return NO;
+  }
+  NSLog(@"merge2 \"%@\" \"%@\" \"%@\" \"%@\" \"%@\" \"%@\"", mergeshPath, mplayerPath, moviePath, subPath, secondSubPath, outputSubPath);
+  
+  NSPipe *pipe = [NSPipe pipe];
+	[task setStandardOutput: pipe];
+  
+  NSFileHandle *file;
+	file = [pipe fileHandleForReading];
+
     [task launch];
     [task waitUntilExit];
+  
+  
+	NSData *data;
+	data = [file readDataToEndOfFile];
+
+  NSLog(@"merge %@", [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding]);
 	[task release];
-    
-    [playerCore sendStringCommand:[NSString stringWithFormat:@"%@ \"%@\"\n", kMPCSubLoad, outputSubPath]];
+  
+	
+  [playerCore sendStringCommand:[NSString stringWithFormat:@"%@ \"%@\"\n", kMPCSubLoad, outputSubPath]];
+  
+  return YES;
 }
 
 -(void) setSubDelay: (float) delay

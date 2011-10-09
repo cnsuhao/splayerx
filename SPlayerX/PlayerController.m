@@ -137,6 +137,7 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 		
 		mplayer = [[CoreController alloc] init];
 		[mplayer setDelegate:self];
+    [mplayer setPlayerController:self];
 		
 		// TODO Need test
 		/////////////////////////setup subconverter////////////////////
@@ -722,7 +723,8 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 
 -(void) mergeSubtitle:(NSString *)subName secondSubName:(NSString *)secondSubName
 {
-    [mplayer mergeSub: subName secondSub:secondSubName];
+   if (![mplayer mergeSub: subName secondSub:secondSubName])
+     [self setOSDMessage:kMPXStringSubtitleCantBeMerged type:kOSDTypeCoreControl];
 }
 
 -(void) setAudio:(int) audioID

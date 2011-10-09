@@ -90,6 +90,7 @@ extern NSString * const kMPCPlayStoppedTimeKey;
 @property (readonly)			LogAnalyzer *la;
 @property (assign, readwrite)	id<CoreDisplayDelegate> dispDelegate;
 @property (assign, readwrite)	id<CoreControllerDelegate> delegate;
+@property (assign, readwrite)	PlayerController *playerController;
 
 -(void) setSubConverterDelegate:(id<SubConverterDelegate>)dlgt;
 
@@ -129,7 +130,7 @@ extern NSString * const kMPCPlayStoppedTimeKey;
 
 -(void) setSub:(int) subID;
 
--(void) mergeSub:(NSString *) subName secondSub:(NSString *) secondSubName;
+-(BOOL) mergeSub:(NSString *) subName secondSub:(NSString *) secondSubName;
 
 /** 成功发送的话，playingInfo的subDelay属性会被更新 */
 -(void) setSubDelay: (float) delay;

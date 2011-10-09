@@ -165,3 +165,4 @@
 
 #define kMPXStringReceiptValidationButton    (NSLocalizedString(@"Receipt Button", @"Receipt Validation Support"))
 
+#define kMPXStringSubtitleCantBeMerged    (NSLocalizedString(@"Can't merge embedded subtitles", @"Subtitles"))
