@@ -62,6 +62,7 @@ extern NSString * const kMPCPlayInfoUpdatedChangeDictKey;
 @property (readonly) NSURL *lastPlayedPath;
 @property (assign, readwrite, getter=isOSDActive) BOOL OSDActive;
 
+
 -(void) setupKVO;
 
 -(id) setDisplayDelegateForMPlayer:(id<CoreDisplayDelegate>) delegate;
@@ -98,6 +99,7 @@ extern NSString * const kMPCPlayInfoUpdatedChangeDictKey;
 -(void) setAudioBalance:(float)bal;
 
 -(void) setSubtitle:(int) subID;
+-(void) set2ndSubtitle:(int) subID;
 -(void) mergeSubtitle:(NSString *)subName secondSubName:(NSString *)secondSubName;
 -(void) setAudio:(int) audioID;
 -(void) setVideo:(int) videoID;
