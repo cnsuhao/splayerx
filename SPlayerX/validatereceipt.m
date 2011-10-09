@@ -394,7 +394,7 @@ extern const NSString * global_bundleIdentifier;
 
 BOOL validateReceiptAtPath(NSString * path)
 {
-    NSLog(@"validateReceiptAtPath %@", path);
+  //  NSLog(@"validateReceiptAtPath %@", path);
 	// it turns out, it's a bad idea, to use these two NSBundle methods in your app:
 	//
 	// bundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
