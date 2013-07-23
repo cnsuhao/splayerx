@@ -63,7 +63,6 @@
                   NSViewAnimationEndFrameKey,
                   nil];
 
-  
   NSArray *animations;
   animations = [NSArray arrayWithObjects:
                 windowResize, nil, nil, nil];
@@ -77,7 +76,7 @@
   
   [animation startAnimation]; // because it's blocking, once it returns, we're done
   
-  [animation release];
+  [animation autorelease];
 }
 
 -(BOOL) canBecomeKeyWindow

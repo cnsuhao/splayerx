@@ -18,7 +18,7 @@ extern NSString *const SPlayerXRevisedBundleID;
 #import "Appirater.h"
 #import "LocalizedStrings.h"
 
-#define     HAVE_STOREKIT   YES
+//#define     HAVE_STOREKIT   YES
 
 // IAP Product ID (edit in itunesconnect)
 #define SERVICE_PRODUCT_ID           @"org.splayer.splayerx.revised.p02"
