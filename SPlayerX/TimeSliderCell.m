@@ -105,7 +105,7 @@
 	
 	NSRect rcBounds = [[self controlView] bounds];
 	NSBezierPath *path, *dot;
-	
+  
 	switch ([self controlSize]) {
 			
 		case NSSmallControlSize:
@@ -123,14 +123,14 @@
 			if([self isEnabled]) {
 				[[NSColor colorWithDeviceWhite:0.96 alpha:1.0] set];
 				[path fill];
+        [[NSColor colorWithDeviceWhite:0.0 alpha:0.3] set];
+        [path stroke];
+
 			} else {
 				[[NSColor colorWithDeviceWhite:0.3 alpha:1.0] set];
 				[path fill];
 			}
-				
-			[[NSColor colorWithDeviceWhite:0.0 alpha:0.3] set];
-			[path stroke];
-			
+      
 			[[NSColor blackColor] set];
 			[dot fill];
 			break;

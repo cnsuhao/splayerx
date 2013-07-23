@@ -21,15 +21,15 @@
 
 #define kPlayerCoreTermNormal		(0)
 
-@implementation PlayerCore
-
-@synthesize delegate;
-
 @interface PlayerCore (PlayerCoreInternal)
 -(void) readOutput:(NSNotification*)notification;
 -(void) readError:(NSNotification*)notification;
 -(void) taskHasTerminated:(NSNotification*)notification;
 @end
+
+@implementation PlayerCore
+
+@synthesize delegate;
 
 #pragma mark Init/Dealloc
 -(id) init 
