@@ -52,12 +52,48 @@ NSString *kStringDots = @"...";
 		frame.size.height = 20;
 		frame.origin.x = 1;
 		frame.origin.y = 1;
-		trackArea = nil;
-		// [self addTrackingArea:trackArea];
+      
+    
+    trackArea = [[NSTrackingArea alloc] initWithRect:frame
+                                               options:(NSTrackingMouseEnteredAndExited |
+                                                        NSTrackingActiveAlways)
+                                                 owner:self
+                                              userInfo:nil];
+		//[self addTrackingArea:trackArea];
     }
     return self;
 }
 
+- (void)mouseEntered:(NSEvent *)theEvent
+{
+  [closeButton highlight:YES];
+  [zoomButton highlight:YES];
+  [miniButton highlight:YES];
+  
+  [closeButton setNeedsDisplay];
+  [closeButton setNeedsDisplay];
+  [zoomButton setNeedsDisplay];
+  [zoomButton setNeedsDisplay];
+  [miniButton setNeedsDisplay];
+  [miniButton setNeedsDisplay];
+  
+}
+
+- (void)mouseExited:(NSEvent *)theEvent
+{
+  
+  [closeButton highlight:NO];
+  [zoomButton highlight:NO];
+  [miniButton highlight:NO];
+  
+  [closeButton setNeedsDisplay];
+  [closeButton setNeedsDisplay];
+  [zoomButton setNeedsDisplay];
+  [zoomButton setNeedsDisplay];
+  [miniButton setNeedsDisplay];
+  [miniButton setNeedsDisplay];
+  
+}
 -(void) dealloc
 {
 	// [self removeTrackingArea:trackArea];
@@ -78,23 +114,27 @@ NSString *kStringDots = @"...";
 	
 	[super dealloc];
 }
-
+#define BUTTONALPHA 1
 -(void) awakeFromNib
 {
 	[self addSubview:closeButton];
 	[closeButton setFrameOrigin:NSMakePoint(9.0, 2.0)];
 	[closeButton setAutoresizingMask:NSViewMaxXMargin|NSViewMaxYMargin];
-	[closeButton setAlphaValue:0.5];
-	
+	[closeButton setAlphaValue:BUTTONALPHA];
+  
 	[self addSubview:miniButton];
 	[miniButton setFrameOrigin:NSMakePoint(30.0, 2.0)];
 	[miniButton setAutoresizingMask:NSViewMaxXMargin|NSViewMaxYMargin];
-	[miniButton setAlphaValue:0.5];
+	[miniButton setAlphaValue:BUTTONALPHA];
 	
 	[self addSubview:zoomButton];
 	[zoomButton setFrameOrigin:NSMakePoint(51.0, 2.0)];
 	[zoomButton setAutoresizingMask:NSViewMaxXMargin|NSViewMaxYMargin];
-	[zoomButton setAlphaValue:0.5];
+	[zoomButton setAlphaValue:BUTTONALPHA];
+  
+  [closeButton setEnabled:NO];
+	[miniButton setEnabled:NO];
+	[zoomButton setEnabled:NO];
 	
 	tbCornerLeft = [[NSImage imageNamed:@"titlebar-corner-left.png"] retain];
 	tbCornerRight= [[NSImage imageNamed:@"titlebar-corner-right.png"] retain];
@@ -182,7 +222,7 @@ NSString *kStringDots = @"...";
 
 -(void) windowDidResignKey:(NSNotification*) notif
 {
-	[closeButton setEnabled:NO];
+  [closeButton setEnabled:NO];
 	[miniButton setEnabled:NO];
 	[zoomButton setEnabled:NO];
 }
