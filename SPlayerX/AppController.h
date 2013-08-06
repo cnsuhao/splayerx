@@ -20,6 +20,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+#define PIAPI_APP_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+
 @class PlayerController, OpenURLController;
 
 @interface AppController : NSObject <NSApplicationDelegate>
