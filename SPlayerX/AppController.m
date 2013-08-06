@@ -30,8 +30,7 @@
 
 #ifdef HAVE_STOREKIT
 #import "validatereceipt.h"
-const NSString * global_bundleVersion = @"1.1.5";
-const NSString * global_bundleIdentifier = @"org.splayer.splayerx.revised";
+
 #endif
 
 NSString * const kMPCFMTBookmarkPath	= @"%@/Library/Preferences/%@.bookmarks.plist";
@@ -56,19 +55,16 @@ static BOOL init_ed = NO;
 
   // force enabled
 	MPSetLogEnable(true); // [[NSUserDefaults standardUserDefaults] boolForKey:kUDKeyLogMode])
-    
-#ifdef HAVE_STOREKIT
-    // check receipt
-    NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
-    
-    if (!validateReceiptAtPath([receiptURL path]))
+  
+  
+  // check receipt
+  NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
+  
+  if (!validateReceiptAtPath([receiptURL path]))
 		exit(173);
-    
-    
-#endif
 
 }
-					   
+
 +(AppController*) sharedAppController
 {
 	if (sharedInstance == nil) {

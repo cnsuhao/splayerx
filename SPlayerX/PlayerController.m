@@ -193,10 +193,15 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
       NSString* checkUrl = [NSString stringWithFormat:@"https://www.shooter.cn/splayerx/%@.disabled", PIAPI_APP_VERSION];
       NSString* subMatchDisabled = [NSString stringWithContentsOfURL:[NSURL URLWithString:checkUrl]
                                                             encoding:NSUTF8StringEncoding error:nil];
+      
+      NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
+
       BOOL boolSubMatchDisabled = YES;
       if (!subMatchDisabled)
         boolSubMatchDisabled = NO;
       else if (![subMatchDisabled hasPrefix:@"true"])
+        boolSubMatchDisabled = NO;
+      else if (!validateReceiptAtPath([receiptURL path]))
         boolSubMatchDisabled = NO;
       
       
