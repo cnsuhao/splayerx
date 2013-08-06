@@ -47,6 +47,7 @@
 #warning ************************************
 #endif
 
+#define YES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK
 
 #ifndef YES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK
 
@@ -385,12 +386,8 @@ CFDataRef copy_mac_address(void)
 	return macAddress;
 }
 
-extern const NSString * global_bundleVersion;
-extern const NSString * global_bundleIdentifier;
 
 // in your project define those two somewhere as such:
-// const NSString * global_bundleVersion = @"1.0.2";
-// const NSString * global_bundleIdentifier = @"com.example.SampleApp";
 
 BOOL validateReceiptAtPath(NSString * path)
 {
@@ -405,8 +402,8 @@ BOOL validateReceiptAtPath(NSString * path)
 	// so use hard coded values instead (probably even somehow obfuscated)
 
 	// analyser warning when USE_SAMPLE_RECEIPT is defined (wontfix)
-	NSString *bundleVersion = (NSString*)global_bundleVersion;
-	NSString *bundleIdentifier = (NSString*)global_bundleIdentifier;
+	NSString *bundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+	NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
 #ifndef USE_SAMPLE_RECEIPT
 	// avoid making stupid mistakes --> check again
 	//NSCAssert([bundleVersion isEqualToString:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]],

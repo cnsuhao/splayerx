@@ -137,6 +137,9 @@
 		04DFB89014378526006B3F6F /* Pref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0481436CB4400730552 /* Pref.xib */; };
 		04DFB89114378526006B3F6F /* SubEncoding.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE04A1436CB4400730552 /* SubEncoding.xib */; };
 		04DFB89214378526006B3F6F /* VideoTuner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE04C1436CB4400730552 /* VideoTuner.xib */; };
+		889E6D0C17B0D4F000E86051 /* validatereceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D70060143EDD24001E26AA /* validatereceipt.m */; };
+		889E6D0F17B0D62D00E86051 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D7005D143ED6E9001E26AA /* Security.framework */; };
+		889E6D1517B0D9A000E86051 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 889E6D1417B0D9A000E86051 /* libcrypto.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -402,6 +405,9 @@
 		8846C54414362813009043F1 /* BGHUDAppKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BGHUDAppKit.xcodeproj; path = BGHUDAppKit/BGHUDAppKit.xcodeproj; sourceTree = "<group>"; };
 		8846C55614362936009043F1 /* binaries */ = {isa = PBXFileReference; lastKnownFileType = folder; path = binaries; sourceTree = "<group>"; };
 		8846C5591436294F009043F1 /* plug-ins */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "plug-ins"; sourceTree = "<group>"; };
+		889E6D0D17B0D58500E86051 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = usr/lib/libssl.dylib; sourceTree = SDKROOT; };
+		889E6D1217B0D89D00E86051 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../Downloads/libssl.a; sourceTree = "<group>"; };
+		889E6D1417B0D9A000E86051 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
 		889E88401486794D00C50FC7 /* SPlayerX copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SPlayerX copy-Info.plist"; path = "/Users/tomasen/Dropbox/splayerx/SPlayerX copy-Info.plist"; sourceTree = "<absolute>"; };
 		88CD153F1435859500CDDF1C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		88CD15421435859500CDDF1C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -417,6 +423,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				889E6D1517B0D9A000E86051 /* libcrypto.dylib in Frameworks */,
+				889E6D0F17B0D62D00E86051 /* Security.framework in Frameworks */,
 				04DFB74314377946006B3F6F /* BGHUDAppKit.framework in Frameworks */,
 				04DFB74414377946006B3F6F /* UniversalDetector.framework in Frameworks */,
 				04DFB74614377946006B3F6F /* CoreData.framework in Frameworks */,
@@ -686,6 +694,9 @@
 		88CD15301435859500CDDF1C = {
 			isa = PBXGroup;
 			children = (
+				889E6D1417B0D9A000E86051 /* libcrypto.dylib */,
+				889E6D1217B0D89D00E86051 /* libssl.a */,
+				889E6D0D17B0D58500E86051 /* libssl.dylib */,
 				8846C54414362813009043F1 /* BGHUDAppKit.xcodeproj */,
 				883CBD3B14359FD600D20499 /* UniversalDetector.xcodeproj */,
 				88CD15451435859500CDDF1C /* SPlayerX */,
@@ -990,6 +1001,7 @@
 				04DFB73814377946006B3F6F /* TimeFormatter.m in Sources */,
 				04DFB73914377946006B3F6F /* TimeSliderCell.m in Sources */,
 				04DFB73A14377946006B3F6F /* TitleView.m in Sources */,
+				889E6D0C17B0D4F000E86051 /* validatereceipt.m in Sources */,
 				04DFB73B14377946006B3F6F /* UserDefaults.m in Sources */,
 				04DFB73C14377946006B3F6F /* VideoInfo.m in Sources */,
 				04DFB73D14377946006B3F6F /* VideoTunerController.m in Sources */,
@@ -1195,7 +1207,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPlayerX/SPlayerX-Prefix.pch";
 				INFOPLIST_FILE = "SPlayerX/SPlayerX-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Downloads\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = SPlayerX;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
@@ -1211,7 +1227,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPlayerX/SPlayerX-Prefix.pch";
 				INFOPLIST_FILE = "SPlayerX/SPlayerX-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Downloads\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = SPlayerX;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
