@@ -59,10 +59,10 @@ static BOOL init_ed = NO;
   
   // check receipt
   NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
-  
+#ifndef DEBUG
   if (!validateReceiptAtPath([receiptURL path]))
 		exit(173);
-
+#endif
 }
 
 +(AppController*) sharedAppController
