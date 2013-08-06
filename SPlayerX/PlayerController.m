@@ -119,7 +119,8 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 					   [NSNumber numberWithFloat:0.1], kUDKeyLetterBoxHeight,
 					   boolYes, kUDKeyPlayWhenOpened,
 					   boolYes, kUDKeyOverlapSub,
-             boolNo, kUDKeySmartSubMatching,
+             boolYes, kUDKeySmartSubMatching,
+             boolYes, kUDKeySmartSubMatchingDisabled,
 					   boolYes, kUDKeyRtspOverHttp,
 					   [NSNumber numberWithUnsignedInt:kPMMixDTS5_1ToStereo], kUDKeyMixToStereoMode,
 					   boolYes, kUDKeyAutoResume,
@@ -184,9 +185,39 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 
 		kvoSetuped = NO;
         
-        OSDActive = NO;
+    OSDActive = NO;
+    
+    _semaCheckingSubMatchDisable = dispatch_semaphore_create(0);
+    subMatchDisableCheckFinished = NO;
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+      NSString* checkUrl = [NSString stringWithFormat:@"https://www.shooter.cn/splayerx/%@.disabled", PIAPI_APP_VERSION];
+      NSString* subMatchDisabled = [NSString stringWithContentsOfURL:[NSURL URLWithString:checkUrl]
+                                                            encoding:NSUTF8StringEncoding error:nil];
+      BOOL boolSubMatchDisabled = YES;
+      if (!subMatchDisabled)
+        boolSubMatchDisabled = NO;
+      else if (![subMatchDisabled hasPrefix:@"true"])
+        boolSubMatchDisabled = NO;
+      
+      
+      [ud setBool:boolSubMatchDisabled forKey:kUDKeySmartSubMatchingDisabled];
+      
+      dispatch_semaphore_signal(_semaCheckingSubMatchDisable);
+      subMatchDisableCheckFinished = YES;
+    });
+    
 	}
 	return self;
+}
+
+-(BOOL) waitforSubMatchDisableCheckFinished
+{
+  if (subMatchDisableCheckFinished)
+    return YES;
+  
+  dispatch_semaphore_wait(_semaCheckingSubMatchDisable, DISPATCH_TIME_FOREVER);
+  
+  return YES;
 }
 
 -(void) setupKVO
@@ -269,6 +300,8 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 
 	[mplayer release];
 	[lastPlayedPath release];
+  
+  dispatch_release(_semaCheckingSubMatchDisable);
 
 	[super dealloc];
 }
@@ -408,7 +441,7 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 	[mplayer.pm setLetterBoxHeight:[ud floatForKey:kUDKeyLetterBoxHeight]];
 	[mplayer.pm setPauseAtStart:![ud boolForKey:kUDKeyPlayWhenOpened]];
 	[mplayer.pm setOverlapSub:[ud boolForKey:kUDKeyOverlapSub]];
-  [mplayer.pm setSmartSubMatching:[ud boolForKey:kUDKeySmartSubMatching]];
+  [mplayer.pm setSmartSubMatching:([self waitforSubMatchDisableCheckFinished] && [ud boolForKey:kUDKeySmartSubMatching] && ![ud boolForKey:kUDKeySmartSubMatchingDisabled])];
 	[mplayer.pm setMixToStereo:[ud integerForKey:kUDKeyMixToStereoMode]];
 	 
 	// 这里必须要retain，否则如果用lastPlayedPath作为参数传入的话会有问题
@@ -862,7 +895,7 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
       && [extension caseInsensitiveCompare:@"avi"] != NSOrderedSame ) 
     return;
   
-  if ([[NSUserDefaults standardUserDefaults] boolForKey:kUDKeySmartSubMatching])
+  if ([self waitforSubMatchDisableCheckFinished] && [ud boolForKey:kUDKeySmartSubMatching] && ![ud boolForKey:kUDKeySmartSubMatchingDisabled])
   	[self smartPullSubtitle];
 }
 

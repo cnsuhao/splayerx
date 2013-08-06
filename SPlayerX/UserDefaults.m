@@ -73,6 +73,7 @@ NSString * const kUDKeyTextSubtitleCharsetManual			= @"TextSubCharsetManual";
 NSString * const kUDKeyTextSubtitleCharsetFallback			= @"TextSubCharsetFallback";
 NSString * const kUDKeyOverlapSub				= @"OverlapSub";
 NSString * const kUDKeySmartSubMatching			= @"SmartSubMatching";
+NSString * const kUDKeySmartSubMatchingDisabled			= @"SmartSubMatchingDisabled";
 NSString * const kUDKeyRtspOverHttp				= @"RtspOverHttp";
 NSString * const kUDKeyFFMpegHandleStream		= @"FFMpegHandleStream";
 NSString * const kUDKeyMixToStereoMode			= @"MixToSterMode";

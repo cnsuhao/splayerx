@@ -231,7 +231,13 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
     }
 
 #else
-    
+  
+  if ([playerController waitforSubMatchDisableCheckFinished] && [ud boolForKey:kUDKeySmartSubMatchingDisabled])
+  {
+    [subtitleEnableButton setHidden:YES];
+    [subtitleSelectionButton setHidden:YES];
+  }
+  
   [dueDateTextField setStringValue:kMPXStringStoreNoAuth];
   [dueDateTextField setHidden:YES];
     

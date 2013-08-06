@@ -57,6 +57,9 @@ extern NSString * const kMPCPlayInfoUpdatedChangeDictKey;
     IBOutlet ControlUIView *controlUI;
 	IBOutlet OpenURLController *openUrlController;
 	IBOutlet CharsetQueryController *charsetController;
+  
+  dispatch_semaphore_t _semaCheckingSubMatchDisable;
+  BOOL subMatchDisableCheckFinished;
 }
 
 @property (readonly) NSURL *lastPlayedPath;
@@ -64,6 +67,7 @@ extern NSString * const kMPCPlayInfoUpdatedChangeDictKey;
 
 
 -(void) setupKVO;
+-(BOOL) waitforSubMatchDisableCheckFinished;
 
 -(id) setDisplayDelegateForMPlayer:(id<CoreDisplayDelegate>) delegate;
 -(int) playerState;
