@@ -177,9 +177,12 @@
   MPLog(@"%d %s %lu %lu\n", status, [retString UTF8String], (unsigned long)[data length], (unsigned long)[retString length]);
 
   controlUIView.shareUriCurrent = retString;
+  
+  dispatch_async(dispatch_get_main_queue(), ^{
   if (webView && retString)
     [[webView mainFrame] loadRequest:[NSURLRequest requestWithURL:
-                                     [NSURL URLWithString:retString]]]; 
+                                     [NSURL URLWithString:retString]]];
+  });
   [moviePath release];
 	[POOL release];
   
