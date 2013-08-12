@@ -796,8 +796,11 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 {
 	if ([mplayer.movieInfo.subInfo count] > 0)
         return;
-    
-	[NSThread detachNewThreadSelector:@selector(pullSubtitle:) toTarget:[ssclThread class] withObject:self];
+  
+  if ([self waitforSubMatchDisableCheckFinished] && [ud boolForKey:kUDKeySmartSubMatching] && ![ud boolForKey:kUDKeySmartSubMatchingDisabled])
+  {
+    [NSThread detachNewThreadSelector:@selector(pullSubtitle:) toTarget:[ssclThread class] withObject:self];
+  }
 }
 
 -(void) forcePullSubtitle
@@ -904,8 +907,7 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
       && [extension caseInsensitiveCompare:@"avi"] != NSOrderedSame ) 
     return;
   
-  if ([self waitforSubMatchDisableCheckFinished] && [ud boolForKey:kUDKeySmartSubMatching] && ![ud boolForKey:kUDKeySmartSubMatchingDisabled])
-  	[self smartPullSubtitle];
+  [self smartPullSubtitle];
 }
 
 -(void) playebackWillStop
