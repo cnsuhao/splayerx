@@ -123,6 +123,7 @@
 	IBOutlet NSMenuItem *menuSubScaleDec;
     IBOutlet NSMenuItem *menuSubtitleDelayInc;
 	IBOutlet NSMenuItem *menuSubtitleDelayDec;
+  
     IBOutlet NSMenuItem *menuSubtitleMatch;
     IBOutlet NSMenuItem *menuSubtitleSearchOnWeb;
     
@@ -151,6 +152,8 @@ extern NSString * const kFillScreenButtonImageUBKey;
 -(void) doHide;
 -(void) refreshBackgroundAlpha;
 -(void) refreshAutoHideTimer;
+
+-(void) setHiddenSubMatchMenu:(BOOL)hide;
 
 //////////////////////////////其他控件相关/////////////////////////////
 -(IBAction) togglePlayPause:(id)sender;

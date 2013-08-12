@@ -376,6 +376,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 
 	// force hide titlebar
 	[title setAlphaValue:([ud boolForKey:kUDKeyHideTitlebar])?0:CONTROLALPHA];
+  
+  [self setHiddenSubMatchMenu:YES];
 }
 
 -(void) dealloc
@@ -410,6 +412,11 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
     [wsoSPlayerAuth release];
   
 	[super dealloc];
+}
+
+-(void) setHiddenSubMatchMenu:(BOOL)hide
+{
+  [menuSubtitleMatch setHidden:hide];
 }
 
 -(void) refreshBackgroundAlpha
