@@ -29,6 +29,7 @@
 #import "CharsetQueryController.h"
 #import "AppController.h"
 #import "ssclThread.h"
+#import "ControlUIView.h"
 
 NSString * const kMPCPlayOpenedNotification			= @"kMPCPlayOpenedNotification";
 NSString * const kMPCPlayOpenedURLKey				= @"kMPCPlayOpenedURLKey";
@@ -189,6 +190,8 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
     
     _semaCheckingSubMatchDisable = dispatch_semaphore_create(0);
     subMatchDisableCheckFinished = NO;
+    [controlUI setHiddenSubMatchMenu:YES];
+    
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
       NSString* checkUrl = [NSString stringWithFormat:@"https://www.shooter.cn/splayerx/%@.disabled", PIAPI_APP_VERSION];
       NSString* subMatchDisabled = [NSString stringWithContentsOfURL:[NSURL URLWithString:checkUrl]
@@ -198,7 +201,7 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 
       BOOL boolSubMatchDisabled = YES;
       if (!subMatchDisabled)
-        boolSubMatchDisabled = NO;
+        boolSubMatchDisabled = YES;
       else if (![subMatchDisabled hasPrefix:@"true"])
         boolSubMatchDisabled = NO;
       else if (!validateReceiptAtPath([receiptURL path]))
@@ -206,6 +209,7 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
       
       
       [ud setBool:boolSubMatchDisabled forKey:kUDKeySmartSubMatchingDisabled];
+      [controlUI setHiddenSubMatchMenu:boolSubMatchDisabled];
       
       dispatch_semaphore_signal(_semaCheckingSubMatchDisable);
       subMatchDisableCheckFinished = YES;
