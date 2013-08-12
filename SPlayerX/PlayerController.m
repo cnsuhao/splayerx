@@ -792,19 +792,23 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 {
   return [mplayer getCurrentSubtitlePath];
 }
+-(BOOL) allowFetchSubstile
+{
+  return [self waitforSubMatchDisableCheckFinished] && [ud boolForKey:kUDKeySmartSubMatching] && ![ud boolForKey:kUDKeySmartSubMatchingDisabled];
+}
 -(void) smartPullSubtitle
 {
 	if ([mplayer.movieInfo.subInfo count] > 0)
         return;
   
-  if ([self waitforSubMatchDisableCheckFinished] && [ud boolForKey:kUDKeySmartSubMatching] && ![ud boolForKey:kUDKeySmartSubMatchingDisabled])
-  {
+  if ([self allowFetchSubstile])
     [NSThread detachNewThreadSelector:@selector(pullSubtitle:) toTarget:[ssclThread class] withObject:self];
-  }
+
 }
 
 -(void) forcePullSubtitle
 {
+  if ([self allowFetchSubstile])
     [NSThread detachNewThreadSelector:@selector(pullSubtitle:) toTarget:[ssclThread class] withObject:self];
 }
 
