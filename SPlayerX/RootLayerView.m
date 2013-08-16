@@ -505,10 +505,10 @@
 	CGFloat y = [event deltaY];
 	unichar key;
 	
-	if (x < 0) {
-		key = NSRightArrowFunctionKey;
-	} else if (x > 0) {
+	if (x < 10) {
 		key = NSLeftArrowFunctionKey;
+	} else if (x > 10) {
+		key = NSRightArrowFunctionKey;
 	} else if (y > 0) {
 		key = NSUpArrowFunctionKey;
 	} else if (y < 0) {
