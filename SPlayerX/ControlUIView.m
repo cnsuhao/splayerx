@@ -417,6 +417,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 -(void) setHiddenSubMatchMenu:(BOOL)hide
 {
   [menuSubtitleMatch setHidden:hide];
+  [menuSubtitleSearchOnWeb setHidden:hide];
 }
 
 -(void) refreshBackgroundAlpha
