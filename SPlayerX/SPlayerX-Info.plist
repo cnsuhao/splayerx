@@ -150,7 +150,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.6</string>
+	<string>1.1.7</string>
 	<key>CFBundleSignature</key>
 	<string>NILT</string>
 	<key>CFBundleURLTypes</key>
@@ -214,7 +214,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1100</string>
+	<string></string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.video</string>
 	<key>LSHasLocalizedDisplayName</key>
