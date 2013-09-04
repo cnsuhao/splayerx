@@ -45,38 +45,6 @@
 	[self setHasShadow:YES];
 	[self setCollectionBehavior:NSWindowCollectionBehaviorManaged];
 	
-	[self setContentMinSize:NSMakeSize(480, 360)];
-	[self setContentSize:NSMakeSize(480, 360)];
-
-	NSRect scrnRC = [[self screen] frame];
-	NSRect winRC  = [self frame];
-  [self setFrame:winRC display:YES animate:YES];
-	winRC.origin.x = (scrnRC.size.width - winRC.size.width) / 2;
-	winRC.origin.y = (scrnRC.size.height-winRC.size.height) / 2;
-  NSRect newWindowFrame = winRC;
-  
-  NSWindow* window = self;
-  NSDictionary *windowResize;
-  windowResize = [NSDictionary dictionaryWithObjectsAndKeys:
-                  window, NSViewAnimationTargetKey,
-                  [NSValue valueWithRect: newWindowFrame],
-                  NSViewAnimationEndFrameKey,
-                  nil];
-
-  NSArray *animations;
-  animations = [NSArray arrayWithObjects:
-                windowResize, nil, nil, nil];
-  
-  NSViewAnimation *animation;
-  animation = [[NSViewAnimation alloc]
-               initWithViewAnimations: animations];
-  
-  [animation setAnimationBlockingMode: NSAnimationBlocking];
-  [animation setDuration: 0.5]; // or however long you want it for
-  
-  [animation startAnimation]; // because it's blocking, once it returns, we're done
-  
-  [animation autorelease];
 }
 
 -(BOOL) canBecomeKeyWindow
