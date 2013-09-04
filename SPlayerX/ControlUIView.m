@@ -627,7 +627,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 		if (![ud boolForKey:kUDKeyHideTitlebar]) {
 			// if kUDKeyHideTitlebar is OFF, go to display the titlebar
 			[title.animator setAlphaValue:CONTROLALPHA];
-		}
+      [title enableButtons];      
+    }
 	}
 }
 
