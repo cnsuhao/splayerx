@@ -66,34 +66,13 @@ NSString *kStringDots = @"...";
 
 - (void)mouseEntered:(NSEvent *)theEvent
 {
-  [self windowDidBecomKey:self];
-  
-  [closeButton highlight:YES];
-  [zoomButton highlight:YES];
-  [miniButton highlight:YES];
-  
-  [closeButton setNeedsDisplay];
-  [closeButton setNeedsDisplay];
-  [zoomButton setNeedsDisplay];
-  [zoomButton setNeedsDisplay];
-  [miniButton setNeedsDisplay];
-  [miniButton setNeedsDisplay];
+  [self enableButtons];
+ 
   
 }
 
 - (void)mouseExited:(NSEvent *)theEvent
 {
-  
-  [closeButton highlight:NO];
-  [zoomButton highlight:NO];
-  [miniButton highlight:NO];
-  
-  [closeButton setNeedsDisplay];
-  [closeButton setNeedsDisplay];
-  [zoomButton setNeedsDisplay];
-  [zoomButton setNeedsDisplay];
-  [miniButton setNeedsDisplay];
-  [miniButton setNeedsDisplay];
   
 }
 -(void) dealloc
@@ -142,7 +121,7 @@ NSString *kStringDots = @"...";
 	tbCornerRight= [[NSImage imageNamed:@"titlebar-corner-right.png"] retain];
 	tbMiddle = [[NSImage imageNamed:@"titlebar-middle.png"] retain];
 
-  [self windowDidBecomKey:self];
+  [self enableButtons];
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(windowDidBecomKey:)
 												 name:NSWindowDidBecomeKeyNotification
@@ -215,14 +194,25 @@ NSString *kStringDots = @"...";
 	}
 }
 
+-(void)enableButtons
+{
+  [closeButton setEnabled:YES];
+	[miniButton setEnabled:YES];
+	[zoomButton setEnabled:YES];
+  [closeButton highlight:YES];
+  [closeButton highlight:NO];
+  [miniButton highlight:YES];
+  [miniButton highlight:NO];
+  [zoomButton highlight:YES];
+  [zoomButton highlight:NO];
+  
+  [closeButton setNeedsDisplay];
+  [closeButton needsPanelToBecomeKey];
+}
 
 -(void) windowDidBecomKey:(NSNotification*) notif
 {
-	[closeButton setEnabled:YES];
-	[miniButton setEnabled:YES];
-	[zoomButton setEnabled:YES];
-  
-  NSLog(@"windowDidBecomKey");
+	[self enableButtons];
 }
 
 -(void) windowDidResignKey:(NSNotification*) notif

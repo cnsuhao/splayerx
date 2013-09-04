@@ -38,4 +38,5 @@
 }
 
 @property(retain, readwrite) NSString *title;
+-(void)enableButtons;
 @end
