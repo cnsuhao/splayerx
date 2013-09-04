@@ -885,6 +885,17 @@
 	}
 }
 
+
+- (void)window:(NSWindow *)w willEncodeRestorableState:(NSCoder *)state
+{
+
+}
+
+- (void)window:(NSWindow *)w didDecodeRestorableState:(NSCoder *)state
+{
+  [w center];
+}
+
 -(BOOL)windowShouldZoom:(NSWindow *)window toFrame:(NSRect)newFrame
 {
 	return (displaying && (![window isZoomed]));
