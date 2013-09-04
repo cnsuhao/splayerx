@@ -66,6 +66,8 @@ NSString *kStringDots = @"...";
 
 - (void)mouseEntered:(NSEvent *)theEvent
 {
+  [self windowDidBecomKey:self];
+  
   [closeButton highlight:YES];
   [zoomButton highlight:YES];
   [miniButton highlight:YES];
@@ -140,6 +142,7 @@ NSString *kStringDots = @"...";
 	tbCornerRight= [[NSImage imageNamed:@"titlebar-corner-right.png"] retain];
 	tbMiddle = [[NSImage imageNamed:@"titlebar-middle.png"] retain];
 
+  [self windowDidBecomKey:self];
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(windowDidBecomKey:)
 												 name:NSWindowDidBecomeKeyNotification
@@ -218,6 +221,8 @@ NSString *kStringDots = @"...";
 	[closeButton setEnabled:YES];
 	[miniButton setEnabled:YES];
 	[zoomButton setEnabled:YES];
+  
+  NSLog(@"windowDidBecomKey");
 }
 
 -(void) windowDidResignKey:(NSNotification*) notif
