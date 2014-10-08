@@ -114,17 +114,20 @@
 			rcBounds.origin.y -= 2.0f;
 			rcBounds.size.width -= 0.5f;
 			rcBounds.size.height = 8.0f;
-			
-			rcBounds.size.width *= ([self floatValue]/[self maxValue]);
-			
+
+            if (rcBounds.size.width <= 0 || [self maxValue] == 0)
+                break;
+
+            rcBounds.size.width *= ([self floatValue]/[self maxValue]);
+            
 			path = [NSBezierPath bezierPathWithRoundedRect:rcBounds xRadius:4 yRadius:4];
 			dot  = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect(rcBounds.size.width - 6, rcBounds.origin.y + 2.0, 4, 4)];
 			
 			if([self isEnabled]) {
 				[[NSColor colorWithDeviceWhite:0.96 alpha:1.0] set];
 				[path fill];
-        [[NSColor colorWithDeviceWhite:0.0 alpha:0.3] set];
-        [path stroke];
+                [[NSColor colorWithDeviceWhite:0.0 alpha:0.3] set];
+                [path stroke];
 
 			} else {
 				[[NSColor colorWithDeviceWhite:0.3 alpha:1.0] set];
