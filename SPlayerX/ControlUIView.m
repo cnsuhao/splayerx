@@ -827,46 +827,34 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 }
 -(IBAction) toggleShareControls:(id)sender
 {
-  // open share controler
-
-  if ([webView isHidden]) 
-  {
-    // can't we share url?
-    // if (![playerController.lastPlayedPath isFileURL])
-    //   return;  
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"busy" ofType:@"html"];
-    NSURL *url = [NSURL fileURLWithPath:path];
-    [[webView mainFrame] loadRequest:[NSURLRequest requestWithURL:url]];
-    
-    NSSize dispSize = [dispView frame].size;
-    float webViewMag = [webView frame].size.height + 170;
-    if (dispSize.height < webViewMag)
+    SInt32 OSXversionMajor, OSXversionMinor;
+    if(Gestalt(gestaltSystemVersionMajor, &OSXversionMajor) == noErr && Gestalt(gestaltSystemVersionMinor, &OSXversionMinor) == noErr)
     {
-      webViewMag = webViewMag / dispSize.height - 1.0f;
-      [dispView changeWindowSizeBy:NSMakeSize(webViewMag, webViewMag) animate:YES];
+        if(OSXversionMajor < 10 || OSXversionMinor < 8)
+        {
+            return;
+        }
     }
     
-    dispSize = [dispView frame].size;
-    NSSize webViewSize= [webView frame].size;
-    NSPoint webViewOrigin;
-    webViewOrigin.x = dispSize.width - webViewSize.width - 30;
-    webViewOrigin.y = 100;
-    [webView setFrameOrigin:webViewOrigin];
-    [webView setHidden:NO];
+    [[self window] setLevel: NSNormalWindowLevel];
     
-    if ([shareUriCurrent length] == 0)
-    {
-      NSString* mediaPath = ([playerController.lastPlayedPath isFileURL])?([playerController.lastPlayedPath path]):([playerController.lastPlayedPath absoluteString]);
-      
-      [NSThread detachNewThreadSelector:@selector(shareMovie:) toTarget:[ssclThread class] withObject:[NSArray arrayWithObjects:[mediaPath copy],
-                                                                                                       webView, self, nil]];
+    NSString* mediaPath = ([playerController.lastPlayedPath isFileURL])?([playerController.lastPlayedPath path]):([playerController.lastPlayedPath absoluteString]);
+    
+    
+    NSMutableArray *shareItems = [NSMutableArray arrayWithObject:[mediaPath lastPathComponent]];
+    
+    NSImage *snapshot = [dispView snapshot];
+    if (snapshot) {
+        [shareItems addObject:snapshot];
     }
-    else
-      nextShareURLString = [shareUriCurrent copy];
     
-  }
-  else 
-    [self hideShareControls:self];
+    NSSharingServicePicker *sharingServicePicker = [[NSSharingServicePicker alloc] initWithItems:shareItems];
+    
+    [sharingServicePicker showRelativeToRect:[sender bounds]
+                                      ofView:sender
+                               preferredEdge:NSMinYEdge];
+    
+    [sharingServicePicker autorelease];
 }
 
 -(IBAction) toggleAccessaryControls:(id)sender

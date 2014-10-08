@@ -70,6 +70,7 @@
 -(void) changeWindowSizeBy:(NSSize)delta animate:(BOOL)animate;
 -(void) setDefaultPlayerWindowSize;
 
+-(NSImage*) snapshot;
 -(IBAction) writeSnapshotToFile:(id)sender;
 -(NSString*) snapshotToBase64String;
 @end
