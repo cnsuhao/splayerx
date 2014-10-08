@@ -185,6 +185,7 @@
 
 -(void) awakeFromNib
 {
+
 	[self setupLayers];
 	
 	[self reorderSubviews];
@@ -596,6 +597,21 @@
 	}
   return base64String;
 }
+
+-(NSImage*) snapshot
+{
+    CIImage *snapshot = [dispLayer snapshot];
+    
+    if (snapshot != nil) {
+        NSCIImageRep *rep = [NSCIImageRep imageRepWithCIImage:snapshot];
+        NSImage *nsImage = [[NSImage alloc] initWithSize:rep.size];
+        [nsImage addRepresentation:rep];
+        return [nsImage autorelease];
+    }
+    
+    return nil;
+}
+
 -(void) changeWindowSizeBy:(NSSize)delta animate:(BOOL)animate
 {
 	if (![self isInFullScreenMode]) {
