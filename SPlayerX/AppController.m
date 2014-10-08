@@ -55,14 +55,6 @@ static BOOL init_ed = NO;
 
   // force enabled
 	MPSetLogEnable(true); // [[NSUserDefaults standardUserDefaults] boolForKey:kUDKeyLogMode])
-  
-  
-  // check receipt
-  NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
-#ifndef DEBUG
-  if (!validateReceiptAtPath([receiptURL path]))
-		exit(173);
-#endif
 }
 
 +(AppController*) sharedAppController
@@ -73,10 +65,21 @@ static BOOL init_ed = NO;
 	return sharedInstance;
 }
 
+-(void) validateReceipt:(id)sender {
+    // check receipt
+    NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
+    if (!validateReceiptAtPath([receiptURL path]))
+        exit(173);
+}
+
 -(id) init
 {
 	if (init_ed == NO) {
 		init_ed = YES;
+        
+#ifndef DEBUG
+        [NSThread detachNewThreadSelector:@selector(validateReceipt:) toTarget:self withObject:self];
+#endif
 
 		ud = [NSUserDefaults standardUserDefaults];
 		notifCenter = [NSNotificationCenter defaultCenter];

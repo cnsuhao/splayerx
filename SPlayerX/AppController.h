@@ -47,6 +47,7 @@
 
 +(AppController*) sharedAppController;
 
+-(void) validateReceipt:(id)sender;
 -(IBAction) openFile:(id) sender;
 -(IBAction) showHelp:(id) sender;
 -(IBAction) goToDonate:(id)sender;
