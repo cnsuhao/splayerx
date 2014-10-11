@@ -198,7 +198,8 @@
 	
 	// 设定可以接受Drag Files
 	[self registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType,nil]];
-
+    self.layerUsesCoreImageFilters = TRUE;
+    
 	[VTController setLayer:dispLayer];
 	
 	[notifCenter addObserver:self selector:@selector(playBackOpened:)
