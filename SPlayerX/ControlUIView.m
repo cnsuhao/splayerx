@@ -827,13 +827,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 }
 -(IBAction) toggleShareControls:(id)sender
 {
-    SInt32 OSXversionMajor, OSXversionMinor;
-    if(Gestalt(gestaltSystemVersionMajor, &OSXversionMajor) == noErr && Gestalt(gestaltSystemVersionMinor, &OSXversionMinor) == noErr)
-    {
-        if(OSXversionMajor < 10 || OSXversionMinor < 8)
-        {
-            return;
-        }
+    if (NSClassFromString(@"NSSharingServicePicker") == nil) {
+        return;
     }
     
     [[self window] setLevel: NSNormalWindowLevel];
@@ -1246,7 +1241,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
     BOOL not_playing = (playerController.playerState == kMPCStoppedState)?YES:NO;
 	[fullScreenButton setHidden: not_playing];
     [toggleAcceButton setHidden: not_playing];
-    [toggleShareButton setHidden: not_playing];
+    [toggleShareButton setHidden: (not_playing || NSClassFromString(@"NSSharingServicePicker") == nil)];
 
 	[timeText setHidden: NO];
 	[timeTextAlt setHidden: NO];
