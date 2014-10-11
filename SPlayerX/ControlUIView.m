@@ -1693,7 +1693,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 																	continuousPlaytimeStart]];
 			
 		if (timePlayed > 3.0)
-            [playerController setOSDMessage:kMPXStringOSDCachingPercent type:kOSDTypeCoreControl];
+            [playerController setOSDMessage:[NSString stringWithFormat:kMPXStringOSDCachingPercent, percent*100] type:kOSDTypeCoreControl];
 	}
 }
 
