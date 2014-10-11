@@ -203,7 +203,7 @@
 			}
 			
 			frame.origin.x += 0.5f;
-			frame.origin.y += 0.5f;
+			frame.origin.y -= 1.5f;
 			frame.size.width -= 1;
 			frame.size.height = 3;
 			break;
