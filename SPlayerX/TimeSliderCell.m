@@ -77,7 +77,7 @@
 			}
 			
 			frame.origin.x += 0.5f;
-			frame.origin.y -= 2.0f;
+			frame.origin.y -= 4.5f;
 			frame.size.width -= 1.0f;
 			frame.size.height = 8.0f;
 			break;
