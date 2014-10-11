@@ -67,8 +67,8 @@
 		04DFB74C14377946006B3F6F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 883CBD3014358E7E00D20499 /* WebKit.framework */; };
 		04DFB74D14377946006B3F6F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 883CBD2E14358E6F00D20499 /* SystemConfiguration.framework */; };
 		04DFB74E14377946006B3F6F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CD153F1435859500CDDF1C /* Cocoa.framework */; };
-		04DFB75014377946006B3F6F /* BGHUDAppKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8846C54E14362813009043F1 /* BGHUDAppKit.framework */; };
-		04DFB75114377946006B3F6F /* UniversalDetector.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 883CBD4514359FD600D20499 /* UniversalDetector.framework */; };
+		04DFB75014377946006B3F6F /* BGHUDAppKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8846C54E14362813009043F1 /* BGHUDAppKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		04DFB75114377946006B3F6F /* UniversalDetector.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 883CBD4514359FD600D20499 /* UniversalDetector.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		04DFB75314377946006B3F6F /* brightness-max.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 883CBBF614358E0500D20499 /* brightness-max.tiff */; };
 		04DFB75414377946006B3F6F /* brightness-min.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 883CBBF714358E0500D20499 /* brightness-min.tiff */; };
 		04DFB75514377946006B3F6F /* busy-white.html in Resources */ = {isa = PBXBuildFile; fileRef = 883CBBF814358E0500D20499 /* busy-white.html */; };
@@ -102,7 +102,6 @@
 		04DFB77114377946006B3F6F /* share.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 883CBC6714358E0600D20499 /* share.pdf */; };
 		04DFB77214377946006B3F6F /* sharpen-max.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 883CBC6814358E0600D20499 /* sharpen-max.tiff */; };
 		04DFB77314377946006B3F6F /* sharpen-min.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 883CBC6914358E0600D20499 /* sharpen-min.tiff */; };
-		04DFB77414377946006B3F6F /* SPlayerX.icns in Resources */ = {isa = PBXBuildFile; fileRef = 883CBC6C14358E0600D20499 /* SPlayerX.icns */; };
 		04DFB77514377946006B3F6F /* titlebar-corner-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 883CBC7914358E0600D20499 /* titlebar-corner-left.png */; };
 		04DFB77614377946006B3F6F /* titlebar-corner-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 883CBC7A14358E0600D20499 /* titlebar-corner-right.png */; };
 		04DFB77714377946006B3F6F /* titlebar-middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 883CBC7B14358E0600D20499 /* titlebar-middle.png */; };
@@ -137,6 +136,8 @@
 		04DFB89014378526006B3F6F /* Pref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0481436CB4400730552 /* Pref.xib */; };
 		04DFB89114378526006B3F6F /* SubEncoding.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE04A1436CB4400730552 /* SubEncoding.xib */; };
 		04DFB89214378526006B3F6F /* VideoTuner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE04C1436CB4400730552 /* VideoTuner.xib */; };
+		8885F74B19E55DA700FE7125 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8885F74A19E55DA700FE7125 /* Images.xcassets */; };
+		8885F78A19E5E75800FE7125 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 889E6D0D17B0D58500E86051 /* libssl.dylib */; };
 		889E6D0C17B0D4F000E86051 /* validatereceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D70060143EDD24001E26AA /* validatereceipt.m */; };
 		889E6D0F17B0D62D00E86051 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D7005D143ED6E9001E26AA /* Security.framework */; };
 		889E6D1517B0D9A000E86051 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 889E6D1417B0D9A000E86051 /* libcrypto.dylib */; };
@@ -405,6 +406,7 @@
 		8846C54414362813009043F1 /* BGHUDAppKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BGHUDAppKit.xcodeproj; path = BGHUDAppKit/BGHUDAppKit.xcodeproj; sourceTree = "<group>"; };
 		8846C55614362936009043F1 /* binaries */ = {isa = PBXFileReference; lastKnownFileType = folder; path = binaries; sourceTree = "<group>"; };
 		8846C5591436294F009043F1 /* plug-ins */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "plug-ins"; sourceTree = "<group>"; };
+		8885F74A19E55DA700FE7125 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		889E6D0D17B0D58500E86051 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = usr/lib/libssl.dylib; sourceTree = SDKROOT; };
 		889E6D1217B0D89D00E86051 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../Downloads/libssl.a; sourceTree = "<group>"; };
 		889E6D1417B0D9A000E86051 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
@@ -423,6 +425,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8885F78A19E5E75800FE7125 /* libssl.dylib in Frameworks */,
 				889E6D1517B0D9A000E86051 /* libcrypto.dylib in Frameworks */,
 				889E6D0F17B0D62D00E86051 /* Security.framework in Frameworks */,
 				04DFB74314377946006B3F6F /* BGHUDAppKit.framework in Frameworks */,
@@ -743,6 +746,7 @@
 				8846C57F14362C64009043F1 /* Libraries */,
 				8846C57E14362C53009043F1 /* Controllers */,
 				883CBD5F1435A09600D20499 /* Apple Remote Control */,
+				8885F74A19E55DA700FE7125 /* Images.xcassets */,
 				88CD15461435859500CDDF1C /* Supporting Files */,
 			);
 			path = SPlayerX;
@@ -796,7 +800,12 @@
 		88CD15321435859500CDDF1C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0600;
+				TargetAttributes = {
+					04DFB70A14377946006B3F6F = {
+						DevelopmentTeam = M6GT4ZS5X7;
+					};
+				};
 			};
 			buildConfigurationList = 88CD15351435859500CDDF1C /* Build configuration list for PBXProject "SPlayerX" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -913,6 +922,7 @@
 				04DFB76A14377946006B3F6F /* noisereduction-max.tif in Resources */,
 				04DFB76B14377946006B3F6F /* noisereduction-min.tif in Resources */,
 				04DFB76C14377946006B3F6F /* pause.pdf in Resources */,
+				8885F74B19E55DA700FE7125 /* Images.xcassets in Resources */,
 				04DFB76D14377946006B3F6F /* play.pdf in Resources */,
 				04DFB76E14377946006B3F6F /* resizeindicator.png in Resources */,
 				04DFB76F14377946006B3F6F /* saturation-max.tiff in Resources */,
@@ -920,7 +930,6 @@
 				04DFB77114377946006B3F6F /* share.pdf in Resources */,
 				04DFB77214377946006B3F6F /* sharpen-max.tiff in Resources */,
 				04DFB77314377946006B3F6F /* sharpen-min.tiff in Resources */,
-				04DFB77414377946006B3F6F /* SPlayerX.icns in Resources */,
 				04DFB77514377946006B3F6F /* titlebar-corner-left.png in Resources */,
 				04DFB77614377946006B3F6F /* titlebar-corner-right.png in Resources */,
 				04DFB77714377946006B3F6F /* titlebar-middle.png in Resources */,
@@ -1202,7 +1211,9 @@
 		04DFB78C14377946006B3F6F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPlayerX/SPlayerX-Prefix.pch";
@@ -1211,10 +1222,10 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../Downloads\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = SPlayerX;
 				PROVISIONING_PROFILE = "";
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1222,7 +1233,9 @@
 		04DFB78D14377946006B3F6F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPlayerX/SPlayerX-Prefix.pch";
@@ -1231,10 +1244,10 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../Downloads\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = SPlayerX;
 				PROVISIONING_PROFILE = "";
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1243,13 +1256,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -1263,11 +1279,13 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -1275,24 +1293,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				SDKROOT = macosx10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
