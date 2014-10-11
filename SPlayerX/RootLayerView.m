@@ -198,7 +198,9 @@
 	
 	// 设定可以接受Drag Files
 	[self registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType,nil]];
-    self.layerUsesCoreImageFilters = TRUE;
+    if ([self respondsToSelector: @selector(setLayerUsesCoreImageFilters:)]) {
+        [self setLayerUsesCoreImageFilters:TRUE];
+    }
     
 	[VTController setLayer:dispLayer];
 	
