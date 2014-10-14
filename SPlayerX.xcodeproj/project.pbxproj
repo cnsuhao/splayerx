@@ -56,8 +56,6 @@
 		04DFB73F14377946006B3F6F /* AppleRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CBD611435A09600D20499 /* AppleRemote.m */; };
 		04DFB74014377946006B3F6F /* HIDRemoteControlDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CBD681435A09600D20499 /* HIDRemoteControlDevice.m */; };
 		04DFB74114377946006B3F6F /* RemoteControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CBD721435A09600D20499 /* RemoteControl.m */; };
-		04DFB74314377946006B3F6F /* BGHUDAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8846C54E14362813009043F1 /* BGHUDAppKit.framework */; };
-		04DFB74414377946006B3F6F /* UniversalDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 883CBD4514359FD600D20499 /* UniversalDetector.framework */; };
 		04DFB74614377946006B3F6F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CD15431435859500CDDF1C /* CoreData.framework */; };
 		04DFB74714377946006B3F6F /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CD15421435859500CDDF1C /* AppKit.framework */; };
 		04DFB74814377946006B3F6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CD15441435859500CDDF1C /* Foundation.framework */; };
@@ -67,8 +65,6 @@
 		04DFB74C14377946006B3F6F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 883CBD3014358E7E00D20499 /* WebKit.framework */; };
 		04DFB74D14377946006B3F6F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 883CBD2E14358E6F00D20499 /* SystemConfiguration.framework */; };
 		04DFB74E14377946006B3F6F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CD153F1435859500CDDF1C /* Cocoa.framework */; };
-		04DFB75014377946006B3F6F /* BGHUDAppKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8846C54E14362813009043F1 /* BGHUDAppKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		04DFB75114377946006B3F6F /* UniversalDetector.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 883CBD4514359FD600D20499 /* UniversalDetector.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		04DFB75314377946006B3F6F /* brightness-max.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 883CBBF614358E0500D20499 /* brightness-max.tiff */; };
 		04DFB75414377946006B3F6F /* brightness-min.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 883CBBF714358E0500D20499 /* brightness-min.tiff */; };
 		04DFB75514377946006B3F6F /* busy-white.html in Resources */ = {isa = PBXBuildFile; fileRef = 883CBBF814358E0500D20499 /* busy-white.html */; };
@@ -122,20 +118,25 @@
 		04DFB88214378526006B3F6F /* Pref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC251436EBA900749603 /* Pref.xib */; };
 		04DFB88314378526006B3F6F /* SubEncoding.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC271436EBA900749603 /* SubEncoding.xib */; };
 		04DFB88414378526006B3F6F /* VideoTuner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042BBC291436EBA900749603 /* VideoTuner.xib */; };
-		04DFB88514378526006B3F6F /* Equalizer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0311436CB4400730552 /* Equalizer.xib */; };
-		04DFB88614378526006B3F6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0331436CB4400730552 /* InfoPlist.strings */; };
-		04DFB88714378526006B3F6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0351436CB4400730552 /* Localizable.strings */; };
-		04DFB88814378526006B3F6F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0371436CB4400730552 /* MainMenu.xib */; };
-		04DFB88914378526006B3F6F /* Pref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0391436CB4400730552 /* Pref.xib */; };
-		04DFB88A14378526006B3F6F /* SubEncoding.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE03B1436CB4400730552 /* SubEncoding.xib */; };
-		04DFB88B14378526006B3F6F /* VideoTuner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE03D1436CB4400730552 /* VideoTuner.xib */; };
-		04DFB88C14378526006B3F6F /* Equalizer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0401436CB4400730552 /* Equalizer.xib */; };
-		04DFB88D14378526006B3F6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0421436CB4400730552 /* InfoPlist.strings */; };
-		04DFB88E14378526006B3F6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0441436CB4400730552 /* Localizable.strings */; };
-		04DFB88F14378526006B3F6F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0461436CB4400730552 /* MainMenu.xib */; };
-		04DFB89014378526006B3F6F /* Pref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0481436CB4400730552 /* Pref.xib */; };
-		04DFB89114378526006B3F6F /* SubEncoding.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE04A1436CB4400730552 /* SubEncoding.xib */; };
-		04DFB89214378526006B3F6F /* VideoTuner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE04C1436CB4400730552 /* VideoTuner.xib */; };
+		880BFEAA19ED6CD80031F8D9 /* SPlayerX.Quick.Look.qlgenerator in CopyFiles */ = {isa = PBXBuildFile; fileRef = 880BFEA619ED69810031F8D9 /* SPlayerX.Quick.Look.qlgenerator */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		880BFEB019ED6F540031F8D9 /* UniversalDetector.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 883CBD4514359FD600D20499 /* UniversalDetector.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		880BFEB119ED6F8D0031F8D9 /* BGHUDAppKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8846C54E14362813009043F1 /* BGHUDAppKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		880BFEB219ED6FB80031F8D9 /* BGHUDAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8846C54E14362813009043F1 /* BGHUDAppKit.framework */; };
+		880BFEB319ED6FC20031F8D9 /* UniversalDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 883CBD4514359FD600D20499 /* UniversalDetector.framework */; };
+		880BFEBB19ED73470031F8D9 /* Equalizer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0401436CB4400730552 /* Equalizer.xib */; };
+		880BFEBC19ED73470031F8D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0421436CB4400730552 /* InfoPlist.strings */; };
+		880BFEBD19ED73470031F8D9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0441436CB4400730552 /* Localizable.strings */; };
+		880BFEBE19ED73470031F8D9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0461436CB4400730552 /* MainMenu.xib */; };
+		880BFEBF19ED73470031F8D9 /* Pref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0481436CB4400730552 /* Pref.xib */; };
+		880BFEC019ED73470031F8D9 /* SubEncoding.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE04A1436CB4400730552 /* SubEncoding.xib */; };
+		880BFEC119ED73470031F8D9 /* VideoTuner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE04C1436CB4400730552 /* VideoTuner.xib */; };
+		880BFEC219ED735B0031F8D9 /* Equalizer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0311436CB4400730552 /* Equalizer.xib */; };
+		880BFEC319ED735B0031F8D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0331436CB4400730552 /* InfoPlist.strings */; };
+		880BFEC419ED735B0031F8D9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0351436CB4400730552 /* Localizable.strings */; };
+		880BFEC519ED735B0031F8D9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0371436CB4400730552 /* MainMenu.xib */; };
+		880BFEC619ED735B0031F8D9 /* Pref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE0391436CB4400730552 /* Pref.xib */; };
+		880BFEC719ED735B0031F8D9 /* SubEncoding.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE03B1436CB4400730552 /* SubEncoding.xib */; };
+		880BFEC819ED735B0031F8D9 /* VideoTuner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE03D1436CB4400730552 /* VideoTuner.xib */; };
 		8885F74B19E55DA700FE7125 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8885F74A19E55DA700FE7125 /* Images.xcassets */; };
 		8885F78A19E5E75800FE7125 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 889E6D0D17B0D58500E86051 /* libssl.dylib */; };
 		889E6D0C17B0D4F000E86051 /* validatereceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D70060143EDD24001E26AA /* validatereceipt.m */; };
@@ -157,6 +158,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = UniversalDetector;
+		};
+		880BFEA519ED69810031F8D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 880BFEA119ED69800031F8D9 /* SPlayerX.Quick.Look.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 880BFE9119ED69800031F8D9;
+			remoteInfo = SPlayerX.Quick.Look;
+		};
+		880BFEA719ED6AC30031F8D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 880BFEA119ED69800031F8D9 /* SPlayerX.Quick.Look.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 880BFE9019ED69800031F8D9;
+			remoteInfo = SPlayerX.Quick.Look;
 		};
 		883CBD4414359FD600D20499 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -195,8 +210,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				04DFB75014377946006B3F6F /* BGHUDAppKit.framework in Copy Frameworks */,
-				04DFB75114377946006B3F6F /* UniversalDetector.framework in Copy Frameworks */,
+				880BFEB119ED6F8D0031F8D9 /* BGHUDAppKit.framework in Copy Frameworks */,
+				880BFEB019ED6F540031F8D9 /* UniversalDetector.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,6 +236,16 @@
 				04DFB78A14377946006B3F6F /* plug-ins in Copy Plug-ins */,
 			);
 			name = "Copy Plug-ins";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		880BFEA919ED6C880031F8D9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/QuickLook;
+			dstSubfolderSpec = 1;
+			files = (
+				880BFEAA19ED6CD80031F8D9 /* SPlayerX.Quick.Look.qlgenerator in CopyFiles */,
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -251,6 +276,7 @@
 		04D7005F143EDD24001E26AA /* validatereceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = validatereceipt.h; path = SPlayerX/validatereceipt.h; sourceTree = "<group>"; };
 		04D70060143EDD24001E26AA /* validatereceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = validatereceipt.m; path = SPlayerX/validatereceipt.m; sourceTree = "<group>"; };
 		04DFB78E14377946006B3F6F /* SPlayerX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPlayerX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		880BFEA119ED69800031F8D9 /* SPlayerX.Quick.Look.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SPlayerX.Quick.Look.xcodeproj; path = SPlayerX.Quick.Look/SPlayerX.Quick.Look.xcodeproj; sourceTree = "<group>"; };
 		883CBBEC14358E0500D20499 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		883CBBED14358E0500D20499 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
 		883CBBEE14358E0500D20499 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -408,9 +434,7 @@
 		8846C5591436294F009043F1 /* plug-ins */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "plug-ins"; sourceTree = "<group>"; };
 		8885F74A19E55DA700FE7125 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		889E6D0D17B0D58500E86051 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = usr/lib/libssl.dylib; sourceTree = SDKROOT; };
-		889E6D1217B0D89D00E86051 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../Downloads/libssl.a; sourceTree = "<group>"; };
 		889E6D1417B0D9A000E86051 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
-		889E88401486794D00C50FC7 /* SPlayerX copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SPlayerX copy-Info.plist"; path = "/Users/tomasen/Dropbox/splayerx/SPlayerX copy-Info.plist"; sourceTree = "<absolute>"; };
 		88CD153F1435859500CDDF1C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		88CD15421435859500CDDF1C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		88CD15431435859500CDDF1C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -428,12 +452,12 @@
 				8885F78A19E5E75800FE7125 /* libssl.dylib in Frameworks */,
 				889E6D1517B0D9A000E86051 /* libcrypto.dylib in Frameworks */,
 				889E6D0F17B0D62D00E86051 /* Security.framework in Frameworks */,
-				04DFB74314377946006B3F6F /* BGHUDAppKit.framework in Frameworks */,
-				04DFB74414377946006B3F6F /* UniversalDetector.framework in Frameworks */,
 				04DFB74614377946006B3F6F /* CoreData.framework in Frameworks */,
 				04DFB74714377946006B3F6F /* AppKit.framework in Frameworks */,
 				04DFB74814377946006B3F6F /* Foundation.framework in Frameworks */,
 				04DFB74914377946006B3F6F /* IOKit.framework in Frameworks */,
+				880BFEB219ED6FB80031F8D9 /* BGHUDAppKit.framework in Frameworks */,
+				880BFEB319ED6FC20031F8D9 /* UniversalDetector.framework in Frameworks */,
 				04DFB74A14377946006B3F6F /* QuartzCore.framework in Frameworks */,
 				04DFB74B14377946006B3F6F /* OpenGL.framework in Frameworks */,
 				04DFB74C14377946006B3F6F /* WebKit.framework in Frameworks */,
@@ -487,6 +511,14 @@
 			);
 			name = zh_tw.lproj;
 			path = ../../splayerx/SPlayerX/zh_tw.lproj;
+			sourceTree = "<group>";
+		};
+		880BFEA219ED69800031F8D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				880BFEA619ED69810031F8D9 /* SPlayerX.Quick.Look.qlgenerator */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		883CBD3C14359FD600D20499 /* Products */ = {
@@ -697,8 +729,8 @@
 		88CD15301435859500CDDF1C = {
 			isa = PBXGroup;
 			children = (
+				880BFEA119ED69800031F8D9 /* SPlayerX.Quick.Look.xcodeproj */,
 				889E6D1417B0D9A000E86051 /* libcrypto.dylib */,
-				889E6D1217B0D89D00E86051 /* libssl.a */,
 				889E6D0D17B0D58500E86051 /* libssl.dylib */,
 				8846C54414362813009043F1 /* BGHUDAppKit.xcodeproj */,
 				883CBD3B14359FD600D20499 /* UniversalDetector.xcodeproj */,
@@ -707,7 +739,6 @@
 				8846C5591436294F009043F1 /* plug-ins */,
 				88CD153E1435859500CDDF1C /* Frameworks */,
 				88CD153C1435859500CDDF1C /* Products */,
-				889E88401486794D00C50FC7 /* SPlayerX copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -782,10 +813,12 @@
 				04DFB75214377946006B3F6F /* Resources */,
 				04DFB78714377946006B3F6F /* Copy binaries */,
 				04DFB78914377946006B3F6F /* Copy Plug-ins */,
+				880BFEA919ED6C880031F8D9 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				880BFEA819ED6AC30031F8D9 /* PBXTargetDependency */,
 				04DFB70B14377946006B3F6F /* PBXTargetDependency */,
 				04DFB70D14377946006B3F6F /* PBXTargetDependency */,
 			);
@@ -828,6 +861,10 @@
 					ProjectRef = 8846C54414362813009043F1 /* BGHUDAppKit.xcodeproj */;
 				},
 				{
+					ProductGroup = 880BFEA219ED69800031F8D9 /* Products */;
+					ProjectRef = 880BFEA119ED69800031F8D9 /* SPlayerX.Quick.Look.xcodeproj */;
+				},
+				{
 					ProductGroup = 883CBD3C14359FD600D20499 /* Products */;
 					ProjectRef = 883CBD3B14359FD600D20499 /* UniversalDetector.xcodeproj */;
 				},
@@ -840,6 +877,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		880BFEA619ED69810031F8D9 /* SPlayerX.Quick.Look.qlgenerator */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SPlayerX.Quick.Look.qlgenerator;
+			remoteRef = 880BFEA519ED69810031F8D9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		883CBD4514359FD600D20499 /* UniversalDetector.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -875,6 +919,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				880BFEC219ED735B0031F8D9 /* Equalizer.xib in Resources */,
+				880BFEC319ED735B0031F8D9 /* InfoPlist.strings in Resources */,
+				880BFEC419ED735B0031F8D9 /* Localizable.strings in Resources */,
+				880BFEC519ED735B0031F8D9 /* MainMenu.xib in Resources */,
+				880BFEC619ED735B0031F8D9 /* Pref.xib in Resources */,
+				880BFEC719ED735B0031F8D9 /* SubEncoding.xib in Resources */,
+				880BFEC819ED735B0031F8D9 /* VideoTuner.xib in Resources */,
+				880BFEBB19ED73470031F8D9 /* Equalizer.xib in Resources */,
+				880BFEBC19ED73470031F8D9 /* InfoPlist.strings in Resources */,
+				880BFEBD19ED73470031F8D9 /* Localizable.strings in Resources */,
+				880BFEBE19ED73470031F8D9 /* MainMenu.xib in Resources */,
+				880BFEBF19ED73470031F8D9 /* Pref.xib in Resources */,
+				880BFEC019ED73470031F8D9 /* SubEncoding.xib in Resources */,
+				880BFEC119ED73470031F8D9 /* VideoTuner.xib in Resources */,
 				04DFB87E14378526006B3F6F /* Equalizer.xib in Resources */,
 				04DFB87F14378526006B3F6F /* InfoPlist.strings in Resources */,
 				04DFB88014378526006B3F6F /* Localizable.strings in Resources */,
@@ -882,20 +940,6 @@
 				04DFB88214378526006B3F6F /* Pref.xib in Resources */,
 				04DFB88314378526006B3F6F /* SubEncoding.xib in Resources */,
 				04DFB88414378526006B3F6F /* VideoTuner.xib in Resources */,
-				04DFB88514378526006B3F6F /* Equalizer.xib in Resources */,
-				04DFB88614378526006B3F6F /* InfoPlist.strings in Resources */,
-				04DFB88714378526006B3F6F /* Localizable.strings in Resources */,
-				04DFB88814378526006B3F6F /* MainMenu.xib in Resources */,
-				04DFB88914378526006B3F6F /* Pref.xib in Resources */,
-				04DFB88A14378526006B3F6F /* SubEncoding.xib in Resources */,
-				04DFB88B14378526006B3F6F /* VideoTuner.xib in Resources */,
-				04DFB88C14378526006B3F6F /* Equalizer.xib in Resources */,
-				04DFB88D14378526006B3F6F /* InfoPlist.strings in Resources */,
-				04DFB88E14378526006B3F6F /* Localizable.strings in Resources */,
-				04DFB88F14378526006B3F6F /* MainMenu.xib in Resources */,
-				04DFB89014378526006B3F6F /* Pref.xib in Resources */,
-				04DFB89114378526006B3F6F /* SubEncoding.xib in Resources */,
-				04DFB89214378526006B3F6F /* VideoTuner.xib in Resources */,
 				04DFB75314377946006B3F6F /* brightness-max.tiff in Resources */,
 				04DFB75414377946006B3F6F /* brightness-min.tiff in Resources */,
 				04DFB75514377946006B3F6F /* busy-white.html in Resources */,
@@ -1033,6 +1077,11 @@
 			isa = PBXTargetDependency;
 			name = UniversalDetector;
 			targetProxy = 04DFB70E14377946006B3F6F /* PBXContainerItemProxy */;
+		};
+		880BFEA819ED6AC30031F8D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SPlayerX.Quick.Look;
+			targetProxy = 880BFEA719ED6AC30031F8D9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
