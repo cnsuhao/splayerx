@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		880BFE9719ED69800031F8D9 /* GenerateThumbnailForURL.c in Sources */ = {isa = PBXBuildFile; fileRef = 880BFE9619ED69800031F8D9 /* GenerateThumbnailForURL.c */; };
+		880BFE9719ED69800031F8D9 /* GenerateThumbnailForURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 880BFE9619ED69800031F8D9 /* GenerateThumbnailForURL.m */; };
 		880BFE9919ED69800031F8D9 /* GeneratePreviewForURL.c in Sources */ = {isa = PBXBuildFile; fileRef = 880BFE9819ED69800031F8D9 /* GeneratePreviewForURL.c */; };
 		880BFE9B19ED69800031F8D9 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 880BFE9A19ED69800031F8D9 /* main.c */; };
 /* End PBXBuildFile section */
@@ -15,7 +15,7 @@
 /* Begin PBXFileReference section */
 		880BFE9119ED69800031F8D9 /* SPlayerX.Quick.Look.qlgenerator */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SPlayerX.Quick.Look.qlgenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		880BFE9519ED69800031F8D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		880BFE9619ED69800031F8D9 /* GenerateThumbnailForURL.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = GenerateThumbnailForURL.c; sourceTree = "<group>"; };
+		880BFE9619ED69800031F8D9 /* GenerateThumbnailForURL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenerateThumbnailForURL.m; sourceTree = "<group>"; };
 		880BFE9819ED69800031F8D9 /* GeneratePreviewForURL.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = GeneratePreviewForURL.c; sourceTree = "<group>"; };
 		880BFE9A19ED69800031F8D9 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -50,7 +50,7 @@
 		880BFE9319ED69800031F8D9 /* SPlayerX.Quick.Look */ = {
 			isa = PBXGroup;
 			children = (
-				880BFE9619ED69800031F8D9 /* GenerateThumbnailForURL.c */,
+				880BFE9619ED69800031F8D9 /* GenerateThumbnailForURL.m */,
 				880BFE9819ED69800031F8D9 /* GeneratePreviewForURL.c */,
 				880BFE9A19ED69800031F8D9 /* main.c */,
 				880BFE9419ED69800031F8D9 /* Supporting Files */,
@@ -143,7 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				880BFE9719ED69800031F8D9 /* GenerateThumbnailForURL.c in Sources */,
+				880BFE9719ED69800031F8D9 /* GenerateThumbnailForURL.m in Sources */,
 				880BFE9919ED69800031F8D9 /* GeneratePreviewForURL.c in Sources */,
 				880BFE9B19ED69800031F8D9 /* main.c in Sources */,
 			);
@@ -269,6 +269,7 @@
 				880BFEA019ED69800031F8D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
