@@ -118,7 +118,6 @@
             if (rcBounds.size.width <= 0 || [self maxValue] == 0)
                 break;
 
-            NSLog(@"%f", [self floatValue]);
             rcBounds.size.width *= ([self floatValue]/[self maxValue]);
             
             rcBounds.size.width += 4.f;
