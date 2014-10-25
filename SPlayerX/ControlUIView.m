@@ -1812,8 +1812,9 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 {
 	NSPoint pt = [self convertPoint:[[self window] convertScreenToBase:[NSEvent mouseLocation]] fromView:nil];
 	NSRect frm = timeSlider.frame;
+
 	
-	float timeDisp = ((pt.x-frm.origin.x) * [timeSlider maxValue])/ frm.size.width;;
+	float timeDisp = ((pt.x-frm.origin.x-7.5f) * [timeSlider maxValue])/ (frm.size.width - 15.f);
 
 	if ((([NSEvent modifierFlags] == kSCMSwitchTimeHintKeyModifierMask)?YES:NO) != 
 		[ud boolForKey:kUDKeySwitchTimeHintPressOnAbusolute]) {
@@ -1821,7 +1822,14 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 		// 否则显示绝对时间
 		timeDisp -= [timeSlider floatValue];
 	}
-	[hintTime setIntValue:timeDisp + ((timeDisp>0)?0.5:-0.5)];
+    
+    if (timeDisp < 0)
+        timeDisp = 0;
+    
+    if (timeDisp > [timeSlider maxValue])
+        timeDisp = [timeSlider maxValue];
+    
+	[hintTime setIntValue:timeDisp];
 }
 
 -(void) updateHintTime
@@ -1829,6 +1837,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	// 得到鼠标在CotrolUI中的位置
 	NSPoint pt = [self convertPoint:[[self window] convertScreenToBase:[NSEvent mouseLocation]] fromView:nil];
 	NSRect frm = timeSlider.frame;
+    frm.origin.x += 4;
+    frm.size.width -= 6;
 
 	// if the media is not seekable, timeSlider is disabled
 	// but if the length of the media is available, we should display the hintTime, whether it is seekable or not

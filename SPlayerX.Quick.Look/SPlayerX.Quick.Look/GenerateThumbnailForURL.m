@@ -2,7 +2,6 @@
 #include <CoreServices/CoreServices.h>
 #include <QuickLook/QuickLook.h>
 @import AppKit;
-#import <SPQuickLookgl.h>
 
 NSString* MPlayerPath(){
     NSString* mpath = [[NSWorkspace sharedWorkspace] absolutePathForAppBundleWithIdentifier:@"org.splayer.splayerx"];

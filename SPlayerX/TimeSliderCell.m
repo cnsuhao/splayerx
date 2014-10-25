@@ -76,9 +76,9 @@
 				frame.origin.y = frame.origin.y + (((frame.origin.y + frame.size.height) /2) - 2.5f);
 			}
 			
-			frame.origin.x += 0.5f;
+			frame.origin.x += 5.f;
 			frame.origin.y -= 4.5f;
-			frame.size.width -= 1.0f;
+			frame.size.width -= 10.0f;
 			frame.size.height = 8.0f;
 			break;
 		default:
@@ -110,18 +110,21 @@
 			
 		case NSSmallControlSize:
 			rcBounds.origin.y = rcBounds.origin.y + (((rcBounds.origin.y + rcBounds.size.height) /2) - 2.5f);
-			rcBounds.origin.x += 0.5f;
+			rcBounds.origin.x += 5.f;
 			rcBounds.origin.y -= 2.0f;
-			rcBounds.size.width -= 0.5f;
+			rcBounds.size.width -= 15.f;
 			rcBounds.size.height = 8.0f;
 
             if (rcBounds.size.width <= 0 || [self maxValue] == 0)
                 break;
 
+            NSLog(@"%f", [self floatValue]);
             rcBounds.size.width *= ([self floatValue]/[self maxValue]);
             
+            rcBounds.size.width += 4.f;
+            
 			path = [NSBezierPath bezierPathWithRoundedRect:rcBounds xRadius:4 yRadius:4];
-			dot  = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect(rcBounds.size.width - 6, rcBounds.origin.y + 2.0, 4, 4)];
+			dot  = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect(rcBounds.size.width, rcBounds.origin.y + 2.0, 4, 4)];
 			
 			if([self isEnabled]) {
 				[[NSColor colorWithDeviceWhite:0.96 alpha:1.0] set];
@@ -133,6 +136,10 @@
 				[[NSColor colorWithDeviceWhite:0.3 alpha:1.0] set];
 				[path fill];
 			}
+            
+            if (rcBounds.size.width < 6 ) {
+                break;
+            }
       
 			[[NSColor blackColor] set];
 			[dot fill];
