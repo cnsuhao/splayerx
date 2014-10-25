@@ -408,7 +408,11 @@
 {
 	if ([self isInFullScreenMode]) {
 		// when pressing Escape, exit fullscreen if being fullscreen
-		[controlUI toggleFullScreen:nil];
+        [controlUI performKeyEquivalent:[NSEvent keyEventWithType:NSKeyDown location:NSMakePoint(0, 0) modifierFlags:0 timestamp:0
+                                                     windowNumber:0 context:nil
+                                                       characters:kSCMFullScrnKeyEquivalent
+                                      charactersIgnoringModifiers:kSCMFullScrnKeyEquivalent
+                                                        isARepeat:NO keyCode:0]];
 	}
 }
 
