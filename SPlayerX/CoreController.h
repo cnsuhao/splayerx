@@ -80,9 +80,10 @@ extern NSString * const kMPCPlayStoppedTimeKey;
 	
 	NSDictionary *keyPathDict;
 	NSDictionary *typeDict;
-  
+    
 }
 
+@property (readwrite)           BOOL bNeedContinuePlay;
 @property (readonly)			int state;
 @property (retain, readwrite, nonatomic)	NSDictionary *mpPathPair;
 @property (readonly)			MovieInfo *movieInfo;
