@@ -1366,15 +1366,16 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	// 如果不继续播放，或者没有下一个播放文件，那么退出全屏
 	// 这个时候的显示状态displaying是NO
 	// 因此，如果是全屏的话，会退出全屏，如果不是全屏的话，也不会进入全屏
-    if ([self isInFullScreenMode]) {
-        // when pressing Escape, exit fullscreen if being fullscreen
-        [self performKeyEquivalent:[NSEvent keyEventWithType:NSKeyDown location:NSMakePoint(0, 0) modifierFlags:0 timestamp:0
-                                                     windowNumber:0 context:nil
-                                                       characters:kSCMFullScrnKeyEquivalent
-                                      charactersIgnoringModifiers:kSCMFullScrnKeyEquivalent
-                                                        isARepeat:NO keyCode:0]];
+    BOOL togglefullscreen = TRUE;
+    if (notif && [notif userInfo]) {
+        if ([(NSNumber*)[[notif userInfo] objectForKey:@"NeedContinuePlay"] boolValue]) {
+            togglefullscreen = FALSE;
+        }
     }
-
+    if (togglefullscreen) {
+        [self toggleFullScreen:nil];
+    }
+    
     // 并且重置 fillScreen状态
 	[self toggleFillScreen:nil];
   

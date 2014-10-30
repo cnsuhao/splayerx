@@ -317,10 +317,12 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 //////////////////////////////////////////////playing thing/////////////////////////////////////////////////////
 -(void) playMedia: (NSString*) moviePath
 {
+    _bNeedContinuePlay = TRUE;
 	// 如果正在放映，那么现强制停止
 	if (state != kMPCStoppedState) {
 		[self performStop];
 	}
+    _bNeedContinuePlay = FALSE;
 	
 	// 播放开始之前清空subConv的工作文件夹
 	[subConv clearWorkDirectory];

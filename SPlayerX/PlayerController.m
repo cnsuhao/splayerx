@@ -954,7 +954,7 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
 			return;
 		}
 	}	
-	[notifCenter postNotificationName:kMPCPlayFinalizedNotification object:self userInfo:nil];
+	[notifCenter postNotificationName:kMPCPlayFinalizedNotification object:self userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:[mplayer bNeedContinuePlay]] forKey:@"NeedContinuePlay"]];
 }
 
 /////////////////////////////////SubConverter Delegate methods/////////////////////////////////////
