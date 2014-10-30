@@ -39,17 +39,17 @@
     [playerController setOSDMessage:kMPXStringSSCLFetching type:kOSDTypeSubSearch];
 	
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
-	NSString* argLang = [NSString stringWithString:@"chn"];
+	NSString* argLang = @"chn";
 	NSString* langCurrent = [[ud objectForKey:@"AppleLanguages"] objectAtIndex:0];
 	if ([langCurrent hasPrefix:@"zh"] == NO)
-		argLang = [NSString stringWithString:@"eng"];
+		argLang = @"eng";
 		
     if ([ud integerForKey:kUDKeySVPLanguage] != 0)
     {
         if ([argLang compare:@"eng"] == NSOrderedSame)
-            argLang = [NSString stringWithString:@"chn"];
+            argLang = @"chn";
         else
-            argLang = [NSString stringWithString:@"eng"];
+            argLang = @"eng";
     }
   
     // call sscl [playerController.lastPlayedPath path]
@@ -309,7 +309,7 @@
         [responseData length], [resultString length], [error code]);
   if ([urlResponse statusCode] == 200)
   {
-    if(resultString == @"OK")
+    if([resultString  isEqual: @"OK"])
     {
       //authed
       nextTry = timestampNow + 3600*24*30;

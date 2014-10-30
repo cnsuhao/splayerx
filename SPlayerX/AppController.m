@@ -28,10 +28,7 @@
 #import "LaunchServiceHandler.h"
 #import "StoreHandler.h"
 
-#ifdef HAVE_STOREKIT
 #import "validatereceipt.h"
-
-#endif
 
 NSString * const kMPCFMTBookmarkPath	= @"%@/Library/Preferences/%@.bookmarks.plist";
 
@@ -121,7 +118,7 @@ static BOOL init_ed = NO;
 -(id) copyWithZone:(NSZone*)zone { return self; }
 -(id) retain { return self; }
 -(NSUInteger) retainCount { return NSUIntegerMax; }
--(void) release { }
+-(void) release {}
 -(id) autorelease { return self; }
 
 -(void) dealloc

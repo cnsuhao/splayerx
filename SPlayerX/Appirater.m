@@ -228,10 +228,6 @@ NSString *templateReviewURLIpad = @"itms-apps://ax.itunes.apple.com/WebObjects/M
             {
                reviewURL = [templateReviewURL stringByReplacingOccurrencesOfString:@"APP_ID" withString:[NSString stringWithFormat:@"%d", 414675434]];
             }
-            else if ([bundleID isEqualToString:@"org.splayer.splayerx.revised"])
-            {
-                reviewURL = [templateReviewURL stringByReplacingOccurrencesOfString:@"APP_ID" withString:[NSString stringWithFormat:@"%d", 450445999]];
-            }
             
 			[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:reviewURL]];
 			

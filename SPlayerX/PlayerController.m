@@ -464,7 +464,7 @@ NSString * const kMPCFFMpegProtoHead	= @"ffmpeg://";
     statfs([path cStringUsingEncoding:NSUTF8StringEncoding], &filesystemstat);
     MPLog(@"statfs %x %s %d", filesystemstat.f_flags, filesystemstat.f_fstypename, filesystemstat.f_type /* 17  hfs */);
     
-    if (0 && filesystemstat.f_flags&MNT_LOCAL)
+    if (/* DISABLES CODE */ (0) && filesystemstat.f_flags&MNT_LOCAL)
     {
       MPLog(@"Local Paths %@", path);
       [mplayer.pm setCache:0];
