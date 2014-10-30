@@ -312,48 +312,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
      (kMPXStringMenuShowLetterBox):(kMPXStringMenuHideLetterBox)];
     [menuToggleLetterBox setEnabled:NO];
 
-    // webView initialize support
-    CGColorRef col =  CGColorCreateGenericGray(0.3, 0.7);
-  
     shareUriCurrent = @"";
-  
-    [webView setFrameLoadDelegate:self];
-    [webView setPolicyDelegate:self];
-    [webView setUIDelegate: self];
-    [webView setWantsLayer:YES];
-    [[webView layer] setCornerRadius:10.0f];
-    [[webView layer] setMasksToBounds:YES];
-    [[webView layer] setBackgroundColor:col];
-    [webView setDrawsBackground:NO];
-    [[[webView mainFrame] frameView] setAllowsScrolling:NO];
-  
-    nextAuthURLString = nil;
-    nextShareURLString = nil;
-  
-    [webViewAuth setCustomUserAgent:@"Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3"];
-  
-    [webViewAuth setFrameLoadDelegate:self];
-    [webViewAuth setPolicyDelegate:self];
-    [webViewAuth setUIDelegate: self];
-    [webViewAuth setWantsLayer:YES];
-    [[webViewAuth layer] setCornerRadius:10.0f];
-    [[webViewAuth layer] setMasksToBounds:YES];
-    [[[webViewAuth mainFrame] frameView] setAllowsScrolling:NO];
-  
-    wsoSPlayer = [DOMProxySPlayer alloc];
-    [wsoSPlayer setDelegate:self];
-    [wsoSPlayer setHostWebView:webView];
-  
-    wsoSPlayerAuth = [DOMProxySPlayer alloc];
-    [wsoSPlayerAuth setDelegate:self];
-    [wsoSPlayerAuth setHostWebView:webViewAuth];
-  
-    [[closeOAuthButton layer]setCornerRadius:20.0];
-    [[closeOAuthButton layer] setMasksToBounds:YES];
-    
-    [self hideShareControls:self];
-    [self hideOAuthView:self];
-	
+  	
     // add notification observers
 	[notifCenter addObserver:self selector:@selector(windowHasResized:)
 						name:NSWindowDidResizeNotification
@@ -408,9 +368,6 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 	[backGroundColor release];
 	[backGroundColor2 release];
 	
-    [wsoSPlayer release];
-    [wsoSPlayerAuth release];
-  
 	[super dealloc];
 }
 
@@ -821,10 +778,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
 		[fillScreenButton setState: ([dispView toggleFillScreen])?NSOnState:NSOffState];
 	}
 }
--(void)hideShareControls:(id)sender
-{
-  [self hideAndTrash:webView];
-}
+
 -(IBAction) toggleShareControls:(id)sender
 {
     if (NSClassFromString(@"NSSharingServicePicker") == nil) {
@@ -1379,9 +1333,7 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
     // 并且重置 fillScreen状态
 	[self toggleFillScreen:nil];
   
-  shareUriCurrent = @"";
-	[self hideShareControls:self];
-  [self hideOAuthView:self];
+    shareUriCurrent = @"";
   
 	if ([ud boolForKey:kUDKeyCloseWindowWhenStopped])
 		[dispView closePlayerWindow];
@@ -1894,179 +1846,9 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
     [playerController OSDResize];
 }
 
-- (void)webView:(WebView *)sender decidePolicyForNewWindowAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request newFrameName:(NSString *)frameName decisionListener:(id < WebPolicyDecisionListener >)listener
-{
-  NSURL *URL = [request URL];
-  [[NSWorkspace sharedWorkspace] openURL:URL];
-}
-
-- (void)webView:(WebView *)sender decidePolicyForNavigationAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id < WebPolicyDecisionListener >)listener
-{
-  NSURL* link = [actionInformation objectForKey:WebActionOriginalURLKey];
-  if (link) {
-    NSRange textRange =[[link absoluteString] rangeOfString:@"#close_wnd"];
-    if(textRange.location != NSNotFound)
-      [self hideAndTrash:sender];
-
-  }
-  
-  [listener use];
-}
-
--(void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
-{
-  if (nextAuthURLString != nil && sender == webViewAuth)
-  {
-    MPLog(@"real load %@", nextAuthURLString );
-    NSString* url = [nextAuthURLString copy];
-    [nextAuthURLString release];
-    nextAuthURLString = nil;
-    [[sender mainFrame] loadRequest:[NSURLRequest requestWithURL:
-                                          [NSURL URLWithString:url]]]; 
-    [url release];
-  }
-  else if(nextShareURLString != nil && sender == webView)
-  {
-    MPLog(@"real load %@", nextShareURLString );
-    NSString* url = [nextShareURLString copy];
-    [nextShareURLString release];
-    nextShareURLString = nil;
-    [[sender mainFrame] loadRequest:[NSURLRequest requestWithURL:
-                                     [NSURL URLWithString:url]]]; 
-    [url release];
-  }
-}
-
-/* this message is sent to the WebView's frame load delegate 
- when the page is ready for JavaScript.  It will be called just after 
- the page has loaded, but just before any JavaScripts start running on the
- page.  This is the perfect time to install any of your own JavaScript
- objects on the page.
- */
-- (void)webView:(WebView *)sender windowScriptObjectAvailable:(WebScriptObject *)windowScriptObject {
-  NSLog(@"%@ received %@", self, NSStringFromSelector(_cmd));
-  
-  /* here we'll add our object to the window object as an object named
-   'console'.  We can use this object in JavaScript by referencing the 'console'
-   property of the 'window' object.   */
-  if (sender == webViewAuth)
-    [[sender windowScriptObject] setValue:wsoSPlayerAuth forKey:@"SPlayer"];
-  else
-    [[sender windowScriptObject] setValue:wsoSPlayer forKey:@"SPlayer"];
-  
-  
-}
-
-/* sent to the WebView's ui delegate when alert() is called in JavaScript.
- If you call alert() in your JavaScript methods, it will call this
- method and display the alert message in the log.  In Safari, this method
- displays an alert that presents the message to the user.
- */
-- (void)webView:(WebView *)sender runJavaScriptAlertPanelWithMessage:(NSString *)message {
-  NSLog(@"%@ alert received %@ with '%@'", self, NSStringFromSelector(_cmd), message);
-}
-
 -(void) hideAndTrash:(NSView*)sender
 {
   [sender setHidden:YES];
   [sender setFrameOrigin:NSMakePoint(-3000,-3000)];
 }
-
-//delegate of DOMProxySPlayerDelegate
-- (NSString*)dom_snapshot:(WebView *)hostWebView
-{
-  //take a image put into dom
-  NSString *snapshot_base64 = [NSString stringWithString:[dispView snapshotToBase64String]];
-  if (snapshot_base64 == nil)
-    return nil;
-  NSString *script = [NSString stringWithFormat:@"document.getElementById('cut-image-div').style.display='block';document.getElementById('cut-image-div').src = 'data:image/jpeg;base64,%@';document.getElementById('cut-image-data').value='%@'", snapshot_base64, snapshot_base64];
-  [[webView windowScriptObject] evaluateWebScript:script];
-  [snapshot_base64 release];
-  return @"";
-}
-
-- (NSString*)dom_movie_curtime:(WebView *)hostWebView
-{
-  return [NSString stringWithFormat:@"%qu0000" ,
-          (unsigned long long)([timeSlider floatValue]*1000)];
-}
-
-- (NSString*)dom_movie_totaltime:(WebView *)hostWebView
-{
-  return [NSString stringWithFormat:@"%qu0000" ,
-          (unsigned long long)([timeSlider maxValue]*1000)];
-}
-
-- (NSString*)dom_window_close:(WebView *)hostWebView
-{
-  [self hideAndTrash:hostWebView];
-  return @"";
-}
-
-- (NSString*)dom_window_open:(NSString*)url HostWebView:(WebView *)hostWebView
-{
-  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:url]];
-  return @"";
-}
-
-- (NSString*)dom_window_closeoauth:(WebView *)hostWebView
-{
-  [self hideOAuthView:self];
-  return @"";
-}
-
-- (NSString*)dom_window_openoauth:(NSString*)url HostWebView:(WebView *)hostWebView
-{
-  
-  [self showOAuthView:self Url:url];
-  
-  return @"";
-}
-
--(void)showOAuthView:(id)sender Url:(NSString*) url
-{
-  NSString *path = [[NSBundle mainBundle] pathForResource:@"busy-white" ofType:@"html"];
-
-  [[webViewAuth mainFrame] loadRequest:[NSURLRequest requestWithURL:
-                                        [NSURL fileURLWithPath:path]]];
-  
-  NSRect rectOAuthView = [webViewAuth frame];
-  NSRect rectDispView = [dispView frame];
-  NSSize dispSize = rectDispView.size;
-  float webViewMagHeight = rectOAuthView.size.height + 170;
-  float webViewMagWidth = rectOAuthView.size.width + [webView frame].size.width * 2+20;
-  if (dispSize.height < webViewMagHeight || dispSize.width < webViewMagWidth)
-  {
-    float webViewMag = MAX(webViewMagHeight / dispSize.height - 1.0f , 
-                           webViewMagWidth / dispSize.width - 1.0f);
-    [dispView changeWindowSizeBy:NSMakeSize(webViewMag, webViewMag) animate:YES];
-  }
-  
-  // center webView
-  rectDispView = [dispView frame];
-  NSPoint dsipOrigin = rectDispView.origin;
-  dsipOrigin.x = (dsipOrigin.x + dispSize.width - rectOAuthView.size.width) / 2;
-  dsipOrigin.y = rectDispView.size.height - rectOAuthView.size.height - 45;
-  [webViewAuth setFrameOrigin:dsipOrigin];
-  
-  [webViewAuth setHidden:NO];
-  
-  rectOAuthView = [webViewAuth frame];
-  NSPoint closeButtonOrigin = rectOAuthView.origin;
-  NSRect rectCloseButton = [closeOAuthButton frame];
-  closeButtonOrigin.x = rectOAuthView.origin.x + rectOAuthView.size.width - rectCloseButton.size.width/2;
-  closeButtonOrigin.y = rectOAuthView.origin.y + rectOAuthView.size.height - rectCloseButton.size.height/2;
-
-  [closeOAuthButton setFrameOrigin:closeButtonOrigin];
-  [closeOAuthButton setHidden:NO];
-  
-  nextAuthURLString = [url copy];
-  
-}
--(void)hideOAuthView:(id)sender
-{
-  [self hideAndTrash:webViewAuth];
-  [closeOAuthButton setHidden:YES];
-}
-
 @end

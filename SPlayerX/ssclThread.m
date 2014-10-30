@@ -136,59 +136,6 @@
 	[POOL release];
 }
 
-+(NSString*)shareMovie:(NSArray*) parameters {
-  
-  
-	NSAutoreleasePool* POOL = [[NSAutoreleasePool alloc] init];	
-
-  NSString* moviePath = [parameters objectAtIndex:0];
-  WebView* webView = [parameters objectAtIndex:1];
-  ControlUIView* controlUIView = [parameters objectAtIndex:2];
-	
-	NSString *resPath = [[NSBundle mainBundle] resourcePath];
-	
-	NSTask *task;
-	task = [[NSTask alloc] init];
-	[task setLaunchPath: [resPath stringByAppendingPathComponent:@"plug-ins/sscl"] ];
-
-	NSArray *arguments;
-	arguments = [NSArray arrayWithObjects: @"--share", moviePath, nil];
-	[task setArguments: arguments];
-	
-	NSPipe *pipe = [NSPipe pipe];
-	[task setStandardOutput: pipe];
-	//[task setStandardError: pipe];
-	
-	NSFileHandle *file;
-	file = [pipe fileHandleForReading];
-	
-	[task launch];
-	[task waitUntilExit];
-	
-	NSData *data;
-	data = [file readDataToEndOfFile];
-  
-  int status = [task terminationStatus];
-
-  [task release];
-	
-	NSString *retString;
-	retString = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-  MPLog(@"%d %s %lu %lu\n", status, [retString UTF8String], (unsigned long)[data length], (unsigned long)[retString length]);
-
-  controlUIView.shareUriCurrent = retString;
-  
-  dispatch_async(dispatch_get_main_queue(), ^{
-  if (webView && retString)
-    [[webView mainFrame] loadRequest:[NSURLRequest requestWithURL:
-                                     [NSURL URLWithString:retString]]];
-  });
-  [moviePath release];
-	[POOL release];
-  
-  return [retString autorelease];
-}
-
 +(void)pushSubtitle:(PlayerController*)playerController {
   
   NSAutoreleasePool* POOL = [[NSAutoreleasePool alloc] init];	

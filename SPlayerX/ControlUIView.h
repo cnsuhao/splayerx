@@ -20,7 +20,6 @@
 
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
-#import "DOMProxySPlayer.h"
 
 @class RootLayerView, PlayerController, FloatWrapFormatter, ArrowTextField, ResizeIndicator, OSDView, TitleView, TimeFormatter;
 
@@ -47,12 +46,6 @@
 	NSTimer *autoHideTimer;
 		
     NSString* shareUriCurrent;
-    NSString* nextAuthURLString;
-    NSString* nextShareURLString;
-  
-    DOMProxySPlayer* wsoSPlayer;
-    DOMProxySPlayer* wsoSPlayerAuth;
-    IBOutlet NSButton *closeOAuthButton;
   
 	float volStep;
 	float orgHeight;
@@ -85,9 +78,6 @@
 	IBOutlet ResizeIndicator *rzIndicator;
 	IBOutlet TitleView *title;
 	
-    IBOutlet WebView* webView;
-    IBOutlet WebView* webViewAuth;
-    
     // list for sub/audio/video
 	NSMenu *subListMenu;
     NSMenu *secondSubListMenu;
@@ -169,10 +159,6 @@ extern NSString * const kFillScreenButtonImageUBKey;
 -(IBAction) toggleFillScreen:(id)sender;
 
 -(IBAction) toggleShareControls:(id)sender;
--(IBAction) hideShareControls:(id)sender;
-
--(IBAction) showOAuthView:(id)sender Url:(NSString*) url;
--(IBAction) hideOAuthView:(id)sender;
 
 -(void) hideAndTrash:(NSView*)sender;
 
@@ -208,14 +194,5 @@ extern NSString * const kFillScreenButtonImageUBKey;
 -(IBAction) stepWindowSize:(id)sender;
 
 -(IBAction) showMediaInfo:(id)sender;
-
-//delegate of DOMProxySPlayerDelegate
-- (NSString*)dom_snapshot:(WebView *)hostWebView;
-- (NSString*)dom_movie_curtime:(WebView *)hostWebView;
-- (NSString*)dom_movie_totaltime:(WebView *)hostWebView;
-- (NSString*)dom_window_closeoauth:(WebView *)hostWebView;
-- (NSString*)dom_window_close:(WebView *)hostWebView;
-- (NSString*)dom_window_open:(NSString*)url HostWebView:(WebView *)hostWebView;
-- (NSString*)dom_window_openoauth:(NSString*)url HostWebView:(WebView *)hostWebView;
 
 @end

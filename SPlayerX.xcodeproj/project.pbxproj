@@ -20,7 +20,6 @@
 		04DFB71B14377946006B3F6F /* coredef_private.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CBC0614358E0600D20499 /* coredef_private.m */; };
 		04DFB71C14377946006B3F6F /* coredef.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CBC0814358E0600D20499 /* coredef.m */; };
 		04DFB71D14377946006B3F6F /* DisplayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CBC0A14358E0600D20499 /* DisplayLayer.m */; };
-		04DFB71E14377946006B3F6F /* DOMProxySPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CBC0F14358E0600D20499 /* DOMProxySPlayer.m */; };
 		04DFB71F14377946006B3F6F /* EqualizerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CBC2814358E0600D20499 /* EqualizerController.m */; };
 		04DFB72014377946006B3F6F /* FloatWrapFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CBC2F14358E0600D20499 /* FloatWrapFormatter.m */; };
 		04DFB72114377946006B3F6F /* GTMStringEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CBC3514358E0600D20499 /* GTMStringEncoding.m */; };
@@ -311,8 +310,6 @@
 		883CBC0B14358E0600D20499 /* doc_audio.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = doc_audio.icns; sourceTree = "<group>"; };
 		883CBC0C14358E0600D20499 /* doc_sub.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = doc_sub.icns; sourceTree = "<group>"; };
 		883CBC0D14358E0600D20499 /* doc_video.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = doc_video.icns; sourceTree = "<group>"; };
-		883CBC0E14358E0600D20499 /* DOMProxySPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMProxySPlayer.h; sourceTree = "<group>"; };
-		883CBC0F14358E0600D20499 /* DOMProxySPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMProxySPlayer.m; sourceTree = "<group>"; };
 		883CBC2614358E0600D20499 /* enterfullscreen.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = enterfullscreen.pdf; sourceTree = "<group>"; };
 		883CBC2714358E0600D20499 /* EqualizerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EqualizerController.h; sourceTree = "<group>"; };
 		883CBC2814358E0600D20499 /* EqualizerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EqualizerController.m; sourceTree = "<group>"; };
@@ -698,8 +695,6 @@
 				883CBC0614358E0600D20499 /* coredef_private.m */,
 				883CBC0714358E0600D20499 /* coredef.h */,
 				883CBC0814358E0600D20499 /* coredef.m */,
-				883CBC0E14358E0600D20499 /* DOMProxySPlayer.h */,
-				883CBC0F14358E0600D20499 /* DOMProxySPlayer.m */,
 				883CBC3A14358E0600D20499 /* KeyCode.h */,
 				883CBC3B14358E0600D20499 /* KeyCode.m */,
 				883CBC3C14358E0600D20499 /* LaunchServiceHandler.h */,
@@ -1025,7 +1020,6 @@
 				04DFB71B14377946006B3F6F /* coredef_private.m in Sources */,
 				04DFB71C14377946006B3F6F /* coredef.m in Sources */,
 				04DFB71D14377946006B3F6F /* DisplayLayer.m in Sources */,
-				04DFB71E14377946006B3F6F /* DOMProxySPlayer.m in Sources */,
 				04DFB71F14377946006B3F6F /* EqualizerController.m in Sources */,
 				04DFB72014377946006B3F6F /* FloatWrapFormatter.m in Sources */,
 				04DFB72114377946006B3F6F /* GTMStringEncoding.m in Sources */,
