@@ -140,9 +140,9 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 
 		imageData = NULL;
 		imageSize = 0;
+        
 		sharedBufferName = [[NSString alloc] initWithFormat:@"SPlayerX_%X", self];
 		renderConn = [[NSConnection serviceConnectionWithName:sharedBufferName rootObject:self] retain];
-		[renderConn runInNewThread];
 		
 		pollingTimer = nil;
 	}
