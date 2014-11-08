@@ -12,6 +12,14 @@
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>org.splayer.splayerx.mkv</string>
+                <string>org.splayer.splayerx.avi</string>
+                <string>org.splayer.splayerx.rmvb</string>
+                <string>org.splayer.splayerx.wmv</string>
+                <string>org.splayer.splayerx.asf</string>
+                <string>org.splayer.splayerx.ogv</string>
+                <string>org.splayer.splayerx.ogm</string>
+                <string>org.splayer.splayerx.divx</string>
+                <string>org.splayer.splayerx.xvid</string>
 			</array>
 		</dict>
 	</array>
