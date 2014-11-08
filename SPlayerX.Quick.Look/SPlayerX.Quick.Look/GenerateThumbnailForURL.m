@@ -98,10 +98,48 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     NSString *tmpfile = [tmpdir stringByAppendingPathComponent:@"00000001.png"];
     NSString* moviepath = [(__bridge NSURL *)url path];
     
-    // TODO: predict video length
-    NSArray *args = [NSArray arrayWithObjects:moviepath, @"-ss", @"5", @"-frames", @"1", @"-nosound", @"-vo",
+    NSTask* task = [[NSTask alloc] init];
+    NSArray *args = [NSArray arrayWithObjects:@"-identify", moviepath, @"-ss", @"5", @"-frames", @"1", @"-ao", @"null", @"-vo",
                      [NSString stringWithFormat:@"png:z=0:outdir=%@", tmpdir], nil];
-    [[NSTask launchedTaskWithLaunchPath:mpath arguments:args] waitUntilExit];
+    [task setLaunchPath:mpath];
+    [task setArguments:args];
+    NSPipe * out = [NSPipe pipe];
+    [task setStandardOutput:out];
+    [task launch];
+    [task waitUntilExit];
+    
+    NSFileHandle * read = [out fileHandleForReading];
+    NSData * dataRead = [read readDataToEndOfFile];
+    NSString * stringRead = [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding];
+    
+    NSArray *array = [stringRead componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    
+    NSFileManager *man = [NSFileManager defaultManager];
+    NSDictionary *attrs = [man attributesOfItemAtPath:moviepath error: NULL];
+    
+    NSMutableString * mediaInfo = [NSMutableString string];
+    
+    for(int i=0; i<[array count]; i++){
+        NSString* line = array[i];
+        if ([line hasPrefix:@"VIDEO:"]){
+        } else if ([line hasPrefix:@"AUDIO:"]){
+        } else if ([line hasPrefix:@"ID_LENGTH"]){
+        } else {
+            continue;
+        }
+        
+        [mediaInfo appendFormat:@"%@\n", line];
+    }
+    
+    [mediaInfo appendFormat:@"LAST MODIFIED TIME: %@\n", [[attrs fileModificationDate] descriptionWithLocale:[NSLocale systemLocale]]];
+    
+    if (NSClassFromString(@"NSByteCountFormatter") != nil) {
+        [mediaInfo appendFormat:@"FILE SIZE: %@\n", [NSByteCountFormatter stringFromByteCount:[attrs fileSize]
+                                                                                   countStyle:NSByteCountFormatterCountStyleFile]];
+    } else {
+        [mediaInfo appendFormat:@"FILE SIZE: %llu Bytes\n",[attrs fileSize]];
+    }
+    
     
     CGDataProviderRef imgDataProvider = CGDataProviderCreateWithCFData((CFDataRef)[NSData dataWithContentsOfFile:tmpfile]);
     CGImageRef thumb = CGImageCreateWithPNGDataProvider(imgDataProvider, NULL, true, kCGRenderingIntentDefault);
@@ -112,10 +150,54 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     size_t thumb_width = CGImageGetWidth(thumb);
     size_t thumb_height = CGImageGetHeight(thumb);
     
+    
     // Preview will be drawn in a vectorized context
-    CGContextRef cgContext = QLPreviewRequestCreateContext(preview, CGSizeMake(thumb_width, thumb_height), true, NULL);
+    CGContextRef cgContext = QLPreviewRequestCreateContext(preview, CGSizeMake(thumb_width+60, thumb_height+160), true, NULL);
     if(cgContext) {
-        CGContextDrawImage(cgContext, CGRectMake(0, 0, thumb_width, thumb_height), thumb);
+        CGContextSaveGState(cgContext);
+        CGContextSetShadowWithColor(cgContext, CGSizeMake(1, -2), 5.0, [NSColor shadowColor].CGColor);
+        CGContextDrawImage(cgContext, CGRectMake(30, 140, thumb_width, thumb_height), thumb);
+        CGContextRestoreGState(cgContext);
+        
+        CTFontRef font = CTFontCreateUIFontForLanguage(kCTFontApplicationFontType, 14, NULL);
+        
+        // Set the lineSpacing.
+        CGFloat lineSpacing = (CTFontGetLeading(font) + 3) * 2;
+        
+        // Create the paragraph style settings.
+        CTParagraphStyleSetting setting;
+        
+        setting.spec = kCTParagraphStyleSpecifierParagraphSpacing;
+        setting.valueSize = sizeof(CGFloat);
+        setting.value = &lineSpacing;
+        
+        CTParagraphStyleRef paragraphStyle = CTParagraphStyleCreate(&setting, 1);
+        
+        CFStringRef textString = (__bridge CFStringRef)mediaInfo;
+        
+        CFMutableAttributedStringRef attrString = CFAttributedStringCreateMutable(kCFAllocatorDefault, 0);
+        CFAttributedStringReplaceString (attrString, CFRangeMake(0, 0), textString);
+        CFRange stringRange = CFRangeMake(0, CFAttributedStringGetLength(attrString));
+        
+        CFAttributedStringSetAttribute(attrString, stringRange, kCTFontAttributeName, font);
+        CFAttributedStringSetAttribute(attrString, stringRange, kCTForegroundColorAttributeName, [[NSColor darkGrayColor] CGColor]);
+        CFAttributedStringSetAttribute(attrString, stringRange, kCTParagraphStyleAttributeName, paragraphStyle);
+        
+        CGMutablePathRef path = CGPathCreateMutable();
+        CGRect bounds = CGRectMake(30.0, 0, thumb_width, 110);
+        CGPathAddRect(path, NULL, bounds);
+        
+        CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(attrString);
+        CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
+        
+        // Draw the specified frame in the given context.
+        CTFrameDraw(frame, cgContext);
+        
+        CFRelease(attrString);
+        CFRelease(font);
+        CFRelease(frame);
+        CFRelease(path);
+        CFRelease(framesetter);
         
         QLPreviewRequestFlushContext(preview, cgContext);
         CFRelease(cgContext);
