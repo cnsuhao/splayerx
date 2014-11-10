@@ -590,10 +590,10 @@
 		
 		if (snapshot != nil) {
 			// 得到图像的Rep
-			NSBitmapImageRep *imRep = [[NSBitmapImageRep alloc] initWithCIImage:snapshot];
+			NSBitmapImageRep *imRep = [[[NSBitmapImageRep alloc] initWithCIImage:snapshot] autorelease];
       NSData *imData = [imRep representationUsingType:NSJPEGFileType properties:nil];
       
-      base64String = [[[GTMStringEncoding rfc4648Base64StringEncoding] encode:imData] copy];
+      base64String = [[[[GTMStringEncoding rfc4648Base64StringEncoding] encode:imData] copy] autorelease];
 		}
 		[pool drain];
 	}
@@ -700,7 +700,7 @@
 							  forKey:NSFullScreenModeAllScreens];
         
         // clear filters or it will bug under 10.9
-        NSArray* cifilters = [dispLayer.filters copy];
+        NSArray* cifilters = [[dispLayer.filters copy] autorelease];
         if ([self respondsToSelector: @selector(setLayerUsesCoreImageFilters:)]) {
             [self setLayerUsesCoreImageFilters:FALSE];
             [dispLayer setFilters:nil];
@@ -744,7 +744,7 @@
 -(void) setPlayerWindowLevel
 {
 	// in window mode
-	int onTopMode = [ud integerForKey:kUDKeyOnTopMode];
+	NSInteger onTopMode = [ud integerForKey:kUDKeyOnTopMode];
 	BOOL fullscr = [self isInFullScreenMode];
 	
 	if ((((onTopMode == kOnTopModeAlways)||((onTopMode == kOnTopModePlaying) && (playerController.playerState == kMPCPlayingState)))&&(!fullscr)) ||
@@ -938,7 +938,7 @@
 
 - (NSRect)windowWillUseStandardFrame:(NSWindow *)window defaultFrame:(NSRect)newFrame
 {
-	if ((window == playerWindow)) {
+	if (window == playerWindow) {
 		NSRect scrnRect = [[window screen] frame];
 
 		newFrame.size = [self calculateContentSize:scrnRect.size];
