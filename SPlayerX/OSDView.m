@@ -79,9 +79,7 @@
     // set OSD active status
     [OSDTextField.animator setAlphaValue:0];
     OSDTextField.stringValue = @"";
-    
-    // hide renew button
-    [renewButton setHidden:YES];
+
 }
 
 
@@ -110,7 +108,6 @@
 	if (shouldHide) {
 		[OSDTextField.animator setAlphaValue:0];
 		OSDTextField.stringValue = @"";
-        [renewButton setHidden:YES];
 	} else {
 		shouldHide = YES;
 	}
@@ -182,13 +179,7 @@
         type = tp;
         shouldHide = NO;
     }
-#ifdef HAVE_STOREKIT    
-    // add the loggic for button
-    if (([StoreHandler expireReminder]) && (tp == kOSDTypeSubSearch))
-    {
-        [renewButton setHidden:NO];
-    }
-#endif
+
 }
 
 

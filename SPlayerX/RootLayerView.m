@@ -36,11 +36,8 @@
 #define kOnTopModeAlways		(1)
 #define kOnTopModePlaying		(2)
 
-#ifdef HAVE_STOREKIT
-#define kSnapshotSaveDefaultPath	(@"~/Pictures/SPlayerX Revised")
-#else
 #define kSnapshotSaveDefaultPath	(@"~/Pictures/SPlayerX")
-#endif
+
 
 @interface RootLayerView (RootLayerViewInternal)
 -(NSSize) calculateContentSize:(NSSize)refSize;
