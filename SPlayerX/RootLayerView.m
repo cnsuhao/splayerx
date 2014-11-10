@@ -638,7 +638,7 @@
 
 -(BOOL) toggleFullScreen
 {
-	// ！注意：这里的显示状态和mplayer的播放状态时不一样的，比如，mplayer在MP3的时候，播放状态为YES，显示状态为NO
+    // ！注意：这里的显示状态和mplayer的播放状态时不一样的，比如，mplayer在MP3的时候，播放状态为YES，显示状态为NO
 	if ([self isInFullScreenMode]) {
 		// 无论否在显示都可以退出全屏
 
@@ -664,6 +664,8 @@
 		
 		// 必须要在退出全屏之后才能设定window level
 		[self setPlayerWindowLevel];
+        
+        
 	} else if (displaying) {
 		// 应该进入全屏
 		// 只有在显示图像的时候才能进入全屏
@@ -696,9 +698,21 @@
 		// whether grab all the screens
 		[fullScreenOptions setObject:[NSNumber numberWithBool:!keepOtherSrn]
 							  forKey:NSFullScreenModeAllScreens];
-
+        
+        // clear filters or it will bug under 10.9
+        NSArray* cifilters = [dispLayer.filters copy];
+        if ([self respondsToSelector: @selector(setLayerUsesCoreImageFilters:)]) {
+            [self setLayerUsesCoreImageFilters:FALSE];
+            [dispLayer setFilters:nil];
+        }
+        
 		[self enterFullScreenMode:chosenScreen withOptions:fullScreenOptions];
-		
+        
+        if ([self respondsToSelector: @selector(setLayerUsesCoreImageFilters:)]) {
+            [self setLayerUsesCoreImageFilters:TRUE];
+            [dispLayer setFilters:cifilters];
+        }
+        
 		fullScrnDevID = [[[chosenScreen deviceDescription] objectForKey:@"NSScreenNumber"] unsignedIntValue];
 		
 		// 得到screen的分辨率，并和播放中的图像进行比较
@@ -713,6 +727,9 @@
 	}
 	// 暂停的时候能够正确显示
 	[dispLayer setNeedsDisplay];
+    
+
+    
 	return YES;
 }
 
