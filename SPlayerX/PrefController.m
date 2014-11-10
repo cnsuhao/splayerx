@@ -62,19 +62,6 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
 		prefViews = nil;
 	}
     
-
-    #ifdef HAVE_STOREKIT
-    // ***** app store IAP support
-    NSNotificationCenter *dc = [NSNotificationCenter defaultCenter];
-    [dc addObserver:self 
-           selector:@selector(refreshButton:) 
-               name:@"RefreshButton"
-             object:SHandler];
-    SHandler = [[StoreHandler alloc] init];
-    // *****
-    #endif
-    
-    
 	return self;
 }
 
@@ -173,18 +160,12 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
 // ***** app store IAP support *****
 -(IBAction)subscribe:(id)sender
 {
-    #ifdef HAVE_STOREKIT
-    [dueDateTextField setStringValue:kMPXStringStoreProcessing];
-    [subscribeButton setEnabled:NO];
-    [SHandler sendRequest];
-    #endif
+
 }
 
 -(IBAction)renewOnScreen:(id)sender
 {
-#ifdef HAVE_STOREKIT
-    [SHandler sendRequest];
-#endif
+
 }
 
 -(void) refreshButton:(NSNotification *)notif
@@ -196,42 +177,6 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
 -(void) setButtonState
 {       
 
-#ifdef HAVE_STOREKIT
-
-    if ([[[NSBundle mainBundle] bundleIdentifier] isEqualToString:SPlayerXBundleID])
-    {
-        [subscribeButton setHidden:YES];
-        [subtitleEnableButton setEnabled:YES];
-        [subtitleSelectionButton setEnabled:YES];
-        [dueDateTextField setHidden:YES];
-    }
-    else if ([[[NSBundle mainBundle] bundleIdentifier] isEqualToString:SPlayerXRevisedBundleID])
-    {
-        if ([SHandler checkServiceAuth]) 
-        {
-            [subtitleEnableButton setEnabled:YES];
-            [subtitleSelectionButton setEnabled:YES];
-            NSDate *dueDate = [[NSUserDefaults standardUserDefaults] objectForKey:kUDKeyReceiptDueDate];
-            NSDateFormatter *outputFormat = [[NSDateFormatter alloc] init];
-            [outputFormat setDateFormat:@"yyyy-MM-dd"];
-            [dueDateTextField setStringValue:
-            [kMPXStringStoreDueDate stringByAppendingFormat:
-            [outputFormat stringFromDate:dueDate]]];
-        }
-        else 
-        {
-            [dueDateTextField setStringValue:kMPXStringStoreNoAuth];
-            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO]
-                                                      forKey:kUDKeySmartSubMatching];
-            [subtitleEnableButton setEnabled:NO];
-            [subtitleSelectionButton setEnabled:NO];
-        }
-        [subscribeButton setEnabled:YES];
-        [subscribeButton setTitle:kMPXStringStoreButtonNeedPurchase];
-    }
-
-#else
-  
   if ([playerController waitforSubMatchDisableCheckFinished] && [ud boolForKey:kUDKeySmartSubMatchingDisabled])
   {
     [subtitleEnableButton setHidden:YES];
@@ -244,7 +189,6 @@ NSString * const PrefToolbarItemIdNetwork	= @"TBINetwork";
   [subscribeButton setEnabled:NO];
   [subscribeButton setHidden:YES];
 
-#endif
     
 }
 

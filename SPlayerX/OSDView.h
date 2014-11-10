@@ -29,7 +29,6 @@ typedef enum
 
 @interface OSDView : NSView
 {
-    IBOutlet NSButton *renewButton;
     IBOutlet NSTextField *OSDTextField;
     
     NSUserDefaults *ud;

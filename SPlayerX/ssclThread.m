@@ -36,7 +36,9 @@
 		return [POOL release];
     
     // add IAP expire reminder on OSD
-    [playerController setOSDMessage:kMPXStringSSCLFetching type:kOSDTypeSubSearch];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [playerController setOSDMessage:kMPXStringSSCLFetching type:kOSDTypeSubSearch];
+    });
 	
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
 	NSString* argLang = @"chn";

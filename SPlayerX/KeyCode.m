@@ -58,8 +58,4 @@ NSString * const kSCMShowMediaInfoKeyEquivalent			= @"i";
 
 NSString * const kSCMEqualizerPanelKeyEquivalent		= @"e";
 
-#ifdef HAVE_STOREKIT
-NSString * const kMPCStringMPlayerX		= @"SPlayerX Revised";
-#else
 NSString * const kMPCStringMPlayerX		= @"SPlayerX";
-#endif
