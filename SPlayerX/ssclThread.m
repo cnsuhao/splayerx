@@ -86,7 +86,9 @@
 	switch (status) {
 		case 3:
 			// require auth
-			[playerController setOSDMessage:kMPXStringSSCLReqAuth type:kOSDTypeSubSearch];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [playerController setOSDMessage:kMPXStringSSCLReqAuth type:kOSDTypeSubSearch];
+            });
 			// TODO: message box?
 			return [POOL release];
 			break;
@@ -110,7 +112,9 @@
 	
   switch (resultCount) {
 		case 0:
+          dispatch_async(dispatch_get_main_queue(), ^{
 			[playerController setOSDMessage:kMPXStringSSCLZeroMatched type:kOSDTypeSubSearch];
+          });
 			break;
 		default:
 		  {
@@ -127,11 +131,13 @@
 						}
 					}
 				}
+              dispatch_async(dispatch_get_main_queue(), ^{
 				if (acctureCount == 0)
 					[playerController setOSDMessage:kMPXStringSSCLZeroMatched type:kOSDTypeSubSearch];
 				else
 					[playerController setOSDMessage:[NSString stringWithFormat:
                                                         kMPXStringSSCLGotResults, acctureCount] type:kOSDTypeSubSearch];
+              });
 		  }	
 			break;
 	}
