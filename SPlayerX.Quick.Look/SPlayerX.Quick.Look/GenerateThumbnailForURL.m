@@ -16,6 +16,33 @@ NSString* MPlayerPath(){
     return nil;
 }
 
+NSData* TakeSnapshot(NSString *moviepath, float position) {
+    
+    NSString* mpath = MPlayerPath();
+    
+    NSString *globallyUniqueString = [[NSProcessInfo processInfo] globallyUniqueString];
+    
+    NSCharacterSet *notAllowedChars = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"] invertedSet];
+    globallyUniqueString = [[globallyUniqueString componentsSeparatedByCharactersInSet:notAllowedChars] componentsJoinedByString:@""];
+    NSString *tmpdir = [NSTemporaryDirectory() stringByAppendingPathComponent:globallyUniqueString];
+    NSString *tmpfile = [tmpdir stringByAppendingPathComponent:@"00000001.png"];
+    
+    // TODO: predict video length
+    NSArray *args = [NSArray arrayWithObjects:moviepath, @"-ss", [NSString stringWithFormat:@"%02li:%02li:%02li",
+                                                                  lround(floor(position / 3600.)) % 100,
+                                                                  lround(floor(position / 60.)) % 60,
+                                                                  lround(floor(position)) % 60], @"-frames", @"1", @"-nosound", @"-vo",
+                     [NSString stringWithFormat:@"png:z=0:outdir=%@", tmpdir], nil];
+    [[NSTask launchedTaskWithLaunchPath:mpath arguments:args] waitUntilExit];
+    
+    NSData* ret = [NSData dataWithContentsOfFile:tmpfile];
+
+    [[NSFileManager defaultManager] removeItemAtPath:tmpfile error:nil];
+    [[NSFileManager defaultManager] removeItemAtPath:tmpdir error:nil];
+    
+    return ret;
+}
+
 OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thumbnail, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options, CGSize maxSize);
 void CancelThumbnailGeneration(void *thisInterface, QLThumbnailRequestRef thumbnail);
 
@@ -28,22 +55,8 @@ void CancelThumbnailGeneration(void *thisInterface, QLThumbnailRequestRef thumbn
 OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thumbnail, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options, CGSize maxSize)
 {
     // To complete your generator please implement the function GenerateThumbnailForURL in GenerateThumbnailForURL.c
-    NSString* mpath = MPlayerPath();
     
-    NSString *globallyUniqueString = [[NSProcessInfo processInfo] globallyUniqueString];
-    
-    NSCharacterSet *notAllowedChars = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"] invertedSet];
-    globallyUniqueString = [[globallyUniqueString componentsSeparatedByCharactersInSet:notAllowedChars] componentsJoinedByString:@""];
-    NSString *tmpdir = [NSTemporaryDirectory() stringByAppendingPathComponent:globallyUniqueString];
-    NSString *tmpfile = [tmpdir stringByAppendingPathComponent:@"00000001.png"];
-    NSString* moviepath = [(__bridge NSURL *)url path];
-    
-    // TODO: predict video length
-    NSArray *args = [NSArray arrayWithObjects:moviepath, @"-ss", @"5", @"-frames", @"1", @"-nosound", @"-vo",
-                     [NSString stringWithFormat:@"png:z=0:outdir=%@", tmpdir], nil];
-    [[NSTask launchedTaskWithLaunchPath:mpath arguments:args] waitUntilExit];
-    
-    CGDataProviderRef imgDataProvider = CGDataProviderCreateWithCFData((CFDataRef)[NSData dataWithContentsOfFile:tmpfile]);
+    CGDataProviderRef imgDataProvider = CGDataProviderCreateWithCFData((CFDataRef)TakeSnapshot([(__bridge NSURL *)url path], 5));
     CGImageRef thumb = CGImageCreateWithPNGDataProvider(imgDataProvider, NULL, true, kCGRenderingIntentDefault);
     
     if (thumb == nil)
@@ -61,9 +74,6 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
         CFRelease(cgContext);
         CGImageRelease(thumb);
     }
-    
-    [[NSFileManager defaultManager] removeItemAtPath:tmpfile error:nil];
-    [[NSFileManager defaultManager] removeItemAtPath:tmpdir error:nil];
     
     return noErr;
 }
@@ -129,6 +139,7 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
                 NSString* length = items[1];
                 movieLength = MAX(movieLength,[length floatValue]);
             }
+            continue;
         } else if ([line hasPrefix:@"VIDEO:"]){
         } else if ([line hasPrefix:@"AUDIO:"]){
         }else {
@@ -139,13 +150,11 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     }
     
     if (movieLength > 0){
-        [mediaInfo appendFormat:@"LENGTH: %02li:%02li:%02li\n",
+        [mediaInfo appendFormat:@"TIME LENGTH: %02li:%02li:%02li\n",
          lround(floor(movieLength / 3600.)) % 100,
          lround(floor(movieLength / 60.)) % 60,
          lround(floor(movieLength)) % 60];
     }
-    
-    [mediaInfo appendFormat:@"LAST MODIFIED TIME: %@\n", [[attrs fileModificationDate] descriptionWithLocale:[NSLocale systemLocale]]];
     
     if (NSClassFromString(@"NSByteCountFormatter") != nil) {
         [mediaInfo appendFormat:@"FILE SIZE: %@\n", [NSByteCountFormatter stringFromByteCount:[attrs fileSize]
@@ -154,6 +163,8 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
         [mediaInfo appendFormat:@"FILE SIZE: %llu Bytes\n",[attrs fileSize]];
     }
     
+    [mediaInfo appendFormat:@"LAST MODIFIED TIME: %@\n", [[attrs fileModificationDate] descriptionWithLocale:[NSLocale systemLocale]]];
+
     
     CGDataProviderRef imgDataProvider = CGDataProviderCreateWithCFData((CFDataRef)[NSData dataWithContentsOfFile:tmpfile]);
     CGImageRef thumb = CGImageCreateWithPNGDataProvider(imgDataProvider, NULL, true, kCGRenderingIntentDefault);
@@ -161,16 +172,32 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     if (thumb == nil)
         return noErr;
     
-    size_t thumb_width = CGImageGetWidth(thumb);
-    size_t thumb_height = CGImageGetHeight(thumb);
+    float thumb_width = CGImageGetWidth(thumb);
+    float thumb_height = CGImageGetHeight(thumb);
     
-    
+    float desc_height = 130;
     // Preview will be drawn in a vectorized context
-    CGContextRef cgContext = QLPreviewRequestCreateContext(preview, CGSizeMake(thumb_width+60, thumb_height+180), true, NULL);
+    CGContextRef cgContext = QLPreviewRequestCreateContext(preview, CGSizeMake(thumb_width+60, thumb_height+50+desc_height), true, NULL);
     if(cgContext) {
         CGContextSaveGState(cgContext);
         CGContextSetShadowWithColor(cgContext, CGSizeMake(1, -2), 5.0, [NSColor shadowColor].CGColor);
-        CGContextDrawImage(cgContext, CGRectMake(30, 160, thumb_width, thumb_height), thumb);
+        if (movieLength > 0){
+            float row_space = 4;
+            float col_space = 4;
+            CGContextDrawImage(cgContext, CGRectMake(30-col_space*1.5, desc_height+30 + thumb_height - thumb_height/4 + 3*row_space, thumb_width/4, thumb_height/4), thumb);
+            
+            for (float i = 2; i <= 16; i++) {
+                CGDataProviderRef imgDataProviderEach = CGDataProviderCreateWithCFData((CFDataRef)TakeSnapshot([(__bridge NSURL *)url path], movieLength*(i-1)/16));
+                CGImageRef thumbEach = CGImageCreateWithPNGDataProvider(imgDataProviderEach, NULL, true, kCGRenderingIntentDefault);
+
+                CGContextDrawImage(cgContext, CGRectMake(30-col_space*1.5 + col_space * ((int)(i-1)%4) + thumb_width*((int)(i-1)%4)/4 ,
+                                                         desc_height+30 + thumb_height - thumb_height*(1+(int)((i-1)/4))/4 + (3-(int)((i-1)/4))*row_space,
+                                                         thumb_width/4, thumb_height/4), thumbEach);
+                
+            }
+        } else {
+            CGContextDrawImage(cgContext, CGRectMake(30, desc_height+30, thumb_width, thumb_height), thumb);
+        }
         CGContextRestoreGState(cgContext);
         
         CTFontRef font = CTFontCreateUIFontForLanguage(kCTFontApplicationFontType, 14, NULL);
