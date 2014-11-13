@@ -119,16 +119,30 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     
     NSMutableString * mediaInfo = [NSMutableString string];
     
+    float movieLength = -1;
     for(int i=0; i<[array count]; i++){
         NSString* line = array[i];
-        if ([line hasPrefix:@"VIDEO:"]){
+        
+        if ([line hasPrefix:@"ID_LENGTH"] || [line hasPrefix:@"MPX_LENGTH"]){
+            NSArray *items = [line componentsSeparatedByString:@"="];
+            if ([items count] > 1) {
+                NSString* length = items[1];
+                movieLength = MAX(movieLength,[length floatValue]);
+            }
+        } else if ([line hasPrefix:@"VIDEO:"]){
         } else if ([line hasPrefix:@"AUDIO:"]){
-        } else if ([line hasPrefix:@"ID_LENGTH"]){
-        } else {
+        }else {
             continue;
         }
         
         [mediaInfo appendFormat:@"%@\n", line];
+    }
+    
+    if (movieLength > 0){
+        [mediaInfo appendFormat:@"LENGTH: %02li:%02li:%02li\n",
+         lround(floor(movieLength / 3600.)) % 100,
+         lround(floor(movieLength / 60.)) % 60,
+         lround(floor(movieLength)) % 60];
     }
     
     [mediaInfo appendFormat:@"LAST MODIFIED TIME: %@\n", [[attrs fileModificationDate] descriptionWithLocale:[NSLocale systemLocale]]];
@@ -152,11 +166,11 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     
     
     // Preview will be drawn in a vectorized context
-    CGContextRef cgContext = QLPreviewRequestCreateContext(preview, CGSizeMake(thumb_width+60, thumb_height+160), true, NULL);
+    CGContextRef cgContext = QLPreviewRequestCreateContext(preview, CGSizeMake(thumb_width+60, thumb_height+180), true, NULL);
     if(cgContext) {
         CGContextSaveGState(cgContext);
         CGContextSetShadowWithColor(cgContext, CGSizeMake(1, -2), 5.0, [NSColor shadowColor].CGColor);
-        CGContextDrawImage(cgContext, CGRectMake(30, 140, thumb_width, thumb_height), thumb);
+        CGContextDrawImage(cgContext, CGRectMake(30, 160, thumb_width, thumb_height), thumb);
         CGContextRestoreGState(cgContext);
         
         CTFontRef font = CTFontCreateUIFontForLanguage(kCTFontApplicationFontType, 14, NULL);
@@ -184,7 +198,7 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
         CFAttributedStringSetAttribute(attrString, stringRange, kCTParagraphStyleAttributeName, paragraphStyle);
         
         CGMutablePathRef path = CGPathCreateMutable();
-        CGRect bounds = CGRectMake(30.0, 0, thumb_width, 110);
+        CGRect bounds = CGRectMake(30.0, 0, thumb_width, 130);
         CGPathAddRect(path, NULL, bounds);
         
         CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(attrString);
