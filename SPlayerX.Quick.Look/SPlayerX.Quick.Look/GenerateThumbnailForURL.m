@@ -149,6 +149,18 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
         [mediaInfo appendFormat:@"%@\n", line];
     }
     
+    CGDataProviderRef imgDataProvider = CGDataProviderCreateWithCFData((CFDataRef)[NSData dataWithContentsOfFile:tmpfile]);
+    CGImageRef thumb = CGImageCreateWithPNGDataProvider(imgDataProvider, NULL, true, kCGRenderingIntentDefault);
+    
+    if (thumb == nil)
+        return noErr;
+    
+    float thumb_width = CGImageGetWidth(thumb);
+    float thumb_height = CGImageGetHeight(thumb);
+    
+    [mediaInfo appendFormat:@"RESOLUTION: %i x %i (pixels)\n",(int)thumb_width, (int)thumb_height];
+
+    
     if (movieLength > 0){
         [mediaInfo appendFormat:@"TIME LENGTH: %02li:%02li:%02li\n",
          lround(floor(movieLength / 3600.)) % 100,
@@ -166,19 +178,11 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     [mediaInfo appendFormat:@"LAST MODIFIED TIME: %@\n", [[attrs fileModificationDate] descriptionWithLocale:[NSLocale systemLocale]]];
 
     
-    CGDataProviderRef imgDataProvider = CGDataProviderCreateWithCFData((CFDataRef)[NSData dataWithContentsOfFile:tmpfile]);
-    CGImageRef thumb = CGImageCreateWithPNGDataProvider(imgDataProvider, NULL, true, kCGRenderingIntentDefault);
-    
-    if (thumb == nil)
-        return noErr;
-    
-    float thumb_width = CGImageGetWidth(thumb);
-    float thumb_height = CGImageGetHeight(thumb);
     float row_space = 4;
     float col_space = 4;
     float left_padding = 35;
     
-    float desc_height = 120;
+    float desc_height = 140;
     // Preview will be drawn in a vectorized context
     CGContextRef cgContext = QLPreviewRequestCreateContext(preview, CGSizeMake(thumb_width+70, thumb_height+45+desc_height), true, NULL);
     if(cgContext) {
