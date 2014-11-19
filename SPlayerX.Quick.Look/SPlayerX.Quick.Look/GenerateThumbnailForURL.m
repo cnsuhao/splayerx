@@ -16,6 +16,12 @@ NSString* MPlayerPath(){
     return nil;
 }
 
+NSString *NStringFromTimecode(float position) {
+    return  [NSString stringWithFormat:@"%02li:%02li:%02li",
+             lround(floor(position / 3600.)) % 100,
+             lround(floor(position / 60.)) % 60,
+             lround(floor(position)) % 60];
+}
 NSData* TakeSnapshot(NSString *moviepath, float position) {
     
     NSString* mpath = MPlayerPath();
@@ -28,10 +34,7 @@ NSData* TakeSnapshot(NSString *moviepath, float position) {
     NSString *tmpfile = [tmpdir stringByAppendingPathComponent:@"00000001.png"];
     
     // TODO: predict video length
-    NSArray *args = [NSArray arrayWithObjects:moviepath, @"-ss", [NSString stringWithFormat:@"%02li:%02li:%02li",
-                                                                  lround(floor(position / 3600.)) % 100,
-                                                                  lround(floor(position / 60.)) % 60,
-                                                                  lround(floor(position)) % 60], @"-frames", @"1", @"-nosound", @"-vo",
+    NSArray *args = [NSArray arrayWithObjects:moviepath, @"-ss", NStringFromTimecode(position) , @"-frames", @"1", @"-nosound", @"-vo",
                      [NSString stringWithFormat:@"png:z=0:outdir=%@", tmpdir], nil];
     [[NSTask launchedTaskWithLaunchPath:mpath arguments:args] waitUntilExit];
     
@@ -83,6 +86,43 @@ void CancelThumbnailGeneration(void *thisInterface, QLThumbnailRequestRef thumbn
     // Implement only if supported
 }
 
+void DrawTimecodeOnThumbnail(CGContextRef cgContext, float time_code, CGRect thumbrect) {
+    
+    CGContextSaveGState(cgContext);
+    CGContextSetShadowWithColor(cgContext, CGSizeMake(0, 0), 3.0, [NSColor blackColor].CGColor);
+    
+    CGFloat fontsize = MIN(14,thumbrect.size.height/10);
+    CTFontRef font = CTFontCreateUIFontForLanguage(kCTFontApplicationFontType, fontsize, NULL);
+    
+    CGFloat strokesize = 2;
+    CFNumberRef cfstrokesize = CFNumberCreate(NULL, kCFNumberFloatType, &strokesize);
+    
+    CFStringRef keys[] = { kCTFontAttributeName , kCTForegroundColorAttributeName, kCTStrokeColorAttributeName, kCTStrokeWidthAttributeName};
+    CFTypeRef values[] = { font ,  [[NSColor whiteColor] CGColor],  [[NSColor blackColor] CGColor], cfstrokesize};
+    
+    CFDictionaryRef attributes =
+    CFDictionaryCreate(kCFAllocatorDefault, (const void**)&keys,
+                       (const void**)&values, sizeof(keys) / sizeof(keys[0]),
+                       &kCFTypeDictionaryKeyCallBacks,
+                       &kCFTypeDictionaryValueCallBacks);
+    
+    CFStringRef string = (__bridge CFStringRef)NStringFromTimecode(time_code);
+    
+    CFAttributedStringRef attrString =
+    CFAttributedStringCreate(kCFAllocatorDefault, string, attributes);
+    CFRelease(string);
+    CFRelease(attributes);
+    CFRelease(cfstrokesize);
+    
+    CTLineRef line = CTLineCreateWithAttributedString(attrString);
+    
+    // Set text position and draw the line into the graphics context
+    CGContextSetTextPosition(cgContext, thumbrect.origin.x + thumbrect.size.width-fontsize*4.3 , thumbrect.origin.y + 4);
+    CTLineDraw(line, cgContext);
+    CFRelease(line);
+
+    CGContextRestoreGState(cgContext);
+}
 
 OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options);
 void CancelPreviewGeneration(void *thisInterface, QLPreviewRequestRef preview);
@@ -190,27 +230,43 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
         CGContextSetShadowWithColor(cgContext, CGSizeMake(1, -2), 5.0, [NSColor shadowColor].CGColor);
         if (movieLength > 0){
 
-            CGContextDrawImage(cgContext, CGRectMake(left_padding-col_space*1.5, desc_height+30 + thumb_height - thumb_height/4 + 3*row_space, thumb_width/4 - col_space/2, thumb_height/4 - row_space/2), thumb);
-            
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
             dispatch_group_t group = dispatch_group_create();
             
+            float j = 1;
             for (float i = 2; i <= 16; i++) {
-                
+                float time_code = movieLength*(i-1)/16;
+                if (5 < time_code && j < i) {
+                    float k = j++;
+                    CGRect trect = CGRectMake(left_padding-col_space*1.5 + col_space * ((int)(k-1)%4) + thumb_width*((int)(k-1)%4)/4 ,
+                                              desc_height+30 + thumb_height - thumb_height*(1+(int)((k-1)/4))/4 + (3-(int)((k-1)/4))*row_space,
+                                              thumb_width/4 - col_space/2, thumb_height/4 - row_space/2);
+                    
+                    CGContextDrawImage(cgContext, trect, thumb);
+                    
+                    DrawTimecodeOnThumbnail(cgContext, 5, trect);
+                }
+                float k = j++;
                 // Add a task to the group
                 dispatch_group_async(group, queue, ^{
                     // Some asynchronous work
-                    NSData* snapshotData = TakeSnapshot([(__bridge NSURL *)url path], movieLength*(i-1)/16);
+                    NSLog(@"====%f", k);
+                    
+                    NSData* snapshotData = TakeSnapshot([(__bridge NSURL *)url path], time_code);
+                    if (!snapshotData)
+                        return;
 
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         CGDataProviderRef imgDataProviderEach = CGDataProviderCreateWithCFData((CFDataRef)snapshotData);
                         CGImageRef thumbEach = CGImageCreateWithPNGDataProvider(imgDataProviderEach, NULL, true, kCGRenderingIntentDefault);
                         
-                        CGRect trect = CGRectMake(left_padding-col_space*1.5 + col_space * ((int)(i-1)%4) + thumb_width*((int)(i-1)%4)/4 ,
-                                                  desc_height+30 + thumb_height - thumb_height*(1+(int)((i-1)/4))/4 + (3-(int)((i-1)/4))*row_space,
+                        CGRect trect = CGRectMake(left_padding-col_space*1.5 + col_space * ((int)(k-1)%4) + thumb_width*((int)(k-1)%4)/4 ,
+                                                  desc_height+30 + thumb_height - thumb_height*(1+(int)((k-1)/4))/4 + (3-(int)((k-1)/4))*row_space,
                                                   thumb_width/4 - col_space/2, thumb_height/4 - row_space/2);
                        // NSLog(@"======%f %f", trect.origin.x , trect.origin.y);
                         CGContextDrawImage(cgContext, trect, thumbEach);
+                        
+                        DrawTimecodeOnThumbnail(cgContext, time_code, trect);
                     });
                 });
                 
