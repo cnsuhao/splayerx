@@ -174,27 +174,50 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     
     float thumb_width = CGImageGetWidth(thumb);
     float thumb_height = CGImageGetHeight(thumb);
+    float row_space = 4;
+    float col_space = 4;
+    float left_padding = 35;
     
-    float desc_height = 130;
+    float desc_height = 120;
     // Preview will be drawn in a vectorized context
-    CGContextRef cgContext = QLPreviewRequestCreateContext(preview, CGSizeMake(thumb_width+60, thumb_height+50+desc_height), true, NULL);
+    CGContextRef cgContext = QLPreviewRequestCreateContext(preview, CGSizeMake(thumb_width+70, thumb_height+45+desc_height), true, NULL);
     if(cgContext) {
         CGContextSaveGState(cgContext);
         CGContextSetShadowWithColor(cgContext, CGSizeMake(1, -2), 5.0, [NSColor shadowColor].CGColor);
         if (movieLength > 0){
-            float row_space = 4;
-            float col_space = 4;
-            CGContextDrawImage(cgContext, CGRectMake(30-col_space*1.5, desc_height+30 + thumb_height - thumb_height/4 + 3*row_space, thumb_width/4, thumb_height/4), thumb);
+
+            CGContextDrawImage(cgContext, CGRectMake(left_padding-col_space*1.5, desc_height+30 + thumb_height - thumb_height/4 + 3*row_space, thumb_width/4 - col_space/2, thumb_height/4 - row_space/2), thumb);
+            
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            dispatch_group_t group = dispatch_group_create();
             
             for (float i = 2; i <= 16; i++) {
-                CGDataProviderRef imgDataProviderEach = CGDataProviderCreateWithCFData((CFDataRef)TakeSnapshot([(__bridge NSURL *)url path], movieLength*(i-1)/16));
-                CGImageRef thumbEach = CGImageCreateWithPNGDataProvider(imgDataProviderEach, NULL, true, kCGRenderingIntentDefault);
+                
+                // Add a task to the group
+                dispatch_group_async(group, queue, ^{
+                    // Some asynchronous work
+                    NSData* snapshotData = TakeSnapshot([(__bridge NSURL *)url path], movieLength*(i-1)/16);
 
-                CGContextDrawImage(cgContext, CGRectMake(30-col_space*1.5 + col_space * ((int)(i-1)%4) + thumb_width*((int)(i-1)%4)/4 ,
-                                                         desc_height+30 + thumb_height - thumb_height*(1+(int)((i-1)/4))/4 + (3-(int)((i-1)/4))*row_space,
-                                                         thumb_width/4, thumb_height/4), thumbEach);
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        CGDataProviderRef imgDataProviderEach = CGDataProviderCreateWithCFData((CFDataRef)snapshotData);
+                        CGImageRef thumbEach = CGImageCreateWithPNGDataProvider(imgDataProviderEach, NULL, true, kCGRenderingIntentDefault);
+                        
+                        CGRect trect = CGRectMake(left_padding-col_space*1.5 + col_space * ((int)(i-1)%4) + thumb_width*((int)(i-1)%4)/4 ,
+                                                  desc_height+30 + thumb_height - thumb_height*(1+(int)((i-1)/4))/4 + (3-(int)((i-1)/4))*row_space,
+                                                  thumb_width/4 - col_space/2, thumb_height/4 - row_space/2);
+                       // NSLog(@"======%f %f", trect.origin.x , trect.origin.y);
+                        CGContextDrawImage(cgContext, trect, thumbEach);
+                    });
+                });
                 
             }
+            
+            // When you cannot make any more forward progress,
+            // wait on the group to block the current thread.
+            dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+            
+            // Release the group when it is no longer needed.
+            dispatch_release(group);
         } else {
             CGContextDrawImage(cgContext, CGRectMake(30, desc_height+30, thumb_width, thumb_height), thumb);
         }
@@ -225,7 +248,7 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
         CFAttributedStringSetAttribute(attrString, stringRange, kCTParagraphStyleAttributeName, paragraphStyle);
         
         CGMutablePathRef path = CGPathCreateMutable();
-        CGRect bounds = CGRectMake(30.0, 0, thumb_width, 130);
+        CGRect bounds = CGRectMake(left_padding-col_space*1.5, 0, thumb_width, desc_height+8);
         CGPathAddRect(path, NULL, bounds);
         
         CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(attrString);
