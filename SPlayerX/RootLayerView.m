@@ -690,7 +690,7 @@
 			}
 		} else {
 			// in secondary screens
-			opts = [NSApp presentationOptions];
+			opts = [NSApp presentationOptions] | NSApplicationPresentationAutoHideMenuBar;
 		}
 
 		[fullScreenOptions setObject:[NSNumber numberWithInt:opts]
