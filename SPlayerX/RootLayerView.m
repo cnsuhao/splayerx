@@ -690,8 +690,8 @@
 			}
 		} else {
 			// in secondary screens
-			opts = [NSApp presentationOptions] | NSApplicationPresentationAutoHideMenuBar;
-		}
+            opts = [NSApp presentationOptions] | NSApplicationPresentationAutoHideMenuBar | NSApplicationPresentationAutoHideDock;
+        }
 
 		[fullScreenOptions setObject:[NSNumber numberWithInt:opts]
 							  forKey:NSFullScreenModeApplicationPresentationOptions];
