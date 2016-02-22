@@ -28,7 +28,9 @@
 #import "LaunchServiceHandler.h"
 #import "StoreHandler.h"
 
-#import "validatereceipt.h"
+BOOL validateReceiptAtPath(NSString * path) {
+    return [[NSFileManager defaultManager] fileExistsAtPath:path];
+}
 
 NSString * const kMPCFMTBookmarkPath	= @"%@/Library/Preferences/%@.bookmarks.plist";
 
@@ -65,8 +67,8 @@ static BOOL init_ed = NO;
 -(void) validateReceipt:(id)sender {
     // check receipt
     NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
-    //if (!validateReceiptAtPath([receiptURL path]))
-    //    exit(173);
+    if (!validateReceiptAtPath([receiptURL path]))
+        exit(173);
 }
 
 -(id) init
