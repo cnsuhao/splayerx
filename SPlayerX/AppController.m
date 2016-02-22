@@ -65,8 +65,8 @@ static BOOL init_ed = NO;
 -(void) validateReceipt:(id)sender {
     // check receipt
     NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
-    if (!validateReceiptAtPath([receiptURL path]))
-        exit(173);
+    //if (!validateReceiptAtPath([receiptURL path]))
+    //    exit(173);
 }
 
 -(id) init

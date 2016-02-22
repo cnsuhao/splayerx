@@ -138,7 +138,6 @@
 		880BFEC819ED735B0031F8D9 /* VideoTuner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042CE03D1436CB4400730552 /* VideoTuner.xib */; };
 		8885F74B19E55DA700FE7125 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8885F74A19E55DA700FE7125 /* Images.xcassets */; };
 		8885F78A19E5E75800FE7125 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 889E6D0D17B0D58500E86051 /* libssl.dylib */; };
-		889E6D0C17B0D4F000E86051 /* validatereceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D70060143EDD24001E26AA /* validatereceipt.m */; };
 		889E6D0F17B0D62D00E86051 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D7005D143ED6E9001E26AA /* Security.framework */; };
 		889E6D1517B0D9A000E86051 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 889E6D1417B0D9A000E86051 /* libcrypto.dylib */; };
 /* End PBXBuildFile section */
@@ -272,8 +271,6 @@
 		042CE04B1436CB4400730552 /* zh_tw */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_tw; path = SubEncoding.xib; sourceTree = "<group>"; };
 		042CE04D1436CB4400730552 /* zh_tw */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = zh_tw; path = VideoTuner.xib; sourceTree = "<group>"; };
 		04D7005D143ED6E9001E26AA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		04D7005F143EDD24001E26AA /* validatereceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = validatereceipt.h; path = SPlayerX/validatereceipt.h; sourceTree = "<group>"; };
-		04D70060143EDD24001E26AA /* validatereceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = validatereceipt.m; path = SPlayerX/validatereceipt.m; sourceTree = "<group>"; };
 		04DFB78E14377946006B3F6F /* SPlayerX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPlayerX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		880BFEA119ED69800031F8D9 /* SPlayerX.Quick.Look.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SPlayerX.Quick.Look.xcodeproj; path = SPlayerX.Quick.Look/SPlayerX.Quick.Look.xcodeproj; sourceTree = "<group>"; };
 		883CBBEC14358E0500D20499 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
@@ -592,8 +589,6 @@
 			children = (
 				883CBC6D14358E0600D20499 /* ssclThread.h */,
 				883CBC6E14358E0600D20499 /* ssclThread.m */,
-				04D7005F143EDD24001E26AA /* validatereceipt.h */,
-				04D70060143EDD24001E26AA /* validatereceipt.m */,
 				883CBC3314358E0600D20499 /* GTMDefines.h */,
 				883CBC3414358E0600D20499 /* GTMStringEncoding.h */,
 				883CBC3514358E0600D20499 /* GTMStringEncoding.m */,
@@ -1048,7 +1043,6 @@
 				04DFB73814377946006B3F6F /* TimeFormatter.m in Sources */,
 				04DFB73914377946006B3F6F /* TimeSliderCell.m in Sources */,
 				04DFB73A14377946006B3F6F /* TitleView.m in Sources */,
-				889E6D0C17B0D4F000E86051 /* validatereceipt.m in Sources */,
 				04DFB73B14377946006B3F6F /* UserDefaults.m in Sources */,
 				04DFB73C14377946006B3F6F /* VideoInfo.m in Sources */,
 				04DFB73D14377946006B3F6F /* VideoTunerController.m in Sources */,
@@ -1256,7 +1250,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPlayerX/SPlayerX-Prefix.pch";
@@ -1277,7 +1271,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
