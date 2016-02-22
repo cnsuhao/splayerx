@@ -22,6 +22,8 @@
 
 #define PIAPI_APP_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 
+BOOL validateReceiptAtPath(NSString * path);
+
 @class PlayerController, OpenURLController;
 
 @interface AppController : NSObject <NSApplicationDelegate>
