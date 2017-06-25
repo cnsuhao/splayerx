@@ -213,6 +213,8 @@ NSString * const kStringFMTTimeAppendTotal	= @" / %@";
     [toggleShareButton setHidden:YES];
     [toggleAcceButton  setHidden:YES];
 
+    [toggleShareButton sendActionOn:NSLeftMouseDownMask];
+    
 	// 自动隐藏设定
 	[self refreshAutoHideTimer];
 	
