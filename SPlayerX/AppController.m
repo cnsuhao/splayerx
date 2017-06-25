@@ -49,7 +49,7 @@ static BOOL init_ed = NO;
 	[[NSUserDefaults standardUserDefaults] 
 	 registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
 	 //			   @"http://splayer.org/osx/appcast.xml", @"SUFeedURL", // http://hg.splayer.org/splayerx/raw/tip/update/appcast.xml
-					   @"http://splayer.org/", kUDKeyHelpURL,
+					   @"https://splayer.org/", kUDKeyHelpURL,
 					   nil]];
 
   // force enabled
@@ -179,19 +179,19 @@ static BOOL init_ed = NO;
 
 -(IBAction) showHelp:(id) sender
 {
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://splayer.org/splayerx/help"]];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://bitbucket.org/Tomasen/splayerx/wiki/Help"]];
 }
 -(IBAction) goToDonate:(id)sender
 {
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://shooter.cn/donate"]];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://shooter.cn/donate"]];
 }
 -(IBAction) goToFeedback:(id)sender
 {
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://feedback.splayer.org/forums/100639-mac-splayerx"]];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://feedback.splayer.org/forums/100639-mac-splayerx"]];
 }
 -(IBAction) goToHomepage:(id)sender
 {
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://hg.splayer.org/splayerx"]];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://splayer.org/"]];
 }
 -(IBAction) pushSubtitle:(id)sender
 {
