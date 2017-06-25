@@ -659,7 +659,6 @@ Translation
                             <outlet property="menuVolDec" destination="858" id="859"/>
                             <outlet property="menuVolInc" destination="857" id="860"/>
                             <outlet property="menuWindow" destination="24" id="1068"/>
-                            <outlet property="osd" destination="881" id="883"/>
                             <outlet property="playPauseButton" destination="553" id="567"/>
                             <outlet property="playerController" destination="494" id="880"/>
                             <outlet property="rzIndicator" destination="843" id="846"/>
