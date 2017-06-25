@@ -46,18 +46,24 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 
 // the Distant Protocol from mplayer binary
 @protocol MPlayerOSXVOProto
--(int) startWithWidth:(bycopy NSUInteger)width withHeight:(bycopy NSUInteger)height withPixelFormat:(bycopy OSType)pixelFormat withAspect:(bycopy float)aspect;
+- (int)startWithWidth:(bycopy int)width
+           withHeight:(bycopy int)height
+            withBytes:(bycopy int)bytes
+           withAspect:(bycopy int)aspect;
 -(void) stop;
--(void) render:(bycopy NSUInteger)frameNum;
+-(void) render;
 -(void) toggleFullscreen;
 -(void) ontop;
 @end
 
 /// 内部方法声明
 @interface CoreController (MPlayerOSXVOProto)
--(int) startWithWidth:(bycopy NSUInteger)width withHeight:(bycopy NSUInteger)height withPixelFormat:(bycopy OSType)pixelFormat withAspect:(bycopy float)aspect;
+- (int)startWithWidth:(bycopy int)width
+           withHeight:(bycopy int)height
+            withBytes:(bycopy int)bytes
+           withAspect:(bycopy int)aspect;
 -(void) stop;
--(void) render:(bycopy NSUInteger)frameNum;
+-(void) render;
 -(void) toggleFullscreen;
 -(void) ontop;
 @end
@@ -242,27 +248,32 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 }
 
 //////////////////////////////////////////////protocol for render/////////////////////////////////////////////////////
--(int) startWithWidth:(bycopy NSUInteger)width withHeight:(bycopy NSUInteger)height withPixelFormat:(bycopy OSType)pixelFormat withAspect:(bycopy float)aspect
+//-(int) startWithWidth:(bycopy NSUInteger)width withHeight:(bycopy NSUInteger)height withPixelFormat:(bycopy OSType)pixelFormat withAspect:(bycopy float)aspect
+- (int)startWithWidth:(bycopy int)width
+           withHeight:(bycopy int)height
+            withBytes:(bycopy int)bytes
+           withAspect:(bycopy int)aspect;
 {
 	// MPLog(@"start");
 	if (dispDelegate) {
 		// make the DisplayFormat
 		DisplayFormat fmt;
-
+        
 		fmt.width  = width;
 		fmt.height = height;
-		fmt.pixelFormat = pixelFormat;
-		fmt.aspect = aspect;
+        
+        fmt.bytes = bytes;
+        fmt.aspect = (CGFloat)aspect/100;
 		
-		switch (pixelFormat) {
-			case kYUVSPixelFormat:
-				fmt.bytes = 2;
+		switch (fmt.bytes) {
+			case 2:
+                fmt.pixelFormat = kYUVSPixelFormat;
 				break;
-			case k24RGBPixelFormat:
-				fmt.bytes = 3;
+			case 3:
+				fmt.pixelFormat = k24RGBPixelFormat;
 				break;
-			default:
-				fmt.bytes = 4;
+			default: // 4
+				fmt.pixelFormat = k32ARGBPixelFormat; // TODO: are u sure?
 				break;
 		}
 		imageSize = fmt.bytes * width * height;
@@ -274,7 +285,7 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 			return 1;
 		}
 		
-		imageData = mmap(NULL, imageSize * 2, PROT_READ, MAP_SHARED, shMemID, 0);
+		imageData = mmap(NULL, imageSize, PROT_READ, MAP_SHARED, shMemID, 0);
 		// whatever succeed or fail, it should be OK of close the shm
 		close(shMemID);
 		
@@ -285,9 +296,9 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 		}
 		char *dataBuf[2];
 		dataBuf[0] = imageData;
-		dataBuf[1] = imageData + imageSize;
+		// dataBuf[1] = imageData + imageSize;
 		
-		return [dispDelegate coreController:self startWithFormat:fmt buffer:dataBuf total:2];
+		return [dispDelegate coreController:self startWithFormat:fmt buffer:dataBuf total:1];
 	}
 	return 1;
 }
@@ -304,10 +315,11 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 	}
 }
 
--(void) render:(bycopy NSUInteger)frameNum
+//-(void) render:(bycopy NSUInteger)frameNum
+-(void) render
 {
 	if (dispDelegate) {
-		[dispDelegate coreController:self draw:frameNum];
+		[dispDelegate coreController:self draw:0];
 	}
 }
 
