@@ -96,6 +96,7 @@
 		NSMutableDictionary *env = [[[NSProcessInfo processInfo] environment] mutableCopy];
 		[env setObject:@"1" forKey:@"DYLD_BIND_AT_LAUNCH"]; //delete the message for DYLD
 		[env setObject:@"xterm" forKey:@"TERM"]; // delete the message from mplayer about the "unknown" terminal
+        [env setObject:@"./lib" forKey:@"DYLD_LIBRARY_PATH"];
 		[env removeObjectForKey:@"MPLAYER_HOME"];
 		[env removeObjectForKey:@"HOME"];
 		[task setEnvironment:env];
@@ -132,7 +133,7 @@
 {
 	// 如果task正在运行
 	if (task && [task isRunning]) {
-		// MPLog(@"%@",cmd);
+		NSLog(@"sendStringCommand %@",cmd);
 		[[[task standardInput] fileHandleForWriting] writeData:[cmd dataUsingEncoding:NSUTF8StringEncoding]];
 		return YES;
 	}
