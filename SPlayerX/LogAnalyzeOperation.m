@@ -85,6 +85,13 @@ const char* findNextReturnMark(const char *head, const char *end, const char **s
 			retMark = findNextReturnMark(dataHead, dataEnd, &splitMark);
 
 			if (retMark == NULL) { retMark = dataEnd -1; }
+            
+            if(memcmp(dataHead, "Starting playback...", retMark-dataHead) == 0) {
+                [tgt performSelectorOnMainThread:sel
+                                      withObject:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:256]
+                                                                             forKey:@"PBST"]
+                                   waitUntilDone:NO];
+            }
 			
 			if (splitMark) {
 				// 如果有分隔符的话
