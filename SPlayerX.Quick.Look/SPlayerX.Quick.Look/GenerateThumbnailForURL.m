@@ -153,6 +153,11 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
                      [NSString stringWithFormat:@"png:z=0:outdir=%@", tmpdir], nil];
     [task setLaunchPath:mpath];
     [task setArguments:args];
+    
+    NSMutableDictionary *env = [[[NSProcessInfo processInfo] environment] mutableCopy];
+    [env setObject:@"./lib" forKey:@"DYLD_LIBRARY_PATH"];
+    [task setEnvironment:env];
+    
     NSPipe * out = [NSPipe pipe];
     [task setStandardOutput:out];
     [task launch];
