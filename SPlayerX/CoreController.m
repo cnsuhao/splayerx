@@ -236,7 +236,7 @@ NSString * const kCmdStringFMTTimeSeek	= @"%@ %@ %f %d\n";
 
 - (void) playerCore:(id)player outputAvailable:(NSData*)outData
 {
-	[la analyzeData:outData];
+    [la analyzeData:outData];
 }
 
 - (void) playerCore:(id)player errorHappened:(NSData*) errData

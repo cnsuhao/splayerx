@@ -54,6 +54,10 @@
 -(void) analyzeData:(NSData*) data
 {
 	if (data && ([data length] != 0) && delegate) {
+        NSString *strData = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"outputAvailable:%@",strData);
+        [strData release];
+        
 		// 如果没有delegate，那么什么都不做
 		// 因此这个类必须要有delegate才能正常工作
 		LogAnalyzeOperation *op = [[LogAnalyzeOperation alloc] initWithData:data 
